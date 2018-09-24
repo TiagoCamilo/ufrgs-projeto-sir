@@ -10,9 +10,10 @@ namespace App\Controller;
 
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController
+class TimelineController extends AbstractController
 {
     /**
      * @Route("/")
@@ -23,10 +24,12 @@ class DefaultController
 
 
     /**
-     * @Route("timeline/{id}")
+     * @Route("show/{id}")
      */
     public function show($id)
     {
-        return new Response("Timeline do aluno {$id}");
+        return $this->render('timeline/show.html.twig',[
+            'aluno_id' => $id
+        ]);
     }
 }
