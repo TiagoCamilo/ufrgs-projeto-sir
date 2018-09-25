@@ -41,6 +41,19 @@
         </div>
     </nav>
 
+    <div class="container">
+
+        <div class="starter-template">
+
+            {% block container %}
+            <h1>SIR - Sala de Integração de Recursos</h1>
+            <p class="lead">Sistema para gerenciamento e acompanhamento de atividades nas salas de integração de recursos</p>
+
+            {% endblock %}
+        </div>
+
+    </div><!-- /.container -->
+
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
