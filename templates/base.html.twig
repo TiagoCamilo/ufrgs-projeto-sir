@@ -3,10 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}"
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+        <button class="btn btn-primary" >Teste</button>
+        {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
