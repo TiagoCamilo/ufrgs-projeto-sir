@@ -21,6 +21,11 @@ class Educador
      */
     private $nome;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="educador", cascade={"persist", "remove"})
+     */
+    private $app_user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +39,18 @@ class Educador
     public function setNome(string $nome): self
     {
         $this->nome = $nome;
+
+        return $this;
+    }
+
+    public function getAppUser(): ?User
+    {
+        return $this->app_user;
+    }
+
+    public function setAppUser(?User $app_user): self
+    {
+        $this->app_user = $app_user;
 
         return $this;
     }

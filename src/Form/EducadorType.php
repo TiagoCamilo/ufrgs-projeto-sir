@@ -13,6 +13,7 @@ class EducadorType extends AbstractType
     {
         $builder
             ->add('nome')
+            ->add('app_user')
         ;
     }
 

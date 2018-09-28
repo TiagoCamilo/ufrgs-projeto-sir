@@ -44,6 +44,11 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Educador", mappedBy="app_user", cascade={"persist", "remove"})
+     */
+    private $educador;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -99,5 +104,28 @@ class User implements UserInterface, \Serializable
             // see section on salt below
             // $this->salt
             ) = unserialize($serialized, array('allowed_classes' => false));
+    }
+
+    public function getEducador(): ?Educador
+    {
+        return $this->educador;
+    }
+
+    public function setEducador(?Educador $educador): self
+    {
+        $this->educador = $educador;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newApp_user = $educador === null ? null : $this;
+        if ($newApp_user !== $educador->getAppUser()) {
+            $educador->setAppUser($newApp_user);
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->username;
     }
 }
