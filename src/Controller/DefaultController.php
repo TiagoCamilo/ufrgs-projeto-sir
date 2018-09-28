@@ -12,7 +12,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TimelineController extends AbstractController
+class DefaultController extends AbstractController
 {
     /**
      * @Route("/",name="home")
@@ -21,14 +21,4 @@ class TimelineController extends AbstractController
         return $this->render('base.html.twig');
     }
 
-
-    /**
-     * @Route("show/{id}")
-     */
-    public function show($id)
-    {
-        return $this->render('timeline/show.html.twig',[
-            'aluno_id' => $id
-        ]);
-    }
 }
