@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Educador index{% endblock %}
+
+{% block body %}
+    <h1>Educador index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for educador in educadors %}
+            <tr>
+                <td>{{ educador.id }}</td>
+                <td>{{ educador.nome }}</td>
+                <td>
+                    <a href="{{ path('educador_show', {'id': educador.id}) }}">show</a>
+                    <a href="{{ path('educador_edit', {'id': educador.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('educador_new') }}">Create new</a>
+{% endblock %}

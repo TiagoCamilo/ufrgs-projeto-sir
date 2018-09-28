@@ -9,8 +9,8 @@
     {% endblock %}
 </head>
 <body>
-{% block body %}
 
+{% block menu %}
     <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,6 +25,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_aluno_new') }}">Aluno</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('educador_index') }}">Educador</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -47,20 +50,16 @@
 
         </div>
     </nav>
+{%  endblock %}
 
-    <div class="container">
+{% block body_container %}
+    <div class="container body-template">
+        {% block body %}
+            <h1>SIR - Sala de Integração de Recursos</h1>
+            <p class="lead">Sistema para gerenciamento e acompanhamento de atividades nas salas de integração de recursos</p>
 
-        <div class="starter-template">
-
-            {% block container %}
-                <h1>SIR - Sala de Integração de Recursos</h1>
-                <p class="lead">Sistema para gerenciamento e acompanhamento de atividades nas salas de integração de recursos</p>
-
-            {% endblock %}
-        </div>
-
+        {% endblock %}
     </div><!-- /.container -->
-
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>

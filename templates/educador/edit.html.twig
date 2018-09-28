@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Educador{% endblock %}
+
+{% block body %}
+    <h1>Edit Educador</h1>
+
+    {{ include('educador/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('educador_index') }}">back to list</a>
+
+    {{ include('educador/_delete_form.html.twig') }}
+{% endblock %}
