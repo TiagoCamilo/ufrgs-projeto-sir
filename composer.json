@@ -19,6 +19,7 @@
         "symfony/yaml": "*"
     },
     "require-dev": {
+        "phpstan/phpstan-symfony": "^0.10.1",
         "sensiolabs/security-checker": "^4.1",
         "symfony/dotenv": "*",
         "symfony/maker-bundle": "^1.7",
