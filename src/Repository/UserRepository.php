@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: tiago
  * Date: 28/09/18
- * Time: 15:19
+ * Time: 15:19.
  */
 
 namespace App\Repository;
@@ -18,5 +18,4 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
-
 }

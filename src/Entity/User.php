@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: tiago
  * Date: 28/09/18
- * Time: 14:33
+ * Time: 14:33.
  */
 
 namespace App\Entity;
@@ -75,7 +75,7 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return ['ROLE_USER'];
     }
 
     public function eraseCredentials()
@@ -85,25 +85,25 @@ class User implements UserInterface, \Serializable
     /** @see \Serializable::serialize() */
     public function serialize()
     {
-        return serialize(array(
+        return serialize([
             $this->id,
             $this->username,
             $this->password,
             // see section on salt below
             // $this->salt,
-        ));
+        ]);
     }
 
     /** @see \Serializable::unserialize() */
     public function unserialize($serialized)
     {
-        list (
+        list(
             $this->id,
             $this->username,
             $this->password,
             // see section on salt below
             // $this->salt
-            ) = unserialize($serialized, array('allowed_classes' => false));
+            ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 
     public function getEducador(): ?Educador
@@ -116,7 +116,7 @@ class User implements UserInterface, \Serializable
         $this->educador = $educador;
 
         // set (or unset) the owning side of the relation if necessary
-        $newApp_user = $educador === null ? null : $this;
+        $newApp_user = null === $educador ? null : $this;
         if ($newApp_user !== $educador->getAppUser()) {
             $educador->setAppUser($newApp_user);
         }

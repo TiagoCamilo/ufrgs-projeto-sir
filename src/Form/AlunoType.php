@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: tiago
  * Date: 25/09/18
- * Time: 13:10
+ * Time: 13:10.
  */
 
 namespace App\Form;
-
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -20,7 +19,6 @@ class AlunoType extends AbstractType
         $builder
             ->add('nome')
             ->add('idade')
-            ->add('save',SubmitType::class);
+            ->add('save', SubmitType::class);
     }
-
 }

@@ -3,13 +3,12 @@
  * Created by PhpStorm.
  * User: tiago
  * Date: 25/09/18
- * Time: 13:05
+ * Time: 13:05.
  */
 
 namespace App\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 class Aluno
 {
@@ -54,9 +53,4 @@ class Aluno
     {
         $this->idade = $idade;
     }
-
-
-
-
-
 }

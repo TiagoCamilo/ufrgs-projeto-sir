@@ -12,5 +12,4 @@ class EducadorRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Educador::class);
     }
-
 }
