@@ -1,8 +1,21 @@
-@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+$fa-font-path:        "/assets/webfonts";
 
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "../../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 
 .table a{
   @extend .btn;
   @extend .btn-info;
 }
 
+
+body {
+  padding-top: 5rem;
+}
+.body-template {
+  div {
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+}

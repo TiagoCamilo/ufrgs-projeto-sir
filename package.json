@@ -12,5 +12,8 @@
   },
   "author": "",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/camilo_tiago/sala_recursos#readme"
+  "homepage": "https://bitbucket.org/camilo_tiago/sala_recursos#readme",
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.3.1"
+  }
 }
