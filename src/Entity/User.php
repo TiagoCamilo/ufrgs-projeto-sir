@@ -78,6 +78,46 @@ class User implements UserInterface, \Serializable
         return ['ROLE_USER'];
     }
 
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username): void
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @param mixed $isActive
+     */
+    public function setIsActive($isActive): void
+    {
+        $this->isActive = $isActive;
+    }
+
     public function eraseCredentials()
     {
     }
