@@ -1,56 +1,57 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tiago
- * Date: 25/09/18
- * Time: 13:05.
- */
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\AlunoRepository")
+ */
 class Aluno
 {
     /**
-     * @Assert\Type("string")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=200)
      */
     private $nome;
 
     /**
-     * @Assert\Type("integer")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $idade;
+    private $data_nascimento;
 
-    /**
-     * @return mixed
-     */
-    public function getNome()
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getNome(): ?string
     {
         return $this->nome;
     }
 
-    /**
-     * @param mixed $nome
-     */
-    public function setNome($nome): void
+    public function setNome(string $nome): self
     {
         $this->nome = $nome;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIdade()
+    public function getDataNascimento(): ?\DateTimeInterface
     {
-        return $this->idade;
+        return $this->data_nascimento;
     }
 
-    /**
-     * @param mixed $idade
-     */
-    public function setIdade($idade): void
+    public function setDataNascimento(?\DateTimeInterface $data_nascimento): self
     {
-        $this->idade = $idade;
+        $this->data_nascimento = $data_nascimento;
+
+        return $this;
     }
 }

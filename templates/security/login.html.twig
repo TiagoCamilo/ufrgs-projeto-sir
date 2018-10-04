@@ -6,12 +6,13 @@
     {% endif %}
 
 
-    <form action="{{ path('login') }}" method="post" class>
+    <form action="{{ path('login') }}" method="post">
+        <div class="form-group">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+        <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="_password" />
+        <input type="password" id="password" name="_password" class="form-control"/>
 
         {#
             If you want to control the URL the user
@@ -20,6 +21,7 @@
         #}
 
         <button type="submit">login</button>
+        </div>
     </form>
 
 {% endblock %}
