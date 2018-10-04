@@ -10456,10 +10456,13 @@ readers do not read off random characters that represent icons */
   font-weight: 900; }
 
 body {
-  padding-top: 5rem; }
+  padding-top: 65px; }
 
-.body-template div {
+.home-template {
   padding: 3rem 1.5rem;
   text-align: center; }
+
+.navbar-custom {
+  background-color: #34495e; }
 
 /*# sourceMappingURL=global.css.map */

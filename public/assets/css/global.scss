@@ -10,14 +10,12 @@ $fa-font-path:        "/assets/webfonts";
 }
 
 body {
-  padding-top: 5rem;
+  padding-top: 65px;
 }
 
-.body-template {
-  div {
-    padding: 3rem 1.5rem;
-    text-align: center;
-  }
+.home-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
 }
 
 .table{
@@ -28,4 +26,8 @@ body {
   thead {
     @extend .thead-inverse;
   }
+}
+
+.navbar-custom {
+  background-color: #34495e;
 }

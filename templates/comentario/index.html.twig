@@ -19,7 +19,7 @@
             <tr>
                 <td>{{ comentario.id }}</td>
                 <td>{{ comentario.dataHora ? comentario.dataHora|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ comentario.descricao }}</td>
+                <td>{{ comentario.descricao | raw }}</td>
                 <td>
                     <a href="{{ path('comentario_show', {'id': comentario.id}) }}">show</a>
                     <a href="{{ path('comentario_edit', {'id': comentario.id}) }}">edit</a>

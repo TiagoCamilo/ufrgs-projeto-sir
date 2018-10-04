@@ -10,7 +10,7 @@
 <body>
 
 {% block menu %}
-    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top navbar-custom">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -55,11 +55,11 @@
 {%  endblock %}
 
 {% block body_container %}
-    <div class="container body-template">
+    <div class="container">
         {% block body %}
-            <div>
-            <h1>SIR - Sala de Integração de Recursos</h1>
-            <p class="lead">Sistema para gerenciamento e acompanhamento de atividades nas salas de integração de recursos</p>
+            <div class="home-template">
+                <h1>SIR - Sala de Integração de Recursos</h1>
+                <p class="lead">Sistema para gerenciamento e acompanhamento de atividades nas salas de integração de recursos</p>
             </div>
         {% endblock %}
     </div><!-- /.container -->
