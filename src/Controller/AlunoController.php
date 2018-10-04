@@ -21,11 +21,9 @@ class AlunoController extends AbstractController
      */
     public function index(AlunoRepository $alunoRepository, PaginatorInterface $paginator, Request $request): Response
     {
-
         $resultSet = $paginator->paginate(
             $alunoRepository->findAll(),
-            $request->query->getInt('page', 1),
-            5
+            $request->query->getInt('page', 1)
         );
 
         return $this->render('aluno/index.html.twig', ['alunos' => $resultSet]);
