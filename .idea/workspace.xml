@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ef33198-eb0a-4ca3-b33a-0ada48f0b86c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.sass-cache/0f27cfa8f342e2cc08beff4fe7a92821eabdf0ef/global.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/.sass-cache/0f27cfa8f342e2cc08beff4fe7a92821eabdf0ef/global.scssc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/global.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/global.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/global.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/global.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/global.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ComentarioType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ComentarioType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/comentario/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comentario/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/comentario/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comentario/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/comentario/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comentario/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/comentario/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comentario/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/comentario/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comentario/show.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,8 +71,8 @@
           <entry key="js" value="24" />
           <entry key="neon" value="20" />
           <entry key="php" value="1296" />
-          <entry key="scss" value="388" />
-          <entry key="twig" value="1393" />
+          <entry key="scss" value="416" />
+          <entry key="twig" value="1431" />
           <entry key="txt" value="36" />
           <entry key="yaml" value="112" />
         </counts>
@@ -90,8 +83,8 @@
           <entry key="JavaScript" value="24" />
           <entry key="PHP" value="1296" />
           <entry key="PLAIN_TEXT" value="121" />
-          <entry key="SCSS" value="388" />
-          <entry key="Twig" value="1393" />
+          <entry key="SCSS" value="416" />
+          <entry key="Twig" value="1431" />
           <entry key="YAML" value="112" />
         </counts>
       </usages-collector>
@@ -99,7 +92,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/assets/js/ckeditor/config.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="329">
@@ -132,11 +125,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="264">
-              <caret line="12" column="69" selection-start-line="12" selection-start-column="69" selection-end-line="12" selection-end-column="82" />
+              <caret line="12" column="58" lean-forward="true" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -144,8 +137,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/assets/css/global.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
-              <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
+            <state relative-caret-position="110">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -204,10 +197,10 @@
         <option value="$PROJECT_DIR$/src/Form/ComentarioType.php" />
         <option value="$PROJECT_DIR$/config/packages/twig.yaml" />
         <option value="$PROJECT_DIR$/templates/comentario/_form.html.twig" />
-        <option value="$PROJECT_DIR$/templates/base.html.twig" />
-        <option value="$PROJECT_DIR$/public/assets/css/global.scss" />
         <option value="$PROJECT_DIR$/templates/comentario/edit.html.twig" />
         <option value="$PROJECT_DIR$/public/assets/js/ckeditor/config.js" />
+        <option value="$PROJECT_DIR$/public/assets/css/global.scss" />
+        <option value="$PROJECT_DIR$/templates/base.html.twig" />
       </list>
     </option>
   </component>
@@ -446,7 +439,7 @@
       <workItem from="1538164482425" duration="8088000" />
       <workItem from="1538492707297" duration="2613000" />
       <workItem from="1538605817855" duration="2321000" />
-      <workItem from="1538670786618" duration="10618000" />
+      <workItem from="1538670786618" duration="11468000" />
     </task>
     <task id="LOCAL-00001" summary="Adicionados componentes de debug">
       <created>1537821659127</created>
@@ -459,7 +452,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42582000" />
+    <option name="totallyTimeSpent" value="43432000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1837" height="995" extended-state="6" />
@@ -797,30 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/css/global.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="69" selection-start-line="12" selection-start-column="69" selection-end-line="12" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/comentario/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" selection-start-line="11" selection-end-line="21" selection-end-column="14" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/comentario/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
@@ -835,6 +804,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
           <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/comentario/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" selection-start-line="11" selection-end-line="21" selection-end-column="14" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/css/global.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="58" lean-forward="true" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
         </state>
       </provider>
     </entry>
