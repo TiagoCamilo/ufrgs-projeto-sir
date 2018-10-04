@@ -1606,7 +1606,7 @@ pre {
   .table-bordered thead td {
     border-bottom-width: 2px; }
 
-.table-striped tbody tr:nth-of-type(odd) {
+.table-striped tbody tr:nth-of-type(odd), .table tbody tr:nth-of-type(odd) {
   background-color: rgba(0, 0, 0, 0.05); }
 
 .table-hover tbody tr:hover {
@@ -1667,7 +1667,7 @@ pre {
   .table-hover .table-danger:hover > th {
     background-color: #ebcccc; }
 
-.thead-inverse th {
+.thead-inverse th, .table thead th {
   color: #fff;
   background-color: #292b2c; }
 
