@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Aluno;
 use App\Form\AlunoType;
 use App\Repository\AlunoRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,9 +19,16 @@ class AlunoController extends AbstractController
     /**
      * @Route("/", name="aluno_index", methods="GET")
      */
-    public function index(AlunoRepository $alunoRepository): Response
+    public function index(AlunoRepository $alunoRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        return $this->render('aluno/index.html.twig', ['alunos' => $alunoRepository->findAll()]);
+
+        $resultSet = $paginator->paginate(
+            $alunoRepository->findAll(),
+            $request->query->getInt('page', 1),
+            5
+        );
+
+        return $this->render('aluno/index.html.twig', ['alunos' => $resultSet]);
     }
 
     /**
