@@ -10456,7 +10456,8 @@ readers do not read off random characters that represent icons */
   font-weight: 900; }
 
 body {
-  padding-top: 65px; }
+  padding-top: 65px;
+  background-color: #F2F2F2; }
 
 .home-template {
   padding: 3rem 1.5rem;
