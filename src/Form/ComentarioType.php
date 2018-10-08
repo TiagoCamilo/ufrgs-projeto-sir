@@ -17,7 +17,7 @@ class ComentarioType extends AbstractType
             ->add('data_hora', DateType::class, [
                 'widget' => 'single_text',
             ])
-            ->add('descricao',TextareaType::class, array('attr' => array('class' => 'ckeditor')))
+            ->add('descricao', TextareaType::class, ['attr' => ['class' => 'ckeditor']])
             ->add('educador')
             ->add('aluno')
         ;
