@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Sala de Integração de Recursos!{% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('assets/css/global.css') }}">
     {% endblock %}
@@ -45,7 +45,7 @@
 
             <form class="form-inline my-2 my-lg-0">
                 <img src="{{ asset('assets/img/aluno.png') }}" class="imgAluno" />
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <input class="form-control mr-sm-2" type="text" placeholder="Pesquisar Aluno">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Iniciar</button>
             </form>
 
@@ -58,7 +58,7 @@
         {% block body %}
             <div class="home-template">
                 <h1>SIR - Sala de Integração de Recursos</h1>
-                <p class="lead">Sistema para gerenciamento e acompanhamento de atividades nas salas de integração de recursos</p>
+                <p class="lead">Sistema para gerenciamento e acompanhamento de atividades das salas de integração de recursos.</p>
             </div>
         {% endblock %}
     </div><!-- /.container -->
