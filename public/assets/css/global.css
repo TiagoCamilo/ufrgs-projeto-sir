@@ -4255,7 +4255,7 @@ a.bg-inverse:focus, a.bg-inverse:hover {
 .border-left-0 {
   border-left: 0 !important; }
 
-.rounded {
+.rounded, .imgAluno {
   border-radius: 0.25rem; }
 
 .rounded-top {
@@ -10465,5 +10465,10 @@ body {
 
 .navbar-custom {
   background-color: #34495e; }
+
+.imgAluno {
+  padding-right: 5px;
+  width: 40px;
+  height: 40px; }
 
 /*# sourceMappingURL=global.css.map */
