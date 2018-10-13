@@ -11,6 +11,7 @@ namespace App\DataFixtures;
 use App\Entity\Aluno;
 use App\Entity\Comentario;
 use App\Entity\Educador;
+use App\Entity\Escola;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -38,6 +39,10 @@ class AppFixtures extends Fixture
 
         // Alunos
         for ($i = 0; $i < 20; ++$i) {
+            $escola = new Escola();
+            $escola->setNome('Escola '.$i);
+            $escola->setEndereco('Endereco Escola'.$i);
+
             $aluno = new Aluno();
             $aluno->setNome('Aluno '.$i);
 
@@ -50,6 +55,7 @@ class AppFixtures extends Fixture
             $comenario->setDescricao('Comentario '.$i);
             $comenario->setDataHora(new \DateTime('now'));
 
+            $manager->persist($escola);
             $manager->persist($aluno);
             $manager->persist($educador);
             $manager->persist($comenario);

@@ -21,7 +21,6 @@ class AlunoController extends AbstractController
      */
     public function index(AlunoRepository $alunoRepository, PaginatorInterface $paginator, Request $request): Response
     {
-
         //TODO: Replicar pagination para outras entidades
         $resultSet = $paginator->paginate(
             $alunoRepository->findAll(),
