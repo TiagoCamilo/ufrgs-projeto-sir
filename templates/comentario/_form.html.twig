@@ -1,10 +1,13 @@
 {{ form_start(form) }}
     {{ form_errors(form) }}
     {{ form_row(form.data_hora) }}
+<div id="textArea">
     {{ form_row(form.descricao) }}
-
+</div>
     <button class="btn">{{ button_label|default('Save') }}</button>
 {% block timeline %}
-    {{ include('others/_timeline.html.twig') }}
+    {{ render(controller(
+        'App\\Controller\\TimelineController::index'
+    )) }}
 {% endblock %}
 {{ form_end(form) }}
