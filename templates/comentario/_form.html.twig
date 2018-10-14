@@ -1,9 +1,10 @@
 {{ form_start(form) }}
     {{ form_errors(form) }}
-
-    {{ form_row(form.descricao) }}
     {{ form_row(form.data_hora) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.descricao) }}
 
     <button class="btn">{{ button_label|default('Save') }}</button>
+{% block timeline %}
+    {{ include('others/_timeline.html.twig') }}
+{% endblock %}
 {{ form_end(form) }}
