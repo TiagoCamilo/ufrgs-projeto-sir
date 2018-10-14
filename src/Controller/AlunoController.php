@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Aluno;
+use App\Form\AlunoSearch;
 use App\Form\AlunoType;
 use App\Repository\AlunoRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -17,17 +19,37 @@ use Symfony\Component\Routing\Annotation\Route;
 class AlunoController extends AbstractController
 {
     /**
-     * @Route("/", name="aluno_index", methods="GET")
+     * @Route("/{page}/page", name="aluno_index", methods="GET|POST", defaults={"page" = 1})
      */
-    public function index(AlunoRepository $alunoRepository, PaginatorInterface $paginator, Request $request): Response
+    public function index(AlunoRepository $alunoRepository, PaginatorInterface $paginator, Request $request, Session $session): Response
     {
+        $form = $this->createForm(AlunoSearch::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+            $session->set('nome',  $form->get('nome')->getData());
+        }
+
+        $searchedValue = $session->get('nome') ?? null;
+
+        if($searchedValue !== null) {
+            $registers = $alunoRepository->createQueryBuilder('e')
+                ->where('e.nome like :nome')
+                ->setParameter('nome', "%{$searchedValue}%");
+        } else{
+            $registers = $alunoRepository->findAll();
+        }
+
         //TODO: Replicar pagination para outras entidades
         $resultSet = $paginator->paginate(
-            $alunoRepository->findAll(),
-            $request->query->getInt('page', 1)
+            $registers,
+            $request->get("page")
         );
 
-        return $this->render('aluno/index.html.twig', ['alunos' => $resultSet]);
+        return $this->render('aluno/index.html.twig', [
+            'alunos' => $resultSet,
+            'form' => $form->createView()
+        ]);
     }
 
     /**

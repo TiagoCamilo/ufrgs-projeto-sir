@@ -38,13 +38,16 @@ class AppFixtures extends Fixture
         $manager->persist($user);
 
         // Alunos
-        for ($i = 0; $i < 20; ++$i) {
+        for ($i = 0; $i < 40; ++$i) {
             $escola = new Escola();
             $escola->setNome('Escola '.$i);
             $escola->setEndereco('Endereco Escola'.$i);
 
             $aluno = new Aluno();
-            $aluno->setNome('Aluno '.$i);
+            if($i<15)
+                $aluno->setNome('Aluno '.$i);
+            else
+                $aluno->setNome('Aluno Editado '.$i);
 
             $educador = new Educador();
             $educador->setNome('Educador '.$i);

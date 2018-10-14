@@ -5,13 +5,17 @@
 {% block body %}
     <h1>Aluno index</h1>
 
+    {{ include('others/_seach_form.html.twig') }}
+
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
                 <th>Data_nascimento</th>
-                <th>actions</th>
+                <th>
+                    actions
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -33,7 +37,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('aluno_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('aluno_new') }}">Novo</a>
 
     <div>
         {{ knp_pagination_render(alunos) }}
