@@ -15,6 +15,7 @@
                 <th>Data_nascimento</th>
                 <th>
                     actions
+                    <a class="float-right" href="{{ path('aluno_new') }}"><i class="fas fa-plus-circle"></i> </a>
                 </th>
             </tr>
         </thead>
@@ -37,7 +38,7 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('aluno_new') }}">Novo</a>
+    <a class="btn btn-success" href="{{ path('aluno_new') }}">Novo</a>
 
     <div>
         {{ knp_pagination_render(alunos) }}

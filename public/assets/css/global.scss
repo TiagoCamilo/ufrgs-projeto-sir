@@ -4,7 +4,7 @@
 
 $fa-font-path:        "/assets/webfonts";
 
-.table a{
+.table td a{
   @extend .btn;
   @extend .btn-info;
 }
