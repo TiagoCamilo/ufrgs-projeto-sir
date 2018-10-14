@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Escola{% endblock %}
+
+{% block body %}
+    <h1>Escola</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ escola.id }}</td>
+        </tr>
+        <tr>
+            <th>Nome</th>
+            <td>{{ escola.nome }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('escola_index') }}">back to list</a>
+
+    <a href="{{ path('escola_edit', {'id': escola.id}) }}">edit</a>
+
+    {{ include('escola/_delete_form.html.twig') }}
+{% endblock %}

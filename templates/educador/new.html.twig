@@ -7,5 +7,5 @@
 
     {{ include('educador/_form.html.twig') }}
 
-    {%  include '_partitial/_link_list.html.twig' with {'entity': form.vars.name}  %}
+    <a href="{{ path('educador_index') }}">back to list</a>
 {% endblock %}

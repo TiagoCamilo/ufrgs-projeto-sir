@@ -20,6 +20,8 @@ class EducadorController extends AbstractController
      */
     public function index(EducadorRepository $educadorRepository): Response
     {
+        $educadorRepository = $this->getDoctrine()->getRepository(Educador::class);
+
         return $this->render('educador/index.html.twig', ['educadors' => $educadorRepository->findAll()]);
     }
 
