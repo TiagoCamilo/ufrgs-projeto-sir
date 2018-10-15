@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Aluno;
 use App\Entity\Comentario;
 use App\Form\ComentarioType;
 use App\Repository\ComentarioRepository;
@@ -9,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/comentario")
@@ -26,13 +28,19 @@ class ComentarioController extends AbstractController
     /**
      * @Route("/new", name="comentario_new", methods="GET|POST")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UserInterface $user): Response
     {
         $comentario = new Comentario();
         $form = $this->createForm(ComentarioType::class, $comentario);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $comentario->setEducador($user->getEducador());
+
+            //TODO: Setar aluno selecionado para "aula"
+            $alunoList = $this->getDoctrine()->getRepository(Aluno::class)->findAll();
+            $comentario->setAluno($alunoList[0]);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($comentario);
             $em->flush();

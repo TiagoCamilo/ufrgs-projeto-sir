@@ -3,11 +3,15 @@
 {% block title %}New Comentario{% endblock %}
 
 {% block body %}
-    <h1>Create new Comentario</h1>
+    <h3>Criar Comentário</h3>
 
     {{ include('comentario/_form.html.twig') }}
 
-    <a href="{{ path('comentario_index') }}">back to list</a>
+    {% block timeline %}
+        {{ render(controller(
+            'App\\Controller\\TimelineController::index'
+        )) }}
+    {% endblock %}
 
 {% endblock %}
 

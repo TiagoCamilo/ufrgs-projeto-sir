@@ -30,26 +30,27 @@ class AppFixtures extends Fixture
     {
         // User
         $user = new User();
-        $user->setUsername('admin');
+        $user->setUsername('user1');
         $user->setEmail('admin@admin.com');
 
-        $password = $this->encoder->encodePassword($user, 'admin');
+        $password = $this->encoder->encodePassword($user, '103020');
         $user->setPassword($password);
         $manager->persist($user);
 
         // Alunos
-        for ($i = 0; $i < 40; ++$i) {
+        for ($i = 0; $i < 10; ++$i) {
             $escola = new Escola();
             $escola->setNome('Escola '.$i);
             $escola->setEndereco('Endereco Escola'.$i);
 
             $aluno = new Aluno();
-            if($i<15)
+            if($i<5)
                 $aluno->setNome('Aluno '.$i);
             else
                 $aluno->setNome('Aluno Editado '.$i);
 
             $educador = new Educador();
+            if($i == 0) $educador->setAppUser($user);
             $educador->setNome('Educador '.$i);
 
             $comenario = new Comentario();

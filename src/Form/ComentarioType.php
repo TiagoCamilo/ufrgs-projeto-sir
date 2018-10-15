@@ -16,10 +16,9 @@ class ComentarioType extends AbstractType
         $builder
             ->add('data_hora', DateType::class, [
                 'widget' => 'single_text',
+                'data' => new \DateTime('now')
             ])
             ->add('descricao', TextareaType::class, ['attr' => ['class' => 'ckeditor']])
-            ->add('educador')
-            ->add('aluno')
         ;
     }
 

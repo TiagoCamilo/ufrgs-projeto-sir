@@ -1,13 +1,10 @@
 {{ form_start(form) }}
     {{ form_errors(form) }}
     {{ form_row(form.data_hora) }}
-<div id="textArea">
-    {{ form_row(form.descricao) }}
-</div>
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{% block timeline %}
-    {{ render(controller(
-        'App\\Controller\\TimelineController::index'
-    )) }}
-{% endblock %}
+    <div id="textArea">
+        {{ form_row(form.descricao) }}
+    </div>
+    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+    <a class="btn btn-success float-right" href="{{ path('comentario_index') }}">Voltar</a>
+
 {{ form_end(form) }}
