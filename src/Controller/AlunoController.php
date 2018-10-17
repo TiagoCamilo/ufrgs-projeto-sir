@@ -27,7 +27,6 @@ class AlunoController extends AppAbstractController
 
     /**
      * @Route("/{page}/page", name="aluno_index", methods="GET|POST", defaults={"page" = 1})
-     * @ParamConverter("entityRepository", class="App\Repository\AlunoRepository")
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {

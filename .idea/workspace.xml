@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ef33198-eb0a-4ca3-b33a-0ada48f0b86c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/AppAbstractController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/AbstractEntity.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/IEntity.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/AlunoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AlunoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/EducadorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EducadorController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TimelineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TimelineController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Aluno.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Aluno.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Educador.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Educador.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/AlunoSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/AlunoSearch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ComentarioType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ComentarioType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/aluno/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/aluno/_delete_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/aluno/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/aluno/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/aluno/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/aluno/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/educador/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/educador/_delete_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/educador/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/educador/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/educador/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/educador/show.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +18,7 @@
     <session id="-927393508">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.17" value="1" />
@@ -46,8 +30,9 @@
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.36" value="1" />
           <entry key="project.open.time.4" value="2" />
+          <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="14" />
+          <entry key="project.opened" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -60,7 +45,7 @@
           <entry key="js" value="12" />
           <entry key="map" value="1" />
           <entry key="neon" value="1" />
-          <entry key="php" value="130" />
+          <entry key="php" value="132" />
           <entry key="scss" value="20" />
           <entry key="twig" value="130" />
           <entry key="yaml" value="39" />
@@ -70,7 +55,7 @@
         <counts>
           <entry key="CSS" value="9" />
           <entry key="JavaScript" value="12" />
-          <entry key="PHP" value="130" />
+          <entry key="PHP" value="132" />
           <entry key="PLAIN_TEXT" value="8" />
           <entry key="SCSS" value="20" />
           <entry key="SourceMap" value="1" />
@@ -90,7 +75,7 @@
           <entry key="env" value="66" />
           <entry key="js" value="24" />
           <entry key="neon" value="20" />
-          <entry key="php" value="6937" />
+          <entry key="php" value="6968" />
           <entry key="scss" value="658" />
           <entry key="twig" value="3463" />
           <entry key="txt" value="36" />
@@ -101,7 +86,7 @@
         <counts>
           <entry key="CSS" value="4" />
           <entry key="JavaScript" value="24" />
-          <entry key="PHP" value="6937" />
+          <entry key="PHP" value="6968" />
           <entry key="PLAIN_TEXT" value="150" />
           <entry key="SCSS" value="658" />
           <entry key="Twig" value="3463" />
@@ -122,15 +107,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/AppAbstractController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="81" selection-start-line="81" selection-end-line="81" />
-              <folding>
-                <element signature="e#115#138#0#PHP" expanded="true" />
-                <element signature="e#793#838#0#PHP" expanded="true" />
-                <element signature="e#1416#1459#0#PHP" expanded="true" />
-                <element signature="e#1612#1656#0#PHP" expanded="true" />
-                <element signature="e#2136#2180#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="946">
+              <caret line="52" column="32" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -138,8 +116,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/AlunoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="33" column="51" lean-forward="true" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
+            <state relative-caret-position="219">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
               <folding>
                 <element signature="e#34#55#0#PHP" expanded="true" />
               </folding>
@@ -148,10 +126,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Repository/AlunoRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="14" column="53" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
+              <folding>
+                <element signature="e#34#55#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/Aluno.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="11" column="30" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/EducadorController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="64" selection-start-line="64" selection-end-line="69" selection-end-column="5" />
+            <state relative-caret-position="860">
+              <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
               <folding>
                 <element signature="e#34#58#0#PHP" expanded="true" />
               </folding>
@@ -390,7 +389,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -431,6 +429,12 @@
               <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
               <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -454,6 +458,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -512,6 +517,7 @@
       <workItem from="1539440498558" duration="1362000" />
       <workItem from="1539520004019" duration="22921000" />
       <workItem from="1539726202235" duration="9792000" />
+      <workItem from="1539740010397" duration="151000" />
     </task>
     <task id="LOCAL-00001" summary="Adicionados componentes de debug">
       <created>1537821659127</created>
@@ -524,7 +530,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91331000" />
+    <option name="totallyTimeSpent" value="91511000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -539,7 +545,7 @@
     <frame x="67" y="25" width="1837" height="995" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22054718" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22333892" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -683,9 +689,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -693,9 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -721,13 +721,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/js/bootstrap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/comentario/_delete_form.html.twig">
       <provider selected="true" editor-type-id="text-editor">
@@ -749,13 +743,6 @@
     <entry file="file://$PROJECT_DIR$/src/Entity/AbstractEntity.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Aluno.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/routes/annotations.yaml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -773,9 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
           <caret line="41" selection-start-line="41" selection-end-line="41" />
-          <folding>
-            <element signature="e#34#55#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -797,26 +781,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="37" column="10" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/IRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/IRepository.php" />
     <entry file="file://$PROJECT_DIR$/templates/aluno/new.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="9" column="27" selection-start-line="9" selection-end-line="10" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -845,9 +817,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
           <caret line="26" column="50" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -855,9 +824,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
           <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -865,9 +831,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="8" column="56" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="56" />
-          <folding>
-            <element signature="e#34#58#0#PHP" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/http-foundation/Request.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/AppAbstractController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="946">
+          <caret line="52" column="32" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -881,41 +858,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/AppAbstractController.php">
+    <entry file="file://$PROJECT_DIR$/src/Entity/Aluno.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="81" selection-start-line="81" selection-end-line="81" />
-          <folding>
-            <element signature="e#115#138#0#PHP" expanded="true" />
-            <element signature="e#793#838#0#PHP" expanded="true" />
-            <element signature="e#1416#1459#0#PHP" expanded="true" />
-            <element signature="e#1612#1656#0#PHP" expanded="true" />
-            <element signature="e#2136#2180#0#PHP" expanded="true" />
-          </folding>
+        <state>
+          <caret line="11" column="30" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/EducadorController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="64" selection-start-line="64" selection-end-line="69" selection-end-column="5" />
+        <state relative-caret-position="860">
+          <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
           <folding>
             <element signature="e#34#58#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/http-foundation/Request.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/AlunoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="33" column="51" lean-forward="true" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
+        <state relative-caret-position="219">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
           <folding>
             <element signature="e#34#55#0#PHP" expanded="true" />
           </folding>
