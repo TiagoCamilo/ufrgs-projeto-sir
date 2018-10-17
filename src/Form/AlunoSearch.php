@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: tiago
  * Date: 14/10/18
- * Time: 11:34
+ * Time: 11:34.
  */
 
 namespace App\Form;
-
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -27,5 +26,4 @@ class AlunoSearch extends AbstractType
     {
         $builder->add('nome', TextType::class, ['data' => $this->session->get('nome')]);
     }
-
 }

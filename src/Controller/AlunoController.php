@@ -3,53 +3,35 @@
 namespace App\Controller;
 
 use App\Entity\Aluno;
-use App\Form\AlunoSearch;
+use App\Entity\IEntity;
 use App\Form\AlunoType;
 use App\Repository\AlunoRepository;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/aluno")
  */
-class AlunoController extends AbstractController
+class AlunoController extends AppAbstractController
 {
+    public function __construct(AlunoRepository $entityRepository)
+    {
+        $this->entity = new Aluno();
+        $this->entityRepository = $entityRepository;
+        $this->entityTemplateName = 'aluno';
+        $this->formType = AlunoType::class;
+    }
+
     /**
      * @Route("/{page}/page", name="aluno_index", methods="GET|POST", defaults={"page" = 1})
+     * @ParamConverter("entityRepository", class="App\Repository\AlunoRepository")
      */
-    public function index(AlunoRepository $alunoRepository, PaginatorInterface $paginator, Request $request, Session $session): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        $form = $this->createForm(AlunoSearch::class);
-        $form->handleRequest($request);
-
-        if($form->isSubmitted()){
-            $session->set('nome',  $form->get('nome')->getData());
-        }
-
-        $searchedValue = $session->get('nome') ?? null;
-
-        if($searchedValue !== null) {
-            $registers = $alunoRepository->createQueryBuilder('e')
-                ->where('e.nome like :nome')
-                ->setParameter('nome', "%{$searchedValue}%");
-        } else{
-            $registers = $alunoRepository->findAll();
-        }
-
-        //TODO: Replicar pagination para outras entidades
-        $resultSet = $paginator->paginate(
-            $registers,
-            $request->get("page")
-        );
-
-        return $this->render('aluno/index.html.twig', [
-            'alunos' => $resultSet,
-            'form' => $form->createView()
-        ]);
+        return parent::index($paginator, $request);
     }
 
     /**
@@ -57,63 +39,33 @@ class AlunoController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $aluno = new Aluno();
-        $form = $this->createForm(AlunoType::class, $aluno);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($aluno);
-            $em->flush();
-
-            return $this->redirectToRoute('aluno_index');
-        }
-
-        return $this->render('aluno/new.html.twig', [
-            'aluno' => $aluno,
-            'form' => $form->createView(),
-        ]);
+        return parent::new($request);
     }
 
     /**
      * @Route("/{id}", name="aluno_show", methods="GET")
+     * @ParamConverter("entity", class="App\Entity\Aluno")
      */
-    public function show(Aluno $aluno): Response
+    public function show(IEntity $entity): Response
     {
-        return $this->render('aluno/show.html.twig', ['aluno' => $aluno]);
+        return parent::show($entity);
     }
 
     /**
      * @Route("/{id}/edit", name="aluno_edit", methods="GET|POST")
+     * @ParamConverter("entity", class="App\Entity\Aluno")
      */
-    public function edit(Request $request, Aluno $aluno): Response
+    public function edit(Request $request, IEntity $entity): Response
     {
-        $form = $this->createForm(AlunoType::class, $aluno);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('aluno_edit', ['id' => $aluno->getId()]);
-        }
-
-        return $this->render('aluno/edit.html.twig', [
-            'aluno' => $aluno,
-            'form' => $form->createView(),
-        ]);
+        return parent::edit($request, $entity);
     }
 
     /**
      * @Route("/{id}", name="aluno_delete", methods="DELETE")
+     * @ParamConverter("entity", class="App\Entity\Aluno")
      */
-    public function delete(Request $request, Aluno $aluno): Response
+    public function delete(Request $request, IEntity $entity): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$aluno->getId(), $request->request->get('_token'))) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($aluno);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('aluno_index');
+        return parent::delete($request, $entity);
     }
 }

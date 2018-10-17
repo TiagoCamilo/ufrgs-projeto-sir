@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for educador in educadors %}
+        {% for educador in registers %}
             <tr>
                 <td>{{ educador.id }}</td>
                 <td>{{ educador.nome }}</td>
@@ -32,4 +32,8 @@
     </table>
 
     <a href="{{ path('educador_new') }}">Create new</a>
+
+    <div>
+        {{ knp_pagination_render(registers) }}
+    </div>
 {% endblock %}

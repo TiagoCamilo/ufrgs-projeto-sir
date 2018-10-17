@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AlunoRepository")
  */
-class Aluno
+class Aluno implements IEntity
 {
     /**
      * @ORM\Id()

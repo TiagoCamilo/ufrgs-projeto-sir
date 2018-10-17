@@ -44,13 +44,16 @@ class AppFixtures extends Fixture
             $escola->setEndereco('Endereco Escola'.$i);
 
             $aluno = new Aluno();
-            if($i<5)
+            if ($i < 5) {
                 $aluno->setNome('Aluno '.$i);
-            else
+            } else {
                 $aluno->setNome('Aluno Editado '.$i);
+            }
 
             $educador = new Educador();
-            if($i == 0) $educador->setAppUser($user);
+            if (0 == $i) {
+                $educador->setAppUser($user);
+            }
             $educador->setNome('Educador '.$i);
 
             $comenario = new Comentario();
