@@ -22,9 +22,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('aluno_index') }}">back to list</a>
+    {{ include(template~'/_show_buttons.html.twig') }}
 
-    <a href="{{ path('aluno_edit', {'id': register.id}) }}">edit</a>
-
-    {{ include('aluno/_delete_form.html.twig') }}
 {% endblock %}

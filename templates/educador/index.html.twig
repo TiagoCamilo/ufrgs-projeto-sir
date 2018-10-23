@@ -31,9 +31,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('educador_new') }}">Create new</a>
+    {{ include(template~'/_index_buttons.html.twig') }}
 
-    <div>
-        {{ knp_pagination_render(registers) }}
-    </div>
 {% endblock %}

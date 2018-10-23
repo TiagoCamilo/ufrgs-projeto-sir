@@ -18,18 +18,23 @@ abstract class AppAbstractController extends AbstractController
 {
     protected $entity;
     protected $entityRepository;
-    protected $entityTemplateName;
+    protected $entityName;
+    protected $entityTemplate = "generic";
     protected $formType;
 
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        //TODO: Replicar pagination para outras entidades
         $resultSet = $paginator->paginate(
             $this->entityRepository->findAll(),
             $request->get('page')
         );
 
-        return $this->render("{$this->entityTemplateName}/index.html.twig", ['registers' => $resultSet]);
+        //TODO: Refatorar para obter o response em cada metodo
+        return $this->render("{$this->entityName}/index.html.twig", [
+            'registers' => $resultSet,
+            'template' => $this->entityTemplate,
+            'entityName' => $this->entityName,
+        ]);
     }
 
     public function new(Request $request): Response
@@ -42,17 +47,24 @@ abstract class AppAbstractController extends AbstractController
             $em->persist($this->entity);
             $em->flush();
 
-            return $this->redirectToRoute("{$this->entityTemplateName}_index");
+            return $this->redirectToRoute("{$this->entityName}_index");
         }
 
-        return $this->render("{$this->entityTemplateName}/new.html.twig", [
+        return $this->render("{$this->entityTemplate}/new.html.twig", [
             'form' => $form->createView(),
+            'template' => $this->entityTemplate,
+            'entityName' => $this->entityName,
         ]);
     }
 
     public function show(IEntity $entity): Response
     {
-        return $this->render("{$this->entityTemplateName}/show.html.twig", ['register' => $entity]);
+        //TODO: Refatorar para obter o response em cada metodo
+        return $this->render("{$this->entityName}/show.html.twig", [
+            'register' => $entity,
+            'template' => $this->entityTemplate,
+            'entityName' => $this->entityName,
+        ]);
     }
 
     public function edit(Request $request, IEntity $entity): Response
@@ -63,12 +75,14 @@ abstract class AppAbstractController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute("{$this->entityTemplateName}_edit", ['id' => $entity->getId()]);
+            return $this->redirectToRoute("{$this->entityName}_edit", ['id' => $entity->getId()]);
         }
 
-        return $this->render("{$this->entityTemplateName}/edit.html.twig", [
+        return $this->render("{$this->entityTemplate}/edit.html.twig", [
             'register' => $entity,
             'form' => $form->createView(),
+            'template' => $this->entityTemplate,
+            'entityName' => $this->entityName,
         ]);
     }
 
@@ -80,6 +94,6 @@ abstract class AppAbstractController extends AbstractController
             $em->flush();
         }
 
-        return $this->redirectToRoute("{$this->entityTemplateName}_index");
+        return $this->redirectToRoute("{$this->entityName}_index");
     }
 }

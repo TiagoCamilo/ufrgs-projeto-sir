@@ -21,7 +21,7 @@ class AlunoController extends AppAbstractController
     {
         $this->entity = new Aluno();
         $this->entityRepository = $entityRepository;
-        $this->entityTemplateName = 'aluno';
+        $this->entityName = 'aluno';
         $this->formType = AlunoType::class;
     }
 

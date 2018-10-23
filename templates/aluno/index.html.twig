@@ -36,9 +36,6 @@
         </tbody>
     </table>
 
-    <a class="btn btn-success" href="{{ path('aluno_new') }}">Novo</a>
+    {{ include(template~'/_index_buttons.html.twig') }}
 
-    <div>
-        {{ knp_pagination_render(registers) }}
-    </div>
 {% endblock %}

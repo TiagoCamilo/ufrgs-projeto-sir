@@ -21,7 +21,7 @@ class EducadorController extends AppAbstractController
     {
         $this->entity = new Educador();
         $this->entityRepository = $entityRepository;
-        $this->entityTemplateName = 'educador';
+        $this->entityName = 'educador';
         $this->formType = EducadorType::class;
     }
 
