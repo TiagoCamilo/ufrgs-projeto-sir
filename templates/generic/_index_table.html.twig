@@ -1,0 +1,23 @@
+<table class="table">
+    <thead>
+    <tr>
+        {% for key, attr in registerListAttr|first %}
+            <th>{{ key }}</th>
+        {% endfor %}
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for key, listAttr in registerListAttr %}
+        <tr>
+            {% for attr in listAttr %}
+                <td>{{ attr }}</td>
+            {% endfor %}
+            <td>
+                <a href="{{ path(entityName~'_show', {'id': listAttr.Id}) }}">show</a>
+                <a href="{{ path(entityName~'_edit', {'id': listAttr.Id}) }}">edit</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

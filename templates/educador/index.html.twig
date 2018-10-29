@@ -1,36 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Educador index{% endblock %}
+{% block title %}Listagem {{ entityName|capitalize }}{% endblock %}
+
+{% set registerListAttr = [] %}
+{% for register in registers %}
+    {% set registerListAttr = registerListAttr|merge ([{
+        'Id': register.id,
+        'Nome': register.nome,
+    }]) %}
+{% endfor %}
 
 {% block body %}
-    <h1>Educador index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for educador in registers %}
-            <tr>
-                <td>{{ educador.id }}</td>
-                <td>{{ educador.nome }}</td>
-                <td>
-                    <a href="{{ path('educador_show', {'id': educador.id}) }}">show</a>
-                    <a href="{{ path('educador_edit', {'id': educador.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
+    <h1>Listagem {{ entityName|capitalize }}</h1>
+    {{ include(template~'/_index_table.html.twig') }}
     {{ include(template~'/_index_buttons.html.twig') }}
-
 {% endblock %}
