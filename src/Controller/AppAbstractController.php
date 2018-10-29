@@ -19,7 +19,7 @@ abstract class AppAbstractController extends AbstractController
     protected $entity;
     protected $entityRepository;
     protected $entityName;
-    protected $entityTemplate = "generic";
+    protected $entityTemplate = 'generic';
     protected $formType;
 
     public function index(PaginatorInterface $paginator, Request $request): Response
