@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class AlunoType extends AbstractType
 {
@@ -17,6 +18,9 @@ class AlunoType extends AbstractType
             ->add('data_nascimento', DateType::class, [
                 'widget' => 'single_text',
             ])
+            ->add('imageFile', VichFileType::class, ['label' => 'Foto',
+                'allow_delete'=> false,
+                'download_link' => false])
         ;
     }
 

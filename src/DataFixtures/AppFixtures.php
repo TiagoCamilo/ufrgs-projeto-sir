@@ -49,6 +49,7 @@ class AppFixtures extends Fixture
             } else {
                 $aluno->setNome('Aluno Editado '.$i);
             }
+            $aluno->setUpdatedAt(new \DateTime());
 
             $educador = new Educador();
             if (0 == $i) {

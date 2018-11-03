@@ -10474,4 +10474,10 @@ body {
 i {
   cursor: pointer; }
 
+.custom-file-input {
+  opacity: 100; }
+
+legend {
+  font-size: 1.0rem; }
+
 /*# sourceMappingURL=global.css.map */
