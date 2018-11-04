@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Aluno;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,6 +18,7 @@ class AlunoType extends AbstractType
             ->add('data_nascimento', DateType::class, [
                 'widget' => 'single_text',
             ])
+            ->add('foto', FileType::class)
         ;
     }
 

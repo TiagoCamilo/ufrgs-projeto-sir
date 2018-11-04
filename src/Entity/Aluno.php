@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AlunoRepository")
@@ -32,6 +33,14 @@ class Aluno implements IEntity
      * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="aluno", orphanRemoval=true)
      */
     private $comentarios;
+
+    /**
+     * @ORM\Column(type="string", length=250, nullable=true)
+     *
+     * @Assert\NotBlank(message="Selecione a foto do aluno(a)")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $foto;
 
     public function __construct()
     {
@@ -101,5 +110,17 @@ class Aluno implements IEntity
     public function __toString(): string
     {
         return $this->getNome();
+    }
+
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+
+    public function setFoto($foto): self
+    {
+        $this->foto = $foto;
+
+        return $this;
     }
 }
