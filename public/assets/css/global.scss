@@ -11,7 +11,7 @@ $fa-font-path:        "/assets/webfonts";
 
 body {
   padding-top: 65px;
-  background-color: #F2F2F2;
+  background-color: #FFFFFF;
 }
 
 .home-template {
@@ -25,7 +25,7 @@ body {
 
 .table{
   thead {
-    @extend .thead-inverse;
+    @extend .thead-inverse !optional
   }
 }
 
@@ -42,4 +42,10 @@ body {
 
 i{
   cursor: pointer;
+}
+
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
 }
