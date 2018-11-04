@@ -8,6 +8,7 @@
 
 namespace App\Service;
 
+use Intervention\Image\ImageManagerStatic as Image;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -26,6 +27,8 @@ class FileUploader
 
         try {
             $file->move($this->getTargetDirectory(), $fileName);
+            $fileNameComplete = $this->getTargetDirectory().'/'.$fileName;
+            Image::make($fileNameComplete)->resize(400,400)->save($fileNameComplete);
         } catch (Exception $e) {
             dump($e);
             die();
