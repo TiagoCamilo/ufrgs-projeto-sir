@@ -14,6 +14,7 @@
                 <td>{{ attr }}</td>
             {% endfor %}
             <td>
+                <a href="{{ path(entityName~'_image_show', {'id': listAttr.Id}) }}">image</a>
                 <a href="{{ path(entityName~'_show', {'id': listAttr.Id}) }}">show</a>
                 <a href="{{ path(entityName~'_edit', {'id': listAttr.Id}) }}">edit</a>
             </td>

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aluno{% endblock %}
+
+{% block body %}
+    <h1>Aluno</h1>
+    <img src="{{ asset('uploads/alunos/' ~ register.foto.filename) }}">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ register.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ register.nome }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ include(template~'/_show_buttons.html.twig') }}
+
+{% endblock %}

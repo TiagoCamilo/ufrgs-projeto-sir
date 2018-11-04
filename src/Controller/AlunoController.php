@@ -67,4 +67,17 @@ class AlunoController extends AppAbstractController
     {
         return parent::delete($request, $entity);
     }
+
+    /**
+     * @Route("/image/{id}", name="aluno_image_show", methods="GET")
+     * @ParamConverter("entity", class="App\Entity\Aluno")
+     */
+    public function imageShow(IEntity $entity): Response
+    {
+        return $this->render("{$this->entityName}/image.show.html.twig", [
+            'register' => $entity,
+            'template' => $this->entityTemplate,
+            'entityName' => $this->entityName,
+        ]);
+    }
 }
