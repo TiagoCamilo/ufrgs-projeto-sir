@@ -8,17 +8,19 @@
 
 namespace App\Service;
 
-use Intervention\Image\ImageManagerStatic as Image;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileUploader
 {
     private $targetDirectory;
+    private $fileManipulator;
 
-    public function __construct($targetDirectory)
+    public function __construct($targetDirectory, IFileManipulator $fileManipulator)
     {
         $this->targetDirectory = $targetDirectory;
+        $this->fileManipulator = $fileManipulator;
+
     }
 
     public function upload(UploadedFile $file)
@@ -26,9 +28,8 @@ class FileUploader
         $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
         try {
-            $file->move($this->getTargetDirectory(), $fileName);
-            $fileNameComplete = $this->getTargetDirectory().'/'.$fileName;
-            Image::make($fileNameComplete)->resize(400,400)->save($fileNameComplete);
+            $fileNameComplete = $file->move($this->getTargetDirectory(), $fileName);
+            $this->fileManipulator->setImage($fileNameComplete)->resize();
         } catch (Exception $e) {
             dump($e);
             die();
