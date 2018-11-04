@@ -21,6 +21,6 @@
 ###< symfony/phpunit-bridge ###
 
 ###> uploads ###
-#/public/uploads/
+/public/uploads/
 ###< uploads ###
 
