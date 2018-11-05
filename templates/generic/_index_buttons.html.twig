@@ -1,4 +1,6 @@
-<a class="btn btn-success" href="{{ path(entityName~'_new') }}">Novo</a>
+{% if(actionList.new == true) %}
+    <a class="btn btn-success" href="{{ path(entityName~'_new') }}">Novo</a>
+{% endif %}
 
 <div>
     {{ knp_pagination_render(registers) }}

@@ -10,6 +10,15 @@
     }]) %}
 {% endfor %}
 
+{% set actionList = {
+    'new': true,
+    'show': true,
+    'edit': true,
+    'delete': true,
+    'image': false,
+} %}
+
+
 {% block body %}
     <h1>Listagem {{ entityName|capitalize }}</h1>
     {{ include(template~'/_index_table.html.twig') }}
