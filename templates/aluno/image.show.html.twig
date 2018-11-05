@@ -5,18 +5,20 @@
 {% block body %}
 
 
-    <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 30rem;">
-        <img class="card-img-top" src="{{ asset('uploads/alunos/' ~ register.foto.filename) }}" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{ register.nome }}</h5>
-            <p class="card-text">Selecione uma nova voto para alterar</p>
+    <div class="col-lg-6 mx-auto">
+        <div class="card shadow-lg bg-white rounded">
+            <img class="card-img-top" src="{{ asset('uploads/alunos/' ~ register.foto.filename) }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ register.nome }}</h5>
+                <p class="card-text">Selecione uma nova foto para alterar</p>
 
-            <div class="card-footer">
-                <input type="file">
-                <br/>
-                <br/>
-                <a href="#" class="btn btn-primary">Salvar</a>
-                <a href="#" class="btn btn-success float-right">Voltar</a>
+                <div class="card-footer">
+                    <input type="file">
+                    <br/>
+                    <br/>
+                    <a href="#" class="btn btn-primary">Salvar</a>
+                    <a href="#" class="btn btn-success float-right">Voltar</a>
+                </div>
             </div>
         </div>
     </div>
