@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: tiago
  * Date: 04/11/18
- * Time: 13:43
+ * Time: 13:43.
  */
 
 namespace App\Service;
@@ -20,7 +20,6 @@ class FileUploader
     {
         $this->targetDirectory = $targetDirectory;
         $this->fileManipulator = $fileManipulator;
-
     }
 
     public function upload(UploadedFile $file)

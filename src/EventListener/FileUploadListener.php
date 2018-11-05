@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: tiago
  * Date: 04/11/18
- * Time: 13:51
+ * Time: 13:51.
  */
 
 namespace App\EventListener;
@@ -47,8 +47,8 @@ class FileUploadListener
         }
 
         if ($fileName = $entity->getFoto()) {
-            if(file_exists($this->uploader->getTargetDirectory().'/'.$fileName)) {
-                $entity->setFoto(new File($this->uploader->getTargetDirectory() . '/' . $fileName));
+            if (file_exists($this->uploader->getTargetDirectory().'/'.$fileName)) {
+                $entity->setFoto(new File($this->uploader->getTargetDirectory().'/'.$fileName));
             }
         }
     }

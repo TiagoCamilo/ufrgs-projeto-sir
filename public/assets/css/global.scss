@@ -3,12 +3,12 @@
 @import "../../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 
 $fa-font-path:        "/assets/webfonts";
-
+/*
 .table td a{
   @extend .btn;
   @extend .btn-info;
 }
-
+*/
 body {
   padding-top: 65px;
   background-color: #FFFFFF;
@@ -33,19 +33,10 @@ body {
   background-color: #34495e;
 }
 
-.imgAluno{
-  @extend .rounded;
-  padding-right: 5px;
-  width: 40px;
-  height: 40px;
-}
-
 i{
   cursor: pointer;
 }
 
-.card {
-  margin: 0 auto; /* Added */
-  float: none; /* Added */
-  margin-bottom: 10px; /* Added */
+.form-delete{
+  display: inline;
 }

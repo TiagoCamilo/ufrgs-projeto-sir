@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: tiago
  * Date: 04/11/18
- * Time: 16:22
+ * Time: 16:22.
  */
 
 namespace App\Service;
@@ -34,9 +34,8 @@ class FileManipulator implements IFileManipulator
         return $this;
     }
 
-
     public function resize()
     {
-        Image::make($this->image)->resize($this->width,$this->height)->save($this->image);
+        Image::make($this->image)->resize($this->width, $this->height)->save($this->image);
     }
 }

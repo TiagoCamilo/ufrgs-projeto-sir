@@ -15,14 +15,15 @@
             {% endfor %}
             <td>
                 {% if(actionList.image == true) %}
-                    <a href="{{ path(entityName~'_image_show', {'id': listAttr.Id}) }}">image</a>
+                    <a class="btn btn-primary" href="{{ path(entityName~'_image_show', {'id': listAttr.Id}) }}">Foto</a>
                 {% endif %}
                 {% if(actionList.show == true) %}
-                    <a href="{{ path(entityName~'_show', {'id': listAttr.Id}) }}">show</a>
+                    <a class="btn btn-primary" href="{{ path(entityName~'_show', {'id': listAttr.Id}) }}">Exibir</a>
                 {% endif %}
                 {% if(actionList.edit == true) %}
-                    <a href="{{ path(entityName~'_edit', {'id': listAttr.Id}) }}">edit</a>
+                    <a class="btn btn-primary" href="{{ path(entityName~'_edit', {'id': listAttr.Id}) }}">Editar</a>
                 {% endif %}
+                {%  include template~'/_delete_form.html.twig' with {'register': {'id': listAttr.Id}} %}
             </td>
         </tr>
     {% endfor %}
