@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/aluno")
@@ -36,9 +37,9 @@ class AlunoController extends AppAbstractController
     /**
      * @Route("/new", name="aluno_new", methods="GET|POST")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UserInterface $user): Response
     {
-        return parent::new($request);
+        return parent::new($request, $user);
     }
 
     /**

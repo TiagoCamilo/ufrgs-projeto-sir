@@ -13,6 +13,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 abstract class AppAbstractController extends AbstractController
 {
@@ -37,7 +38,8 @@ abstract class AppAbstractController extends AbstractController
         ]);
     }
 
-    public function new(Request $request): Response
+
+    public function new(Request $request, UserInterface $user): Response
     {
         $form = $this->createForm($this->formType, $this->entity);
         $form->handleRequest($request);

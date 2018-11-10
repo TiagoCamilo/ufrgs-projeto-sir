@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Aluno;
 use App\Entity\Comentario;
+use App\Entity\IEntity;
 use App\Form\ComentarioType;
 use App\Repository\ComentarioRepository;
+use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,84 +18,81 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @Route("/comentario")
  */
-class ComentarioController extends AbstractController
+class ComentarioController extends AppAbstractController
 {
-    /**
-     * @Route("/", name="comentario_index", methods="GET")
-     */
-    public function index(ComentarioRepository $comentarioRepository): Response
+    public function __construct(ComentarioRepository $entityRepository)
     {
-        return $this->render('comentario/index.html.twig', ['comentarios' => $comentarioRepository->findAll()]);
+        $this->entity = new Comentario();
+        $this->entityRepository = $entityRepository;
+        $this->entityName = 'comentario';
+        $this->formType = ComentarioType::class;
     }
+
+    /**
+     * @Route("/{page}/page", name="comentario_index", methods="GET|POST", defaults={"page" = 1})
+     */
+    public function index(PaginatorInterface $paginator, Request $request): Response
+    {
+        return parent::index($paginator, $request);
+    }
+
 
     /**
      * @Route("/new", name="comentario_new", methods="GET|POST")
      */
     public function new(Request $request, UserInterface $user): Response
     {
-        $comentario = new Comentario();
-        $form = $this->createForm(ComentarioType::class, $comentario);
+        $form = $this->createForm($this->formType, $this->entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $comentario->setEducador($user->getEducador());
+
+            // TODO: Isolar em metodo dependente de UserInterface?
+            $this->entity->setEducador($user->getEducador());
+
 
             //TODO: Setar aluno selecionado para "aula"
             $alunoList = $this->getDoctrine()->getRepository(Aluno::class)->findAll();
-            $comentario->setAluno($alunoList[0]);
+            $this->entity->setAluno($alunoList[0]);
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($comentario);
+            $em->persist($this->entity);
             $em->flush();
 
-            return $this->redirectToRoute('comentario_index');
+            return $this->redirectToRoute("{$this->entityName}_index");
         }
 
-        return $this->render('comentario/new.html.twig', [
-            'comentario' => $comentario,
+        return $this->render("{$this->entityTemplate}/new.html.twig", [
             'form' => $form->createView(),
+            'template' => $this->entityTemplate,
+            'entityName' => $this->entityName,
         ]);
     }
 
     /**
      * @Route("/{id}", name="comentario_show", methods="GET")
+     * @ParamConverter("entity", class="App\Entity\Comentario")
      */
-    public function show(Comentario $comentario): Response
+    public function show(IEntity $entity): Response
     {
-        return $this->render('comentario/show.html.twig', ['comentario' => $comentario]);
+        return parent::show($entity);
     }
 
     /**
      * @Route("/{id}/edit", name="comentario_edit", methods="GET|POST")
+     * @ParamConverter("entity", class="App\Entity\Comentario")
      */
-    public function edit(Request $request, Comentario $comentario): Response
+    public function edit(Request $request, IEntity $entity): Response
     {
-        $form = $this->createForm(ComentarioType::class, $comentario);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('comentario_edit', ['id' => $comentario->getId()]);
-        }
-
-        return $this->render('comentario/edit.html.twig', [
-            'comentario' => $comentario,
-            'form' => $form->createView(),
-        ]);
+        return parent::edit($request, $entity);
     }
 
     /**
      * @Route("/{id}", name="comentario_delete", methods="DELETE")
+     * @ParamConverter("entity", class="App\Entity\Comentario")
      */
-    public function delete(Request $request, Comentario $comentario): Response
+    public function delete(Request $request, IEntity $entity): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$comentario->getId(), $request->request->get('_token'))) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($comentario);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('comentario_index');
+        return parent::delete($request, $entity);
     }
 }

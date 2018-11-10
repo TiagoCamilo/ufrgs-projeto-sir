@@ -1,37 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Comentario index{% endblock %}
+{% block title %}Listagem {{ entityName|capitalize }}{% endblock %}
+
+{% set registerListAttr = [] %}
+{% for register in registers %}
+    {% set registerListAttr = registerListAttr|merge ([{
+        'Id': register.id,
+        'Data Hora': register.dataHora ? register.dataHora|date('Y-m-d H:i:s') : '',
+        'Descrição': register.descricao | raw,
+    }]) %}
+{% endfor %}
+
+{% set actionList = {
+    'new': true,
+    'show': true,
+    'edit': true,
+    'delete': true,
+    'image': false,
+} %}
+
 
 {% block body %}
-    <h1>Comentario index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Data_hora</th>
-                <th>Descricao</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for comentario in comentarios %}
-            <tr>
-                <td>{{ comentario.id }}</td>
-                <td>{{ comentario.dataHora ? comentario.dataHora|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ comentario.descricao | raw }}</td>
-                <td>
-                    <a href="{{ path('comentario_show', {'id': comentario.id}) }}">show</a>
-                    <a href="{{ path('comentario_edit', {'id': comentario.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('comentario_new') }}">Create new</a>
+    <h1>Listagem {{ entityName|capitalize }}</h1>
+    {{ include(template~'/_index_table.html.twig') }}
+    {{ include(template~'/_index_buttons.html.twig') }}
 {% endblock %}
