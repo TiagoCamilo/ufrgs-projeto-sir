@@ -101,6 +101,7 @@ class ComentarioController extends AppAbstractController
     {
         $templateManager = parent::getTemplateManager();
         $templateManager->setNew('comentario/new.html.twig');
+        $templateManager->setEdit('comentario/edit.html.twig');
         return $templateManager;
     }
 }

@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ef33198-eb0a-4ca3-b33a-0ada48f0b86c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/comentario/_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/comentario/new.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/comentario/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AppAbstractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AppAbstractController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ComentarioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ComentarioController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/comentario/_form.html.twig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/comentario/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comentario/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/generic/_index_actions.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/generic/_index_registers.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/generic/_index_registers.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/generic/_index_registers.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +124,7 @@
           <entry key="env" value="1" />
           <entry key="php" value="53" />
           <entry key="scss" value="3" />
-          <entry key="twig" value="80" />
+          <entry key="twig" value="84" />
           <entry key="yaml" value="2" />
         </counts>
       </usages-collector>
@@ -134,7 +133,7 @@
           <entry key="PHP" value="53" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="SCSS" value="3" />
-          <entry key="Twig" value="80" />
+          <entry key="Twig" value="84" />
           <entry key="YAML" value="2" />
         </counts>
       </usages-collector>
@@ -142,18 +141,18 @@
         <counts>
           <entry key="dist" value="25" />
           <entry key="dummy" value="28" />
-          <entry key="php" value="2404" />
+          <entry key="php" value="2413" />
           <entry key="scss" value="37" />
-          <entry key="twig" value="1734" />
+          <entry key="twig" value="1893" />
           <entry key="yaml" value="68" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PHP" value="2404" />
+          <entry key="PHP" value="2413" />
           <entry key="PLAIN_TEXT" value="53" />
           <entry key="SCSS" value="37" />
-          <entry key="Twig" value="1734" />
+          <entry key="Twig" value="1893" />
           <entry key="YAML" value="68" />
         </counts>
       </usages-collector>
@@ -166,11 +165,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/ComentarioController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="102" column="61" selection-start-line="102" selection-start-column="61" selection-end-line="102" selection-end-column="61" />
+            <state relative-caret-position="420">
+              <caret line="103" column="33" selection-start-line="103" selection-start-column="33" selection-end-line="103" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/generic/_index_registers.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="63" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -178,8 +186,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/comentario/new.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state>
+              <caret selection-end-line="11" selection-end-column="14" />
               <folding>
                 <element signature="e#12#33#0#Twig" expanded="true" />
               </folding>
@@ -188,31 +196,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/comentario/index.html.twig">
+        <entry file="file://$PROJECT_DIR$/templates/comentario/edit.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
+            <state>
+              <caret column="24" selection-start-column="24" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/generic/_index_registers.html.twig">
+        <entry file="file://$PROJECT_DIR$/templates/comentario/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Controller/AppAbstractController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="100" selection-start-line="100" selection-end-line="100" />
-              <folding>
-                <element signature="e#115#138#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="135">
+              <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -266,10 +262,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" />
         <option value="$PROJECT_DIR$/src/Form/ComentarioType.php" />
         <option value="$PROJECT_DIR$/templates/comentario/_form.html.twig" />
-        <option value="$PROJECT_DIR$/templates/comentario/edit.html.twig" />
         <option value="$PROJECT_DIR$/templates/comentario/_delete_form.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/IEntity.php" />
         <option value="$PROJECT_DIR$/src/Entity/Educador.php" />
@@ -314,9 +308,11 @@
         <option value="$PROJECT_DIR$/templates/educador/show.html.twig" />
         <option value="$PROJECT_DIR$/templates/aluno/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/comentario/new.html.twig" />
-        <option value="$PROJECT_DIR$/src/Controller/ComentarioController.php" />
-        <option value="$PROJECT_DIR$/templates/comentario/index.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/AppAbstractController.php" />
+        <option value="$PROJECT_DIR$/templates/comentario/index.html.twig" />
+        <option value="$PROJECT_DIR$/templates/generic/_index_registers.html.twig" />
+        <option value="$PROJECT_DIR$/templates/comentario/edit.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/ComentarioController.php" />
       </list>
     </option>
   </component>
@@ -592,7 +588,7 @@
       <workItem from="1540853237215" duration="3095000" />
       <workItem from="1541345780111" duration="3689000" />
       <workItem from="1541453576296" duration="4628000" />
-      <workItem from="1541851604930" duration="8760000" />
+      <workItem from="1541851604930" duration="9479000" />
     </task>
     <task id="LOCAL-00001" summary="Adicionados componentes de debug">
       <created>1537821659127</created>
@@ -605,7 +601,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121717000" />
+    <option name="totallyTimeSpent" value="122436000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -620,11 +616,11 @@
     <frame x="67" y="25" width="1845" height="1035" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25403002" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25403002" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32928178" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32928178" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -652,7 +648,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Adicionados componentes de debug" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/var/cache/dev/twig/c1/c1d1f03ab12d457c9ab350fda65d03537ca79fd54548bbae95b69426108d9afd.php" />
     <entry file="file://$PROJECT_DIR$/.env.dist">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -962,37 +957,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/ComentarioController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="102" column="61" selection-start-line="102" selection-start-column="61" selection-end-line="102" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/comentario/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <element signature="e#12#33#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/comentario/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/generic/_index_registers.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/AppAbstractController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
@@ -1000,6 +964,44 @@
           <folding>
             <element signature="e#115#138#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/comentario/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/generic/_index_registers.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="63" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/comentario/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="11" selection-end-column="14" />
+          <folding>
+            <element signature="e#12#33#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/comentario/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="24" selection-start-column="24" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/ComentarioController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="103" column="33" selection-start-line="103" selection-start-column="33" selection-end-line="103" selection-end-column="33" />
         </state>
       </provider>
     </entry>

@@ -11,7 +11,8 @@
     {% for key, listAttr in registerListAttr %}
         <tr>
             {% for attr in listAttr %}
-                <td>{{ attr }}</td>
+                {#TODO: Aplicar raw somente no atributo correto#}
+                <td>{{ attr | raw}}</td>
             {% endfor %}
             <td>
                 {% if(actionList.image == true) %}
