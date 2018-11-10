@@ -5,5 +5,5 @@
 {% block body %}
     <h1>Edit {{ entityName|capitalize }}</h1>
 
-    {{ include(template~'/_form.html.twig', {'button_label': 'Salvar'}) }}
+    {{ include(template.form, {'button_label': 'Salvar'}) }}
 {% endblock %}

@@ -15,13 +15,12 @@
     'new': true,
     'show': true,
     'edit': true,
-    'delete': true,
+    'delete': false,
     'image': false,
 } %}
 
-
 {% block body %}
     <h1>Listagem {{ entityName|capitalize }}</h1>
-    {{ include(template~'/_index_table.html.twig') }}
-    {{ include(template~'/_index_buttons.html.twig') }}
+    {{ include(template.indexActions) }}
+    {{ include(template.indexFooter) }}
 {% endblock %}

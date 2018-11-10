@@ -11,6 +11,7 @@ namespace App\Controller;
 use App\Entity\IEntity;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Helpers\TemplateManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -20,7 +21,6 @@ abstract class AppAbstractController extends AbstractController
     protected $entity;
     protected $entityRepository;
     protected $entityName;
-    protected $entityTemplate = 'generic';
     protected $formType;
 
     public function index(PaginatorInterface $paginator, Request $request): Response
@@ -33,8 +33,8 @@ abstract class AppAbstractController extends AbstractController
         //TODO: Refatorar para obter o response em cada metodo
         return $this->render("{$this->entityName}/index.html.twig", [
             'registers' => $resultSet,
-            'template' => $this->entityTemplate,
             'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
         ]);
     }
 
@@ -52,10 +52,10 @@ abstract class AppAbstractController extends AbstractController
             return $this->redirectToRoute("{$this->entityName}_index");
         }
 
-        return $this->render("{$this->entityTemplate}/new.html.twig", [
+        return $this->render($this->getTemplateManager()->getNew(), [
             'form' => $form->createView(),
-            'template' => $this->entityTemplate,
             'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
         ]);
     }
 
@@ -64,8 +64,8 @@ abstract class AppAbstractController extends AbstractController
         //TODO: Refatorar para obter o response em cada metodo
         return $this->render("{$this->entityName}/show.html.twig", [
             'register' => $entity,
-            'template' => $this->entityTemplate,
             'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
         ]);
     }
 
@@ -80,11 +80,11 @@ abstract class AppAbstractController extends AbstractController
             return $this->redirectToRoute("{$this->entityName}_edit", ['id' => $entity->getId()]);
         }
 
-        return $this->render("{$this->entityTemplate}/edit.html.twig", [
+        return $this->render($this->getTemplateManager()->getEdit(), [
             'register' => $entity,
             'form' => $form->createView(),
-            'template' => $this->entityTemplate,
             'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
         ]);
     }
 
@@ -97,5 +97,17 @@ abstract class AppAbstractController extends AbstractController
         }
 
         return $this->redirectToRoute("{$this->entityName}_index");
+    }
+
+    protected function getTemplateManager(){
+        $templateManager = new TemplateManager();
+        $templateManager->setEdit('generic/edit.html.twig');
+        $templateManager->setNew('generic/new.html.twig');
+        $templateManager->setForm('generic/_form.html.twig');
+        $templateManager->setDelete('generic/_delete_form.html.twig');
+        $templateManager->setIndexActions('generic/_index_actions.html.twig');
+        $templateManager->setIndexFooter('generic/_index_footer.html.twig');
+        $templateManager->setShowActions('generic/_show_actions.html.twig');
+        return $templateManager;
     }
 }
