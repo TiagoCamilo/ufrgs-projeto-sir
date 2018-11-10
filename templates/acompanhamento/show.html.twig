@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acompanhamento{% endblock %}
+
+{% block body %}
+    <h1>Acompanhamento</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ register.id }}</td>
+            </tr>
+            <tr>
+                <th>Data_hora</th>
+                <td>{{ register.dataHora ? register.dataHora|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Descricao</th>
+                <td>{{ register.descricao }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ include(template.showActions) }}
+
+{% endblock %}

@@ -41,9 +41,15 @@ class Aluno implements IEntity
      */
     private $file;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Acompanhamento", mappedBy="aluno", orphanRemoval=true)
+     */
+    private $acompanhamentos;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
+        $this->acompanhamentos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -119,6 +125,37 @@ class Aluno implements IEntity
     public function setFile($file): self
     {
         $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Acompanhamento[]
+     */
+    public function getAcompanhamentos(): Collection
+    {
+        return $this->acompanhamentos;
+    }
+
+    public function addAcompanhamento(Acompanhamento $acompanhamento): self
+    {
+        if (!$this->acompanhamentos->contains($acompanhamento)) {
+            $this->acompanhamentos[] = $acompanhamento;
+            $acompanhamento->setAluno($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAcompanhamento(Acompanhamento $acompanhamento): self
+    {
+        if ($this->acompanhamentos->contains($acompanhamento)) {
+            $this->acompanhamentos->removeElement($acompanhamento);
+            // set the owning side to null (unless already changed)
+            if ($acompanhamento->getAluno() === $this) {
+                $acompanhamento->setAluno(null);
+            }
+        }
 
         return $this;
     }

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +27,16 @@ class Educador implements IEntity
      * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="educador", cascade={"persist", "remove"})
      */
     private $app_user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Acompanhamento", mappedBy="educador")
+     */
+    private $acompanhamentos;
+
+    public function __construct()
+    {
+        $this->acompanhamentos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -58,5 +70,36 @@ class Educador implements IEntity
     public function __toString(): string
     {
         return $this->getNome();
+    }
+
+    /**
+     * @return Collection|Acompanhamento[]
+     */
+    public function getAcompanhamentos(): Collection
+    {
+        return $this->acompanhamentos;
+    }
+
+    public function addAcompanhamento(Acompanhamento $acompanhamento): self
+    {
+        if (!$this->acompanhamentos->contains($acompanhamento)) {
+            $this->acompanhamentos[] = $acompanhamento;
+            $acompanhamento->setEducador($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAcompanhamento(Acompanhamento $acompanhamento): self
+    {
+        if ($this->acompanhamentos->contains($acompanhamento)) {
+            $this->acompanhamentos->removeElement($acompanhamento);
+            // set the owning side to null (unless already changed)
+            if ($acompanhamento->getEducador() === $this) {
+                $acompanhamento->setEducador(null);
+            }
+        }
+
+        return $this;
     }
 }
