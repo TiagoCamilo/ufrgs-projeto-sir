@@ -9,7 +9,11 @@
 namespace App\Controller;
 
 use App\Entity\Escola;
+use App\Entity\IEntity;
 use App\Form\EscolaType;
+use App\Repository\EscolaRepository;
+use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,16 +22,22 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/escola")
  */
-class EscolaController extends AbstractController
+class EscolaController extends AppAbstractController
 {
-    /**
-     * @Route("/", name="escola_index", methods="GET")
-     */
-    public function index(): Response
+    public function __construct(EscolaRepository $entityRepository)
     {
-        $escolaRepository = $this->getDoctrine()->getRepository(Escola::class);
+        $this->entity = new Escola();
+        $this->entityRepository = $entityRepository;
+        $this->entityName = 'escola';
+        $this->formType = EscolaType::class;
+    }
 
-        return $this->render('escola/index.html.twig', ['escolas' => $escolaRepository->findAll()]);
+    /**
+     * @Route("/{page}/page", name="escola_index", methods="GET|POST", defaults={"page" = 1})
+     */
+    public function index(PaginatorInterface $paginator, Request $request): Response
+    {
+        return parent::index($paginator, $request);
     }
 
     /**
@@ -35,66 +45,33 @@ class EscolaController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $escola = new Escola();
-
-        $form = $this->createForm(EscolaType::class, $escola);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($escola);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('escola_index');
-        }
-
-        return $this->render('escola/new.html.twig', ['form' => $form->createView()]);
+        return parent::new($request);
     }
 
     /**
      * @Route("/{id}", name="escola_show", methods="GET")
+     * @ParamConverter("entity", class="App\Entity\Escola")
      */
-    public function show(Request $request): Response
+    public function show(IEntity $entity): Response
     {
-        $escolaRepository = $this->getDoctrine()->getRepository(Escola::class);
-        $escola = $escolaRepository->find($request->get('id'));
-
-        return $this->render('escola/show.html.twig', ['escola' => $escola]);
+        return parent::show($entity);
     }
 
     /**
      * @Route("/{id}/edit", name="escola_edit", methods="GET|POST")
+     * @ParamConverter("entity", class="App\Entity\Escola")
      */
-    public function edit(Request $request): Response
+    public function edit(Request $request, IEntity $entity): Response
     {
-        $escola = $this->getDoctrine()->getRepository(Escola::class)->find($request->get('id'));
-        $form = $this->createForm(EscolaType::class, $escola);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($escola);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('escola_index');
-        }
-
-        return $this->render('escola/edit.html.twig', ['form' => $form->createView(), 'escola' => $escola]);
+        return parent::edit($request, $entity);
     }
 
     /**
-     * @Route("/{id}/delete", name="escola_delete", methods="DELETE")
+     * @Route("/{id}", name="escola_delete", methods="DELETE")
+     * @ParamConverter("entity", class="App\Entity\Escola")
      */
-    public function delete(Request $request): Response
+    public function delete(Request $request, IEntity $entity): Response
     {
-        $escola = $this->getDoctrine()->getRepository(Escola::class)->find($request->get('id'));
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($escola);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('escola_index');
+        return parent::delete($request, $entity);
     }
 }

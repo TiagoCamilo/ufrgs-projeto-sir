@@ -1,31 +1,27 @@
-{%  extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Escola index{% endblock %}
+{% block title %}Listagem {{ entityName|capitalize }}{% endblock %}
+
+{% set registerListAttr = [] %}
+{% for register in registers %}
+    {% set registerListAttr = registerListAttr|merge ([{
+        'Id': register.id,
+        'Nome': register.nome,
+        'Endereco': register.endereco,
+    }]) %}
+{% endfor %}
+
+{% set actionList = {
+    'new': true,
+    'show': true,
+    'edit': true,
+    'delete': true,
+    'image': false,
+} %}
+
 
 {% block body %}
-    <h1>Escolas</h1>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Endereco</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for escola in escolas %}
-            <tr>
-                <td>{{ escola.getNome() }}</td>
-                <td>{{ escola.getEndereco() }}</td>
-                <td>
-                    <a href="{{ path('escola_show', {'id': escola.getId()}) }}">Show</a>
-                    <a href="{{ path('escola_edit', {'id': escola.getId()}) }}">Edit</a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('escola_new') }}">Criar novo</a>
-{%  endblock %}
+    <h1>Listagem {{ entityName|capitalize }}</h1>
+    {{ include(template~'/_index_table.html.twig') }}
+    {{ include(template~'/_index_buttons.html.twig') }}
+{% endblock %}
