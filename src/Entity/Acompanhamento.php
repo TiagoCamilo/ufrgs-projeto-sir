@@ -57,7 +57,7 @@ class Acompanhamento implements IEntity
 
     public function getDescricao()
     {
-        return $this->descricao;
+        return stream_get_contents($this->descricao);
     }
 
     public function setDescricao($descricao): self
