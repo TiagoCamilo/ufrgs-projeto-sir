@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ComentarioRepository")
@@ -40,6 +41,8 @@ class Comentario implements IEntity
 
     /**
      * @ORM\Column(type="string", length=250, nullable=true)
+     *
+     * @Assert\File(mimeTypes={ "image/*", "video/*" })
      */
     private $file;
 

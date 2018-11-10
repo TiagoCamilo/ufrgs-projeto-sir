@@ -9,6 +9,7 @@
 namespace App\Service;
 
 use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\Exception\NotReadableException;
 
 class FileManipulator implements IFileManipulator
 {
@@ -36,6 +37,11 @@ class FileManipulator implements IFileManipulator
 
     public function resize()
     {
-        Image::make($this->image)->resize($this->width, $this->height)->save($this->image);
+        try {
+            Image::make($this->image)->resize($this->width, $this->height)->save($this->image);
+        }catch(NotReadableException $e){
+            //TODO: Condicionar a imagens antes deste ponto
+            // Tratamento aplicado apenas a imagens
+        }
     }
 }

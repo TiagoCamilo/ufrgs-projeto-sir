@@ -8,6 +8,7 @@
 
 namespace App\EventListener;
 
+use App\Entity\Comentario;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -42,7 +43,8 @@ class FileUploadListener
     {
         $entity = $args->getEntity();
 
-        if (!$entity instanceof Aluno) {
+        if (!$entity instanceof Aluno
+            && !$entity instanceof Comentario) {
             return;
         }
 
@@ -55,7 +57,8 @@ class FileUploadListener
 
     private function uploadFile($entity)
     {
-        if (!$entity instanceof Aluno) {
+        if (!$entity instanceof Aluno
+            && !$entity instanceof Comentario) {
             return;
         }
 

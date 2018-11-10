@@ -3,22 +3,38 @@
 {% block title %}Comentario{% endblock %}
 
 {% block body %}
-    <h1>Comentario</h1>
+    <h1>Comentário</h1>
 
     <table class="table">
         <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ register.id }}</td>
+        </tr>
+        <tr>
+            <th>Data_hora</th>
+            <td>{{ register.dataHora ? register.dataHora|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Descricao</th>
+            <td>{{ register.descricao | raw }}</td>
+        </tr>
+        {% if(register.file != null) %}
             <tr>
-                <th>Id</th>
-                <td>{{ register.id }}</td>
+                <td colspan="2">
+                    <div class="col-lg-7 mx-auto">
+                    {% if(register.file.extension =="mp4") %}
+                        <video width="100%" controls>
+                            <source src="{{ asset('uploads/' ~ register.file.filename  ) }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% else %}
+                        <img src="{{ asset('uploads/' ~ register.file.filename  ) }}" alt="Arquivo do comentário">
+                    {% endif %}
+                    </div>
+                </td>
             </tr>
-            <tr>
-                <th>Data_hora</th>
-                <td>{{ register.dataHora ? register.dataHora|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Descricao</th>
-                <td>{{ register.descricao | raw }}</td>
-            </tr>
+        {% endif %}
         </tbody>
     </table>
 
