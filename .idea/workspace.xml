@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ef33198-eb0a-4ca3-b33a-0ada48f0b86c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Helpers/TemplateManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AppAbstractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AppAbstractController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/aluno/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/aluno/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/aluno/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/aluno/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/comentario/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comentario/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/comentario/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comentario/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/educador/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/educador/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/educador/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/educador/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/escola/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/escola/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/escola/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/escola/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/generic/_index_buttons.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/generic/_index_footer.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/generic/_index_table.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/generic/_index_actions.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/generic/_show_buttons.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/generic/_show_actions.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/generic/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/generic/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/generic/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/generic/new.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +120,7 @@
           <entry key="env" value="1" />
           <entry key="php" value="49" />
           <entry key="scss" value="3" />
-          <entry key="twig" value="72" />
+          <entry key="twig" value="74" />
           <entry key="yaml" value="2" />
         </counts>
       </usages-collector>
@@ -143,7 +129,7 @@
           <entry key="PHP" value="49" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="SCSS" value="3" />
-          <entry key="Twig" value="72" />
+          <entry key="Twig" value="74" />
           <entry key="YAML" value="2" />
         </counts>
       </usages-collector>
@@ -153,7 +139,7 @@
           <entry key="dummy" value="9" />
           <entry key="php" value="2266" />
           <entry key="scss" value="37" />
-          <entry key="twig" value="1683" />
+          <entry key="twig" value="1694" />
           <entry key="yaml" value="68" />
         </counts>
       </usages-collector>
@@ -162,7 +148,7 @@
           <entry key="PHP" value="2266" />
           <entry key="PLAIN_TEXT" value="34" />
           <entry key="SCSS" value="37" />
-          <entry key="Twig" value="1683" />
+          <entry key="Twig" value="1694" />
           <entry key="YAML" value="68" />
         </counts>
       </usages-collector>
@@ -176,34 +162,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/escola/show.html.twig">
+        <entry file="file://$PROJECT_DIR$/templates/aluno/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="12" selection-start-line="20" selection-end-line="21" />
-              <folding>
-                <element signature="e#12#26#0#Twig" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/aluno/show.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/comentario/show.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
-              <folding>
-                <element signature="e#12#26#0#Twig" expanded="true" />
-              </folding>
+            <state relative-caret-position="135">
+              <caret line="9" column="88" selection-start-line="9" selection-start-column="88" selection-end-line="9" selection-end-column="88" />
             </state>
           </provider>
         </entry>
@@ -211,17 +173,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/comentario/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/educador/show.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="120">
+              <caret line="8" column="70" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="70" />
             </state>
           </provider>
         </entry>
@@ -319,10 +272,10 @@
         <option value="$PROJECT_DIR$/src/Controller/AppAbstractController.php" />
         <option value="$PROJECT_DIR$/templates/educador/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/escola/index.html.twig" />
-        <option value="$PROJECT_DIR$/templates/aluno/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/aluno/show.html.twig" />
         <option value="$PROJECT_DIR$/templates/comentario/show.html.twig" />
         <option value="$PROJECT_DIR$/templates/educador/show.html.twig" />
+        <option value="$PROJECT_DIR$/templates/aluno/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/comentario/index.html.twig" />
       </list>
     </option>
@@ -509,24 +462,6 @@
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="comentario" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="educador" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="escola" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="generic" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -599,7 +534,7 @@
       <workItem from="1540853237215" duration="3095000" />
       <workItem from="1541345780111" duration="3689000" />
       <workItem from="1541453576296" duration="4628000" />
-      <workItem from="1541851604930" duration="7278000" />
+      <workItem from="1541851604930" duration="7603000" />
     </task>
     <task id="LOCAL-00001" summary="Adicionados componentes de debug">
       <created>1537821659127</created>
@@ -612,7 +547,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120235000" />
+    <option name="totallyTimeSpent" value="120560000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -927,13 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/aluno/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/educador/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -954,16 +882,6 @@
           <caret line="101" column="44" selection-start-line="101" selection-start-column="44" selection-end-line="101" selection-end-column="44" />
           <folding>
             <element signature="e#115#138#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/escola/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="12" selection-start-line="20" selection-end-line="21" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -992,10 +910,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/escola/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="12" selection-start-line="20" selection-end-line="21" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/aluno/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="88" selection-start-line="9" selection-start-column="88" selection-end-line="9" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/comentario/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+        <state relative-caret-position="120">
+          <caret line="8" column="70" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="70" />
         </state>
       </provider>
     </entry>
