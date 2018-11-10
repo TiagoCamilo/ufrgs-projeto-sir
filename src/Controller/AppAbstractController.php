@@ -99,13 +99,13 @@ abstract class AppAbstractController extends AbstractController
         return $this->redirectToRoute("{$this->entityName}_index");
     }
 
-    protected function getTemplateManager(){
+    protected function getTemplateManager(): TemplateManager{
         $templateManager = new TemplateManager();
         $templateManager->setEdit('generic/edit.html.twig');
         $templateManager->setNew('generic/new.html.twig');
         $templateManager->setForm('generic/_form.html.twig');
         $templateManager->setDelete('generic/_delete_form.html.twig');
-        $templateManager->setIndexActions('generic/_index_actions.html.twig');
+        $templateManager->setIndexActions('generic/_index_registers.html.twig');
         $templateManager->setIndexFooter('generic/_index_footer.html.twig');
         $templateManager->setShowActions('generic/_show_actions.html.twig');
         return $templateManager;

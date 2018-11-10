@@ -6,6 +6,7 @@ use App\Entity\Aluno;
 use App\Entity\Comentario;
 use App\Entity\IEntity;
 use App\Form\ComentarioType;
+use App\Helpers\TemplateManager;
 use App\Repository\ComentarioRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -62,10 +63,10 @@ class ComentarioController extends AppAbstractController
             return $this->redirectToRoute("{$this->entityName}_index");
         }
 
-        return $this->render("{$this->entityTemplate}/new.html.twig", [
+        return $this->render($this->getTemplateManager()->getNew(), [
             'form' => $form->createView(),
-            'template' => $this->entityTemplate,
             'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
         ]);
     }
 
@@ -94,5 +95,12 @@ class ComentarioController extends AppAbstractController
     public function delete(Request $request, IEntity $entity): Response
     {
         return parent::delete($request, $entity);
+    }
+
+    protected function getTemplateManager(): TemplateManager
+    {
+        $templateManager = parent::getTemplateManager();
+        $templateManager->setNew('comentario/new.html.twig');
+        return $templateManager;
     }
 }
