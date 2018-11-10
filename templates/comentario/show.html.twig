@@ -12,11 +12,11 @@
             <td>{{ register.id }}</td>
         </tr>
         <tr>
-            <th>Data_hora</th>
+            <th>Data hora</th>
             <td>{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</td>
         </tr>
         <tr>
-            <th>Descricao</th>
+            <th>Descrição</th>
             <td>{{ register.descricao | raw }}</td>
         </tr>
         {% if(register.file != null) %}

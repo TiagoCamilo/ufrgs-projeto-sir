@@ -20,7 +20,7 @@ class ComentarioType extends AbstractType
                 'data' => new \DateTime('now'),
             ])
             ->add('descricao', TextareaType::class, ['attr' => ['class' => 'ckeditor']])
-            ->add('file', FileType::class, ['label'=>'Foto/Video'])
+            ->add('file', FileType::class, ['label' => 'Foto/Video'])
 
         ;
     }

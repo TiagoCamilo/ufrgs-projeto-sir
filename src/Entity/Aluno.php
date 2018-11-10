@@ -159,6 +159,4 @@ class Aluno implements IEntity
 
         return $this;
     }
-
-
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Acompanhamento;
 use App\Entity\IEntity;
 use App\Form\AcompanhamentoType;
+use App\Helpers\TemplateManager;
 use App\Repository\AcompanhamentoRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -39,7 +40,25 @@ class AcompanhamentoController extends AppAbstractController
      */
     public function new(Request $request, UserInterface $user): Response
     {
-        return parent::new($request, $user);
+        $form = $this->createForm($this->formType, $this->entity);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // TODO: Isolar em metodo dependente de UserInterface?
+            $this->entity->setEducador($user->getEducador());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($this->entity);
+            $em->flush();
+
+            return $this->redirectToRoute("{$this->entityName}_index");
+        }
+
+        return $this->render($this->getTemplateManager()->getNew(), [
+            'form' => $form->createView(),
+            'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
+        ]);
     }
 
     /**
@@ -67,5 +86,14 @@ class AcompanhamentoController extends AppAbstractController
     public function delete(Request $request, IEntity $entity): Response
     {
         return parent::delete($request, $entity);
+    }
+
+    protected function getTemplateManager(): TemplateManager
+    {
+        $templateManager = parent::getTemplateManager();
+        $templateManager->setNew('acompanhamento/new.html.twig');
+        $templateManager->setEdit('acompanhamento/edit.html.twig');
+
+        return $templateManager;
     }
 }

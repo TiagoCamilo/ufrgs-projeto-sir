@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Acompanhamento;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,9 +14,11 @@ class AcompanhamentoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('data_hora')
-            ->add('descricao')
-            ->add('educador')
+            ->add('data_hora', DateType::class, [
+                'widget' => 'single_text',
+                'data' => new \DateTime('now'),
+            ])
+            ->add('descricao', TextareaType::class, ['attr' => ['class' => 'ckeditor']])
             ->add('aluno')
         ;
     }

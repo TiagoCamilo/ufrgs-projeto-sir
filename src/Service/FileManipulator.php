@@ -39,7 +39,7 @@ class FileManipulator implements IFileManipulator
     {
         try {
             Image::make($this->image)->resize($this->width, $this->height)->save($this->image);
-        }catch(NotReadableException $e){
+        } catch (NotReadableException $e) {
             //TODO: Condicionar a imagens antes deste ponto
             // Tratamento aplicado apenas a imagens
         }

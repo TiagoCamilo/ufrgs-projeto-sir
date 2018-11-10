@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: tiago
  * Date: 10/11/18
- * Time: 14:03
+ * Time: 14:03.
  */
 
 namespace App\Form;
@@ -19,7 +19,7 @@ class AlunoFile extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file', FileType::class, ['label'=>'Foto'])
+            ->add('file', FileType::class, ['label' => 'Foto'])
     ;
     }
 

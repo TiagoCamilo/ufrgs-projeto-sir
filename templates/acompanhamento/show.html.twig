@@ -12,12 +12,12 @@
                 <td>{{ register.id }}</td>
             </tr>
             <tr>
-                <th>Data_hora</th>
+                <th>Data Hora</th>
                 <td>{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Descricao</th>
-                <td>{{ register.descricao }}</td>
+                <th>Descrição</th>
+                <td>{{ register.descricao | raw}}</td>
             </tr>
         </tbody>
     </table>
