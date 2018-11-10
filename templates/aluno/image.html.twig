@@ -7,7 +7,7 @@
 
     <div class="col-lg-6 mx-auto">
         <div class="card shadow-lg bg-white rounded">
-            <img class="card-img-top" src="{{ asset('uploads/alunos/' ~ (register.foto ? register.foto.filename  : "default.jpeg" )) }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{ register.nome }}</h5>
                 <p class="card-text">Selecione uma nova foto para alterar</p>

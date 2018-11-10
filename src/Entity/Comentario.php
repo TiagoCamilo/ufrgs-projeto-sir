@@ -38,6 +38,11 @@ class Comentario implements IEntity
      */
     private $aluno;
 
+    /**
+     * @ORM\Column(type="string", length=250, nullable=true)
+     */
+    private $file;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +92,18 @@ class Comentario implements IEntity
     public function setAluno(?Aluno $aluno): self
     {
         $this->aluno = $aluno;
+
+        return $this;
+    }
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function setFile($file): self
+    {
+        $this->file = $file;
 
         return $this;
     }

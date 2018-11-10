@@ -76,7 +76,7 @@ abstract class AppAbstractController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute("{$this->entityName}_edit", ['id' => $entity->getId()]);
+            return $this->redirectToRoute("{$this->entityName}_index", ['id' => $entity->getId()]);
         }
 
         return $this->render($this->getTemplateManager()->getEdit(), [

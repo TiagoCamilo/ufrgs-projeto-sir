@@ -46,9 +46,9 @@ class FileUploadListener
             return;
         }
 
-        if ($fileName = $entity->getFoto()) {
+        if ($fileName = $entity->getFile()) {
             if (file_exists($this->uploader->getTargetDirectory().'/'.$fileName)) {
-                $entity->setFoto(new File($this->uploader->getTargetDirectory().'/'.$fileName));
+                $entity->setFile(new File($this->uploader->getTargetDirectory().'/'.$fileName));
             }
         }
     }
@@ -59,15 +59,15 @@ class FileUploadListener
             return;
         }
 
-        $file = $entity->getFoto();
+        $file = $entity->getFile();
 
         if ($file instanceof UploadedFile) {
             $fileName = $this->uploader->upload($file);
-            $entity->setFoto($fileName);
+            $entity->setFile($fileName);
         } elseif ($file instanceof File) {
             // prevents the full file path being saved on updates
             // as the path is set on the postLoad listener
-            $entity->setFoto($file->getFilename());
+            $entity->setFile($file->getFilename());
         }
     }
 }

@@ -39,7 +39,7 @@ class Aluno implements IEntity
      *
      * @Assert\File(mimeTypes={ "image/jpeg","image/png" })
      */
-    private $foto;
+    private $file;
 
     public function __construct()
     {
@@ -111,15 +111,17 @@ class Aluno implements IEntity
         return $this->getNome();
     }
 
-    public function getFoto()
+    public function getFile()
     {
-        return $this->foto;
+        return $this->file;
     }
 
-    public function setFoto($foto): self
+    public function setFile($file): self
     {
-        $this->foto = $foto;
+        $this->file = $file;
 
         return $this;
     }
+
+
 }

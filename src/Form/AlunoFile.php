@@ -19,7 +19,7 @@ class AlunoFile extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('foto', FileType::class)
+            ->add('file', FileType::class, ['label'=>'Foto'])
     ;
     }
 

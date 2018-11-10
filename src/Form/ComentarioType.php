@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Comentario;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,6 +20,8 @@ class ComentarioType extends AbstractType
                 'data' => new \DateTime('now'),
             ])
             ->add('descricao', TextareaType::class, ['attr' => ['class' => 'ckeditor']])
+            ->add('file', FileType::class, ['label'=>'Foto/Video'])
+
         ;
     }
 
