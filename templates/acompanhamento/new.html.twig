@@ -1,5 +1,14 @@
 {% extends 'generic/new.html.twig' %}
 
+{% block body %}
+    {{ parent() }}
+    {% block timeline %}
+        {{ render(controller(
+            'App\\Controller\\TimelineController::index'
+        )) }}
+    {% endblock %}
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('assets/js/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
