@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ef33198-eb0a-4ca3-b33a-0ada48f0b86c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/acompanhamento/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/acompanhamento/new.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/others/_timeline.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/others/_timeline.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -123,7 +121,7 @@
           <entry key="js" value="2" />
           <entry key="php" value="97" />
           <entry key="scss" value="4" />
-          <entry key="twig" value="118" />
+          <entry key="twig" value="120" />
           <entry key="yaml" value="4" />
         </counts>
       </usages-collector>
@@ -133,7 +131,7 @@
           <entry key="PHP" value="97" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="SCSS" value="4" />
-          <entry key="Twig" value="118" />
+          <entry key="Twig" value="120" />
           <entry key="YAML" value="4" />
         </counts>
       </usages-collector>
@@ -143,7 +141,7 @@
           <entry key="dummy" value="28" />
           <entry key="php" value="3142" />
           <entry key="scss" value="37" />
-          <entry key="twig" value="2519" />
+          <entry key="twig" value="2583" />
           <entry key="yaml" value="68" />
         </counts>
       </usages-collector>
@@ -152,7 +150,7 @@
           <entry key="PHP" value="3142" />
           <entry key="PLAIN_TEXT" value="53" />
           <entry key="SCSS" value="37" />
-          <entry key="Twig" value="2519" />
+          <entry key="Twig" value="2583" />
           <entry key="YAML" value="68" />
         </counts>
       </usages-collector>
@@ -181,7 +179,28 @@
         <entry file="file://$PROJECT_DIR$/templates/others/_timeline.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="435">
-              <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
+              <caret line="29" column="66" selection-start-line="29" selection-start-column="66" selection-end-line="29" selection-end-column="66" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/acompanhamento/show.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="47" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
+              <folding>
+                <element signature="e#12#26#0#Twig" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/comentario/show.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="21" column="39" selection-start-line="21" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -480,6 +499,12 @@
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="acompanhamento" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="comentario" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -568,7 +593,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134080000" />
+    <option name="totallyTimeSpent" value="134738000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -583,11 +608,11 @@
     <frame x="67" y="25" width="1845" height="1035" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25958866" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25958866" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32928178" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32928178" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -907,23 +932,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/comentario/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/acompanhamento/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="47" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Form/AcompanhamentoType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -980,10 +988,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/acompanhamento/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="47" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/comentario/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="21" column="39" selection-start-line="21" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/others/_timeline.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
-          <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
+          <caret line="29" column="66" selection-start-line="29" selection-start-column="66" selection-end-line="29" selection-end-column="66" />
         </state>
       </provider>
     </entry>
