@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aluno{% endblock %}
+
+{% block body %}
+
+
+    <div class="col-lg-6 mx-auto">
+        <div class="card shadow-lg bg-white rounded">
+            <img class="card-img-top" src="{{ asset('uploads/alunos/' ~ (register.foto ? register.foto.filename  : "default.jpeg" )) }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ register.nome }}</h5>
+                <p class="card-text">Selecione uma nova foto para alterar</p>
+
+                <div class="card-footer">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button class="btn btn-primary">{{ button_label|default('Salvar') }}</button>
+                    <a class="btn btn-success float-right" href="{{ path(entityName~'_index') }}">Voltar</a>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -37,8 +37,7 @@ class Aluno implements IEntity
     /**
      * @ORM\Column(type="string", length=250, nullable=true)
      *
-     * @Assert\NotBlank(message="Selecione a foto do aluno(a)")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
+     * @Assert\File(mimeTypes={ "image/jpeg","image/png" })
      */
     private $foto;
 

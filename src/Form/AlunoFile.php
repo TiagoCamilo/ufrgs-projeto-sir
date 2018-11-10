@@ -1,24 +1,26 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: tiago
+ * Date: 10/11/18
+ * Time: 14:03
+ */
 
 namespace App\Form;
 
 use App\Entity\Aluno;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AlunoType extends AbstractType
+class AlunoFile extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nome')
-            ->add('data_nascimento', DateType::class, [
-                'widget' => 'single_text',
-            ])
-        ;
+            ->add('foto', FileType::class)
+    ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

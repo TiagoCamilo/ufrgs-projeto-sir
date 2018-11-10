@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Aluno;
 use App\Entity\IEntity;
+use App\Form\AlunoFile;
 use App\Form\AlunoType;
 use App\Repository\AlunoRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -70,14 +71,23 @@ class AlunoController extends AppAbstractController
     }
 
     /**
-     * @Route("/image/{id}", name="aluno_image_show", methods="GET")
+     * @Route("/image/{id}", name="aluno_image", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\Aluno")
      */
-    public function imageShow(IEntity $entity): Response
+    public function image(Request $request, IEntity $entity): Response
     {
-        return $this->render("{$this->entityName}/image.show.html.twig", [
+        $form = $this->createForm(AlunoFile::class, $entity);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute("{$this->entityName}_image", ['id' => $entity->getId()]);
+        }
+
+        return $this->render('aluno/image.html.twig', [
             'register' => $entity,
-            'template' => $this->entityTemplate,
+            'form' => $form->createView(),
             'entityName' => $this->entityName,
         ]);
     }

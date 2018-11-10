@@ -16,7 +16,7 @@
             {% endfor %}
             <td>
                 {% if(actionList.image == true) %}
-                    <a class="btn btn-primary" href="{{ path(entityName~'_image_show', {'id': listAttr.Id}) }}">Foto</a>
+                    <a class="btn btn-primary" href="{{ path(entityName~'_image', {'id': listAttr.Id}) }}">Foto</a>
                 {% endif %}
                 {% if(actionList.show == true) %}
                     <a class="btn btn-primary" href="{{ path(entityName~'_show', {'id': listAttr.Id}) }}">Exibir</a>
