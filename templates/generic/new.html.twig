@@ -3,9 +3,8 @@
 {% block title %}New {{ entityName|capitalize }}{% endblock %}
 
 {% block body %}
-    <h1>Create new {{ entityName|capitalize }}</h1>
+    <h1>Criar {{ entityName|capitalize }}</h1>
 
     {{ include(template~'/_form.html.twig') }}
 
-    <a href="{{ path(entityName~'_index') }}">back to list</a>
 {% endblock %}
