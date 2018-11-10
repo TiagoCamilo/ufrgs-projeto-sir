@@ -38,7 +38,6 @@ abstract class AppAbstractController extends AbstractController
         ]);
     }
 
-
     public function new(Request $request, UserInterface $user): Response
     {
         $form = $this->createForm($this->formType, $this->entity);
@@ -99,7 +98,8 @@ abstract class AppAbstractController extends AbstractController
         return $this->redirectToRoute("{$this->entityName}_index");
     }
 
-    protected function getTemplateManager(): TemplateManager{
+    protected function getTemplateManager(): TemplateManager
+    {
         $templateManager = new TemplateManager();
         $templateManager->setEdit('generic/edit.html.twig');
         $templateManager->setNew('generic/new.html.twig');
@@ -108,6 +108,7 @@ abstract class AppAbstractController extends AbstractController
         $templateManager->setIndexActions('generic/_index_registers.html.twig');
         $templateManager->setIndexFooter('generic/_index_footer.html.twig');
         $templateManager->setShowActions('generic/_show_actions.html.twig');
+
         return $templateManager;
     }
 }

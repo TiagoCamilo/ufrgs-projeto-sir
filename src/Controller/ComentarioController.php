@@ -10,7 +10,6 @@ use App\Helpers\TemplateManager;
 use App\Repository\ComentarioRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,7 +36,6 @@ class ComentarioController extends AppAbstractController
         return parent::index($paginator, $request);
     }
 
-
     /**
      * @Route("/new", name="comentario_new", methods="GET|POST")
      */
@@ -47,10 +45,8 @@ class ComentarioController extends AppAbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             // TODO: Isolar em metodo dependente de UserInterface?
             $this->entity->setEducador($user->getEducador());
-
 
             //TODO: Setar aluno selecionado para "aula"
             $alunoList = $this->getDoctrine()->getRepository(Aluno::class)->findAll();
@@ -102,6 +98,7 @@ class ComentarioController extends AppAbstractController
         $templateManager = parent::getTemplateManager();
         $templateManager->setNew('comentario/new.html.twig');
         $templateManager->setEdit('comentario/edit.html.twig');
+
         return $templateManager;
     }
 }

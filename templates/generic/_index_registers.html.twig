@@ -24,7 +24,9 @@
                 {% if(actionList.edit == true) %}
                     <a class="btn btn-primary" href="{{ path(entityName~'_edit', {'id': listAttr.Id}) }}">Editar</a>
                 {% endif %}
-                {%  include template.delete with {'register': {'id': listAttr.Id}} %}
+                {% if(actionList.delete == true) %}
+                    {%  include template.delete with {'register': {'id': listAttr.Id}} %}
+                {% endif %}
             </td>
         </tr>
     {% endfor %}

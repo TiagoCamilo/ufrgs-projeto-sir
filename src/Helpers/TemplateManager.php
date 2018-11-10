@@ -3,21 +3,20 @@
  * Created by PhpStorm.
  * User: tiago
  * Date: 10/11/18
- * Time: 11:37
+ * Time: 11:37.
  */
 
 namespace App\Helpers;
-
 
 class TemplateManager
 {
     public $edit;
     public $new;
-    public  $form;
-    public  $delete;
-    public  $indexActions;
-    public  $indexFooter;
-    public  $showActions;
+    public $form;
+    public $delete;
+    public $indexActions;
+    public $indexFooter;
+    public $showActions;
 
     /**
      * @return mixed
@@ -130,7 +129,4 @@ class TemplateManager
     {
         $this->showActions = $showActions;
     }
-
-
-
 }
