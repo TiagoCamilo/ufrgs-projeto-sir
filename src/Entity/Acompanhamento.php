@@ -38,6 +38,12 @@ class Acompanhamento implements IEntity
      */
     private $aluno;
 
+    public function __construct()
+    {
+        $this->data_hora = new \DateTime();
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;

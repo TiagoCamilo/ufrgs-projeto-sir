@@ -14,10 +14,6 @@ class AcompanhamentoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('data_hora', DateType::class, [
-                'widget' => 'single_text',
-                'data' => new \DateTime('now'),
-            ])
             ->add('descricao', TextareaType::class, ['attr' => ['class' => 'ckeditor']])
             ->add('aluno')
         ;

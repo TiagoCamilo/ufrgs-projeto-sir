@@ -46,6 +46,11 @@ class Comentario implements IEntity
      */
     private $file;
 
+    public function __construct()
+    {
+        $this->data_hora = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
