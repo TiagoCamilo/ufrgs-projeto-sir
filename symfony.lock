@@ -125,6 +125,12 @@
     "monolog/monolog": {
         "version": "1.23.0"
     },
+    "mpdf/mpdf": {
+        "version": "v7.1.6"
+    },
+    "myclabs/deep-copy": {
+        "version": "1.8.1"
+    },
     "nette/bootstrap": {
         "version": "v2.4.6"
     },
@@ -199,6 +205,9 @@
             "version": "4.0",
             "ref": "421933bf8f0e75546ac8e00cb3eb12904fa2ac1a"
         }
+    },
+    "setasign/fpdi": {
+        "version": "1.6.2"
     },
     "symfony/asset": {
         "version": "v4.1.4"

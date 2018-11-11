@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,yBAAyB;EACvB,YAAY,EAAE,KAAK;EACnB,YAAY,EAAE,GAAG",
+"sources": ["report_pdf.scss"],
+"names": [],
+"file": "report_pdf.css"
+}

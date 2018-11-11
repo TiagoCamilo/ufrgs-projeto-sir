@@ -1,0 +1,27 @@
+
+{% block body %}
+    <div style="text-align: center">
+        <h1>Formulário Acompanhamento</h1>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ register.id }}</td>
+            </tr>
+            <tr>
+                <th>Data Hora</th>
+                <td>{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <td>Acompanhamento</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="acompanhamento_descricao">{{ register.descricao | raw}}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

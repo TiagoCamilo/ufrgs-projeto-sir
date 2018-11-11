@@ -7,6 +7,7 @@ use App\Entity\IEntity;
 use App\Form\AcompanhamentoType;
 use App\Helpers\TemplateManager;
 use App\Repository\AcompanhamentoRepository;
+use App\Service\PdfGenerator;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
@@ -95,5 +96,21 @@ class AcompanhamentoController extends AppAbstractController
         $templateManager->setEdit('acompanhamento/edit.html.twig');
 
         return $templateManager;
+    }
+
+    /**
+     * @Route("/{id}/pdf", name="acompanhamento_report_pdf", methods="GET")
+     * @ParamConverter("entity", class="App\Entity\Acompanhamento")
+     */
+    public function reportPdf(IEntity $entity, PdfGenerator $pdfGenerator): Response
+    {
+        $html = $this->renderView('acompanhamento/report_pdf.html.twig', [
+            'register' => $entity,
+            'title' => "Formulário de Acompanhamento"
+        ]);
+
+        $pdfGenerator->setStyle('report_pdf.css');
+        $pdfGenerator->setContent($html);
+        return $pdfGenerator->generate();
     }
 }

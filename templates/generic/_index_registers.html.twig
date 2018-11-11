@@ -15,6 +15,9 @@
                 <td>{{ attr | raw}}</td>
             {% endfor %}
             <td>
+                {% if(actionList.show == true) %}
+                    <a class="btn btn-primary" href="{{ path(entityName~'_report_pdf', {'id': listAttr.Id}) }}">PDF</a>
+                {% endif %}
                 {% if(actionList.image == true) %}
                     <a class="btn btn-primary" href="{{ path(entityName~'_image', {'id': listAttr.Id}) }}">Foto</a>
                 {% endif %}

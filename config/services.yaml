@@ -6,6 +6,7 @@
 parameters:
     locale: 'br'
     alunos_directory: '%kernel.project_dir%/public/uploads'
+    css_directory: '%kernel.project_dir%/public/assets/css'
 
 services:
     # default configuration for services in *this* file
@@ -44,3 +45,8 @@ services:
         arguments:
             $width: 500
             $height: 500
+
+    App\Service\PdfGenerator:
+        arguments:
+            $cssDirectory: '%css_directory%'
+
