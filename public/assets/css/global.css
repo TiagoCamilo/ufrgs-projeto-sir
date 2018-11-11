@@ -10577,4 +10577,12 @@ i {
 .form-delete {
   display: inline; }
 
+body {
+  opacity: 1;
+  transition: 1s opacity; }
+
+body.fade-out {
+  opacity: 0;
+  transition: none; }
+
 /*# sourceMappingURL=global.css.map */

@@ -12,6 +12,7 @@
     {% endblock %}
 </head>
 <body>
+<script>document.body.className += ' fade-out';</script>
 
 {% block menu %}
 
@@ -84,6 +85,11 @@
     <script src="{{ asset('assets/js/tether.js') }}"></script>
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+    <script>
+        $(function() {
+            $('body').removeClass('fade-out');
+        });
+    </script>
 {% endblock %}
 
 </body>
