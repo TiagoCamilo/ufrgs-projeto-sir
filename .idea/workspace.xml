@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ef33198-eb0a-4ca3-b33a-0ada48f0b86c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/css/report_pdf.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/PdfGenerator.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/acompanhamento/report_pdf.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sala_recursos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sala_recursos.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.sass-cache/ea14b12bc45a79c278ea53c6d37330704e86e665/report_pdf.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/.sass-cache/ea14b12bc45a79c278ea53c6d37330704e86e665/report_pdf.scssc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/report_pdf.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/report_pdf.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/report_pdf.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/report_pdf.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/report_pdf.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/report_pdf.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/AcompanhamentoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AcompanhamentoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/generic/_index_registers.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/generic/_index_registers.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/acompanhamento/report_pdf.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/acompanhamento/report_pdf.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -124,8 +119,8 @@
           <entry key="project.open.time.4" value="3" />
           <entry key="project.open.time.5" value="3" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.7" value="2" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.open.time.7" value="3" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -133,19 +128,19 @@
           <entry key="dist" value="3" />
           <entry key="env" value="1" />
           <entry key="js" value="2" />
-          <entry key="php" value="109" />
-          <entry key="scss" value="6" />
-          <entry key="twig" value="125" />
+          <entry key="php" value="112" />
+          <entry key="scss" value="7" />
+          <entry key="twig" value="126" />
           <entry key="yaml" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JavaScript" value="2" />
-          <entry key="PHP" value="109" />
+          <entry key="PHP" value="112" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="SCSS" value="6" />
-          <entry key="Twig" value="125" />
+          <entry key="SCSS" value="7" />
+          <entry key="Twig" value="126" />
           <entry key="YAML" value="6" />
         </counts>
       </usages-collector>
@@ -153,18 +148,18 @@
         <counts>
           <entry key="dist" value="25" />
           <entry key="dummy" value="28" />
-          <entry key="php" value="3946" />
-          <entry key="scss" value="103" />
-          <entry key="twig" value="2772" />
+          <entry key="php" value="3947" />
+          <entry key="scss" value="251" />
+          <entry key="twig" value="2977" />
           <entry key="yaml" value="137" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PHP" value="3946" />
+          <entry key="PHP" value="3947" />
           <entry key="PLAIN_TEXT" value="53" />
-          <entry key="SCSS" value="103" />
-          <entry key="Twig" value="2772" />
+          <entry key="SCSS" value="251" />
+          <entry key="Twig" value="2977" />
           <entry key="YAML" value="137" />
         </counts>
       </usages-collector>
@@ -178,31 +173,48 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Service/PdfGenerator.php">
+        <entry file="file://$PROJECT_DIR$/templates/acompanhamento/report_pdf.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+            <state relative-caret-position="375">
+              <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/EducadorController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-62">
+              <caret line="4" selection-start-line="4" selection-end-line="13" selection-end-column="55" />
               <folding>
-                <element signature="e#112#126#0#PHP" expanded="true" />
+                <element signature="e#34#58#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/Educador.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/AcompanhamentoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="33" selection-start-line="13" selection-end-line="14" />
+            <state relative-caret-position="688">
+              <caret line="108" column="34" selection-start-line="108" selection-start-column="34" selection-end-line="108" selection-end-column="34" />
+              <folding>
+                <element signature="e#34#64#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/services.yaml">
+        <entry file="file://$PROJECT_DIR$/public/assets/css/report_pdf.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="50" column="44" lean-forward="true" selection-start-line="50" selection-start-column="44" selection-end-line="50" selection-end-column="44" />
+            <state relative-caret-position="195">
+              <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -260,7 +272,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Service/FileUploader.php" />
         <option value="$PROJECT_DIR$/templates/aluno/image.show.html.twig" />
         <option value="$PROJECT_DIR$/templates/generic/_index_buttons.html.twig" />
         <option value="$PROJECT_DIR$/public/assets/css/global.scss" />
@@ -306,11 +317,12 @@
         <option value="$PROJECT_DIR$/src/Form/ComentarioType.php" />
         <option value="$PROJECT_DIR$/templates/comentario/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/generic/_index_registers.html.twig" />
-        <option value="$PROJECT_DIR$/templates/acompanhamento/report_pdf.html.twig" />
         <option value="$PROJECT_DIR$/public/assets/report_pdf.scss" />
         <option value="$PROJECT_DIR$/config/services.yaml" />
-        <option value="$PROJECT_DIR$/src/Controller/AcompanhamentoController.php" />
         <option value="$PROJECT_DIR$/src/Service/PdfGenerator.php" />
+        <option value="$PROJECT_DIR$/src/Controller/AcompanhamentoController.php" />
+        <option value="$PROJECT_DIR$/public/assets/css/report_pdf.scss" />
+        <option value="$PROJECT_DIR$/templates/acompanhamento/report_pdf.html.twig" />
       </list>
     </option>
   </component>
@@ -463,18 +475,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
               <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
@@ -487,10 +493,17 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Controller" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -563,7 +576,8 @@
       <workItem from="1541851604930" duration="14037000" />
       <workItem from="1541875741580" duration="1065000" />
       <workItem from="1541877839181" duration="3823000" />
-      <workItem from="1541937046985" duration="5785000" />
+      <workItem from="1541937046985" duration="6314000" />
+      <workItem from="1541968299917" duration="1087000" />
     </task>
     <task id="LOCAL-00001" summary="Adicionados componentes de debug">
       <created>1537821659127</created>
@@ -576,7 +590,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140523000" />
+    <option name="totallyTimeSpent" value="142139000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -591,7 +605,7 @@
     <frame x="67" y="25" width="1845" height="1035" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.262368" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26570317" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -741,9 +755,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Educador.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/educador/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -755,16 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="24" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/EducadorController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="4" selection-start-line="4" selection-end-line="13" selection-end-column="55" />
-          <folding>
-            <element signature="e#34#58#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -906,23 +907,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/css/report_pdf.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/acompanhamento/report_pdf.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="63" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Service/FileManipulator.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -947,6 +931,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Service/PdfGenerator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="40" column="1" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
+          <folding>
+            <element signature="e#112#126#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/services.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
@@ -954,20 +948,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/AcompanhamentoController.php">
+    <entry file="file://$PROJECT_DIR$/src/Controller/EducadorController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="33" selection-start-line="13" selection-end-line="14" />
+        <state relative-caret-position="-62">
+          <caret line="4" selection-start-line="4" selection-end-line="13" selection-end-column="55" />
+          <folding>
+            <element signature="e#34#58#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Service/PdfGenerator.php">
+    <entry file="file://$PROJECT_DIR$/src/Controller/AcompanhamentoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+        <state relative-caret-position="688">
+          <caret line="108" column="34" selection-start-line="108" selection-start-column="34" selection-end-line="108" selection-end-column="34" />
           <folding>
-            <element signature="e#112#126#0#PHP" expanded="true" />
+            <element signature="e#34#64#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Educador.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/css/report_pdf.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/acompanhamento/report_pdf.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
         </state>
       </provider>
     </entry>

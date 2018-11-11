@@ -1,27 +1,32 @@
+<head>
+    <title>{{ title | upper}}</title>
+</head>
+<body>
+<div>
+    <h1 class="acompanhamento_titulo">{{ title | upper}} </h1>
 
-{% block body %}
-    <div style="text-align: center">
-        <h1>Formulário Acompanhamento</h1>
+    <table class="acompanhamento_table">
+        <tbody>
+        <tr>
+            <th>Educador:</th>
+            <td>{{ register.educador }}</td>
+            <th>Escola:</th>
+            <td>{{ register.id }}</td>
+        </tr>
+        <tr>
+            <th>Data/Hora Inicial:</th>
+            <td>{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</td>
+            <th>Data/Hora Final:</th>
+            <td>{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</td>
+        </tr>
+        </tbody>
+    </table>
 
-        <table class="table">
-            <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ register.id }}</td>
-            </tr>
-            <tr>
-                <th>Data Hora</th>
-                <td>{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <td>Acompanhamento</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="acompanhamento_descricao">{{ register.descricao | raw}}</td>
-            </tr>
-
-            </tbody>
-        </table>
+    <div class="acompanhamento_div_acompanhamento">
+        <span><strong>Acompanhamento:</strong></span>
+        <div class="acompanhamento_descricao">
+            {{ register.descricao | raw}}
+        </div>
     </div>
-
-{% endblock %}
+</div>
+</body>
