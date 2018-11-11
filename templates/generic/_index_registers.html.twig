@@ -15,19 +15,19 @@
                 <td>{{ attr | raw}}</td>
             {% endfor %}
             <td>
-                {% if(actionList.show == true) %}
+                {% if(actionList.pdf is defined and actionList.pdf == true) %}
                     <a class="btn btn-primary" href="{{ path(entityName~'_report_pdf', {'id': listAttr.Id}) }}">PDF</a>
                 {% endif %}
-                {% if(actionList.image == true) %}
+                {% if(actionList.image is defined and actionList.image == true) %}
                     <a class="btn btn-primary" href="{{ path(entityName~'_image', {'id': listAttr.Id}) }}">Foto</a>
                 {% endif %}
-                {% if(actionList.show == true) %}
+                {% if(actionList.show is defined and actionList.show == true) %}
                     <a class="btn btn-primary" href="{{ path(entityName~'_show', {'id': listAttr.Id}) }}">Exibir</a>
                 {% endif %}
-                {% if(actionList.edit == true) %}
+                {% if(actionList.edit is defined and actionList.edit == true) %}
                     <a class="btn btn-primary" href="{{ path(entityName~'_edit', {'id': listAttr.Id}) }}">Editar</a>
                 {% endif %}
-                {% if(actionList.delete == true) %}
+                {% if(actionList.delete is defined and actionList.delete == true) %}
                     {%  include template.delete with {'register': {'id': listAttr.Id}} %}
                 {% endif %}
             </td>

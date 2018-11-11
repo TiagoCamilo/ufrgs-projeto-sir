@@ -28,44 +28,39 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        // User
-        $user = new User();
-        $user->setUsername('user1');
-        $user->setEmail('admin@admin.com');
-
-        $password = $this->encoder->encodePassword($user, '103020');
-        $user->setPassword($password);
-        $manager->persist($user);
-
-        // Alunos
         for ($i = 0; $i < 10; ++$i) {
+            $user = new User();
+            $user->setUsername('user'.$i);
+            $user->setEmail('admin'.$i.'@admin.com');
+            $password = $this->encoder->encodePassword($user, '103020');
+            $user->setPassword($password);
+
             $escola = new Escola();
             $escola->setNome('Escola '.$i);
             $escola->setEndereco('Endereco Escola'.$i);
 
             $aluno = new Aluno();
-            if ($i < 5) {
-                $aluno->setNome('Aluno '.$i);
-            } else {
-                $aluno->setNome('Aluno Editado '.$i);
-            }
+            $aluno->setNome('Aluno '.$i);
 
             $educador = new Educador();
-            if (0 == $i) {
-                $educador->setAppUser($user);
-            }
+            $educador->setAppUser($user);
             $educador->setNome('Educador '.$i);
+            $educador->setEscola($escola);
 
-            $comenario = new Comentario();
-            $comenario->setAluno($aluno);
-            $comenario->setEducador($educador);
-            $comenario->setDescricao('Comentario '.$i);
-            $comenario->setDataHora(new \DateTime('now'));
+            if($i < 5) {
+                $comenario = new Comentario();
+                $comenario->setAluno($aluno);
+                $comenario->setEducador($educador);
+                $comenario->setDescricao('Comentario ' . $i);
+                //$comenario->setDataHora(new \DateTime());
+            }
 
+            $manager->persist($user);
             $manager->persist($escola);
             $manager->persist($aluno);
             $manager->persist($educador);
             $manager->persist($comenario);
+
         }
 
         $manager->flush();

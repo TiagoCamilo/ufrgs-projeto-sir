@@ -24,7 +24,7 @@ class Educador implements IEntity
     private $nome;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="educador", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="educador")
      */
     private $app_user;
 
@@ -32,6 +32,12 @@ class Educador implements IEntity
      * @ORM\OneToMany(targetEntity="App\Entity\Acompanhamento", mappedBy="educador")
      */
     private $acompanhamentos;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Escola", inversedBy="educadores")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $escola;
 
     public function __construct()
     {
@@ -99,6 +105,18 @@ class Educador implements IEntity
                 $acompanhamento->setEducador(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEscola(): ?Escola
+    {
+        return $this->escola;
+    }
+
+    public function setEscola(?Escola $escola): self
+    {
+        $this->escola = $escola;
 
         return $this;
     }

@@ -8,6 +8,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Escola implements IEntity
      * @ORM\Column(type="string" , length=200, nullable=true)
      */
     private $endereco;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Educador", mappedBy="escola", orphanRemoval=true)
+     */
+    private $educadores;
+
+    public function __construct()
+    {
+        $this->educadores = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -67,4 +79,41 @@ class Escola implements IEntity
 
         return $this;
     }
+
+    /**
+     * @return Collection|Educador[]
+     */
+    public function getEducadores(): Collection
+    {
+        return $this->educadores;
+    }
+
+    public function addEducador(Educador $educador): self
+    {
+        if (!$this->educadores->contains($educador)) {
+            $this->educadores[] = $educador;
+            $educador->setEscola($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEducador(Educador $educador): self
+    {
+        if ($this->educadores->contains($educador)) {
+            $this->educadores->removeElement($educador);
+            // set the owning side to null (unless already changed)
+            if ($educador->getEscola() === $this) {
+                $educador->setEscola(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getNome();
+    }
+    
 }
