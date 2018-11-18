@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tela Inicial{% endblock %}
+
+
+
+{% block body %}
+    <form class="form">
+        <input class="form-control " type="text" placeholder="Digite o nome do aluno">
+    </form>
+    <div class="row">
+    {% for register in  registers %}
+        <div class="col-lg-2 col-sm-4 my-3">
+            <div class="card shadow-lg bg-white rounded border-dark">
+                <img class="card-img-top" src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ register.nome }}</h5>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

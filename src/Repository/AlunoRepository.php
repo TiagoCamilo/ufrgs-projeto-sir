@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Aluno[]    findAll()
  * @method Aluno[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AlunoRepository extends ServiceEntityRepository
+class AlunoRepository extends AbstractRepository
 {
     public function __construct(RegistryInterface $registry)
     {
