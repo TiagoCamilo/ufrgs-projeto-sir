@@ -10,7 +10,7 @@
     </form>
     <div class="row">
     {% for register in  registers %}
-        <div class="col-lg-2 col-sm-4 my-3">
+        <div class="col-lg-2 col-sm-4 my-3 alunoCard" id="registerCard{{ register.id }}" onclick="move({{ register.id }})">
             <div class="card shadow-lg bg-white rounded border-dark">
                 <img class="card-img-top" src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}" alt="Card image cap">
                 <div class="card-body">
@@ -20,4 +20,21 @@
         </div>
     {% endfor %}
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        move = function(idRegister) {
+            element = $('#registerCard'+idRegister);
+            if(element.hasClass('alunoCardMoved')) {
+                element.css('transform', 'translate(0px, 0px)');
+                element.removeClass('alunoCardMoved');
+            }else{
+                console.log(element.css('left'));
+                element.css('transform', 'translate(-50px, 50px)');
+                element.addClass('alunoCardMoved');
+            }
+        }
+    </script>
 {% endblock %}

@@ -45,7 +45,17 @@ body {
   opacity: 1;
   transition: 1s opacity;
 }
+
 body.fade-out {
   opacity: 0;
   transition: none;
+}
+
+/*
+. alunoCardMoved {
+  transform: translate(-20px, 20px);
+}
+*/
+.alunoCard {
+  transition:all 0.3s linear;
 }

@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ef33198-eb0a-4ca3-b33a-0ada48f0b86c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/AbstractRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/AlunoRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/AlunoRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.sass-cache/ea14b12bc45a79c278ea53c6d37330704e86e665/global.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/.sass-cache/ea14b12bc45a79c278ea53c6d37330704e86e665/global.scssc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/global.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/global.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/global.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/global.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +125,7 @@
           <entry key="env" value="1" />
           <entry key="js" value="2" />
           <entry key="php" value="126" />
-          <entry key="scss" value="11" />
+          <entry key="scss" value="12" />
           <entry key="twig" value="152" />
           <entry key="yaml" value="6" />
         </counts>
@@ -135,7 +135,7 @@
           <entry key="JavaScript" value="2" />
           <entry key="PHP" value="126" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="SCSS" value="11" />
+          <entry key="SCSS" value="12" />
           <entry key="Twig" value="152" />
           <entry key="YAML" value="6" />
         </counts>
@@ -145,8 +145,8 @@
           <entry key="dist" value="25" />
           <entry key="dummy" value="28" />
           <entry key="php" value="4179" />
-          <entry key="scss" value="343" />
-          <entry key="twig" value="3888" />
+          <entry key="scss" value="460" />
+          <entry key="twig" value="4101" />
           <entry key="yaml" value="137" />
         </counts>
       </usages-collector>
@@ -154,8 +154,8 @@
         <counts>
           <entry key="PHP" value="4179" />
           <entry key="PLAIN_TEXT" value="53" />
-          <entry key="SCSS" value="343" />
-          <entry key="Twig" value="3888" />
+          <entry key="SCSS" value="460" />
+          <entry key="Twig" value="4101" />
           <entry key="YAML" value="137" />
         </counts>
       </usages-collector>
@@ -169,10 +169,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/assets/css/global.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="733">
+              <caret line="59" column="20" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/home/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="84" selection-start-line="8" selection-start-column="84" selection-end-line="8" selection-end-column="84" />
+            <state relative-caret-position="450">
+              <caret line="30" column="53" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -284,7 +293,6 @@
         <option value="$PROJECT_DIR$/templates/educador/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/acompanhamento/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
-        <option value="$PROJECT_DIR$/public/assets/css/global.scss" />
         <option value="$PROJECT_DIR$/templates/security/login.html.twig" />
         <option value="$PROJECT_DIR$/public/assets/css/login.scss" />
         <option value="$PROJECT_DIR$/src/Controller/DefaultController.php" />
@@ -292,6 +300,7 @@
         <option value="$PROJECT_DIR$/src/Repository/AbstractRepository.php" />
         <option value="$PROJECT_DIR$/src/Repository/AlunoRepository.php" />
         <option value="$PROJECT_DIR$/templates/home/index.html.twig" />
+        <option value="$PROJECT_DIR$/public/assets/css/global.scss" />
       </list>
     </option>
   </component>
@@ -460,36 +469,15 @@
             <path>
               <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
               <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
               <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="aluno" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -569,7 +557,7 @@
       <workItem from="1541877839181" duration="3823000" />
       <workItem from="1541937046985" duration="6314000" />
       <workItem from="1541968299917" duration="4655000" />
-      <workItem from="1542566762696" duration="3610000" />
+      <workItem from="1542566762696" duration="5242000" />
     </task>
     <task id="LOCAL-00001" summary="Adicionados componentes de debug">
       <created>1537821659127</created>
@@ -582,7 +570,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149329000" />
+    <option name="totallyTimeSpent" value="150961000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -890,13 +878,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/css/global.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="14" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/css/login.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="749">
@@ -971,8 +952,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/home/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="84" selection-start-line="8" selection-start-column="84" selection-end-line="8" selection-end-column="84" />
+        <state relative-caret-position="450">
+          <caret line="30" column="53" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/css/global.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="733">
+          <caret line="59" column="20" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
         </state>
       </provider>
     </entry>
