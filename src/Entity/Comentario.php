@@ -42,7 +42,7 @@ class Comentario implements IEntity
     /**
      * @ORM\Column(type="string", length=250, nullable=true)
      *
-     * @Assert\File(mimeTypes={ "image/*", "video/*" })
+     * @Assert\File(maxSize = "200M", mimeTypes={ "image/*", "video/*" })
      */
     private $file;
 
