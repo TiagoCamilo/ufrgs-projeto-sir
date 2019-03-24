@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FormularioCampo index{% endblock %}
+
+{% block body %}
+    <h1>FormularioCampo index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tipo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formulario_campo in formulario_campos %}
+            <tr>
+                <td>{{ formulario_campo.id }}</td>
+                <td>{{ formulario_campo.tipo }}</td>
+                <td>
+                    <a href="{{ path('formulario_campo_show', {'id': formulario_campo.id}) }}">show</a>
+                    <a href="{{ path('formulario_campo_edit', {'id': formulario_campo.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('formulario_campo_new') }}">Create new</a>
+{% endblock %}

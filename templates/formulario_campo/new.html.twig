@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New FormularioCampo{% endblock %}
+
+{% block body %}
+    <h1>Create new FormularioCampo</h1>
+
+    {{ include('formulario_campo/_form.html.twig') }}
+
+    <a href="{{ path('formulario_campo_index') }}">back to list</a>
+{% endblock %}

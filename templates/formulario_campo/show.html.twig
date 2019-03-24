@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FormularioCampo{% endblock %}
+
+{% block body %}
+    <h1>FormularioCampo</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ formulario_campo.id }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ formulario_campo.tipo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('formulario_campo_index') }}">back to list</a>
+
+    <a href="{{ path('formulario_campo_edit', {'id': formulario_campo.id}) }}">edit</a>
+
+    {{ include('formulario_campo/_delete_form.html.twig') }}
+{% endblock %}
