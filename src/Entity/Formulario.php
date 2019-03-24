@@ -24,7 +24,7 @@ class Formulario
     private $nome;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FormularioCampo", mappedBy="formulario")
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioCampo", mappedBy="formulario", fetch="EAGER")
      */
     private $formularioCampos;
 
