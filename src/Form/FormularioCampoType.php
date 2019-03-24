@@ -13,6 +13,7 @@ class FormularioCampoType extends AbstractType
     {
         $builder
             ->add('tipo')
+            ->add('label')
             ->add('formulario')
         ;
     }
