@@ -19,6 +19,12 @@
 
         </tbody>
     </table>
-
+    <form action="{{ path("formulario_dinamico_new") }}">
+{% for campo in formulario.formularioCampos %}
+    {{ campo.label }}
+    <input type="text" name="{{ campo.id }}" />
+{% endfor %}
+        <input type="submit" />
+    </form>
 
 {% endblock %}
