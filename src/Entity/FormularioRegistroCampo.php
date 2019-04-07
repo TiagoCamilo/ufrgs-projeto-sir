@@ -28,6 +28,11 @@ class FormularioRegistroCampo
      */
     private $formularioCampo;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $valor;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +58,18 @@ class FormularioRegistroCampo
     public function setFormularioCampo(?FormularioCampo $formularioCampo): self
     {
         $this->formularioCampo = $formularioCampo;
+
+        return $this;
+    }
+
+    public function getValor(): ?string
+    {
+        return $this->valor;
+    }
+
+    public function setValor(?string $valor): self
+    {
+        $this->valor = $valor;
 
         return $this;
     }
