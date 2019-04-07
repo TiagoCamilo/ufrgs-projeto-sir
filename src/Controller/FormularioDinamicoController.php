@@ -28,9 +28,14 @@ class FormularioDinamicoController extends AbstractController
     /**
      * @Route("/new", name="formulario_dinamico_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FormularioRepository $formularioRepository): Response
     {
-        dump($request);
+
+        $formulario = $formularioRepository->find(1);
+        foreach ($formulario->getFormularioCampos() as $campo) {
+            dump($request->request->get($campo->getId()));
+        }
+
         die();
     }
 
@@ -39,11 +44,9 @@ class FormularioDinamicoController extends AbstractController
      */
     public function show(Formulario $formulario): Response
     {
-
         return $this->render('formulario_dinamico/show.html.twig', [
             'formulario' => $formulario,
         ]);
-
     }
 
     /**
@@ -81,5 +84,4 @@ class FormularioDinamicoController extends AbstractController
 
         return $this->redirectToRoute('formulario_dinamico_index');
     }
-
 }
