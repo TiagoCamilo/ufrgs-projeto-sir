@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\FormularioCampoRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\FormularioRegistroRepository")
  */
-class FormularioCampo
+class FormularioRegistro
 {
     /**
      * @ORM\Id()
@@ -19,23 +19,12 @@ class FormularioCampo
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime")
      */
-    private $tipo;
+    private $data_hora;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Formulario", inversedBy="formularioCampos")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $formulario;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $label;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FormularioRegistroCampo", mappedBy="formularioCampo", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioRegistroCampo", mappedBy="formularioRegistro", orphanRemoval=true)
      */
     private $formularioRegistroCampos;
 
@@ -49,38 +38,14 @@ class FormularioCampo
         return $this->id;
     }
 
-    public function getTipo(): ?string
+    public function getDataHora(): ?\DateTimeInterface
     {
-        return $this->tipo;
+        return $this->data_hora;
     }
 
-    public function setTipo(string $tipo): self
+    public function setDataHora(\DateTimeInterface $data_hora): self
     {
-        $this->tipo = $tipo;
-
-        return $this;
-    }
-
-    public function getFormulario(): ?Formulario
-    {
-        return $this->formulario;
-    }
-
-    public function setFormulario(?Formulario $formulario): self
-    {
-        $this->formulario = $formulario;
-
-        return $this;
-    }
-
-    public function getLabel(): ?string
-    {
-        return $this->label;
-    }
-
-    public function setLabel(string $label): self
-    {
-        $this->label = $label;
+        $this->data_hora = $data_hora;
 
         return $this;
     }
@@ -97,7 +62,7 @@ class FormularioCampo
     {
         if (!$this->formularioRegistroCampos->contains($formularioRegistroCampo)) {
             $this->formularioRegistroCampos[] = $formularioRegistroCampo;
-            $formularioRegistroCampo->setFormularioCampo($this);
+            $formularioRegistroCampo->setFormularioRegistro($this);
         }
 
         return $this;
@@ -108,8 +73,8 @@ class FormularioCampo
         if ($this->formularioRegistroCampos->contains($formularioRegistroCampo)) {
             $this->formularioRegistroCampos->removeElement($formularioRegistroCampo);
             // set the owning side to null (unless already changed)
-            if ($formularioRegistroCampo->getFormularioCampo() === $this) {
-                $formularioRegistroCampo->setFormularioCampo(null);
+            if ($formularioRegistroCampo->getFormularioRegistro() === $this) {
+                $formularioRegistroCampo->setFormularioRegistro(null);
             }
         }
 
