@@ -39,8 +39,7 @@ class FormularioDinamicoController extends AbstractController
         //$formularioRegistro = $formularioRegistroRepository->find(5);
 
         foreach ($formularioModelo->getFormularioCampos() as $campoModelo) {
-            $campoRegistro = new FormularioRegistroCampo();
-
+            // Verifica se já existe valor salvo
             $campoRegistroSalvo = $formularioRegistro->getFormularioRegistroCampos()->filter(
                 function ($element) use ($campoModelo) {
                     return $element->getFormularioCampo()->getId() == $campoModelo->getId();
@@ -48,6 +47,8 @@ class FormularioDinamicoController extends AbstractController
 
             if (count($campoRegistroSalvo)) {
                 $campoRegistro = $campoRegistroSalvo->current();
+            } else {
+                $campoRegistro = new FormularioRegistroCampo();
             }
 
             $campoRegistro->setFormularioCampo($campoModelo);

@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0ef33198-eb0a-4ca3-b33a-0ada48f0b86c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/Controller/FormularioDinamicoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FormularioDinamicoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/FormularioRegistro.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/FormularioRegistro.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/FormularioRegistroCampo.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/FormularioRegistroCampo.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/FormularioDinamicoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="37" column="8" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
+            <state relative-caret-position="495">
+              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
               <folding>
                 <element signature="e#34#60#0#PHP" expanded="true" />
                 <element signature="e#778#815#0#PHP" expanded="true" />
@@ -47,10 +45,7 @@
         <entry file="file://$PROJECT_DIR$/src/Entity/FormularioRegistroCampo.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="690">
-              <caret line="55" column="38" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="38" />
-              <folding>
-                <element signature="e#30#62#0#PHP" expanded="true" />
-              </folding>
+              <caret line="52" column="38" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -449,7 +444,7 @@
       <workItem from="1553211111799" duration="1546000" />
       <workItem from="1553427237807" duration="9050000" />
       <workItem from="1554589348552" duration="1652000" />
-      <workItem from="1554644124241" duration="4823000" />
+      <workItem from="1554644124241" duration="5083000" />
     </task>
     <task id="LOCAL-00001" summary="Adicionados componentes de debug">
       <created>1537821659127</created>
@@ -462,7 +457,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173230000" />
+    <option name="totallyTimeSpent" value="173490000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -845,17 +840,14 @@
     <entry file="file://$PROJECT_DIR$/src/Entity/FormularioRegistroCampo.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
-          <caret line="55" column="38" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="38" />
-          <folding>
-            <element signature="e#30#62#0#PHP" expanded="true" />
-          </folding>
+          <caret line="52" column="38" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/FormularioDinamicoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="37" column="8" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
+        <state relative-caret-position="495">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
           <folding>
             <element signature="e#34#60#0#PHP" expanded="true" />
             <element signature="e#778#815#0#PHP" expanded="true" />
