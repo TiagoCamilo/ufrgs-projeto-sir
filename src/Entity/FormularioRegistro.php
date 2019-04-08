@@ -24,7 +24,7 @@ class FormularioRegistro
     private $data_hora;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FormularioRegistroCampo", mappedBy="formularioRegistro", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioRegistroCampo", mappedBy="formularioRegistro", orphanRemoval=true, cascade={"persist"}, fetch="EAGER")
      */
     private $formularioRegistroCampos;
 

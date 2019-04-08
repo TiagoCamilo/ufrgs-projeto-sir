@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Formulario;
+use App\Entity\FormularioRegistro;
+use App\Entity\FormularioRegistroCampo;
 use App\Form\FormularioDinamicoType;
+use App\Repository\FormularioRegistroRepository;
 use App\Repository\FormularioRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,15 +31,40 @@ class FormularioDinamicoController extends AbstractController
     /**
      * @Route("/new", name="formulario_dinamico_new", methods={"GET","POST"})
      */
-    public function new(Request $request, FormularioRepository $formularioRepository): Response
+    public function new(Request $request, FormularioRepository $formularioRepository, FormularioRegistroRepository $formularioRegistroRepository): Response
     {
+        $formularioModelo = $formularioRepository->find(1);
 
-        $formulario = $formularioRepository->find(1);
-        foreach ($formulario->getFormularioCampos() as $campo) {
-            dump($request->request->get($campo->getId()));
+        $formularioRegistro = new FormularioRegistro();
+        //$formularioRegistro = $formularioRegistroRepository->find(5);
+
+        foreach ($formularioModelo->getFormularioCampos() as $campoModelo) {
+            $campoRegistro = new FormularioRegistroCampo();
+
+            $campoRegistroSalvo = $formularioRegistro->getFormularioRegistroCampos()->filter(
+                function ($element) use ($campoModelo) {
+                    return $element->getFormularioCampo()->getId() == $campoModelo->getId();
+                });
+
+            if (count($campoRegistroSalvo)) {
+                $campoRegistro = $campoRegistroSalvo->current();
+            }
+
+            $campoRegistro->setFormularioCampo($campoModelo);
+            $valor = $request->request->get($campoModelo->getId());
+            $campoRegistro->setValor($valor);
+
+            $formularioRegistro->addFormularioRegistroCampo($campoRegistro);
         }
 
-        die();
+        $formularioRegistro->setDataHora(new \DateTime());
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($formularioRegistro);
+        $em->flush();
+
+        return $this->render('formulario_dinamico/index.html.twig', [
+            'formularios' => $formularioRepository->findAll(),
+        ]);
     }
 
     /**
