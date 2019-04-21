@@ -5,7 +5,13 @@
 {% block body %}
     <h1>Create new Formulario</h1>
 
-    {{ include('formulario/_form.html.twig') }}
+    <form method="POST" action="{{ path("formulario_dinamico_new") }}">
+        {% for campo in formulario.formularioCampos %}
+            {{ campo.label }}
+            <input type="text" name="{{ campo.id }}" />
+        {% endfor %}
+        <input type="submit" />
+    </form>
 
-    <a href="{{ path('formulario_index') }}">back to list</a>
+    <a href="{{ path('formulario_dinamico_index') }}">back to list</a>
 {% endblock %}

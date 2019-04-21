@@ -1,4 +1,7 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<form method="POST" action="{{ path("formulario_dinamico_new") }}">
+    {% for campo in formulario.formularioCampos %}
+        {{ campo.label }}
+        <input type="text" name="{{ campo.id }}" />
+    {% endfor %}
+    <input type="submit" />
+</form>
