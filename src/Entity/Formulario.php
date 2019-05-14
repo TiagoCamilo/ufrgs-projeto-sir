@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -55,7 +56,10 @@ class Formulario
      */
     public function getFormularioCampos(): Collection
     {
-        return $this->formularioCampos;
+        $criteria = Criteria::create()
+            ->orderBy(["linha" => Criteria::ASC, "coluna" => Criteria::ASC]);
+
+        return $this->formularioCampos->matching($criteria);
     }
 
     public function addFormularioCampo(FormularioCampo $formularioCampo): self
