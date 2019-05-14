@@ -43,7 +43,6 @@ class Acompanhamento implements IEntity
         $this->data_hora = new \DateTime();
     }
 
-
     public function getId(): ?int
     {
         return $this->id;

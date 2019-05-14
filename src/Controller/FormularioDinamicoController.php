@@ -37,7 +37,7 @@ class FormularioDinamicoController extends AbstractController
         $formularioRegistro = new FormularioRegistro();
         //$formularioRegistro = $formularioRegistroRepository->find(5);
 
-        if($request->isMethod('POST')) {
+        if ($request->isMethod('POST')) {
             foreach ($formularioModelo->getFormularioCampos() as $campoModelo) {
                 // Verifica se já existe valor salvo
                 $campoRegistroSalvo = $formularioRegistro->getFormularioRegistroCampos()->filter(

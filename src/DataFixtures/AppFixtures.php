@@ -47,11 +47,11 @@ class AppFixtures extends Fixture
             $educador->setNome('Educador '.$i);
             $educador->setEscola($escola);
 
-            if($i < 5) {
+            if ($i < 5) {
                 $comenario = new Comentario();
                 $comenario->setAluno($aluno);
                 $comenario->setEducador($educador);
-                $comenario->setDescricao('Comentario ' . $i);
+                $comenario->setDescricao('Comentario '.$i);
                 //$comenario->setDataHora(new \DateTime());
             }
 
@@ -60,7 +60,6 @@ class AppFixtures extends Fixture
             $manager->persist($aluno);
             $manager->persist($educador);
             $manager->persist($comenario);
-
         }
 
         $manager->flush();

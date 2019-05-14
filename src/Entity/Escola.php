@@ -115,5 +115,4 @@ class Escola implements IEntity
     {
         return $this->getNome();
     }
-    
 }
