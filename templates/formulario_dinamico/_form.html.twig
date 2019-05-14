@@ -1,7 +1,26 @@
-<form method="POST" action="{{ path("formulario_dinamico_new") }}">
+<form method="POST">
+
+    {% set current_line = 0 %}
     {% for campo in formulario.formularioCampos %}
-        {{ campo.label }}
-        <input type="text" name="{{ campo.id }}" />
-    {% endfor %}
-    <input type="submit" />
+    {% if campo.linha != current_line %}
+
+    {% if current_line != 0 %}
+        </div>
+    {% endif %}
+
+    {% set current_line = campo.linha %}
+
+    <div class="form-row">
+        {% endif %}
+
+        <div class="col">
+            {% include 'others/_field_form.html.twig' %}
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a class="btn btn-success float-right" href="{{ path('formulario_dinamico_index') }}">Voltar</a>
 </form>
