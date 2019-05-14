@@ -1,0 +1,6 @@
+{{ campo.label }}
+{% for campoRegistro in formularioRegistro.formularioRegistroCampos %}
+    {% if campoRegistro.formularioCampo.id == campo.id %}
+        <input type="text" name="{{ campo.id }}" value="{{ campoRegistro.valor }}"/>
+    {% endif %}
+{% endfor %}

@@ -3,13 +3,17 @@
 {% block title %}Edit Formulario{% endblock %}
 
 {% block body %}
-    
+
     <h1>Edit Formulario</h1>
 
     <form method="POST" >
         {% for campo in formulario.formularioCampos %}
-            {{ campo.label }}
-            <input type="text" name="{{ campo.id }}" />
+            {% if campo.tipo == 'TextType' %}
+                {{ include('others/_field_text.html.twig') }}
+            {% endif %}
+            {% if campo.tipo == 'TextareaType' %}
+                {{ include('others/_field_textarea.html.twig') }}
+            {% endif %}
         {% endfor %}
         <input type="submit" />
     </form>

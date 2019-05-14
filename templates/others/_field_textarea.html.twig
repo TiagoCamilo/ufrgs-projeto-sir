@@ -1,0 +1,8 @@
+{{ campo.label }}
+{% for campoRegistro in formularioRegistro.formularioRegistroCampos %}
+    {% if campoRegistro.formularioCampo.id == campo.id %}
+        <textarea name="{{ campo.id }}" rows="5">
+{{ campoRegistro.valor }}
+        </textarea>
+    {% endif %}
+{% endfor %}
