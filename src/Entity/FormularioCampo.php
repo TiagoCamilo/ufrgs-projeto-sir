@@ -39,6 +39,16 @@ class FormularioCampo
      */
     private $formularioRegistroCampos;
 
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $linha;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $coluna;
+
     public function __construct()
     {
         $this->formularioRegistroCampos = new ArrayCollection();
@@ -112,6 +122,30 @@ class FormularioCampo
                 $formularioRegistroCampo->setFormularioCampo(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLinha(): ?int
+    {
+        return $this->linha;
+    }
+
+    public function setLinha(?int $linha): self
+    {
+        $this->linha = $linha;
+
+        return $this;
+    }
+
+    public function getColuna(): ?int
+    {
+        return $this->coluna;
+    }
+
+    public function setColuna(?int $coluna): self
+    {
+        $this->coluna = $coluna;
 
         return $this;
     }
