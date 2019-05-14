@@ -3,18 +3,25 @@
 {% block title %}Edit Formulario{% endblock %}
 
 {% block body %}
-    
+
     <h1>Edit Formulario</h1>
 
     <form method="POST" >
-        {% for campo in formulario.formularioCampos %}
-            {{ campo.label }}
-            <input type="text" name="{{ campo.id }}" />
-        {% endfor %}
-        <input type="submit" />
+        <div class="form-row">
+            {% for campo in formulario.formularioCampos %}
+            <div class="col">
+            {% if campo.tipo == 'TextType' %}
+                    {{ include('others/_field_text.html.twig') }}
+                {% endif %}
+                {% if campo.tipo == 'TextareaType' %}
+                    {{ include('others/_field_textarea.html.twig') }}
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a class="btn btn-success float-right" href="{{ path('formulario_dinamico_index') }}">Voltar</a>
     </form>
 
-    <a href="{{ path('formulario_dinamico_index') }}">back to list</a>
-
-    {{ include('formulario_dinamico/_delete_form.html.twig') }}
 {% endblock %}
