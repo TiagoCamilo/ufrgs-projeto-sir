@@ -41,7 +41,6 @@ class FormularioDinamicoController extends AbstractController
             foreach ($formularioModelo->getFormularioCampos() as $campoModelo) {
                 $campoRegistro = new FormularioRegistroCampo();
 
-
                 $campoRegistro->setFormularioCampo($campoModelo);
                 $valor = $request->request->get($campoModelo->getId());
                 $campoRegistro->setValor($valor);

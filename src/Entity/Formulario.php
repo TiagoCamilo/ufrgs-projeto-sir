@@ -57,7 +57,7 @@ class Formulario
     public function getFormularioCampos(): Collection
     {
         $criteria = Criteria::create()
-            ->orderBy(["linha" => Criteria::ASC, "coluna" => Criteria::ASC]);
+            ->orderBy(['linha' => Criteria::ASC, 'coluna' => Criteria::ASC]);
 
         return $this->formularioCampos->matching($criteria);
     }
