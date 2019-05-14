@@ -32,24 +32,15 @@ class FormularioDinamicoController extends AbstractController
      */
     public function new(Request $request, FormularioRepository $formularioRepository): Response
     {
+        //TODO: Receber como param o identificador do modelo de formuario
         $formularioModelo = $formularioRepository->find(1);
 
         $formularioRegistro = new FormularioRegistro();
-        //$formularioRegistro = $formularioRegistroRepository->find(5);
 
         if ($request->isMethod('POST')) {
             foreach ($formularioModelo->getFormularioCampos() as $campoModelo) {
-                // Verifica se já existe valor salvo
-                $campoRegistroSalvo = $formularioRegistro->getFormularioRegistroCampos()->filter(
-                    function ($element) use ($campoModelo) {
-                        return $element->getFormularioCampo()->getId() == $campoModelo->getId();
-                    });
+                $campoRegistro = new FormularioRegistroCampo();
 
-                if (count($campoRegistroSalvo)) {
-                    $campoRegistro = $campoRegistroSalvo->current();
-                } else {
-                    $campoRegistro = new FormularioRegistroCampo();
-                }
 
                 $campoRegistro->setFormularioCampo($campoModelo);
                 $valor = $request->request->get($campoModelo->getId());
@@ -86,35 +77,36 @@ class FormularioDinamicoController extends AbstractController
     {
         $formularioModelo = $formularioRepository->find(1);
 
-        dump($formularioRegistro->getFormularioRegistroCampos());
+        if ($request->isMethod('POST')) {
+            foreach ($formularioModelo->getFormularioCampos() as $campoModelo) {
+                // Verifica se já existe valor salvo
+                $campoRegistroSalvo = $formularioRegistro->getFormularioRegistroCampos()->filter(
+                    function ($element) use ($campoModelo) {
+                        return $element->getFormularioCampo()->getId() == $campoModelo->getId();
+                    });
 
-        foreach ($formularioModelo->getFormularioCampos() as $campoModelo) {
-            // Verifica se já existe valor salvo
-            $campoRegistroSalvo = $formularioRegistro->getFormularioRegistroCampos()->filter(
-                function ($element) use ($campoModelo) {
-                    return $element->getFormularioCampo()->getId() == $campoModelo->getId();
-                });
+                if (count($campoRegistroSalvo)) {
+                    $campoRegistro = $campoRegistroSalvo->current();
+                } else {
+                    $campoRegistro = new FormularioRegistroCampo();
+                }
 
-            if (count($campoRegistroSalvo)) {
-                $campoRegistro = $campoRegistroSalvo->current();
-            } else {
-                $campoRegistro = new FormularioRegistroCampo();
+                $campoRegistro->setFormularioCampo($campoModelo);
+                $valor = $request->request->get($campoModelo->getId());
+                $campoRegistro->setValor($valor);
+
+                $formularioRegistro->addFormularioRegistroCampo($campoRegistro);
             }
 
-            $campoRegistro->setFormularioCampo($campoModelo);
-            $valor = $request->request->get($campoModelo->getId());
-            $campoRegistro->setValor($valor);
-
-            $formularioRegistro->addFormularioRegistroCampo($campoRegistro);
+            $formularioRegistro->setDataHora(new \DateTime());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($formularioRegistro);
+            $em->flush();
         }
-
-        $formularioRegistro->setDataHora(new \DateTime());
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($formularioRegistro);
-        $em->flush();
 
         return $this->render('formulario_dinamico/edit.html.twig', [
             'formulario' => $formularioModelo,
+            'formularioRegistro' => $formularioRegistro,
         ]);
     }
 

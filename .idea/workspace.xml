@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ef33198-eb0a-4ca3-b33a-0ada48f0b86c" name="Default Changelist" comment="" />
+    <list default="true" id="0ef33198-eb0a-4ca3-b33a-0ada48f0b86c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Controller/FormularioDinamicoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FormularioDinamicoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/formulario_dinamico/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/formulario_dinamico/edit.html.twig" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,24 +16,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/FormularioDinamicoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="630">
+              <caret line="108" column="55" selection-start-line="108" selection-start-column="36" selection-end-line="108" selection-end-column="55" />
               <folding>
                 <element signature="e#34#60#0#PHP" expanded="true" />
-                <element signature="e#4307#4343#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/formulario_dinamico/index.html.twig">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/formulario_dinamico/edit.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="76" selection-start-line="24" selection-start-column="76" selection-end-line="24" selection-end-column="76" />
+            <state relative-caret-position="75">
+              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+              <folding>
+                <element signature="e#12#26#0#Twig" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -142,9 +147,9 @@
         <option value="$PROJECT_DIR$/templates/formulario_dinamico/_form.html.twig" />
         <option value="$PROJECT_DIR$/templates/formulario_dinamico/show.html.twig" />
         <option value="$PROJECT_DIR$/templates/formulario_dinamico/new.html.twig" />
-        <option value="$PROJECT_DIR$/templates/formulario_dinamico/edit.html.twig" />
         <option value="$PROJECT_DIR$/templates/formulario_dinamico/index.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/FormularioDinamicoController.php" />
+        <option value="$PROJECT_DIR$/templates/formulario_dinamico/edit.html.twig" />
       </list>
     </option>
   </component>
@@ -316,12 +321,6 @@
               <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
               <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="acompanhamento" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sala_recursos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sala_recursos" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="formulario_dinamico" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -420,6 +419,7 @@
       <workItem from="1554644124241" duration="5083000" />
       <workItem from="1555760466306" duration="909000" />
       <workItem from="1555780494748" duration="3254000" />
+      <workItem from="1557835407468" duration="957000" />
     </task>
     <task id="LOCAL-00001" summary="Adicionados componentes de debug">
       <created>1537821659127</created>
@@ -432,7 +432,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177653000" />
+    <option name="totallyTimeSpent" value="178610000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -447,7 +447,7 @@
     <frame x="67" y="25" width="1845" height="1035" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.295164" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29849917" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -767,16 +767,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/formulario_dinamico/edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/AppAbstractController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -820,11 +810,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/FormularioDinamicoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="630">
+          <caret line="108" column="55" selection-start-line="108" selection-start-column="36" selection-end-line="108" selection-end-column="55" />
           <folding>
             <element signature="e#34#60#0#PHP" expanded="true" />
-            <element signature="e#4307#4343#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/formulario_dinamico/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>
