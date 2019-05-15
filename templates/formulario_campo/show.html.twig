@@ -9,22 +9,23 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ formulario_campo.id }}</td>
+                <td>{{ register.id }}</td>
             </tr>
             <tr>
                 <th>Tipo</th>
-                <td>{{ formulario_campo.tipo }}</td>
+                <td>{{ register.tipo }}</td>
             </tr>
             <tr>
                 <th>Label</th>
-                <td>{{ formulario_campo.label }}</td>
+                <td>{{ register.label }}</td>
+            </tr>
+            <tr>
+                <th>Formulário</th>
+                <td>{{ register.formulario.nome }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('formulario_campo_index') }}">back to list</a>
+    {{ include(template.showActions) }}
 
-    <a href="{{ path('formulario_campo_edit', {'id': formulario_campo.id}) }}">edit</a>
-
-    {{ include('formulario_campo/_delete_form.html.twig') }}
 {% endblock %}

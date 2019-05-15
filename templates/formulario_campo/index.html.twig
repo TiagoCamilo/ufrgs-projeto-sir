@@ -1,37 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}FormularioCampo index{% endblock %}
+{% block title %}Listagem {{ entityName|capitalize }}{% endblock %}
+
+{% set registerListAttr = [] %}
+{% for register in registers %}
+    {% set registerListAttr = registerListAttr|merge ([{
+        'Id': register.id,
+        'Label': register.label,
+        'Formulario': register.formulario.nome,
+        'Linha': register.linha,
+        'Coluna': register.coluna,
+    }]) %}
+{% endfor %}
+
+{% set actionList = {
+    'new': true,
+    'show': true,
+    'edit': true,
+    'delete': true,
+    'image': false,
+} %}
 
 {% block body %}
-    <h1>FormularioCampo index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Tipo</th>
-                <th>Label</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for formulario_campo in formulario_campos %}
-            <tr>
-                <td>{{ formulario_campo.id }}</td>
-                <td>{{ formulario_campo.tipo }}</td>
-                <td>{{ formulario_campo.label }}</td>
-                <td>
-                    <a href="{{ path('formulario_campo_show', {'id': formulario_campo.id}) }}">show</a>
-                    <a href="{{ path('formulario_campo_edit', {'id': formulario_campo.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('formulario_campo_new') }}">Create new</a>
+    <h1>Listagem {{ entityName|capitalize|replace({'_':' '}) }}</h1>
+    {{ include(template.indexActions) }}
+    {{ include(template.indexFooter) }}
 {% endblock %}

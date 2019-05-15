@@ -3,94 +3,69 @@
 namespace App\Controller;
 
 use App\Entity\FormularioCampo;
+use App\Entity\IEntity;
 use App\Form\FormularioCampoType;
 use App\Repository\FormularioCampoRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @Route("/formulario/campo")
+ * @Route("/formulario_campo")
  */
-class FormularioCampoController extends AbstractController
+class FormularioCampoController extends AppAbstractController
 {
-    /**
-     * @Route("/", name="formulario_campo_index", methods={"GET"})
-     */
-    public function index(FormularioCampoRepository $formularioCampoRepository): Response
+    public function __construct(FormularioCampoRepository $entityRepository)
     {
-        return $this->render('formulario_campo/index.html.twig', [
-            'formulario_campos' => $formularioCampoRepository->findAll(),
-        ]);
+        $this->entity = new FormularioCampo();
+        $this->entityRepository = $entityRepository;
+        $this->entityName = 'formulario_campo';
+        $this->formType = FormularioCampoType::class;
     }
 
     /**
-     * @Route("/new", name="formulario_campo_new", methods={"GET","POST"})
+     * @Route("/{page}/page", name="formulario_campo_index", methods="GET|POST", defaults={"page" = 1})
      */
-    public function new(Request $request): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        $formularioCampo = new FormularioCampo();
-        $form = $this->createForm(FormularioCampoType::class, $formularioCampo);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($formularioCampo);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('formulario_campo_index');
-        }
-
-        return $this->render('formulario_campo/new.html.twig', [
-            'formulario_campo' => $formularioCampo,
-            'form' => $form->createView(),
-        ]);
+        return parent::index($paginator, $request);
     }
 
     /**
-     * @Route("/{id}", name="formulario_campo_show", methods={"GET"})
+     * @Route("/new", name="formulario_campo_new", methods="GET|POST")
      */
-    public function show(FormularioCampo $formularioCampo): Response
+    public function new(Request $request, UserInterface $user): Response
     {
-        return $this->render('formulario_campo/show.html.twig', [
-            'formulario_campo' => $formularioCampo,
-        ]);
+        return parent::new($request, $user);
     }
 
     /**
-     * @Route("/{id}/edit", name="formulario_campo_edit", methods={"GET","POST"})
+     * @Route("/{id}", name="formulario_campo_show", methods="GET")
+     * @ParamConverter("entity", class="App\Entity\FormularioCampo")
      */
-    public function edit(Request $request, FormularioCampo $formularioCampo): Response
+    public function show(IEntity $entity): Response
     {
-        $form = $this->createForm(FormularioCampoType::class, $formularioCampo);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('formulario_campo_index', [
-                'id' => $formularioCampo->getId(),
-            ]);
-        }
-
-        return $this->render('formulario_campo/edit.html.twig', [
-            'formulario_campo' => $formularioCampo,
-            'form' => $form->createView(),
-        ]);
+        return parent::show($entity);
     }
 
     /**
-     * @Route("/{id}", name="formulario_campo_delete", methods={"DELETE"})
+     * @Route("/{id}/edit", name="formulario_campo_edit", methods="GET|POST")
+     * @ParamConverter("entity", class="App\Entity\FormularioCampo")
      */
-    public function delete(Request $request, FormularioCampo $formularioCampo): Response
+    public function edit(Request $request, IEntity $entity): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$formularioCampo->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($formularioCampo);
-            $entityManager->flush();
-        }
+        return parent::edit($request, $entity);
+    }
 
-        return $this->redirectToRoute('formulario_campo_index');
+    /**
+     * @Route("/{id}", name="formulario_campo_delete", methods="DELETE")
+     * @ParamConverter("entity", class="App\Entity\FormularioCampo")
+     */
+    public function delete(Request $request, IEntity $entity): Response
+    {
+        return parent::delete($request, $entity);
     }
 }
