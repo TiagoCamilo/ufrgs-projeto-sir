@@ -24,3 +24,5 @@
 /public/uploads/
 ###< uploads ###
 
+
+\.idea/workspace\.xml
