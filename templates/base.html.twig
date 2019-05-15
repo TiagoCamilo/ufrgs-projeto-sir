@@ -44,20 +44,14 @@
                         <a class="nav-link" href="{{ path('acompanhamento_index') }}"><i class="fas fa-file"></i> Acompanhamento</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('formulario_index') }}"><i class="fas fa-file"></i> Formulario</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('formulario_campo_index') }}"><i class="fas fa-file"></i> Campos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('formulario_dinamico_index') }}"><i class="fas fa-file"></i> Formulario Dinamico</a>
+                        <a class="nav-link" href="{{ path('formulario_dinamico_index') }}"><i class="fas fa-file"></i> Formulario Registros</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Modelos</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="{{ path('formulario_index') }}">Formulário</a>
+                            <a class="dropdown-item" href="{{ path('formulario_agrupador_index') }}">Agrupadores</a>
+                            <a class="dropdown-item" href="{{ path('formulario_campo_index') }}">Campos</a>
                         </div>
                     </li>
                 </ul>

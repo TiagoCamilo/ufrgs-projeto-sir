@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listagem {{ entityName|capitalize }}{% endblock %}
+
+{% set registerListAttr = [] %}
+{% for register in registers %}
+    {% set registerListAttr = registerListAttr|merge ([{
+        'Id': register.id,
+        'Titulo': register.titulo,
+        'Subtitulo': register.subtitulo,
+        'Coluna1': register.coluna1,
+        'Coluna2': register.coluna1,
+        'Coluna3': register.coluna1,
+        'Formulario': register.formulario.nome,
+    }]) %}
+{% endfor %}
+
+{% set actionList = {
+    'new': true,
+    'show': true,
+    'edit': true,
+    'delete': true,
+    'image': false,
+} %}
+
+{% block body %}
+    <h1>Listagem {{ entityName|capitalize|replace({'_':' '}) }}</h1>
+    {{ include(template.indexActions) }}
+    {{ include(template.indexFooter) }}
+{% endblock %}

@@ -29,9 +29,15 @@ class Formulario implements IEntity
      */
     private $formularioCampos;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioAgrupador", mappedBy="formulario", orphanRemoval=true)
+     */
+    private $formularioAgrupadores;
+
     public function __construct()
     {
         $this->formularioCampos = new ArrayCollection();
+        $this->formularioAgrupadores = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -88,5 +94,36 @@ class Formulario implements IEntity
     public function __toString(): string
     {
         return $this->getNome();
+    }
+
+    /**
+     * @return Collection|FormularioAgrupador[]
+     */
+    public function getFormularioAgrupadores(): Collection
+    {
+        return $this->formularioAgrupadores;
+    }
+
+    public function addFormularioAgrupadore(FormularioAgrupador $formularioAgrupadore): self
+    {
+        if (!$this->formularioAgrupadores->contains($formularioAgrupadore)) {
+            $this->formularioAgrupadores[] = $formularioAgrupadore;
+            $formularioAgrupadore->setFormulario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormularioAgrupadore(FormularioAgrupador $formularioAgrupadore): self
+    {
+        if ($this->formularioAgrupadores->contains($formularioAgrupadore)) {
+            $this->formularioAgrupadores->removeElement($formularioAgrupadore);
+            // set the owning side to null (unless already changed)
+            if ($formularioAgrupadore->getFormulario() === $this) {
+                $formularioAgrupadore->setFormulario(null);
+            }
+        }
+
+        return $this;
     }
 }
