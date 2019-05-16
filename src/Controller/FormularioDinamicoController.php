@@ -5,8 +5,11 @@ namespace App\Controller;
 use App\Entity\Formulario;
 use App\Entity\FormularioRegistro;
 use App\Entity\FormularioRegistroCampo;
+use App\Form\FormularioDinamicoType;
+use App\Helpers\TemplateManager;
 use App\Repository\FormularioRegistroRepository;
 use App\Repository\FormularioRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,13 +20,35 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class FormularioDinamicoController extends AbstractController
 {
-    /**
-     * @Route("/", name="formulario_dinamico_index", methods={"GET"})
-     */
-    public function index(FormularioRegistroRepository $formularioRegistroRepository): Response
+    protected $entity;
+    protected $entityRepository;
+    protected $entityName;
+    protected $formType;
+
+    public function __construct(FormularioRegistroRepository $entityRepository)
     {
-        return $this->render('formulario_dinamico/index.html.twig', [
-            'formularios' => $formularioRegistroRepository->findAll(),
+        $this->entity = new FormularioRegistro();
+        $this->entityRepository = $entityRepository;
+        $this->entityName = 'formulario_dinamico';
+        $this->formType = FormularioDinamicoType::class;
+    }
+
+
+    /**
+     * @Route("/", name="formulario_dinamico_index", methods="GET|POST", defaults={"page" = 1})
+     */
+    public function index(PaginatorInterface $paginator, Request $request): Response
+    {
+        $resultSet = $paginator->paginate(
+            $this->entityRepository->findAll(),
+            $request->get('page')
+        );
+
+        //TODO: Refatorar para obter o response em cada metodo
+        return $this->render("{$this->entityName}/index.html.twig", [
+            'registers' => $resultSet,
+            'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
         ]);
     }
 
@@ -52,20 +77,27 @@ class FormularioDinamicoController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($formularioRegistro);
             $em->flush();
+
+            return $this->redirectToRoute("{$this->entityName}_index");
+
         }
 
-        return $this->render('formulario_dinamico/new.html.twig', [
+        return $this->render($this->getTemplateManager()->getNew(), [
             'formulario' => $formularioModelo,
+            'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
         ]);
     }
 
     /**
      * @Route("/{id}", name="formulario_dinamico_show", methods={"GET"})
      */
-    public function show(Formulario $formulario): Response
+    public function show(FormularioRegistro $formularioRegistro): Response
     {
-        return $this->render('formulario_dinamico/show.html.twig', [
-            'formulario' => $formulario,
+        return $this->render("{$this->entityName}/show.html.twig", [
+            'register' => $formularioRegistro,
+            'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
         ]);
     }
 
@@ -101,11 +133,15 @@ class FormularioDinamicoController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($formularioRegistro);
             $em->flush();
+
+            return $this->redirectToRoute("{$this->entityName}_index", ['id' => $formularioRegistro->getId()]);
         }
 
-        return $this->render('formulario_dinamico/edit.html.twig', [
+        return $this->render($this->getTemplateManager()->getEdit(), [
             'formulario' => $formularioModelo,
             'formularioRegistro' => $formularioRegistro,
+            'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
         ]);
     }
 
@@ -121,5 +157,19 @@ class FormularioDinamicoController extends AbstractController
         }
 
         return $this->redirectToRoute('formulario_dinamico_index');
+    }
+
+    private function getTemplateManager(): TemplateManager
+    {
+        $templateManager = new TemplateManager();
+        $templateManager->setEdit('generic/edit.html.twig');
+        $templateManager->setNew('generic/new.html.twig');
+        $templateManager->setForm('formulario_dinamico/_form.html.twig');
+        $templateManager->setDelete('generic/_delete_form.html.twig');
+        $templateManager->setIndexActions('generic/_index_registers.html.twig');
+        $templateManager->setIndexFooter('generic/_index_footer.html.twig');
+        $templateManager->setShowActions('generic/_show_actions.html.twig');
+
+        return $templateManager;
     }
 }

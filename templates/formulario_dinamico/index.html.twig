@@ -1,44 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Formulario index{% endblock %}
+{% block title %}Listagem {{ entityName|capitalize }}{% endblock %}
+
+{% set registerListAttr = [] %}
+{% for register in registers %}
+    {% set registerListAttr = registerListAttr|merge ([{
+        'Id': register.id,
+        'Data Hora': register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '',
+    }]) %}
+{% endfor %}
+
+{% set actionList = {
+    'new': true,
+    'show': true,
+    'edit': true,
+    'delete': true,
+    'image': false,
+} %}
 
 {% block body %}
-    <h1>Formulario index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for formulario in formularios %}
-            <tr>
-                <td>{{ formulario.id }}</td>
-                <td>{{ formulario.dataHora|date('d/m/Y H:i:s') }}</td>
-                <td>
-                    <a href="{{ path('formulario_dinamico_show', {'id': formulario.id}) }}">Show</a>
-                    <a href="{{ path('formulario_dinamico_edit', {'id': formulario.id}) }}">Editar</a>
-
-                    <form method="post" action="{{ path('formulario_dinamico_delete', {'id': formulario.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ formulario.id) }}">
-                        <button class="btn">Delete</button>
-                    </form>
-
-
-
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('formulario_dinamico_new') }}">Create new</a>
+    <h1>Listagem {{ entityName|capitalize|replace({'_':' '}) }}</h1>
+    {{ include(template.indexActions) }}
+    {{ include(template.indexFooter) }}
 {% endblock %}

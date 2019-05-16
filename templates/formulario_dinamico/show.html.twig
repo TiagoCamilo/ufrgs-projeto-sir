@@ -1,23 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Formulario Build{% endblock %}
+{% block title %}Formulario Registro{% endblock %}
 
 {% block body %}
-    <h1>Formulario Build</h1>
+    <h1>Formulario Registro</h1>
 
     <table class="table">
         <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ formulario.id }}</td>
-        </tr>
-        <tr>
-            <th>Nome</th>
-            <td>{{ formulario.nome }}</td>
-        </tr>
-
-
+            <tr>
+                <th>Id</th>
+                <td>{{ register.id }}</td>
+            </tr>
+            <tr>
+                <th>Data Hora</th>
+                <td>{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</td>
+            </tr>
         </tbody>
     </table>
+
+    {{ include(template.showActions) }}
+
 
 {% endblock %}
