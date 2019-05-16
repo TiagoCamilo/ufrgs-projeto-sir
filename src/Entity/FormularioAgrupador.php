@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,16 @@ class FormularioAgrupador implements IEntity
      * @ORM\JoinColumn(nullable=false)
      */
     private $formulario;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioCampo", mappedBy="agrupador")
+     */
+    private $formularioCampos;
+
+    public function __construct()
+    {
+        $this->formularioCampos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +132,42 @@ class FormularioAgrupador implements IEntity
     public function setFormulario(?Formulario $formulario): self
     {
         $this->formulario = $formulario;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getTitulo();
+    }
+
+    /**
+     * @return Collection|FormularioCampo[]
+     */
+    public function getFormularioCampos(): Collection
+    {
+        return $this->formularioCampos;
+    }
+
+    public function addFormularioCampo(FormularioCampo $formularioCampo): self
+    {
+        if (!$this->formularioCampos->contains($formularioCampo)) {
+            $this->formularioCampos[] = $formularioCampo;
+            $formularioCampo->setAgrupador($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormularioCampo(FormularioCampo $formularioCampo): self
+    {
+        if ($this->formularioCampos->contains($formularioCampo)) {
+            $this->formularioCampos->removeElement($formularioCampo);
+            // set the owning side to null (unless already changed)
+            if ($formularioCampo->getAgrupador() === $this) {
+                $formularioCampo->setAgrupador(null);
+            }
+        }
 
         return $this;
     }

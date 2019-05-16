@@ -49,6 +49,11 @@ class FormularioCampo implements IEntity
      */
     private $coluna;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\FormularioAgrupador", inversedBy="formularioCampos")
+     */
+    private $agrupador;
+
     public function __construct()
     {
         $this->formularioRegistroCampos = new ArrayCollection();
@@ -146,6 +151,18 @@ class FormularioCampo implements IEntity
     public function setColuna(?int $coluna): self
     {
         $this->coluna = $coluna;
+
+        return $this;
+    }
+
+    public function getAgrupador(): ?FormularioAgrupador
+    {
+        return $this->agrupador;
+    }
+
+    public function setAgrupador(?FormularioAgrupador $agrupador): self
+    {
+        $this->agrupador = $agrupador;
 
         return $this;
     }
