@@ -2,23 +2,25 @@
 
     {% set current_line = 0 %}
     {% for campo in formulario.formularioCampos %}
-    {% if campo.linha != current_line %}
+        {% if campo.linha != current_line %}
 
-    {% if current_line != 0 %}
-        </div>
-    {% endif %}
+            {# Fecha div aberta em iteracao anterior #}
+            {% if current_line != 0 %}
+                </div>
+            {% endif %}
 
-    {% set current_line = campo.linha %}
+            {% set current_line = campo.linha %}
 
-    <div class="form-row">
+            <div class="form-row">
         {% endif %}
 
         <div class="col">
             {% include 'others/_field_form.html.twig' %}
         </div>
 
-        {% endfor %}
+    {% endfor %}
 
+    {# Fecha div aberta da ultima iteracao #}
     </div>
 
     <button type="submit" class="btn btn-primary">Salvar</button>

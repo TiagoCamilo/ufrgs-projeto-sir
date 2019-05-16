@@ -66,6 +66,15 @@ class FormularioAgrupadorController extends AppAbstractController
      */
     public function delete(Request $request, IEntity $entity): Response
     {
-        return parent::delete($request, $entity);
+        if ($this->isCsrfTokenValid('delete'.$entity->getId(), $request->request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($entity);
+            foreach ($entity->getFormularioCampos() as $formularioCampo) {
+                $entity->removeFormularioCampo($formularioCampo);
+            }
+            $em->flush();
+        }
+
+        return $this->redirectToRoute("{$this->entityName}_index");
     }
 }

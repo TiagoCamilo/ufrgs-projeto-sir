@@ -54,6 +54,11 @@ class FormularioAgrupador implements IEntity
      */
     private $formularioCampos;
 
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $ordem;
+
     public function __construct()
     {
         $this->formularioCampos = new ArrayCollection();
@@ -168,6 +173,18 @@ class FormularioAgrupador implements IEntity
                 $formularioCampo->setAgrupador(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOrdem(): ?int
+    {
+        return $this->ordem;
+    }
+
+    public function setOrdem(int $ordem): self
+    {
+        $this->ordem = $ordem;
 
         return $this;
     }
