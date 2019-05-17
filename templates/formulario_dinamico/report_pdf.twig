@@ -1,39 +1,41 @@
-<form method="POST" class="form-readonly">
+<head>
+    <title>{{ title | upper}}</title>
+</head>
+<body>
+<h1 class="pdf_titulo">{{ title | upper}} </h1>
 
-    {% for agrupador in formulario.formularioAgrupadores %}
-        {% if agrupador.formularioCampos|length > 0 %}
-            <div style="border-style: solid; border-width: 1px; padding: 5px; margin-bottom: 10px; ">
+{% for agrupador in formulario.formularioAgrupadores %}
+    {% if agrupador.formularioCampos|length > 0 %}
+        <div style="border-style: solid; border-width: 1px; padding: 5px; margin-bottom: 10px; ">
 
-            <div style="text-align: center; border-style: solid; border-width: 1px; font-weight: bold;">{{ agrupador.titulo }}</div>
+        <div style="text-align: center; border-style: solid; border-width: 1px; font-weight: bold;">{{ agrupador.titulo }}</div>
+        <table style="width: 100%">
+            <tbody>
+        {% set current_line = 0 %}
+        {% for campo in  agrupador.formularioCampos %}
+            {% if campo.linha != current_line %}
 
-            {% set current_line = 0 %}
-            {% for campo in  agrupador.formularioCampos %}
-                {% if campo.linha != current_line %}
-
-                    {# Fecha div aberta em iteracao anterior #}
-                    {% if current_line != 0 %}
-                        </div>
-                    {% endif %}
-
-                    {% set current_line = campo.linha %}
-
-                    <div class="form-row">
+                {# Fecha div aberta em iteracao anterior #}
+                {% if current_line != 0 %}
+                    </tr>
                 {% endif %}
 
-                <div class="col">
-                    {% include 'others/_field_form.html.twig' %}
-                </div>
+                {% set current_line = campo.linha %}
 
-            {% endfor %}
+                <tr>
+            {% endif %}
 
-            {# Fecha div aberta da ultima iteracao #}
-            </div>
-            </div>
-        {% endif %}
-    {% endfor %}
+            <td style="vertical-align: top">
+                {% include 'others/_field_pdf.html.twig' %}
+            </td>
 
+        {% endfor %}
+        {# Fecha tr aberta da ultima iteracao #}
+        </tr>
+            </tbody>
+        </table>
+        </div>
+    {% endif %}
+{% endfor %}
 
-
-    <button type="submit" class="btn btn-primary">Salvar</button>
-    <a class="btn btn-success float-right" href="{{ path('formulario_dinamico_index') }}">Voltar</a>
-</form>
+</body>

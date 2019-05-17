@@ -92,14 +92,22 @@ class FormularioDinamicoController extends AbstractController
 
     /**
      * @Route("/{id}", name="formulario_dinamico_show", methods={"GET"})
+     * @ParamConverter("entity", class="App\Entity\FormularioRegistro")
      */
-    public function show(FormularioRegistro $formularioRegistro): Response
+    public function show(IEntity $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
     {
-        return $this->render("{$this->entityName}/show.html.twig", [
-            'register' => $formularioRegistro,
-            'entityName' => $this->entityName,
-            'template' => (array) $this->getTemplateManager(),
+        $formularioModelo = $formularioRepository->find(1);
+
+        return $this->render('formulario_dinamico/report_pdf.twig', [
+            'formulario' => $formularioModelo,
+            'formularioRegistro' => $entity,
+            'title' => 'Formulário PDI',
         ]);
+//        return $this->render("{$this->entityName}/show.html.twig", [
+//            'register' => $formularioRegistro,
+//            'entityName' => $this->entityName,
+//            'template' => (array) $this->getTemplateManager(),
+//        ]);
     }
 
     /**
@@ -171,7 +179,7 @@ class FormularioDinamicoController extends AbstractController
         $html = $this->renderView('formulario_dinamico/report_pdf.twig', [
             'formulario' => $formularioModelo,
             'formularioRegistro' => $entity,
-            'title' => 'Formulário PDI',
+            'title' => $formularioModelo->getNome(),
         ]);
 
         $pdfGenerator->setStyle('report_pdf.css');
