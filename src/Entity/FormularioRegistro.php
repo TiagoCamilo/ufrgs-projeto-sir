@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FormularioRegistroRepository")
  */
-class FormularioRegistro
+class FormularioRegistro implements IEntity
 {
     /**
      * @ORM\Id()

@@ -5,11 +5,14 @@ namespace App\Controller;
 use App\Entity\Formulario;
 use App\Entity\FormularioRegistro;
 use App\Entity\FormularioRegistroCampo;
+use App\Entity\IEntity;
 use App\Form\FormularioDinamicoType;
 use App\Helpers\TemplateManager;
 use App\Repository\FormularioRegistroRepository;
 use App\Repository\FormularioRepository;
+use App\Service\PdfGenerator;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -155,6 +158,26 @@ class FormularioDinamicoController extends AbstractController
         }
 
         return $this->redirectToRoute('formulario_dinamico_index');
+    }
+
+    /**
+     * @Route("/{id}/pdf", name="formulario_dinamico_report_pdf", methods="GET")
+     * @ParamConverter("entity", class="App\Entity\FormularioRegistro")
+     */
+    public function reportPdf(IEntity $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
+    {
+        $formularioModelo = $formularioRepository->find(1);
+
+        $html = $this->renderView('formulario_dinamico/report_pdf.twig', [
+            'formulario' => $formularioModelo,
+            'formularioRegistro' => $entity,
+            'title' => 'Formulário PDI',
+        ]);
+
+        $pdfGenerator->setStyle('report_pdf.css');
+        $pdfGenerator->setContent($html);
+
+        return $pdfGenerator->generate();
     }
 
     private function getTemplateManager(): TemplateManager
