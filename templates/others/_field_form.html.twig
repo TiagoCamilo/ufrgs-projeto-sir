@@ -1,3 +1,6 @@
+{# Tipo - Default#}
+{% set fieldType = 'others/_field_label.html.twig' %}
+
 {% if campo.tipo == 'TextType' %}
     {% set fieldType = 'others/_field_text.html.twig' %}
 {% endif %}
@@ -7,6 +10,10 @@
 {% if campo.tipo == 'LabelType' %}
     {% set fieldType = 'others/_field_label.html.twig' %}
 {% endif %}
+{% if campo.tipo == 'DateType' %}
+    {% set fieldType = 'others/_field_date.html.twig' %}
+{% endif %}
+
 
 {% if formularioRegistro is defined %}
     {% for campoRegistro in formularioRegistro.formularioRegistroCampos %}

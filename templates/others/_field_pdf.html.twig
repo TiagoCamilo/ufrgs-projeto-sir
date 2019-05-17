@@ -5,6 +5,10 @@
         {% else %}
             <div for="{{ campo.id }}">{{ campo.label }}:</div>
         {% endif %}
-        <div style="font-style: italic;">{{ campoRegistro.valor | nl2br }}</div>
+        {% if campo.tipo == 'DateType' %}
+            <div style="font-style: italic;">{{ campoRegistro.valor ? campoRegistro.valor | date('d/m/Y') : '' }}</div>
+        {% else %}
+            <div style="font-style: italic;">{{ campoRegistro.valor | nl2br }}</div>
+        {% endif %}
     {% endif %}
 {% endfor %}
