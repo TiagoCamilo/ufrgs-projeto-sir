@@ -51,6 +51,7 @@ class FormularioAgrupador implements IEntity
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\FormularioCampo", mappedBy="agrupador")
+     * @ORM\OrderBy({"linha"="ASC","coluna"="ASC"})
      */
     private $formularioCampos;
 

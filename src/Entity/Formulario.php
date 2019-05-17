@@ -25,12 +25,13 @@ class Formulario implements IEntity
     private $nome;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FormularioCampo", mappedBy="formulario", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioCampo", mappedBy="formulario")
      */
     private $formularioCampos;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\FormularioAgrupador", mappedBy="formulario", orphanRemoval=true)
+     * @ORM\OrderBy({"ordem"="ASC"})
      */
     private $formularioAgrupadores;
 

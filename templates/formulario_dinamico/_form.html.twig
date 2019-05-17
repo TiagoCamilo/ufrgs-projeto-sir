@@ -1,27 +1,39 @@
 <form method="POST">
 
-    {% set current_line = 0 %}
-    {% for campo in formulario.formularioCampos %}
-        {% if campo.linha != current_line %}
 
-            {# Fecha div aberta em iteracao anterior #}
-            {% if current_line != 0 %}
+    {% for agrupador in formulario.formularioAgrupadores %}
+        {% if agrupador.formularioCampos|length > 0 %}
+            <div style="border-style: solid; border-width: 1px; padding: 5px; margin-bottom: 10px">
+
+            <div style="text-align: center; border-style: solid; border-width: 1px; font-weight: bold;">{{ agrupador.titulo }}</div>
+
+            {% set current_line = 0 %}
+            {% for campo in  agrupador.formularioCampos %}
+                {% if campo.linha != current_line %}
+
+                    {# Fecha div aberta em iteracao anterior #}
+                    {% if current_line != 0 %}
+                        </div>
+                    {% endif %}
+
+                    {% set current_line = campo.linha %}
+
+                    <div class="form-row">
+                {% endif %}
+
+                <div class="col">
+                    {% include 'others/_field_form.html.twig' %}
                 </div>
-            {% endif %}
 
-            {% set current_line = campo.linha %}
+            {% endfor %}
 
-            <div class="form-row">
+            {# Fecha div aberta da ultima iteracao #}
+            </div>
+            </div>
         {% endif %}
-
-        <div class="col">
-            {% include 'others/_field_form.html.twig' %}
-        </div>
-
     {% endfor %}
 
-    {# Fecha div aberta da ultima iteracao #}
-    </div>
+
 
     <button type="submit" class="btn btn-primary">Salvar</button>
     <a class="btn btn-success float-right" href="{{ path('formulario_dinamico_index') }}">Voltar</a>
