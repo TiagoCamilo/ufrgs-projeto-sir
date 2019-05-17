@@ -17,6 +17,7 @@ class FormularioCampoType extends AbstractType
                 'choices' => [
                     'Texto' => 'TextType',
                     'Área de Texto' => 'TextareaType',
+                    'Label' => 'LabelType',
                 ],
             ])
             ->add('label')

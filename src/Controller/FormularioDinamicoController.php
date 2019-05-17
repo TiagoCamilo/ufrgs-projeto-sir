@@ -33,7 +33,6 @@ class FormularioDinamicoController extends AbstractController
         $this->formType = FormularioDinamicoType::class;
     }
 
-
     /**
      * @Route("/", name="formulario_dinamico_index", methods="GET|POST", defaults={"page" = 1})
      */
@@ -79,7 +78,6 @@ class FormularioDinamicoController extends AbstractController
             $em->flush();
 
             return $this->redirectToRoute("{$this->entityName}_index");
-
         }
 
         return $this->render($this->getTemplateManager()->getNew(), [

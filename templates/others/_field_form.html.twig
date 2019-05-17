@@ -4,6 +4,9 @@
 {% if campo.tipo == 'TextareaType' %}
     {% set fieldType = 'others/_field_textarea.html.twig' %}
 {% endif %}
+{% if campo.tipo == 'LabelType' %}
+    {% set fieldType = 'others/_field_label.html.twig' %}
+{% endif %}
 
 {% if formularioRegistro is defined %}
     {% for campoRegistro in formularioRegistro.formularioRegistroCampos %}
