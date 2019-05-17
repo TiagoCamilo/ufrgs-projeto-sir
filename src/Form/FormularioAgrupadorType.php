@@ -14,10 +14,6 @@ class FormularioAgrupadorType extends AbstractType
         $builder
             ->add('titulo')
             ->add('ordem')
-            ->add('subtitulo')
-            ->add('coluna1')
-            ->add('coluna2')
-            ->add('coluna3')
             ->add('formulario')
         ;
     }
