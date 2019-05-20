@@ -23,9 +23,16 @@ class FormularioDinamicoHelper
         $this->alunoRepository = $alunoRepository;
     }
 
+    //TODO: Tornar "generico" permitindo utilizar qualquer entity
     public function getAlunoValues()
     {
         return $this->alunoRepository->findAll();
+    }
+
+    //TODO: Tornar "generico" permitindo utilizar qualquer entity
+    public function getAlunoById($id)
+    {
+        return $this->alunoRepository->find($id);
     }
 
     public function getFieldList()

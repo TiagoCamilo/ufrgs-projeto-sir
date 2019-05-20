@@ -1,7 +1,13 @@
 <label for="{{ id }}">{{ label }}</label>
 
+<select class="form-control" id="{{ campo.id }}" name="{{ campo.id }}"  >
+{% for register in form_helper.getAlunoValues() %}
+    <option value="{{ register.getId() }}">{{  register.getNome() }}</option>
+{% endfor %}
+</select>
+
 {% if valor is defined %}
-    <input type="text" class="form-control" id="{{ campo.id }}" name="{{ campo.id }}" value="{{ valor }}"/>
-{% else %}
-    <input type="text" class="form-control" id="{{ campo.id }}" name="{{ campo.id }}" />
+    <script>
+        document.getElementById({{ campo.id }}).value = {{ valor }};
+    </script>
 {% endif %}

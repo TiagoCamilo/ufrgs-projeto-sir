@@ -1,14 +1,21 @@
 {% for campoRegistro in formularioRegistro.formularioRegistroCampos %}
     {% if campoRegistro.formularioCampo.id == campo.id %}
+
+        {# Labels #}
         {% if campo.tipo == 'LabelType' %}
             <div for="{{ campo.id }}" style="font-weight: bold;" >{{ campo.label }}:</div>
         {% else %}
             <div for="{{ campo.id }}">{{ campo.label }}:</div>
         {% endif %}
+
+        {# Values #}
         {% if campo.tipo == 'DateType' %}
             <div style="font-style: italic;">{{ campoRegistro.valor ? campoRegistro.valor | date('d/m/Y') : '' }}</div>
+        {% elseif campo.tipo == "AlunoType" %}
+            <div style="font-style: italic;">{{ form_helper.getAlunoById(campoRegistro.valor).getNome() | nl2br }}</div>
         {% else %}
             <div style="font-style: italic;">{{ campoRegistro.valor | nl2br }}</div>
         {% endif %}
+
     {% endif %}
 {% endfor %}
