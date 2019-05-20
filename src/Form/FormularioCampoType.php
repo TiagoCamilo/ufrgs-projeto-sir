@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\FormularioCampo;
+use App\Service\FormularioDinamicoHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -10,16 +11,17 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FormularioCampoType extends AbstractType
 {
+    private $formularioDinamicoHelper;
+    public function __construct(FormularioDinamicoHelper $formularioDinamicoHelper)
+    {
+        $this->formularioDinamicoHelper = $formularioDinamicoHelper;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('tipo', ChoiceType::class, [
-                'choices' => [
-                    'Texto' => 'TextType',
-                    'Área de Texto' => 'TextareaType',
-                    'Label' => 'LabelType',
-                    'Data' => 'DateType',
-                ],
+                'choices' => $this->formularioDinamicoHelper->getFieldList(),
             ])
             ->add('label')
             ->add('linha')
