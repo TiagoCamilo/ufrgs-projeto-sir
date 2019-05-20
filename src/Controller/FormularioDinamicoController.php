@@ -60,7 +60,6 @@ class FormularioDinamicoController extends AbstractController
      */
     public function new(Request $request, FormularioRepository $formularioRepository): Response
     {
-        //TODO: Receber como param o identificador do modelo de formuario
         $formularioModelo = $formularioRepository->find($request->get('form_id'));
 
         $formularioRegistro = new FormularioRegistro();
@@ -82,7 +81,7 @@ class FormularioDinamicoController extends AbstractController
             $em->persist($formularioRegistro);
             $em->flush();
 
-            return $this->redirectToRoute("{$this->entityName}_index");
+            return $this->redirectToRoute("{$this->entityName}_index", ['form_id' => $request->get('form_id')]);
         }
 
         return $this->render($this->getTemplateManager()->getNew(), [
@@ -112,7 +111,7 @@ class FormularioDinamicoController extends AbstractController
      */
     public function edit(Request $request, FormularioRepository $formularioRepository, FormularioRegistro $formularioRegistro): Response
     {
-        $formularioModelo = $formularioRepository->find(1);
+        $formularioModelo = $formularioRepository->find($request->get('form_id'));
 
         if ($request->isMethod('POST')) {
             foreach ($formularioModelo->getFormularioCampos() as $campoModelo) {
@@ -140,7 +139,7 @@ class FormularioDinamicoController extends AbstractController
             $em->persist($formularioRegistro);
             $em->flush();
 
-            return $this->redirectToRoute("{$this->entityName}_index", ['id' => $formularioRegistro->getId()]);
+            return $this->redirectToRoute("{$this->entityName}_index", ['form_id' => $request->get('form_id')]);
         }
 
         return $this->render($this->getTemplateManager()->getEdit(), [
@@ -163,16 +162,16 @@ class FormularioDinamicoController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('formulario_dinamico_index');
+        return $this->redirectToRoute('formulario_dinamico_index', ['form_id' => $request->get('form_id')]);
     }
 
     /**
      * @Route("/{id}/pdf", name="formulario_dinamico_report_pdf", methods="GET")
      * @ParamConverter("entity", class="App\Entity\FormularioRegistro")
      */
-    public function reportPdf(IEntity $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
+    public function reportPdf(Request $request, IEntity $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
     {
-        $formularioModelo = $formularioRepository->find(1);
+        $formularioModelo = $formularioRepository->find($request->get('form_id'));
 
         $html = $this->renderView('formulario_dinamico/report_pdf.twig', [
             'formulario' => $formularioModelo,
@@ -192,8 +191,8 @@ class FormularioDinamicoController extends AbstractController
         $templateManager->setEdit('generic/edit.html.twig');
         $templateManager->setNew('generic/new.html.twig');
         $templateManager->setForm('formulario_dinamico/_form.html.twig');
-        $templateManager->setDelete('generic/_delete_form.html.twig');
-        $templateManager->setIndexActions('generic/_index_registers.html.twig');
+        $templateManager->setDelete('formulario_dinamico/_delete_form.html.twig');
+        $templateManager->setIndexActions('formulario_dinamico/_index_registers.html.twig');
         $templateManager->setIndexFooter('formulario_dinamico/_index_footer.html.twig');
         $templateManager->setShowActions('generic/_show_actions.html.twig');
 

@@ -6,6 +6,7 @@
 {% for register in registers %}
     {% set registerListAttr = registerListAttr|merge ([{
         'Id': register.id,
+        'Nome': register.formulario.nome,
         'Data Hora': register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '',
     }]) %}
 {% endfor %}

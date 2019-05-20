@@ -1,0 +1,5 @@
+<form method="post" class="form-delete" action="{{ path(entityName~'_delete', {'id': register.id, form_id: formId}) }}" onsubmit="return confirm('Tem certeza que deseja excluir?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ register.id) }}">
+    <button class="btn btn-danger">Excluir</button>
+</form>
