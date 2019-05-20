@@ -30,7 +30,7 @@ class FormularioAgrupador implements IEntity
     private $formulario;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FormularioCampo", mappedBy="agrupador")
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioCampo", mappedBy="agrupador", cascade={"persist"})
      * @ORM\OrderBy({"linha"="ASC","coluna"="ASC"})
      */
     private $formularioCampos;
