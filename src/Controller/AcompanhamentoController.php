@@ -106,11 +106,12 @@ class AcompanhamentoController extends AppAbstractController
     {
         $html = $this->renderView('acompanhamento/report_pdf.html.twig', [
             'register' => $entity,
-            'title' => "Formulário Acompanhamento"
+            'title' => 'Formulário Acompanhamento',
         ]);
 
         $pdfGenerator->setStyle('report_pdf.css');
         $pdfGenerator->setContent($html);
+
         return $pdfGenerator->generate();
     }
 }

@@ -3,7 +3,7 @@
 {% block title %}New {{ entityName|capitalize }}{% endblock %}
 
 {% block body %}
-    <h1>Criar {{ entityName|capitalize }}</h1>
+    {% include 'generic/_body_title.html.twig' with {title: 'Criar - '~entityName|capitalize} %}
 
     {{ include(template.form) }}
 

@@ -20,63 +20,7 @@
 } %}
 
 {% block body %}
-    <h1>Listagem {{ entityName|capitalize }}</h1>
-    {#{{ include(template.indexActions) }}#}
-
-    <table class="table">
-        <thead>
-        <tr>
-            {% for key, attr in registerListAttr|first %}
-                <th>{{ key }}</th>
-            {% endfor %}
-            <th>PDF</th>
-            <th>Exibir</th>
-            <th>Editar</th>
-            <th>Excluir</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for key, listAttr in registerListAttr %}
-            <tr>
-                {% for attr in listAttr %}
-                    {#TODO: Aplicar raw somente no atributo correto#}
-                    <td>{{ attr | raw}}</td>
-                {% endfor %}
-                {% if(actionList.pdf is defined and actionList.pdf == true) %}
-                    <td>
-                        <a class="btn btn-primary fas fa-file-pdf" href="{{ path(entityName~'_report_pdf', {'id': listAttr.Id}) }}"></a>
-                    </td>
-                {% endif %}
-                {% if(actionList.image is defined and actionList.image == true) %}
-                    <td>
-                        <a class="btn btn-primary fas fa-image" href="{{ path(entityName~'_image', {'id': listAttr.Id}) }}"></a>
-                    </td>
-                {% endif %}
-                {% if(actionList.show is defined and actionList.show == true) %}
-                    <td>
-                        <a class="btn btn-primary fas fa-eye" href="{{ path(entityName~'_show', {'id': listAttr.Id}) }}"></a>
-                    </td>
-                {% endif %}
-                {% if(actionList.edit is defined and actionList.edit == true) %}
-                    <td>
-                        <a class="btn btn-primary fas fa-edit" href="{{ path(entityName~'_edit', {'id': listAttr.Id}) }}"></a>
-                    </td>
-                {% endif %}
-                {% if(actionList.delete is defined and actionList.delete == true) %}
-                    <td>
-                        <form method="post" class="form-delete" action="{{ path(entityName~'_delete', {'id': listAttr.Id}) }}" onsubmit="return confirm('Tem certeza que deseja excluir?');">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ listAttr.Id) }}">
-                            <button class="btn btn-danger fas fa-trash"></button>
-                        </form>
-
-                    </td>
-                {% endif %}
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-
+    {% include 'generic/_body_title.html.twig' with {title: 'Listagem - '~entityName|capitalize} %}
+    {{ include(template.indexActions) }}
     {{ include(template.indexFooter) }}
 {% endblock %}

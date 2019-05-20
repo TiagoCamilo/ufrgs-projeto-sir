@@ -1,0 +1,9 @@
+<label for="{{ id }}">{{ label }}</label>
+
+{% if valor is defined %}
+    <textarea class="form-control" id="{{ campo.id }}" name="{{ campo.id }}" rows="5">
+{{ valor }}
+    </textarea>
+{% else %}
+    <textarea class="form-control" id="{{ campo.id }}" name="{{ campo.id }}" rows="5"></textarea>
+{% endif %}

@@ -1,0 +1,12 @@
+{# Tipo - Default#}
+{% set fieldType = form_helper.getTemplateByField(campo.tipo) %}
+
+{% if formularioRegistro is defined %}
+    {% for campoRegistro in formularioRegistro.formularioRegistroCampos %}
+        {% if campoRegistro.formularioCampo.id == campo.id %}
+            {% include fieldType with {'id': campo.id, 'label': campo.label, 'valor': campoRegistro.valor } %}
+        {% endif %}
+    {% endfor %}
+{% else %}
+    {% include fieldType with {'id': campo.id, 'label': campo.label } %}
+{% endif %}

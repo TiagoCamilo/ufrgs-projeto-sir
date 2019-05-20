@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulario Registro{% endblock %}
+
+{% block body %}
+    {% include 'generic/_body_title.html.twig' with {title: entityName|capitalize} %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ register.id }}</td>
+            </tr>
+            <tr>
+                <th>Data Hora</th>
+                <td>{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ include(template.showActions) }}
+
+
+{% endblock %}

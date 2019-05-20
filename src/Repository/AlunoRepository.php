@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Aluno;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**

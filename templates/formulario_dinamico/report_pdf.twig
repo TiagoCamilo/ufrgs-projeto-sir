@@ -1,0 +1,41 @@
+<head>
+    <title>{{ title | upper}}</title>
+</head>
+<body>
+<h1 class="pdf_titulo">{{ title | upper}} </h1>
+
+{% for agrupador in formulario.formularioAgrupadores %}
+    {% if agrupador.formularioCampos|length > 0 %}
+        <div style="border-style: solid; border-width: 1px; padding: 5px; margin-bottom: 10px; ">
+
+        <div style="text-align: center; border-style: solid; border-width: 1px; font-weight: bold;">{{ agrupador.titulo }}</div>
+        <table style="width: 100%">
+            <tbody>
+        {% set current_line = 0 %}
+        {% for campo in  agrupador.formularioCampos %}
+            {% if campo.linha != current_line %}
+
+                {# Fecha div aberta em iteracao anterior #}
+                {% if current_line != 0 %}
+                    </tr>
+                {% endif %}
+
+                {% set current_line = campo.linha %}
+
+                <tr>
+            {% endif %}
+
+            <td style="vertical-align: top">
+                {% include 'others/_pdf_fields.html.twig' %}
+            </td>
+
+        {% endfor %}
+        {# Fecha tr aberta da ultima iteracao #}
+        </tr>
+            </tbody>
+        </table>
+        </div>
+    {% endif %}
+{% endfor %}
+
+</body>

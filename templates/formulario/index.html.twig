@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listagem {{ entityName|capitalize }}{% endblock %}
+
+{% set registerListAttr = [] %}
+{% for register in registers %}
+    {% set registerListAttr = registerListAttr|merge ([{
+        'Id': register.id,
+        'Nome': register.nome,
+    }]) %}
+{% endfor %}
+
+{% set actionList = {
+    'new': true,
+    'show': true,
+    'edit': true,
+    'delete': true,
+    'image': false,
+} %}
+
+{% block body %}
+    {% include 'generic/_body_title.html.twig' with {title: 'Listagem - '~entityName|capitalize} %}
+    {{ include(template.indexActions) }}
+    {{ include(template.indexFooter) }}
+{% endblock %}

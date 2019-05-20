@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulario Campo{% endblock %}
+
+{% block body %}
+    {% include 'generic/_body_title.html.twig' with {title: entityName|capitalize} %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ register.id }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ register.tipo }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ register.label }}</td>
+            </tr>
+            <tr>
+                <th>Formulário</th>
+                <td>{{ register.formulario.nome }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ include(template.showActions) }}
+
+{% endblock %}

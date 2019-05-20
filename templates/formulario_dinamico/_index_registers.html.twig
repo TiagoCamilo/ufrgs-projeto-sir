@@ -1,0 +1,37 @@
+<table class="table">
+    <thead>
+    <tr>
+        {% for key, attr in registerListAttr|first %}
+            <th>{{ key }}</th>
+        {% endfor %}
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for key, listAttr in registerListAttr %}
+        <tr>
+            {% for attr in listAttr %}
+                {#TODO: Aplicar raw somente no atributo correto#}
+                <td>{{ attr | raw}}</td>
+            {% endfor %}
+            <td>
+                {% if(actionList.pdf is defined and actionList.pdf == true) %}
+                    <a class="btn btn-primary" href="{{ path(entityName~'_report_pdf', {'id': listAttr.Id, form_id: formId}) }}">PDF</a>
+                {% endif %}
+                {% if(actionList.image is defined and actionList.image == true) %}
+                    <a class="btn btn-primary" href="{{ path(entityName~'_image', {'id': listAttr.Id}) }}">Foto</a>
+                {% endif %}
+                {% if(actionList.show is defined and actionList.show == true) %}
+                    <a class="btn btn-primary" href="{{ path(entityName~'_show', {'id': listAttr.Id}) }}">Exibir</a>
+                {% endif %}
+                {% if(actionList.edit is defined and actionList.edit == true) %}
+                    <a class="btn btn-primary" href="{{ path(entityName~'_edit', {'id': listAttr.Id, form_id: formId}) }}">Editar</a>
+                {% endif %}
+                {% if(actionList.delete is defined and actionList.delete == true) %}
+                    {%  include template.delete with {'register': {'id': listAttr.Id, form_id: formId}} %}
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

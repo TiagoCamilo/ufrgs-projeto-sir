@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulario Agrupador{% endblock %}
+
+{% block body %}
+    {% include 'generic/_body_title.html.twig' with {title: entityName|capitalize} %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ register.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ register.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Ordem</th>
+                <td>{{ register.ordem }}</td>
+            </tr>
+            <tr>
+                <th>Formulário</th>
+                <td>{{ register.formulario.nome }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ include(template.showActions) }}
+
+{% endblock %}
