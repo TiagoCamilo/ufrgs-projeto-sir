@@ -21,7 +21,7 @@
 } %}
 
 {% block body %}
-    <h1>Listagem {{ entityName|capitalize|replace({'_':' '}) }}</h1>
+    {% include 'generic/_body_title.html.twig' with {title: 'Listagem - '~entityName|capitalize} %}
     {{ include(template.indexActions) }}
     {{ include(template.indexFooter) }}
 {% endblock %}

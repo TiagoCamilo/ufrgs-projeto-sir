@@ -3,7 +3,7 @@
 {% block title %}Formulario Registro{% endblock %}
 
 {% block body %}
-    <h1>Formulario Registro</h1>
+    {% include 'generic/_body_title.html.twig' with {title: entityName|capitalize} %}
 
     <table class="table">
         <tbody>

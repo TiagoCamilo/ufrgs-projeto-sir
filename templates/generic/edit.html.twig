@@ -3,7 +3,7 @@
 {% block title %}Edit {{ entityName|capitalize }}{% endblock %}
 
 {% block body %}
-    <h1>Edit {{ entityName|capitalize }}</h1>
+    {% include 'generic/_body_title.html.twig' with {title: 'Editar - '~entityName|capitalize} %}
 
     {{ include(template.form, {'button_label': 'Salvar'}) }}
 {% endblock %}

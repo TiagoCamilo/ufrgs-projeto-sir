@@ -3,7 +3,7 @@
 {% block title %}Acompanhamento{% endblock %}
 
 {% block body %}
-    <h1>Acompanhamento</h1>
+    {% include 'generic/_body_title.html.twig' with {title: entityName|capitalize} %}
 
     <table class="table">
         <tbody>
