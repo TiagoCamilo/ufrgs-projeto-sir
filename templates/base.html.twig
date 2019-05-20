@@ -43,11 +43,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('acompanhamento_index') }}"><i class="fas fa-file"></i> Acompanhamento</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('formulario_dinamico_index', {form_id: 1}) }}"><i class="fas fa-file-signature"></i> Formulario Registros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('formulario_dinamico_index', {form_id: 3}) }}"><i class="fas fa-file-signature"></i> Formulario 2</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Formulários</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            {% for formulario in form_repository.findAll() %}
+                                <a class="dropdown-item" href="{{ path('formulario_dinamico_index', {form_id: formulario.getId() }) }}">
+                                    {{ formulario.getNome() }}
+                                </a>
+                            {% endfor %}
+                        </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Modelos</a>

@@ -89,6 +89,8 @@ class FormularioDinamicoController extends AbstractController
             'formulario' => $formularioModelo,
             'entityName' => $this->entityName,
             'template' => (array) $this->getTemplateManager(),
+            'formId' => $request->get('form_id'),
+
         ]);
     }
 
@@ -96,20 +98,13 @@ class FormularioDinamicoController extends AbstractController
      * @Route("/{id}", name="formulario_dinamico_show", methods={"GET"})
      * @ParamConverter("entity", class="App\Entity\FormularioRegistro")
      */
-    public function show(IEntity $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
+    public function show(IEntity $entity): Response
     {
-        $formularioModelo = $formularioRepository->find(1);
-
-        return $this->render('formulario_dinamico/report_pdf.twig', [
-            'formulario' => $formularioModelo,
-            'formularioRegistro' => $entity,
-            'title' => 'Formulário PDI',
+        return $this->render('formulario_dinamico/show.html.twig', [
+            'register' => $entity,
+            'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
         ]);
-//        return $this->render("{$this->entityName}/show.html.twig", [
-//            'register' => $formularioRegistro,
-//            'entityName' => $this->entityName,
-//            'template' => (array) $this->getTemplateManager(),
-//        ]);
     }
 
     /**
@@ -153,6 +148,7 @@ class FormularioDinamicoController extends AbstractController
             'formularioRegistro' => $formularioRegistro,
             'entityName' => $this->entityName,
             'template' => (array) $this->getTemplateManager(),
+            'formId' => $request->get('form_id'),
         ]);
     }
 
