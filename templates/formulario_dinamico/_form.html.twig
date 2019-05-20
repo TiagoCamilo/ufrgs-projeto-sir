@@ -1,37 +1,38 @@
 <form method="POST" class="form-readonly">
 
-    {% for agrupador in formulario.formularioAgrupadores %}
-        {% if agrupador.formularioCampos|length > 0 %}
-            <div style="border-style: solid; border-width: 1px; padding: 5px; margin-bottom: 10px; ">
+    {% if formulario.id is defined %}
+        {% for agrupador in formulario.formularioAgrupadores %}
+            {% if agrupador.formularioCampos|length > 0 %}
+                <div style="border-style: solid; border-width: 1px; padding: 5px; margin-bottom: 10px; ">
 
-            <div style="text-align: center; border-style: solid; border-width: 1px; font-weight: bold;">{{ agrupador.titulo }}</div>
+                <div style="text-align: center; border-style: solid; border-width: 1px; font-weight: bold;">{{ agrupador.titulo }}</div>
 
-            {% set current_line = 0 %}
-            {% for campo in  agrupador.formularioCampos %}
-                {% if campo.linha != current_line %}
+                {% set current_line = 0 %}
+                {% for campo in  agrupador.formularioCampos %}
+                    {% if campo.linha != current_line %}
 
-                    {# Fecha div aberta em iteracao anterior #}
-                    {% if current_line != 0 %}
-                        </div>
+                        {# Fecha div aberta em iteracao anterior #}
+                        {% if current_line != 0 %}
+                            </div>
+                        {% endif %}
+
+                        {% set current_line = campo.linha %}
+
+                        <div class="form-row">
                     {% endif %}
 
-                    {% set current_line = campo.linha %}
+                    <div class="col">
+                        {% include 'others/_form_fields.html.twig' %}
+                    </div>
 
-                    <div class="form-row">
-                {% endif %}
+                {% endfor %}
 
-                <div class="col">
-                    {% include 'others/_form_fields.html.twig' %}
+                {# Fecha div aberta da ultima iteracao #}
                 </div>
-
-            {% endfor %}
-
-            {# Fecha div aberta da ultima iteracao #}
-            </div>
-            </div>
-        {% endif %}
-    {% endfor %}
-
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 
 
     <button type="submit" class="btn btn-primary">Salvar</button>

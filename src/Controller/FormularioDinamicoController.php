@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/formulario_dinamico")
+ * @Route("/formulario_dinamico/{form_id}", defaults={"form_id" = 1})
  */
 class FormularioDinamicoController extends AbstractController
 {
@@ -42,7 +42,7 @@ class FormularioDinamicoController extends AbstractController
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
         $resultSet = $paginator->paginate(
-            $this->entityRepository->findAll(),
+            $this->entityRepository->findBy(['formulario' => $request->get('form_id')]),
             $request->get('page')
         );
 
@@ -51,6 +51,7 @@ class FormularioDinamicoController extends AbstractController
             'registers' => $resultSet,
             'entityName' => $this->entityName,
             'template' => (array) $this->getTemplateManager(),
+            'formId' => $request->get('form_id'),
         ]);
     }
 
@@ -60,7 +61,7 @@ class FormularioDinamicoController extends AbstractController
     public function new(Request $request, FormularioRepository $formularioRepository): Response
     {
         //TODO: Receber como param o identificador do modelo de formuario
-        $formularioModelo = $formularioRepository->find(1);
+        $formularioModelo = $formularioRepository->find($request->get('form_id'));
 
         $formularioRegistro = new FormularioRegistro();
 
@@ -75,6 +76,7 @@ class FormularioDinamicoController extends AbstractController
                 $formularioRegistro->addFormularioRegistroCampo($campoRegistro);
             }
 
+            $formularioRegistro->setFormulario($formularioModelo);
             $formularioRegistro->setDataHora(new \DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->persist($formularioRegistro);
@@ -196,7 +198,7 @@ class FormularioDinamicoController extends AbstractController
         $templateManager->setForm('formulario_dinamico/_form.html.twig');
         $templateManager->setDelete('generic/_delete_form.html.twig');
         $templateManager->setIndexActions('generic/_index_registers.html.twig');
-        $templateManager->setIndexFooter('generic/_index_footer.html.twig');
+        $templateManager->setIndexFooter('formulario_dinamico/_index_footer.html.twig');
         $templateManager->setShowActions('generic/_show_actions.html.twig');
 
         return $templateManager;

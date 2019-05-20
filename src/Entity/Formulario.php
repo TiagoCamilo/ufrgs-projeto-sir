@@ -35,10 +35,16 @@ class Formulario implements IEntity
      */
     private $formularioAgrupadores;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioRegistro", mappedBy="formulario", orphanRemoval=true)
+     */
+    private $formularioRegistros;
+
     public function __construct()
     {
         $this->formularioCampos = new ArrayCollection();
         $this->formularioAgrupadores = new ArrayCollection();
+        $this->formularioRegistros = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -122,6 +128,37 @@ class Formulario implements IEntity
             // set the owning side to null (unless already changed)
             if ($formularioAgrupadore->getFormulario() === $this) {
                 $formularioAgrupadore->setFormulario(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FormularioRegistro[]
+     */
+    public function getFormularioRegistros(): Collection
+    {
+        return $this->formularioRegistros;
+    }
+
+    public function addFormularioRegistro(FormularioRegistro $formularioRegistro): self
+    {
+        if (!$this->formularioRegistros->contains($formularioRegistro)) {
+            $this->formularioRegistros[] = $formularioRegistro;
+            $formularioRegistro->setFormulario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormularioRegistro(FormularioRegistro $formularioRegistro): self
+    {
+        if ($this->formularioRegistros->contains($formularioRegistro)) {
+            $this->formularioRegistros->removeElement($formularioRegistro);
+            // set the owning side to null (unless already changed)
+            if ($formularioRegistro->getFormulario() === $this) {
+                $formularioRegistro->setFormulario(null);
             }
         }
 
