@@ -8,6 +8,7 @@ use App\Form\AlunoType;
 use App\Repository\AlunoRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -15,12 +16,15 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PerfilAlunoController extends AppAbstractController
 {
-    public function __construct(AlunoRepository $entityRepository)
+    private $session;
+
+    public function __construct(AlunoRepository $entityRepository, SessionInterface $session)
     {
         $this->entity = new Aluno();
         $this->entityRepository = $entityRepository;
         $this->entityName = 'perfil_aluno';
         $this->formType = AlunoType::class;
+        $this->session = $session;
     }
 
     /**
@@ -29,6 +33,9 @@ class PerfilAlunoController extends AppAbstractController
      */
     public function show(IEntity $entity): Response
     {
+        $this->session->set('aluno_id', $entity->getId());
+        $this->session->set('aluno_nome', $entity->getNome());
+
         return $this->render("{$this->entityName}/show.html.twig", [
             'register' => $entity,
             'entityName' => $this->entityName,

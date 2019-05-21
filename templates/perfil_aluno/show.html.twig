@@ -26,7 +26,7 @@
             <div class="card-body">
                 <h5 class="card-title">Adicionar</h5>
                 <a href="#" class="card-link"></a>
-                <a href="#" class="card-link"><i class="fas fa-camera-retro"></i> Fotos/Vídeos</a>
+                <a href="{{ path('comentario_new') }}" class="card-link"><i class="fas fa-camera-retro"></i> Fotos/Vídeos</a>
                 <a href="#" class="card-link"><i class="fas fa-file"></i> Acompanhamento</a>
                 <a href="#" class="card-link"><i class="fas fa-file-powerpoint"></i> Parecer</a>
                 {% for formulario in form_repository.findAll() %}
