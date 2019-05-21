@@ -10,7 +10,8 @@
     </form>
     <div class="row">
     {% for register in  registers %}
-        <div class="col-lg-2 col-sm-4 my-3 alunoCard" id="registerCard{{ register.id }}" onclick="move({{ register.id }})">
+        <div class="col-lg-2 col-sm-4 my-3 alunoCard" id="registerCard{{ register.id }}"
+             onclick='location.href="{{ path('perfil_aluno_show', {id: register.id} ) }}"'>
             <div class="card shadow-lg bg-white rounded border-dark">
                 <img class="card-img-top" src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}" alt="Card image cap">
                 <div class="card-body">

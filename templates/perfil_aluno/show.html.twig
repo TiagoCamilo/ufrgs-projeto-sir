@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aluno{% endblock %}
+
+{% block body %}
+    {% include 'generic/_body_title.html.twig' with {title: 'Perfil Aluno(a) - '~register.nome} %}
+
+<div class="row">
+    <div class="col-sm-2">
+        <div class="card" >
+            <img class="card-img-top" src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}" alt="Card image cap">
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card" >
+            <div class="card-body">
+                <h5 class="card-title">Informações</h5>
+
+                <div>Nome: {{ register.nome }}</div>
+                <div>Data Nascimento: {{ register.dataNascimento ? register.dataNascimento|date('Y-m-d H:i:s') : '-' }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card" >
+            <div class="card-body">
+                <h5 class="card-title">Adicionar</h5>
+                <a href="#" class="card-link"></a>
+                <a href="#" class="card-link"><i class="fas fa-camera-retro"></i> Fotos/Vídeos</a>
+                <a href="#" class="card-link"><i class="fas fa-file"></i> Acompanhamento</a>
+                <a href="#" class="card-link"><i class="fas fa-file-powerpoint"></i> Parecer</a>
+                {% for formulario in form_repository.findAll() %}
+                    <a href="#" class="card-link"><i class="fas fa-file-signature"></i> {{ formulario.nome }}</a>
+                {%  endfor %}
+                <a href="{{ path('home') }}" class="card-link"><i class="fas fa-arrow-left"></i> Voltar</a>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="card text-center">
+        <div class="card-header">
+            <ul class="nav nav-pills card-header-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Tudo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Fotos/Vídeos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Acompanhamentos</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+
+
+{% endblock %}
