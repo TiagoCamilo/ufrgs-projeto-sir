@@ -28,7 +28,7 @@ class PerfilAlunoController extends AppAbstractController
     }
 
     /**
-     * @Route("/{id}", name="perfil_aluno_show", methods="GET")
+     * @Route("/{id}/{timeline_element}", name="perfil_aluno_show", methods="GET", defaults={"timeline_element"="all"}))
      * @ParamConverter("entity", class="App\Entity\Aluno")
      */
     public function show(IEntity $entity): Response
