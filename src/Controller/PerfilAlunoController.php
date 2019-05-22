@@ -28,18 +28,33 @@ class PerfilAlunoController extends AppAbstractController
     }
 
     /**
-     * @Route("/{id}/{timeline_element}", name="perfil_aluno_show", methods="GET", defaults={"timeline_element"="all"}))
+     * @Route("/{id}/{timeline_element}", name="perfil_aluno_profile", methods="GET", defaults={"timeline_element"="all"}))
      * @ParamConverter("entity", class="App\Entity\Aluno")
      */
-    public function show(IEntity $entity): Response
+    public function profile(IEntity $entity, $timeline_element): Response
     {
         $this->session->set('aluno_id', $entity->getId());
         $this->session->set('aluno_nome', $entity->getNome());
+
+        switch ($timeline_element) {
+            case 'all':
+                $timelineElements = $entity->getTimelineElements();
+                break;
+            case 'midia':
+                $timelineElements = $entity->getComentarios();
+                break;
+            case 'acompanhamento':
+                $timelineElements = $entity->getAcompanhamentos();
+                break;
+            default:
+                $timelineElements = $entity->getComentarios();
+        }
 
         return $this->render("{$this->entityName}/show.html.twig", [
             'register' => $entity,
             'entityName' => $this->entityName,
             'template' => (array) $this->getTemplateManager(),
+            'timelineElements' => $timelineElements,
         ]);
     }
 }

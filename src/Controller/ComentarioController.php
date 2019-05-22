@@ -62,7 +62,7 @@ class ComentarioController extends AppAbstractController
             $em->flush();
 
             //return $this->redirectToRoute("{$this->entityName}_index");
-            return $this->redirectToRoute('perfil_aluno_show', [
+            return $this->redirectToRoute('perfil_aluno_profile', [
                 'id' => $this->aluno->getId(),
             ]);
         }

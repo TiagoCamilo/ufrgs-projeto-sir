@@ -46,21 +46,21 @@
     <div class="card-header">
         <ul class="nav nav-pills card-header-pills">
             <li class="nav-item">
-                <a id='all' class="nav-link" href="{{ path('perfil_aluno_show', {id: register.id} ) }}">Tudo</a>
+                <a id='all' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id} ) }}">Tudo</a>
             </li>
             <li class="nav-item">
-                <a id='midia' class="nav-link" href="{{ path('perfil_aluno_show', {id: register.id, timeline_element:'midia'} ) }}">Fotos/Vídeos</a>
+                <a id='midia' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id, timeline_element:'midia'} ) }}">Fotos/Vídeos</a>
             </li>
             <li class="nav-item">
-                <a id='acompanhamento' class="nav-link" href="{{ path('perfil_aluno_show', {id: register.id, timeline_element:'acompanhamento'} ) }}">Acompanhamentos</a>
+                <a id='acompanhamento' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id, timeline_element:'acompanhamento'} ) }}">Acompanhamentos</a>
             </li>
             <li class="nav-item">
-                <a id='parecer' class="nav-link" href="{{ path('perfil_aluno_show', {id: register.id, timeline_element:'parecer'} ) }}">Pareceres</a>
+                <a id='parecer' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id, timeline_element:'parecer'} ) }}">Pareceres</a>
             </li>
         </ul>
     </div>
     <div class="card-body" style="text-align: left;">
-        {% for timelineElement in register.getTimelineElements() %}
+        {% for timelineElement in timelineElements %}
             {% if timelineElement is Comentario %}
                 {% include 'perfil_aluno/_card_comentario.html.twig' with {timelineElement: timelineElement} %}
             {% endif %}
