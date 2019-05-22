@@ -14,6 +14,6 @@ abstract class AbstractRepository extends ServiceEntityRepository
 {
     public function findAll()
     {
-        return $this->findBy([], ['id' => 'ASC']);
+        return $this->findBy([], ['id' => 'DESC']);
     }
 }

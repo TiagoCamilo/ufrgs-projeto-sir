@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method FormularioRegistro[]    findAll()
  * @method FormularioRegistro[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FormularioRegistroRepository extends ServiceEntityRepository
+class FormularioRegistroRepository extends AbstractRepository
 {
     public function __construct(RegistryInterface $registry)
     {
