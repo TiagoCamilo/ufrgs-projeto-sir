@@ -16,7 +16,7 @@
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
 {#                    <button class="btn btn-primary">{{ button_label|default('Salvar') }}</button>#}
-                    <a class="btn btn-success float-right" href="{{ path(entityName~'_index') }}">Voltar</a>
+                    <a class="btn btn-success float-right" href="{{ path('perfil_aluno_profile', {id: register.id}) }}">Voltar</a>
                     {{ form_end(form) }}
 
                 </div>
