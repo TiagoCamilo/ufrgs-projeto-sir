@@ -6,11 +6,12 @@
 
 {% block body %}
     <form class="form">
-        <input class="form-control " type="text" placeholder="Digite o nome do aluno">
+        <input class="form-control " type="text" placeholder="Digite o nome do aluno" onkeyup="seachAluno(this.value)">
     </form>
     <div class="row">
     {% for register in  registers %}
         <div class="col-lg-2 col-sm-4 my-3 alunoCard" id="registerCard{{ register.id }}"
+             data-nome="{{ register.nome|lower }}"
              onclick='location.href="{{ path('perfil_aluno_show', {id: register.id} ) }}"'>
             <div class="card shadow-lg bg-white rounded border-dark">
                 <img class="card-img-top" src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}" alt="Card image cap">
@@ -36,6 +37,18 @@
                 element.css('transform', 'translate(-50px, 50px)');
                 element.addClass('alunoCardMoved');
             }
+        }
+
+        seachAluno = function(valor){
+            valor = valor.toLowerCase();
+
+            $('.alunoCard').css('display','none');
+            if(valor ==""){
+                $('.alunoCard').css('display','');
+            } else {
+                $('.alunoCard[data-nome*='+valor+']').css('display','');
+            }
+
         }
     </script>
 {% endblock %}

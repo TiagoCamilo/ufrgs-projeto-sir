@@ -42,7 +42,4 @@ class PerfilAlunoController extends AppAbstractController
             'template' => (array) $this->getTemplateManager(),
         ]);
     }
-
-
-
 }
