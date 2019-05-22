@@ -2,9 +2,9 @@
 
 namespace App\DataFixtures;
 
-class NomeList
+class AlunosNomeList
 {
-    private static $list =
+    public static $list =
         ['Sophia',
             'Alice',
             'Julia',
@@ -109,8 +109,8 @@ class NomeList
 
     public static function getRandomItem()
     {
-        $randIndex = array_rand(NomeList::$list);
+        $randIndex = array_rand(AlunosNomeList::$list);
 
-        return NomeList::$list[$randIndex];
+        return AlunosNomeList::$list[$randIndex];
     }
 }
