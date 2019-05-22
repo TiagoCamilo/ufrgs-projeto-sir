@@ -60,30 +60,13 @@
             </ul>
         </div>
         <div class="card-body" style="text-align: left;">
-            {% for comentario in register.getTimelineElements() %}
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <i class="fas fa-camera-retro"></i> Foto/Vídeos
-                    </div>
-                    <div class="card-body">
-                        <h6 class="card-title">De: {{ comentario.educador.nome }}</h6>
-                        <p class="card-text"><small class="text-muted">{{ comentario.dataHora ? comentario.dataHora|date('d/m/Y H:i:s') : '' }}</small></p>
-                        <p class="card-text">{{ comentario.descricao|raw }}</p>
-
-                    </div>
-                    {% if comentario.file is defined %}
-                        <div class="col-lg-7 mx-auto">
-                            {% if(comentario.file.extension =="mp4") %}
-                                <video width="100%" controls>
-                                    <source src="{{ asset('uploads/' ~ comentario.file.filename  ) }}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            {% else %}
-                                <img  class="card-img-bottom" src="{{ asset('uploads/' ~ comentario.file.filename  ) }}" alt="Arquivo do comentário">
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                </div>
+            {% for timelineElement in register.getTimelineElements() %}
+                {% if timelineElement is Comentario %}
+                    {% include 'perfil_aluno/_card_comentario.html.twig' with {timelineElement: timelineElement} %}
+                {% endif %}
+                {% if timelineElement is Acompanhamento %}
+                    {% include 'perfil_aluno/_card_acompanhamento.html.twig' with {timelineElement: timelineElement} %}
+                {% endif %}
             {% endfor %}
         </div>
     </div>
