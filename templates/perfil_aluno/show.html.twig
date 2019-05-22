@@ -8,7 +8,9 @@
 <div class="row">
     <div class="col-sm-2">
         <div class="card" >
-            <img class="card-img-top" src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}" alt="Card image cap">
+            <a href="{{ path('aluno_image',{id:register.id}) }}">
+                <img class="card-img-top" src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}" alt="Card image cap">
+            </a>
         </div>
     </div>
     <div class="col-sm-4">
