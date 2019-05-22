@@ -12,7 +12,7 @@ use App\Entity\Escola;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class EscolaRepository extends ServiceEntityRepository
+class EscolaRepository extends AbstractRepository
 {
     public function __construct(RegistryInterface $registry)
     {

@@ -36,15 +36,15 @@ class AppFixtures extends Fixture
             $user->setPassword($password);
 
             $escola = new Escola();
-            $escola->setNome('Escola '.$i);
+            $escola->setNome(EscolaNomeList::$list[$i]);
             $escola->setEndereco('Endereco Escola'.$i);
 
             $aluno = new Aluno();
-            $aluno->setNome('Aluno '.$i);
+            $aluno->setNome(AlunosNomeList::getRandomItem());
             $aluno->setEscola($escola);
 
             $aluna = new Aluno();
-            $aluna->setNome('Aluna '.$i);
+            $aluna->setNome(AlunosNomeList::getRandomItem());
             $aluna->setEscola($escola);
 
             $educador = new Educador();

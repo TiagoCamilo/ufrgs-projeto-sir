@@ -8,7 +8,9 @@
 <div class="row">
     <div class="col-sm-2">
         <div class="card" >
-            <img class="card-img-top" src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}" alt="Card image cap">
+            <a href="{{ path('aluno_image',{id:register.id}) }}">
+                <img class="card-img-top" src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}" alt="Card image cap">
+            </a>
         </div>
     </div>
     <div class="col-sm-4">
@@ -27,7 +29,7 @@
                 <h5 class="card-title">Adicionar</h5>
                 <a href="#" class="card-link"></a>
                 <a href="{{ path('comentario_new') }}" class="card-link"><i class="fas fa-camera-retro"></i> Fotos/Vídeos</a>
-                <a href="#" class="card-link"><i class="fas fa-file"></i> Acompanhamento</a>
+                <a href="{{ path('acompanhamento_new') }}" class="card-link"><i class="fas fa-file"></i> Acompanhamento</a>
                 <a href="#" class="card-link"><i class="fas fa-file-powerpoint"></i> Parecer</a>
                 {% for formulario in form_repository.findAll() %}
                     <a href="#" class="card-link"><i class="fas fa-file-signature"></i> {{ formulario.nome }}</a>
@@ -40,26 +42,44 @@
     </div>
 </div>
 
-    <div class="card text-center">
-        <div class="card-header">
-            <ul class="nav nav-pills card-header-pills">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Tudo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Fotos/Vídeos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Acompanhamentos</a>
-                </li>
-            </ul>
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
+<div class="card text-center">
+    <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item">
+                <a id='all' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id} ) }}">Tudo</a>
+            </li>
+            <li class="nav-item">
+                <a id='midia' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id, timeline_element:'midia'} ) }}">Fotos/Vídeos</a>
+            </li>
+            <li class="nav-item">
+                <a id='acompanhamento' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id, timeline_element:'acompanhamento'} ) }}">Acompanhamentos</a>
+            </li>
+            <li class="nav-item">
+                <a id='parecer' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id, timeline_element:'parecer'} ) }}">Pareceres</a>
+            </li>
+        </ul>
     </div>
+    <div class="card-body" style="text-align: left;">
+        {% for timelineElement in timelineElements %}
+            {% if timelineElement is Comentario %}
+                {% include 'perfil_aluno/_card_comentario.html.twig' with {timelineElement: timelineElement} %}
+            {% endif %}
+            {% if timelineElement is Acompanhamento %}
+                {% include 'perfil_aluno/_card_acompanhamento.html.twig' with {timelineElement: timelineElement} %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
 
 
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function() {
+            menuSelected = "{{ app.request.get('timeline_element')|default('all') }}";
+            $('#'+menuSelected).addClass('active');
+        });
+    </script>
 {% endblock %}

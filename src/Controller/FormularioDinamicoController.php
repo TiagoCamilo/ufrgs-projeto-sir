@@ -89,7 +89,6 @@ class FormularioDinamicoController extends AbstractController
             'entityName' => $this->entityName,
             'template' => (array) $this->getTemplateManager(),
             'formId' => $request->get('form_id'),
-
         ]);
     }
 

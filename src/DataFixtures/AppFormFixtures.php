@@ -59,7 +59,6 @@ class AppFormFixtures extends Fixture
         $agrupadorIntervencoes->addFormularioCampo($this->newCampoTextArea('Ações já existentes', 1, 1, $formulario, $agrupadorIntervencoes));
         $agrupadorIntervencoes->addFormularioCampo($this->newCampoTextArea('Ações a serem desenvolvidas', 2, 1, $formulario, $agrupadorIntervencoes));
 
-
         $manager->persist($agrupadorIdentificacao);
         $manager->persist($agrupadorHistorico);
         $manager->persist($agrupadorAnacronismos);

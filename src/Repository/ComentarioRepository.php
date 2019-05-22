@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Comentario[]    findAll()
  * @method Comentario[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ComentarioRepository extends ServiceEntityRepository
+class ComentarioRepository extends AbstractRepository
 {
     public function __construct(RegistryInterface $registry)
     {

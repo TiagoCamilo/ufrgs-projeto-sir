@@ -15,7 +15,7 @@
                 <div class="card-footer">
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
-                    <button class="btn btn-primary">{{ button_label|default('Salvar') }}</button>
+{#                    <button class="btn btn-primary">{{ button_label|default('Salvar') }}</button>#}
                     <a class="btn btn-success float-right" href="{{ path(entityName~'_index') }}">Voltar</a>
                     {{ form_end(form) }}
 
@@ -23,4 +23,15 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function() {
+            $('#aluno_file_file').change(function(){
+                $('form').submit();
+            });
+        });
+    </script>
 {% endblock %}

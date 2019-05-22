@@ -14,7 +14,6 @@ class AcompanhamentoType extends AbstractType
     {
         $builder
             ->add('descricao', TextareaType::class, ['attr' => ['class' => 'ckeditor']])
-            ->add('aluno')
         ;
     }
 

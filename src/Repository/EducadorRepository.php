@@ -6,7 +6,7 @@ use App\Entity\Educador;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class EducadorRepository extends ServiceEntityRepository
+class EducadorRepository extends AbstractRepository
 {
     public function __construct(RegistryInterface $registry)
     {
