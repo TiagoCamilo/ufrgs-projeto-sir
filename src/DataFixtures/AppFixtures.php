@@ -40,11 +40,11 @@ class AppFixtures extends Fixture
             $escola->setEndereco('Endereco Escola'.$i);
 
             $aluno = new Aluno();
-            $aluno->setNome('Aluno '.$i);
+            $aluno->setNome(NomeList::getRandomItem());
             $aluno->setEscola($escola);
 
             $aluna = new Aluno();
-            $aluna->setNome('Aluna '.$i);
+            $aluna->setNome(NomeList::getRandomItem());
             $aluna->setEscola($escola);
 
             $educador = new Educador();
