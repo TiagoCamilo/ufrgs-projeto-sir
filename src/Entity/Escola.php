@@ -39,9 +39,15 @@ class Escola implements IEntity
      */
     private $educadores;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Aluno", mappedBy="escola")
+     */
+    private $alunos;
+
     public function __construct()
     {
         $this->educadores = new ArrayCollection();
+        $this->alunos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -114,5 +120,36 @@ class Escola implements IEntity
     public function __toString(): string
     {
         return $this->getNome();
+    }
+
+    /**
+     * @return Collection|Aluno[]
+     */
+    public function getAlunos(): Collection
+    {
+        return $this->alunos;
+    }
+
+    public function addAluno(Aluno $aluno): self
+    {
+        if (!$this->alunos->contains($aluno)) {
+            $this->alunos[] = $aluno;
+            $aluno->setEscola($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAluno(Aluno $aluno): self
+    {
+        if ($this->alunos->contains($aluno)) {
+            $this->alunos->removeElement($aluno);
+            // set the owning side to null (unless already changed)
+            if ($aluno->getEscola() === $this) {
+                $aluno->setEscola(null);
+            }
+        }
+
+        return $this;
     }
 }

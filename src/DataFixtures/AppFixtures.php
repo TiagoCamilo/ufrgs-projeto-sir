@@ -41,6 +41,11 @@ class AppFixtures extends Fixture
 
             $aluno = new Aluno();
             $aluno->setNome('Aluno '.$i);
+            $aluno->setEscola($escola);
+
+            $aluna = new Aluno();
+            $aluna->setNome('Aluna '.$i);
+            $aluna->setEscola($escola);
 
             $educador = new Educador();
             $educador->setAppUser($user);
@@ -58,6 +63,7 @@ class AppFixtures extends Fixture
             $manager->persist($user);
             $manager->persist($escola);
             $manager->persist($aluno);
+            $manager->persist($aluna);
             $manager->persist($educador);
             $manager->persist($comenario);
         }

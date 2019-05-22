@@ -17,6 +17,7 @@ class AlunoType extends AbstractType
             ->add('data_nascimento', DateType::class, [
                 'widget' => 'single_text',
             ])
+            ->add('escola')
         ;
     }
 

@@ -46,6 +46,12 @@ class Aluno implements IEntity
      */
     private $acompanhamentos;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Escola", inversedBy="alunos")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $escola;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
@@ -156,6 +162,18 @@ class Aluno implements IEntity
                 $acompanhamento->setAluno(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEscola(): ?Escola
+    {
+        return $this->escola;
+    }
+
+    public function setEscola(?Escola $escola): self
+    {
+        $this->escola = $escola;
 
         return $this;
     }
