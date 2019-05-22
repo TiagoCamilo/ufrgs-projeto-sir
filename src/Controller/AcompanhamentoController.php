@@ -7,11 +7,13 @@ use App\Entity\IEntity;
 use App\Form\AcompanhamentoType;
 use App\Helpers\TemplateManager;
 use App\Repository\AcompanhamentoRepository;
+use App\Repository\AlunoRepository;
 use App\Service\PdfGenerator;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -20,12 +22,20 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class AcompanhamentoController extends AppAbstractController
 {
-    public function __construct(AcompanhamentoRepository $entityRepository)
+    private $aluno;
+
+    public function __construct(AcompanhamentoRepository $entityRepository, SessionInterface $session, AlunoRepository $alunoRepository)
     {
         $this->entity = new Acompanhamento();
         $this->entityRepository = $entityRepository;
         $this->entityName = 'acompanhamento';
         $this->formType = AcompanhamentoType::class;
+
+
+        if (null !== $session->get('aluno_id')) {
+            $this->aluno = $alunoRepository->find($session->get('aluno_id'));
+        }
+
     }
 
     /**
@@ -48,11 +58,16 @@ class AcompanhamentoController extends AppAbstractController
             // TODO: Isolar em metodo dependente de UserInterface?
             $this->entity->setEducador($user->getEducador());
 
+            $this->entity->setAluno($this->aluno);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($this->entity);
             $em->flush();
 
-            return $this->redirectToRoute("{$this->entityName}_index");
+            //return $this->redirectToRoute("{$this->entityName}_index");
+            return $this->redirectToRoute('perfil_aluno_show', [
+                'id' => $this->aluno->getId(),
+            ]);
         }
 
         return $this->render($this->getTemplateManager()->getNew(), [
