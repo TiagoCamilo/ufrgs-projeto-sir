@@ -63,9 +63,11 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    {% if app.session.get('aluno_id') is defined %}
+                    {% if app.session.get('aluno_id') is defined and app.session.get('aluno_id') != null %}
                         <li class="nav-item ml-auto">
-                            <a class="nav-link" href="{{ path('perfil_aluno_show', {id: app.session.get('aluno_id')|default(0)} ) }}">{{ app.session.get('aluno_nome') }}</a>
+                            <a class="nav-link" style="color: #00ff00" href="{{ path('perfil_aluno_show', {id: app.session.get('aluno_id')|default(0)} ) }}">
+                                <i class="fas fa-id-card"></i> {{ app.session.get('aluno_nome') }}
+                            </a>
                         </li>
                     {% endif %}
                     <li class="nav-item ml-auto">
