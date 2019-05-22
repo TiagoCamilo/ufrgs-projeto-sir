@@ -60,7 +60,7 @@
             </ul>
         </div>
         <div class="card-body" style="text-align: left;">
-            {% for comentario in register.comentarios %}
+            {% for comentario in register.getTimelineElements() %}
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-camera-retro"></i> Foto/Vídeos
@@ -68,7 +68,7 @@
                     <div class="card-body">
                         <h6 class="card-title">De: {{ comentario.educador.nome }}</h6>
                         <p class="card-text"><small class="text-muted">{{ comentario.dataHora ? comentario.dataHora|date('d/m/Y H:i:s') : '' }}</small></p>
-                        <p class="card-text">{{ comentario.descricao }}</p>
+                        <p class="card-text">{{ comentario.descricao|raw }}</p>
 
                     </div>
                     {% if comentario.file is defined %}

@@ -178,4 +178,22 @@ class Aluno implements IEntity
 
         return $this;
     }
+
+    public function getTimelineElements(): Collection
+    {
+        $comentarios = $this->getComentarios();
+        $acompanhamentos = $this->getAcompanhamentos();
+
+        $elements = new ArrayCollection(
+            array_merge($comentarios->toArray(), $acompanhamentos->toArray())
+        );
+
+        $iterator = $elements->getIterator();
+        $iterator->uasort(function ($a, $b) {
+            return ($a->getDataHora() > $b->getDataHora()) ? -1 : 1;
+        });
+        $collection = new ArrayCollection(iterator_to_array($iterator));
+
+        return $collection;
+    }
 }
