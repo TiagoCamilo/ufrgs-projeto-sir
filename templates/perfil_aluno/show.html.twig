@@ -52,12 +52,37 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Acompanhamentos</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pareceres</a>
+                </li>
             </ul>
         </div>
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="card-body" style="text-align: left;">
+            {% for comentario in register.comentarios %}
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fas fa-camera-retro"></i> Foto/Vídeos
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">De: {{ comentario.educador.nome }}</h6>
+                        <p class="card-text"><small class="text-muted">{{ comentario.dataHora ? comentario.dataHora|date('d/m/Y H:i:s') : '' }}</small></p>
+                        <p class="card-text">{{ comentario.descricao }}</p>
+
+                    </div>
+                    {% if comentario.file is defined %}
+                        <div class="col-lg-7 mx-auto">
+                            {% if(comentario.file.extension =="mp4") %}
+                                <video width="100%" controls>
+                                    <source src="{{ asset('uploads/' ~ comentario.file.filename  ) }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            {% else %}
+                                <img  class="card-img-bottom" src="{{ asset('uploads/' ~ comentario.file.filename  ) }}" alt="Arquivo do comentário">
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
         </div>
     </div>
 

@@ -31,6 +31,7 @@ class Aluno implements IEntity
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="aluno", orphanRemoval=true)
+     * @ORM\OrderBy({"id"="desc"})
      */
     private $comentarios;
 

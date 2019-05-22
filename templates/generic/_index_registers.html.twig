@@ -16,7 +16,7 @@
             {% endfor %}
             <td>
                 {% if(actionList.pdf is defined and actionList.pdf == true) %}
-                    <a class="btn btn-primary" href="{{ path(entityName~'_report_pdf', {'id': listAttr.Id}) }}">PDF</a>
+                    <a class="btn btn-primary"  target="_blank" href="{{ path(entityName~'_report_pdf', {'id': listAttr.Id}) }}">PDF</a>
                 {% endif %}
                 {% if(actionList.image is defined and actionList.image == true) %}
                     <a class="btn btn-primary" href="{{ path(entityName~'_image', {'id': listAttr.Id}) }}">Foto</a>
