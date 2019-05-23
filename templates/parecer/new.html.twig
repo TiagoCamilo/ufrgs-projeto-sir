@@ -1,11 +1,21 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}New Parecer{% endblock %}
+{% extends 'generic/new.html.twig' %}
 
 {% block body %}
-    <h1>Create new Parecer</h1>
+    {{ parent() }}
+    {% block timeline %}
+{#        {{ render(controller(#}
+{#            'App\\Controller\\TimelineController::index'#}
+{#        )) }}#}
+    {% endblock %}
+{% endblock %}
 
-    {{ include('parecer/_form.html.twig') }}
-
-    <a href="{{ path('parecer_index') }}">back to list</a>
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/ckeditor/adapters/jquery.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('textarea.ckeditor').ckeditor();
+        });
+    </script>
 {% endblock %}

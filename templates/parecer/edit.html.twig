@@ -1,13 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'generic/edit.html.twig' %}
 
-{% block title %}Edit Parecer{% endblock %}
-
-{% block body %}
-    <h1>Edit Parecer</h1>
-
-    {{ include('parecer/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('parecer_index') }}">back to list</a>
-
-    {{ include('parecer/_delete_form.html.twig') }}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/ckeditor/adapters/jquery.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('textarea.ckeditor').ckeditor();
+        });
+    </script>
 {% endblock %}

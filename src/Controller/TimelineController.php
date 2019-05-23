@@ -9,7 +9,6 @@
 namespace App\Controller;
 
 use App\Repository\AlunoRepository;
-use App\Repository\ComentarioRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;

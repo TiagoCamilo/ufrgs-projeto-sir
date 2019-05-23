@@ -33,7 +33,7 @@
                 <a href="#" class="card-link"></a>
                 <a href="{{ path('comentario_new') }}" class="card-link"><i class="fas fa-camera-retro"></i> Fotos/Vídeos</a>
                 <a href="{{ path('acompanhamento_new') }}" class="card-link"><i class="fas fa-file"></i> Acompanhamento</a>
-                <a href="#" class="card-link"><i class="fas fa-file-powerpoint"></i> Parecer</a>
+                <a href="{{ path('parecer_new') }}" class="card-link"><i class="fas fa-file-powerpoint"></i> Parecer</a>
                 {% for formulario in form_repository.findAll() %}
                     <a href="#" class="card-link"><i class="fas fa-file-signature"></i> {{ formulario.nome }}</a>
                 {%  endfor %}

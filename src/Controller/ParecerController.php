@@ -3,94 +3,114 @@
 namespace App\Controller;
 
 use App\Entity\Parecer;
+use App\Entity\IEntity;
 use App\Form\ParecerType;
+use App\Helpers\TemplateManager;
 use App\Repository\ParecerRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\AlunoRepository;
+use App\Service\PdfGenerator;
+use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/parecer")
  */
-class ParecerController extends AbstractController
+class ParecerController extends AppAbstractController
 {
-    /**
-     * @Route("/", name="parecer_index", methods={"GET"})
-     */
-    public function index(ParecerRepository $parecerRepository): Response
+    private $aluno;
+
+    public function __construct(ParecerRepository $entityRepository, SessionInterface $session, AlunoRepository $alunoRepository)
     {
-        return $this->render('parecer/index.html.twig', [
-            'parecers' => $parecerRepository->findAll(),
-        ]);
-    }
+        $this->entity = new Parecer();
+        $this->entityRepository = $entityRepository;
+        $this->entityName = 'parecer';
+        $this->formType = ParecerType::class;
 
-    /**
-     * @Route("/new", name="parecer_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $parecer = new Parecer();
-        $form = $this->createForm(ParecerType::class, $parecer);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($parecer);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('parecer_index');
+        if (null !== $session->get('aluno_id')) {
+            $this->aluno = $alunoRepository->find($session->get('aluno_id'));
         }
 
-        return $this->render('parecer/new.html.twig', [
-            'parecer' => $parecer,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
-     * @Route("/{id}", name="parecer_show", methods={"GET"})
+     * @Route("/{page}/page", name="parecer_index", methods="GET|POST", defaults={"page" = 1})
      */
-    public function show(Parecer $parecer): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        return $this->render('parecer/show.html.twig', [
-            'parecer' => $parecer,
-        ]);
+        return parent::index($paginator, $request);
     }
 
     /**
-     * @Route("/{id}/edit", name="parecer_edit", methods={"GET","POST"})
+     * @Route("/new", name="parecer_new", methods="GET|POST")
      */
-    public function edit(Request $request, Parecer $parecer): Response
+    public function new(Request $request, UserInterface $user): Response
     {
-        $form = $this->createForm(ParecerType::class, $parecer);
+        $form = $this->createForm($this->formType, $this->entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            // TODO: Isolar em metodo dependente de UserInterface?
+            $this->entity->setEducador($user->getEducador());
 
-            return $this->redirectToRoute('parecer_index', [
-                'id' => $parecer->getId(),
+            $this->entity->setAluno($this->aluno);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($this->entity);
+            $em->flush();
+
+            //return $this->redirectToRoute("{$this->entityName}_index");
+            return $this->redirectToRoute('perfil_aluno_profile', [
+                'id' => $this->aluno->getId(),
             ]);
         }
 
-        return $this->render('parecer/edit.html.twig', [
-            'parecer' => $parecer,
+        return $this->render($this->getTemplateManager()->getNew(), [
             'form' => $form->createView(),
+            'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="parecer_delete", methods={"DELETE"})
+     * @Route("/{id}", name="parecer_show", methods="GET")
+     * @ParamConverter("entity", class="App\Entity\Parecer")
      */
-    public function delete(Request $request, Parecer $parecer): Response
+    public function show(IEntity $entity): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$parecer->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($parecer);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('parecer_index');
+        return parent::show($entity);
     }
+
+    /**
+     * @Route("/{id}/edit", name="parecer_edit", methods="GET|POST")
+     * @ParamConverter("entity", class="App\Entity\Parecer")
+     */
+    public function edit(Request $request, IEntity $entity): Response
+    {
+        return parent::edit($request, $entity);
+    }
+
+    /**
+     * @Route("/{id}", name="parecer_delete", methods="DELETE")
+     * @ParamConverter("entity", class="App\Entity\Parecer")
+     */
+    public function delete(Request $request, IEntity $entity): Response
+    {
+        return parent::delete($request, $entity);
+    }
+
+    protected function getTemplateManager(): TemplateManager
+    {
+        $templateManager = parent::getTemplateManager();
+        $templateManager->setNew('parecer/new.html.twig');
+        $templateManager->setEdit('parecer/edit.html.twig');
+
+        return $templateManager;
+    }
+
 }

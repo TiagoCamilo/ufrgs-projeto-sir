@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ParecerRepository")
  */
-class Parecer
+class Parecer implements IEntity
 {
     /**
      * @ORM\Id()
@@ -38,6 +38,15 @@ class Parecer
      */
     private $aluno;
 
+    /**
+     * Parecer constructor.
+     */
+    public function __construct()
+    {
+        $this->data_hora = new \DateTime();
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -57,7 +66,7 @@ class Parecer
 
     public function getDescricao()
     {
-        return $this->descricao;
+        return !empty($this->descricao) ? stream_get_contents($this->descricao) : $this->descricao;
     }
 
     public function setDescricao($descricao): self

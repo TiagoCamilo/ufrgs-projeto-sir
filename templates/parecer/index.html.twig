@@ -1,37 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Parecer index{% endblock %}
+{% block title %}Listagem {{ entityName|capitalize }}{% endblock %}
+
+{% set registerListAttr = [] %}
+{% for register in registers %}
+    {% set registerListAttr = registerListAttr|merge ([{
+        'Id': register.id,
+        'Data Hora': register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '',
+        'Aluno' : register.aluno.nome,
+    }]) %}
+{% endfor %}
+
+{% set actionList = {
+    'new': false,
+    'show': true,
+    'edit': true,
+    'delete': true,
+    'pdf': false,
+} %}
 
 {% block body %}
-    <h1>Parecer index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Data_hora</th>
-                <th>Descricao</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for parecer in parecers %}
-            <tr>
-                <td>{{ parecer.id }}</td>
-                <td>{{ parecer.dataHora ? parecer.dataHora|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ parecer.descricao }}</td>
-                <td>
-                    <a href="{{ path('parecer_show', {'id': parecer.id}) }}">show</a>
-                    <a href="{{ path('parecer_edit', {'id': parecer.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('parecer_new') }}">Create new</a>
+    {% include 'generic/_body_title.html.twig' with {title: 'Listagem - '~entityName|capitalize} %}
+    {{ include(template.indexActions) }}
+    {{ include(template.indexFooter) }}
 {% endblock %}

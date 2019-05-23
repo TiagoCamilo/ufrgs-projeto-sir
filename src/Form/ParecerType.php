@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Parecer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,10 +13,8 @@ class ParecerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('data_hora')
-            ->add('descricao')
-            ->add('educador')
-            ->add('aluno')
+            ->add('descricao', TextareaType::class, ['attr' => ['class' => 'ckeditor']])
+
         ;
     }
 

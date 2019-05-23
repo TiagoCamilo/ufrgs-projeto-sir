@@ -3,28 +3,25 @@
 {% block title %}Parecer{% endblock %}
 
 {% block body %}
-    <h1>Parecer</h1>
+    {% include 'generic/_body_title.html.twig' with {title: entityName|capitalize} %}
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ parecer.id }}</td>
-            </tr>
-            <tr>
-                <th>Data_hora</th>
-                <td>{{ parecer.dataHora ? parecer.dataHora|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Descricao</th>
-                <td>{{ parecer.descricao }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ register.id }}</td>
+        </tr>
+        <tr>
+            <th>Data Hora</th>
+            <td>{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Descrição</th>
+            <td>{{ register.descricao | raw}}</td>
+        </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('parecer_index') }}">back to list</a>
+    {{ include(template.showActions) }}
 
-    <a href="{{ path('parecer_edit', {'id': parecer.id}) }}">edit</a>
-
-    {{ include('parecer/_delete_form.html.twig') }}
 {% endblock %}
