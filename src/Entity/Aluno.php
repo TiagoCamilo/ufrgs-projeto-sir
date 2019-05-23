@@ -44,6 +44,7 @@ class Aluno implements IEntity
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Acompanhamento", mappedBy="aluno", orphanRemoval=true)
+     * @ORM\OrderBy({"id"="desc"})
      */
     private $acompanhamentos;
 
@@ -55,6 +56,7 @@ class Aluno implements IEntity
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Parecer", mappedBy="aluno", orphanRemoval=true)
+     * @ORM\OrderBy({"id"="desc"})
      */
     private $pareceres;
 

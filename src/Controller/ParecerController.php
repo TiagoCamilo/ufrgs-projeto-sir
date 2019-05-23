@@ -113,4 +113,21 @@ class ParecerController extends AppAbstractController
         return $templateManager;
     }
 
+
+    /**
+     * @Route("/{id}/pdf", name="parecer_report_pdf", methods="GET")
+     * @ParamConverter("entity", class="App\Entity\Parecer")
+     */
+    public function reportPdf(IEntity $entity, PdfGenerator $pdfGenerator): Response
+    {
+        $html = $this->renderView('parecer/report_pdf.html.twig', [
+            'register' => $entity,
+            'title' => 'Formulário Parecer',
+        ]);
+
+        $pdfGenerator->setStyle('report_pdf.css');
+        $pdfGenerator->setContent($html);
+
+        return $pdfGenerator->generate();
+    }
 }

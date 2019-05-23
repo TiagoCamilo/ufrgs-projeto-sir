@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Parecer[]    findAll()
  * @method Parecer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ParecerRepository extends ServiceEntityRepository
+class ParecerRepository extends AbstractRepository
 {
     public function __construct(RegistryInterface $registry)
     {
