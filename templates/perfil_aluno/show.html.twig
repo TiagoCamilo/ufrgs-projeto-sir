@@ -15,9 +15,10 @@
     </div>
     <div class="col-sm-4">
         <div class="card" >
+            <div class="card-header">
+                Informações:
+            </div>
             <div class="card-body">
-                <h5 class="card-title">Informações</h5>
-
                 <div>Nome: {{ register.nome }}</div>
                 <div>Data Nascimento: {{ register.dataNascimento ? register.dataNascimento|date('d/m/Y') : '-' }}</div>
             </div>
@@ -25,8 +26,10 @@
     </div>
     <div class="col-sm-6">
         <div class="card" >
+            <div class="card-header">
+                <i class="fas fa-"></i> Adicionar:
+            </div>
             <div class="card-body">
-                <h5 class="card-title">Adicionar</h5>
                 <a href="#" class="card-link"></a>
                 <a href="{{ path('comentario_new') }}" class="card-link"><i class="fas fa-camera-retro"></i> Fotos/Vídeos</a>
                 <a href="{{ path('acompanhamento_new') }}" class="card-link"><i class="fas fa-file"></i> Acompanhamento</a>
