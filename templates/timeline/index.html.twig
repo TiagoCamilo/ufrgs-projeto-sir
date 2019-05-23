@@ -21,7 +21,7 @@
 <script>
 
     function copyValue(data){
-        editor = CKEDITOR.instances.acompanhamento_descricao;
+        editor = CKEDITOR.instances.{{ entity }}_descricao;
         editor.setData(editor.getData()+data);
     }
 
