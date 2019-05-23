@@ -189,9 +189,11 @@ class Aluno implements IEntity
     {
         $comentarios = $this->getComentarios();
         $acompanhamentos = $this->getAcompanhamentos();
+        $pareceres = $this->getPareceres();
+
 
         $elements = new ArrayCollection(
-            array_merge($comentarios->toArray(), $acompanhamentos->toArray())
+            array_merge($comentarios->toArray(), $acompanhamentos->toArray(), $pareceres->toArray())
         );
 
         $iterator = $elements->getIterator();

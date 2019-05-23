@@ -1,0 +1,9 @@
+{% if timelineElement is Comentario %}
+    {% include 'perfil_aluno/_card_comentario.html.twig' with {register: timelineElement} only %}
+{% endif %}
+{% if timelineElement is Acompanhamento %}
+    {% include 'perfil_aluno/_card_acompanhamento.html.twig' with {register: timelineElement} only  %}
+{% endif %}
+{% if timelineElement is Parecer %}
+    {% include 'perfil_aluno/_card_parecer.html.twig' with {register: timelineElement} only  %}
+{% endif %}

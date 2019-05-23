@@ -1,6 +1,6 @@
 {% if timelineElement is Comentario %}
-    {% include 'timeline/_timeline_item_comentario.html.twig' with {register: timelineElement} %}
+    {% include 'timeline/_timeline_item_comentario.html.twig' with {register: timelineElement} only %}
 {% endif %}
 {% if timelineElement is Acompanhamento %}
-    {% include 'timeline/_timeline_item_acompanhamento.html.twig' with {register: timelineElement} %}
+    {% include 'timeline/_timeline_item_acompanhamento.html.twig' with {register: timelineElement} only %}
 {% endif %}

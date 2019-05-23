@@ -6,7 +6,7 @@
                 <ul class="timeline timeline-horizontal">
                     {% for timelineElement in timelineElements %}
                         <li class="timeline-item">
-                            {% include 'timeline/_timeline_item.html.twig' with {timelineElement: timelineElement} %}
+                            {% include 'timeline/_timeline_item.html.twig' with {timelineElement: timelineElement} only %}
                         </li>
                     {% endfor %}
 
