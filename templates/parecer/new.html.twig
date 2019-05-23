@@ -1,0 +1,22 @@
+{% extends 'generic/new.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    {% block timeline %}
+        {{ render(controller(
+            'App\\Controller\\TimelineController::index', {'entity':'parecer'}
+        )) }}
+    {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/ckeditor-classic/ckeditor.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/ckeditor-classic/adapters/jquery.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('textarea.ckeditor').ckeditor();
+
+        });
+    </script>
+{% endblock %}

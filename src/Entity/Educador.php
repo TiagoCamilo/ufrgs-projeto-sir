@@ -39,9 +39,15 @@ class Educador implements IEntity
      */
     private $escola;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Parecer", mappedBy="educador")
+     */
+    private $pareceres;
+
     public function __construct()
     {
         $this->acompanhamentos = new ArrayCollection();
+        $this->pareceres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,6 +123,37 @@ class Educador implements IEntity
     public function setEscola(?Escola $escola): self
     {
         $this->escola = $escola;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Parecer[]
+     */
+    public function getPareceres(): Collection
+    {
+        return $this->pareceres;
+    }
+
+    public function addParecere(Parecer $parecere): self
+    {
+        if (!$this->pareceres->contains($parecere)) {
+            $this->pareceres[] = $parecere;
+            $parecere->setEducador($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParecere(Parecer $parecere): self
+    {
+        if ($this->pareceres->contains($parecere)) {
+            $this->pareceres->removeElement($parecere);
+            // set the owning side to null (unless already changed)
+            if ($parecere->getEducador() === $this) {
+                $parecere->setEducador(null);
+            }
+        }
 
         return $this;
     }

@@ -9,8 +9,8 @@
 namespace App\Controller;
 
 use App\Repository\AlunoRepository;
-use App\Repository\ComentarioRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -31,12 +31,15 @@ class TimelineController extends AbstractController
     }
 
     /**
-     * @Route("/", name="timeline_index")
+     * @Route("/{entity}", name="timeline_index")
      */
-    public function index()
+    public function index(string $entity): Response
     {
-        $registers = $this->aluno->getComentarios();
+        $timelineElements = $this->aluno->getComentariosAcompanhamentos();
 
-        return $this->render('others/_timeline.html.twig', ['registers' => $registers]);
+        return $this->render('timeline/index.html.twig', [
+            'timelineElements' => $timelineElements,
+            'entity' => $entity
+        ]);
     }
 }

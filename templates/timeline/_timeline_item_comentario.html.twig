@@ -1,0 +1,40 @@
+<div class="timeline-badge success"><i class="fas fa-camera-retro"></i></div>
+<div class="timeline-panel" style="margin-top: 50px">
+    <div class="timeline-heading">
+        <h6 class="timeline-title">
+            De: {{ register.educador.nome }}
+            <i class="cursor fas fa-2x fa-paste float-right" onclick="copyComentario({{ register.id}})"></i>
+        </h6>
+        <p>
+            <small class="text-muted"><i class="fas fa-clock"></i>
+                {{ register.dataHora|date('d/m/Y H:i:s') }}
+            </small>
+        </p>
+    </div>
+    <div class="timeline-body">
+        <div id="register_comentario_{{ register.id }}">
+            {{ register.descricao|raw }}
+        </div>
+        {% if(register.file is defined and register.file != null) %}
+            <div>
+                {% if(register.file.extension =="mp4") %}
+                    <video class="timeline-midia" controls>
+                        <source src="{{ asset('uploads/' ~ register.file.filename  ) }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                {% else %}
+                    <img class="timeline-midia" src="{{ asset('uploads/' ~ register.file.filename  ) }}" alt="Arquivo do comentário">
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+
+{% block javascripts %}
+    <script type="text/javascript">
+        copyComentario = function(id){
+            copyValue($('#register_comentario_'+id).html());
+        }
+    </script>
+{% endblock %}

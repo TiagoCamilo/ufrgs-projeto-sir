@@ -1,0 +1,11 @@
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-file-powerpoint"></i> Parecer
+    </div>
+    <div class="card-body">
+        <h6 class="card-title">De: {{ register.educador.nome }}</h6>
+        <p class="card-text"><small class="text-muted">{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</small></p>
+        <p class="card-text">{{ register.descricao|raw }}</p>
+
+    </div>
+</div>

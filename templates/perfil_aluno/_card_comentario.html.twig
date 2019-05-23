@@ -3,20 +3,20 @@
         <i class="fas fa-camera-retro"></i> Foto/Vídeos
     </div>
     <div class="card-body">
-        <h6 class="card-title">De: {{ timelineElement.educador.nome }}</h6>
-        <p class="card-text"><small class="text-muted">{{ timelineElement.dataHora ? timelineElement.dataHora|date('d/m/Y H:i:s') : '' }}</small></p>
-        <p class="card-text">{{ timelineElement.descricao }}</p>
+        <h6 class="card-title">De: {{ register.educador.nome }}</h6>
+        <p class="card-text"><small class="text-muted">{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</small></p>
+        <p class="card-text">{{ register.descricao }}</p>
 
     </div>
-    {% if timelineElement.file is defined %}
+    {% if register.file is defined %}
         <div class="col-lg-7 mx-auto">
-            {% if(timelineElement.file.extension =="mp4") %}
+            {% if(register.file.extension =="mp4") %}
                 <video width="100%" controls>
-                    <source src="{{ asset('uploads/' ~ timelineElement.file.filename  ) }}" type="video/mp4">
+                    <source src="{{ asset('uploads/' ~ register.file.filename  ) }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             {% else %}
-                <img  class="card-img-bottom" src="{{ asset('uploads/' ~ timelineElement.file.filename  ) }}" alt="Arquivo do comentário">
+                <img  class="card-img-bottom" src="{{ asset('uploads/' ~ register.file.filename  ) }}" alt="Arquivo do comentário">
             {% endif %}
         </div>
     {% endif %}

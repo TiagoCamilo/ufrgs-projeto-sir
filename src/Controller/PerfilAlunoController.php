@@ -46,8 +46,11 @@ class PerfilAlunoController extends AppAbstractController
             case 'acompanhamento':
                 $timelineElements = $entity->getAcompanhamentos();
                 break;
+            case 'parecer':
+                $timelineElements = $entity->getPareceres();
+                break;
             default:
-                $timelineElements = $entity->getComentarios();
+                $timelineElements = $entity->getTimelineElements();
         }
 
         return $this->render("{$this->entityName}/show.html.twig", [

@@ -44,6 +44,7 @@ class Aluno implements IEntity
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Acompanhamento", mappedBy="aluno", orphanRemoval=true)
+     * @ORM\OrderBy({"id"="desc"})
      */
     private $acompanhamentos;
 
@@ -53,10 +54,17 @@ class Aluno implements IEntity
      */
     private $escola;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Parecer", mappedBy="aluno", orphanRemoval=true)
+     * @ORM\OrderBy({"id"="desc"})
+     */
+    private $pareceres;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
         $this->acompanhamentos = new ArrayCollection();
+        $this->pareceres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -183,6 +191,26 @@ class Aluno implements IEntity
     {
         $comentarios = $this->getComentarios();
         $acompanhamentos = $this->getAcompanhamentos();
+        $pareceres = $this->getPareceres();
+
+
+        $elements = new ArrayCollection(
+            array_merge($comentarios->toArray(), $acompanhamentos->toArray(), $pareceres->toArray())
+        );
+
+        $iterator = $elements->getIterator();
+        $iterator->uasort(function ($a, $b) {
+            return ($a->getDataHora() > $b->getDataHora()) ? -1 : 1;
+        });
+        $collection = new ArrayCollection(iterator_to_array($iterator));
+
+        return $collection;
+    }
+
+    public function getComentariosAcompanhamentos(): Collection
+    {
+        $comentarios = $this->getComentarios();
+        $acompanhamentos = $this->getAcompanhamentos();
 
         $elements = new ArrayCollection(
             array_merge($comentarios->toArray(), $acompanhamentos->toArray())
@@ -195,5 +223,36 @@ class Aluno implements IEntity
         $collection = new ArrayCollection(iterator_to_array($iterator));
 
         return $collection;
+    }
+
+    /**
+     * @return Collection|Parecer[]
+     */
+    public function getPareceres(): Collection
+    {
+        return $this->pareceres;
+    }
+
+    public function addParecere(Parecer $parecere): self
+    {
+        if (!$this->pareceres->contains($parecere)) {
+            $this->pareceres[] = $parecere;
+            $parecere->setAluno($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParecere(Parecer $parecere): self
+    {
+        if ($this->pareceres->contains($parecere)) {
+            $this->pareceres->removeElement($parecere);
+            // set the owning side to null (unless already changed)
+            if ($parecere->getAluno() === $this) {
+                $parecere->setAluno(null);
+            }
+        }
+
+        return $this;
     }
 }
