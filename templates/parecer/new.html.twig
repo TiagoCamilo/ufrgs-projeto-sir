@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Parecer{% endblock %}
+
+{% block body %}
+    <h1>Create new Parecer</h1>
+
+    {{ include('parecer/_form.html.twig') }}
+
+    <a href="{{ path('parecer_index') }}">back to list</a>
+{% endblock %}

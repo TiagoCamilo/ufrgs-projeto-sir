@@ -53,10 +53,16 @@ class Aluno implements IEntity
      */
     private $escola;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Parecer", mappedBy="aluno", orphanRemoval=true)
+     */
+    private $pareceres;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
         $this->acompanhamentos = new ArrayCollection();
+        $this->pareceres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -195,5 +201,36 @@ class Aluno implements IEntity
         $collection = new ArrayCollection(iterator_to_array($iterator));
 
         return $collection;
+    }
+
+    /**
+     * @return Collection|Parecer[]
+     */
+    public function getPareceres(): Collection
+    {
+        return $this->pareceres;
+    }
+
+    public function addParecere(Parecer $parecere): self
+    {
+        if (!$this->pareceres->contains($parecere)) {
+            $this->pareceres[] = $parecere;
+            $parecere->setAluno($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParecere(Parecer $parecere): self
+    {
+        if ($this->pareceres->contains($parecere)) {
+            $this->pareceres->removeElement($parecere);
+            // set the owning side to null (unless already changed)
+            if ($parecere->getAluno() === $this) {
+                $parecere->setAluno(null);
+            }
+        }
+
+        return $this;
     }
 }
