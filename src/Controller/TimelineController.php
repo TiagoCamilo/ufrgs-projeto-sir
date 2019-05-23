@@ -34,8 +34,10 @@ class TimelineController extends AbstractController
      */
     public function index()
     {
-        $registers = $this->aluno->getComentarios();
+        $timelineElements = $this->aluno->getComentariosAcompanhamentos();
 
-        return $this->render('others/_timeline.html.twig', ['registers' => $registers]);
+        return $this->render('timeline/index.html.twig', [
+            'timelineElements' => $timelineElements,
+        ]);
     }
 }

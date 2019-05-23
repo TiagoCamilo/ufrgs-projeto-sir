@@ -1,0 +1,30 @@
+
+<div class="container">
+    <div class="row" >
+        <div class="col-md-12">
+            <div style="display:inline-block;width:100%;overflow-y:auto;">
+                <ul class="timeline timeline-horizontal">
+                    {% for timelineElement in timelineElements %}
+                        <li class="timeline-item">
+                            {% include 'timeline/_timeline_item.html.twig' with {timelineElement: timelineElement} %}
+                        </li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ asset('assets/js/jquery.js') }}"></script>
+
+<script>
+
+    function copyValue(data){
+        editor = CKEDITOR.instances.acompanhamento_descricao;
+        editor.setData(editor.getData()+data);
+    }
+
+
+
+</script>
