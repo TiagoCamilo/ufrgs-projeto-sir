@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Educador;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class EducadorRepository extends AbstractRepository

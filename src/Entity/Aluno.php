@@ -193,7 +193,6 @@ class Aluno implements IEntity
         $acompanhamentos = $this->getAcompanhamentos();
         $pareceres = $this->getPareceres();
 
-
         $elements = new ArrayCollection(
             array_merge($comentarios->toArray(), $acompanhamentos->toArray(), $pareceres->toArray())
         );

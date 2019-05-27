@@ -40,6 +40,11 @@ class Formulario implements IEntity
      */
     private $formularioRegistros;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Escola", inversedBy="formularios")
+     */
+    private $escola;
+
     public function __construct()
     {
         $this->formularioCampos = new ArrayCollection();
@@ -161,6 +166,18 @@ class Formulario implements IEntity
                 $formularioRegistro->setFormulario(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEscola(): ?Escola
+    {
+        return $this->escola;
+    }
+
+    public function setEscola(?Escola $escola): self
+    {
+        $this->escola = $escola;
 
         return $this;
     }

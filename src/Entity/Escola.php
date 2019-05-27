@@ -44,10 +44,16 @@ class Escola implements IEntity
      */
     private $alunos;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Formulario", mappedBy="escola")
+     */
+    private $formularios;
+
     public function __construct()
     {
         $this->educadores = new ArrayCollection();
         $this->alunos = new ArrayCollection();
+        $this->formularios = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -147,6 +153,37 @@ class Escola implements IEntity
             // set the owning side to null (unless already changed)
             if ($aluno->getEscola() === $this) {
                 $aluno->setEscola(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Formulario[]
+     */
+    public function getFormularios(): Collection
+    {
+        return $this->formularios;
+    }
+
+    public function addFormulario(Formulario $formulario): self
+    {
+        if (!$this->formularios->contains($formulario)) {
+            $this->formularios[] = $formulario;
+            $formulario->setEscola($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormulario(Formulario $formulario): self
+    {
+        if ($this->formularios->contains($formulario)) {
+            $this->formularios->removeElement($formulario);
+            // set the owning side to null (unless already changed)
+            if ($formulario->getEscola() === $this) {
+                $formulario->setEscola(null);
             }
         }
 

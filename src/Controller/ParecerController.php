@@ -31,11 +31,9 @@ class ParecerController extends AppAbstractController
         $this->entityName = 'parecer';
         $this->formType = ParecerType::class;
 
-
         if (null !== $session->get('aluno_id')) {
             $this->aluno = $alunoRepository->find($session->get('aluno_id'));
         }
-
     }
 
     /**
@@ -112,7 +110,6 @@ class ParecerController extends AppAbstractController
 
         return $templateManager;
     }
-
 
     /**
      * @Route("/{id}/pdf", name="parecer_report_pdf", methods="GET")

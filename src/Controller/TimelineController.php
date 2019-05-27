@@ -39,7 +39,7 @@ class TimelineController extends AbstractController
 
         return $this->render('timeline/index.html.twig', [
             'timelineElements' => $timelineElements,
-            'entity' => $entity
+            'entity' => $entity,
         ]);
     }
 }

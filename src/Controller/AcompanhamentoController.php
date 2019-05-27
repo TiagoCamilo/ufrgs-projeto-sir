@@ -31,11 +31,9 @@ class AcompanhamentoController extends AppAbstractController
         $this->entityName = 'acompanhamento';
         $this->formType = AcompanhamentoType::class;
 
-
         if (null !== $session->get('aluno_id')) {
             $this->aluno = $alunoRepository->find($session->get('aluno_id'));
         }
-
     }
 
     /**

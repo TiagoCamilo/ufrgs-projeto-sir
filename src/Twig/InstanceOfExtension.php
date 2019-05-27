@@ -9,7 +9,6 @@ use App\Entity\Parecer;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigTest;
 
-
 class InstanceOfExtension extends AbstractExtension
 {
     public function getTests()
@@ -18,7 +17,6 @@ class InstanceOfExtension extends AbstractExtension
             new TwigTest('Comentario', function (IEntity $entity) { return $entity instanceof Comentario; }),
             new TwigTest('Acompanhamento', function (IEntity $entity) { return $entity instanceof Acompanhamento; }),
             new TwigTest('Parecer', function (IEntity $entity) { return $entity instanceof Parecer; }),
-
         ];
     }
 }
