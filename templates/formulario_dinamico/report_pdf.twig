@@ -21,13 +21,43 @@
                 {% endif %}
 
                 {% set current_line = campo.linha %}
+                {% set row_openned = false %}
 
                 <tr>
             {% endif %}
 
-            <td style="vertical-align: top">
-                {% include 'others/_pdf_fields.html.twig' %}
-            </td>
+
+                    {% set proximo = false %}
+                    {% if agrupador.formularioCampos[loop.index] is defined and agrupador.formularioCampos[loop.index].linha == campo.linha %}
+
+                        {% set proximo = agrupador.formularioCampos[loop.index] %}
+
+                        {% if false == row_openned %}
+                            <td style="vertical-align: top; ">
+                            {% set row_openned = true %}
+                        {% endif %}
+
+
+                        {% include 'others/_pdf_fields.html.twig' %}
+
+                        {% if campo.coluna != proximo.coluna %}
+                            </td>
+                            {% set row_openned = false %}
+                        {% endif %}
+
+                    {% else %}
+                        {% if false == row_openned %}
+                            <td style="vertical-align: top;" >
+                            {% set row_openned = true %}
+                        {% endif %}
+
+                        {% include 'others/_pdf_fields.html.twig' %}
+
+                        {% if true == row_openned %}
+                            </td>
+                        {% endif %}
+                    {% endif %}
+
 
         {% endfor %}
         {# Fecha tr aberta da ultima iteracao #}
