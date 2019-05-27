@@ -59,6 +59,7 @@ class EscolaController extends AppAbstractController
     public function show(IEntity $entity): Response
     {
         $this->formularioModelo->createFormModels($entity);
+
         return parent::show($entity);
     }
 

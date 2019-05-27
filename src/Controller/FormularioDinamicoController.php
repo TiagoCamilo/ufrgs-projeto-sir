@@ -119,7 +119,6 @@ class FormularioDinamicoController extends AbstractController
         $formularioModelo = $formularioRepository->find($request->get('form_id'));
 
         if ($request->isMethod('POST')) {
-
             foreach ($formularioModelo->getFormularioAgrupadores() as $agrupador) {
                 foreach ($agrupador->getFormularioCampos() as $campoModelo) {
                     // Verifica se já existe valor salvo
