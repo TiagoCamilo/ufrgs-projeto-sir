@@ -10,6 +10,7 @@
 
                 {# RowLogic - Begin #}
                 {% set current_line = 0 %}
+
                 {% for campo in  agrupador.formularioCampos %}
                     {% if campo.linha != current_line %}
 
@@ -19,13 +20,42 @@
                         {% endif %}
 
                         {% set current_line = campo.linha %}
+                        {% set row_openned = false %}
 
                         <div class="form-row">
                     {% endif %}
 
-                    <div class="col">
+                    {% set proximo = false %}
+                    {% if agrupador.formularioCampos[loop.index] is defined and agrupador.formularioCampos[loop.index].linha == campo.linha %}
+
+                        {% set proximo = agrupador.formularioCampos[loop.index] %}
+
+                        {% if false == row_openned %}
+                            <div class="col">
+                            {% set row_openned = true %}
+                        {% endif %}
+
+
                         {% include 'others/_form_fields.html.twig' %}
-                    </div>
+
+                        {% if campo.coluna != proximo.coluna %}
+                            </div>
+                            {% set row_openned = false %}
+                        {% endif %}
+
+                    {% else %}
+                        {% if false == row_openned %}
+                            <div class="col">
+                            {% set row_openned = true %}
+                        {% endif %}
+
+                            {% include 'others/_form_fields.html.twig' %}
+
+                        {% if true == row_openned %}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+
 
                 {% endfor %}
 
