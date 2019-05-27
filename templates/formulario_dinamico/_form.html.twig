@@ -3,15 +3,17 @@
     {% if formulario.id is defined %}
         {% for agrupador in formulario.formularioAgrupadores %}
             {% if agrupador.formularioCampos|length > 0 %}
+                
                 <div style="border-style: solid; border-width: 1px; padding: 5px; margin-bottom: 10px; ">
 
                 <div style="text-align: center; border-style: solid; border-width: 1px; font-weight: bold;">{{ agrupador.titulo }}</div>
 
+                {# RowLogic - Begin #}
                 {% set current_line = 0 %}
                 {% for campo in  agrupador.formularioCampos %}
                     {% if campo.linha != current_line %}
 
-                        {# Fecha div aberta em iteracao anterior #}
+                        {# RowLogic - Fecha div aberta em iteracao anterior #}
                         {% if current_line != 0 %}
                             </div>
                         {% endif %}
@@ -27,12 +29,14 @@
 
                 {% endfor %}
 
-                {# Fecha div aberta da ultima iteracao #}
+                {# RowLogic - Fecha div aberta da ultima iteracao #}
                 </div>
                 </div>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
+                {# RowLogic - End #}
+
+            {% endif %} {# Agrupador Content #}
+        {% endfor %} {# Foreach Agrupador #}
+    {% endif %} {# Form Content #}
 
 
     <button type="submit" class="btn btn-primary">Salvar</button>
