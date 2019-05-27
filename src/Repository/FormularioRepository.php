@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Escola;
 use App\Entity\Formulario;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * @method Formulario|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,7 +14,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class FormularioRepository extends AbstractRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(RegistryInterface $registry, SessionInterface $session)
     {
         parent::__construct($registry, Formulario::class);
     }
@@ -20,6 +22,15 @@ class FormularioRepository extends AbstractRepository
     public function findAll()
     {
         return $this->findBy([], ['id' => 'ASC']);
+    }
+
+    public function findAllByEscola(Escola $escola)
+    {
+        if (null !== $escola->getId()) {
+            return $this->findBy(['escola' => $escola->getId()], ['id' => 'ASC']);
+        }
+
+        return $this->findAll();
     }
 
     // /**
