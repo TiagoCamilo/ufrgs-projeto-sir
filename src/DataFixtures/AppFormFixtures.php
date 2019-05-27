@@ -92,7 +92,7 @@ class AppFormFixtures extends Fixture
         $campo = new FormularioCampo();
         $campo->setTipo('TextType');
         $campo->setLabel($label);
-        $campo->setFormulario($formulario);
+        //$campo->setFormulario($formulario); DEPRECATED
         $campo->setAgrupador($agrupador);
         $campo->setLinha($linha);
         $campo->setColuna($coluna);

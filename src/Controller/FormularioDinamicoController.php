@@ -65,14 +65,16 @@ class FormularioDinamicoController extends AbstractController
         $formularioRegistro = new FormularioRegistro();
 
         if ($request->isMethod('POST')) {
-            foreach ($formularioModelo->getFormularioCampos() as $campoModelo) {
-                $campoRegistro = new FormularioRegistroCampo();
+            foreach ($formularioModelo->getFormularioAgrupadores() as $agrupador) {
+                foreach ($agrupador->getFormularioCampos() as $campoModelo) {
+                    $campoRegistro = new FormularioRegistroCampo();
 
-                $campoRegistro->setFormularioCampo($campoModelo);
-                $valor = $request->request->get($campoModelo->getId());
-                $campoRegistro->setValor($valor);
+                    $campoRegistro->setFormularioCampo($campoModelo);
+                    $valor = $request->request->get($campoModelo->getId());
+                    $campoRegistro->setValor($valor);
 
-                $formularioRegistro->addFormularioRegistroCampo($campoRegistro);
+                    $formularioRegistro->addFormularioRegistroCampo($campoRegistro);
+                }
             }
 
             $formularioRegistro->setFormulario($formularioModelo);
@@ -117,24 +119,26 @@ class FormularioDinamicoController extends AbstractController
         $formularioModelo = $formularioRepository->find($request->get('form_id'));
 
         if ($request->isMethod('POST')) {
-            foreach ($formularioModelo->getFormularioCampos() as $campoModelo) {
-                // Verifica se já existe valor salvo
-                $campoRegistroSalvo = $formularioRegistro->getFormularioRegistroCampos()->filter(
-                    function ($element) use ($campoModelo) {
-                        return $element->getFormularioCampo()->getId() == $campoModelo->getId();
-                    });
+            foreach ($formularioModelo->getFormularioAgrupadores() as $agrupador) {
+                foreach ($agrupador->getFormularioCampos() as $campoModelo) {
+                    // Verifica se já existe valor salvo
+                    $campoRegistroSalvo = $formularioRegistro->getFormularioRegistroCampos()->filter(
+                        function ($element) use ($campoModelo) {
+                            return $element->getFormularioCampo()->getId() == $campoModelo->getId();
+                        });
 
-                if (count($campoRegistroSalvo)) {
-                    $campoRegistro = $campoRegistroSalvo->current();
-                } else {
-                    $campoRegistro = new FormularioRegistroCampo();
+                    if (count($campoRegistroSalvo)) {
+                        $campoRegistro = $campoRegistroSalvo->current();
+                    } else {
+                        $campoRegistro = new FormularioRegistroCampo();
+                    }
+
+                    $campoRegistro->setFormularioCampo($campoModelo);
+                    $valor = $request->request->get($campoModelo->getId());
+                    $campoRegistro->setValor($valor);
+
+                    $formularioRegistro->addFormularioRegistroCampo($campoRegistro);
                 }
-
-                $campoRegistro->setFormularioCampo($campoModelo);
-                $valor = $request->request->get($campoModelo->getId());
-                $campoRegistro->setValor($valor);
-
-                $formularioRegistro->addFormularioRegistroCampo($campoRegistro);
             }
 
             $formularioRegistro->setDataHora(new \DateTime());

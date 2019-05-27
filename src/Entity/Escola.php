@@ -45,7 +45,7 @@ class Escola implements IEntity
     private $alunos;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Formulario", mappedBy="escola")
+     * @ORM\OneToMany(targetEntity="App\Entity\Formulario", mappedBy="escola", cascade={"persist"})
      */
     private $formularios;
 

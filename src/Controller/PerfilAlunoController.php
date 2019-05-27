@@ -31,7 +31,7 @@ class PerfilAlunoController extends AppAbstractController
      * @Route("/{id}/{timeline_element}", name="perfil_aluno_profile", methods="GET", defaults={"timeline_element"="all"}))
      * @ParamConverter("entity", class="App\Entity\Aluno")
      */
-    public function profile(IEntity $entity, $timeline_element): Response
+    public function profile(IEntity $entity, string $timeline_element): Response
     {
         $this->session->set('aluno_id', $entity->getId());
         $this->session->set('aluno_nome', $entity->getNome());

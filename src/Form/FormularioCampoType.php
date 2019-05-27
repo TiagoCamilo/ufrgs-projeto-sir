@@ -30,7 +30,6 @@ class FormularioCampoType extends AbstractType
             ->add('ordem')
             ->add('altura')
             ->add('largura')
-            ->add('formulario')
             ->add('agrupador')
         ;
     }

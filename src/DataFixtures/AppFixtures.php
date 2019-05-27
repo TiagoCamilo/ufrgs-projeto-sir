@@ -28,16 +28,16 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        $escola = new Escola();
+        $escola->setNome(EscolaNomeList::$list[0]);
+        $escola->setEndereco('Endereco Escola 0');
+
         for ($i = 0; $i < 10; ++$i) {
             $user = new User();
             $user->setUsername('user'.$i);
             $user->setEmail('admin'.$i.'@admin.com');
             $password = $this->encoder->encodePassword($user, '103020');
             $user->setPassword($password);
-
-            $escola = new Escola();
-            $escola->setNome(EscolaNomeList::$list[$i]);
-            $escola->setEndereco('Endereco Escola'.$i);
 
             $aluno = new Aluno();
             $aluno->setNome(AlunosNomeList::getRandomItem());
@@ -53,11 +53,10 @@ class AppFixtures extends Fixture
             $educador->setEscola($escola);
 
             if ($i < 5) {
-                $comenario = new Comentario();
-                $comenario->setAluno($aluno);
-                $comenario->setEducador($educador);
-                $comenario->setDescricao('Comentario '.$i);
-                //$comenario->setDataHora(new \DateTime());
+                $comentario = new Comentario();
+                $comentario->setAluno($aluno);
+                $comentario->setEducador($educador);
+                $comentario->setDescricao('Comentario '.$i);
             }
 
             $manager->persist($user);
@@ -65,7 +64,7 @@ class AppFixtures extends Fixture
             $manager->persist($aluno);
             $manager->persist($aluna);
             $manager->persist($educador);
-            $manager->persist($comenario);
+            $manager->persist($comentario);
         }
 
         $manager->flush();
