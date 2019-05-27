@@ -76,7 +76,11 @@ class FormularioAgrupador implements IEntity
 
     public function __toString(): string
     {
-        return $this->getTitulo();
+        return $this->getTituloWithFormulario();
+    }
+
+    private function getTituloWithFormulario(){
+        return $this->titulo.' ['.$this->formulario.']';
     }
 
     /**

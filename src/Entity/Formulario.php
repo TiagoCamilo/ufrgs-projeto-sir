@@ -65,12 +65,12 @@ class Formulario implements IEntity
 
     public function __toString(): string
     {
-        return $this->getNome();
+        return $this->getNomeWithEscola();
     }
 
     public function getNomeWithEscola(): string
     {
-        return $this->getNome().' ['.($this->escola ? $this->escola->getNome() : 'MODELO').']';
+        return $this->nome.' ['.($this->escola ? $this->escola->getNome() : 'MODELO').']';
     }
 
     /**

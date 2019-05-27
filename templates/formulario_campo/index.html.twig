@@ -7,7 +7,7 @@
     {% set registerListAttr = registerListAttr|merge ([{
         'Id': register.id,
         'Label': register.label,
-        'Formulario': register.agrupador ? register.agrupador.formulario.getNomeWithEscola() : '',
+        'Formulario': register.agrupador ? register.agrupador.formulario : '',
         'Agrupador': register.agrupador ? register.agrupador.titulo : '',
         'Linha': register.linha,
         'Coluna': register.coluna,
