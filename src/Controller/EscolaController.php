@@ -49,7 +49,12 @@ class EscolaController extends AppAbstractController
      */
     public function new(Request $request, UserInterface $user): Response
     {
-        return parent::new($request, $user);
+        $retorno = parent::new($request, $user);
+        if (null !== $this->entity->getId()) { // Criando escola
+            $this->formularioModelo->createFormModels($this->entity); // Clona formularios modelos
+        }
+
+        return $retorno;
     }
 
     /**
@@ -58,8 +63,6 @@ class EscolaController extends AppAbstractController
      */
     public function show(IEntity $entity): Response
     {
-        $this->formularioModelo->createFormModels($entity);
-
         return parent::show($entity);
     }
 

@@ -21,7 +21,11 @@
             </tr>
             <tr>
                 <th>Formulário</th>
-                <td>{{ register.formulario.nome }}</td>
+                <td>{{  register.agrupador ? register.agrupador.formulario.getNomeWithEscola() : '' }}</td>
+            </tr>
+            <tr>
+                <th>Agrupador</th>
+                <td>{{ register.agrupador ? register.agrupador.titulo : '' }}</td>
             </tr>
         </tbody>
     </table>

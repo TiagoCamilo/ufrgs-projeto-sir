@@ -133,7 +133,6 @@ class FormularioAgrupador implements IEntity
                 /** @var FormularioCampo $register */
                 $registerClone = clone $register;
                 $registerClone->setAgrupador($this);
-                $registerClone->setFormulario($this->getFormulario());
                 $registersArray->add($registerClone);
             }
             $this->formularioCampos = $registersArray;

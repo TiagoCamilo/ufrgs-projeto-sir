@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,11 +22,6 @@ class Formulario implements IEntity
      * @ORM\Column(type="string", length=255)
      */
     private $nome;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FormularioCampo", mappedBy="formulario")
-     */
-    private $formularioCampos;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\FormularioAgrupador", mappedBy="formulario", orphanRemoval=true, cascade={"persist"})
@@ -69,43 +63,14 @@ class Formulario implements IEntity
         return $this;
     }
 
-    /**
-     * @return Collection|FormularioCampo[]
-     */
-    public function getFormularioCampos(): Collection
-    {
-        $criteria = Criteria::create()
-            ->orderBy(['linha' => Criteria::ASC, 'coluna' => Criteria::ASC]);
-
-        return $this->formularioCampos->matching($criteria);
-    }
-
-    public function addFormularioCampo(FormularioCampo $formularioCampo): self
-    {
-        if (!$this->formularioCampos->contains($formularioCampo)) {
-            $this->formularioCampos[] = $formularioCampo;
-            $formularioCampo->setFormulario($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFormularioCampo(FormularioCampo $formularioCampo): self
-    {
-        if ($this->formularioCampos->contains($formularioCampo)) {
-            $this->formularioCampos->removeElement($formularioCampo);
-            // set the owning side to null (unless already changed)
-            if ($formularioCampo->getFormulario() === $this) {
-                $formularioCampo->setFormulario(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function __toString(): string
     {
         return $this->getNome();
+    }
+
+    public function getNomeWithEscola(): string
+    {
+        return $this->getNome().' ['.($this->escola ? $this->escola->getNome() : 'MODELO').']';
     }
 
     /**
