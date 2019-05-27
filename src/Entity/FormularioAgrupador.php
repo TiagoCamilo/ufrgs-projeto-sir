@@ -121,4 +121,22 @@ class FormularioAgrupador implements IEntity
 
         return $this;
     }
+
+    public function __clone()
+    {
+        if ($this->id) {
+            $this->id = null;
+            $registers = $this->getFormularioCampos();
+
+            $registersArray = new ArrayCollection();
+            foreach ($registers as $register) {
+                /** @var FormularioCampo $register */
+                $registerClone = clone $register;
+                $registerClone->setAgrupador($this);
+                $registerClone->setFormulario($this->getFormulario());
+                $registersArray->add($registerClone);
+            }
+            $this->formularioCampos = $registersArray;
+        }
+    }
 }

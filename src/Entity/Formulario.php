@@ -30,7 +30,7 @@ class Formulario implements IEntity
     private $formularioCampos;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FormularioAgrupador", mappedBy="formulario", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioAgrupador", mappedBy="formulario", orphanRemoval=true, cascade={"persist"})
      * @ORM\OrderBy({"ordem"="ASC"})
      */
     private $formularioAgrupadores;
@@ -180,5 +180,22 @@ class Formulario implements IEntity
         $this->escola = $escola;
 
         return $this;
+    }
+
+    public function __clone()
+    {
+        if ($this->id) {
+            $this->id = null;
+            $registers = $this->getFormularioAgrupadores();
+
+            $registersArray = new ArrayCollection();
+            foreach ($registers as $register) {
+                /** @var FormularioAgrupador $register */
+                $registerClone = clone $register;
+                $registerClone->setFormulario($this);
+                $registersArray->add($registerClone);
+            }
+            $this->formularioAgrupadores = $registersArray;
+        }
     }
 }

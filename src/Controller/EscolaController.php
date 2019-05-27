@@ -12,6 +12,7 @@ use App\Entity\Escola;
 use App\Entity\IEntity;
 use App\Form\EscolaType;
 use App\Repository\EscolaRepository;
+use App\Service\FormularioModelo;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,12 +25,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class EscolaController extends AppAbstractController
 {
-    public function __construct(EscolaRepository $entityRepository)
+    private $formularioModelo;
+
+    public function __construct(EscolaRepository $entityRepository, FormularioModelo $formularioModelo)
     {
         $this->entity = new Escola();
         $this->entityRepository = $entityRepository;
         $this->entityName = 'escola';
         $this->formType = EscolaType::class;
+        $this->formularioModelo = $formularioModelo;
     }
 
     /**
@@ -54,6 +58,7 @@ class EscolaController extends AppAbstractController
      */
     public function show(IEntity $entity): Response
     {
+        $this->formularioModelo->createFormModels($entity);
         return parent::show($entity);
     }
 
