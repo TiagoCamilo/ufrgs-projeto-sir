@@ -54,6 +54,21 @@ class FormularioCampo implements IEntity
      */
     private $agrupador;
 
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $ordem;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $largura;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $altura;
+
     public function __construct()
     {
         $this->formularioRegistroCampos = new ArrayCollection();
@@ -163,6 +178,42 @@ class FormularioCampo implements IEntity
     public function setAgrupador(?FormularioAgrupador $agrupador): self
     {
         $this->agrupador = $agrupador;
+
+        return $this;
+    }
+
+    public function getOrdem(): ?int
+    {
+        return $this->ordem;
+    }
+
+    public function setOrdem(?int $ordem): self
+    {
+        $this->ordem = $ordem;
+
+        return $this;
+    }
+
+    public function getLargura(): ?int
+    {
+        return $this->largura;
+    }
+
+    public function setLargura(?int $largura): self
+    {
+        $this->largura = $largura;
+
+        return $this;
+    }
+
+    public function getAltura(): ?int
+    {
+        return $this->altura;
+    }
+
+    public function setAltura(?int $altura): self
+    {
+        $this->altura = $altura;
 
         return $this;
     }
