@@ -17,7 +17,7 @@
     </div>
     <div class="card-body" style="text-align: left;">
         {% if orientation == 'horizontal' %}
-            <div class="card-group-custom card-group-scroll">
+            <div class="card-group card-group-scroll">
         {% endif %}
             {% for timelineElement in timelineElements %}
                 {% include 'timeline/_card.html.twig' with {timelineElement: timelineElement, orientation: orientation} only %}
