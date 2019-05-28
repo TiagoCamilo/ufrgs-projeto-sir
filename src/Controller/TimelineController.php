@@ -37,9 +37,10 @@ class TimelineController extends AbstractController
     {
         $timelineElements = $this->aluno->getComentariosAcompanhamentos();
 
-        return $this->render('timeline/index.html.twig', [
+        return $this->render('timeline_old/index.html.twig', [
             'timelineElements' => $timelineElements,
             'entity' => $entity,
         ]);
     }
+    
 }
