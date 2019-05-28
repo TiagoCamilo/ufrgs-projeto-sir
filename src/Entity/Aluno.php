@@ -60,11 +60,17 @@ class Aluno implements IEntity
      */
     private $pareceres;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioRegistro", mappedBy="aluno", orphanRemoval=true)
+     */
+    private $formularioRegistros;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
         $this->acompanhamentos = new ArrayCollection();
         $this->pareceres = new ArrayCollection();
+        $this->formularioRegistros = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -249,6 +255,37 @@ class Aluno implements IEntity
             // set the owning side to null (unless already changed)
             if ($parecere->getAluno() === $this) {
                 $parecere->setAluno(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FormularioRegistro[]
+     */
+    public function getFormularioRegistros(): Collection
+    {
+        return $this->formularioRegistros;
+    }
+
+    public function addFormularioRegistro(FormularioRegistro $formularioRegistro): self
+    {
+        if (!$this->formularioRegistros->contains($formularioRegistro)) {
+            $this->formularioRegistros[] = $formularioRegistro;
+            $formularioRegistro->setAluno($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormularioRegistro(FormularioRegistro $formularioRegistro): self
+    {
+        if ($this->formularioRegistros->contains($formularioRegistro)) {
+            $this->formularioRegistros->removeElement($formularioRegistro);
+            // set the owning side to null (unless already changed)
+            if ($formularioRegistro->getAluno() === $this) {
+                $formularioRegistro->setAluno(null);
             }
         }
 

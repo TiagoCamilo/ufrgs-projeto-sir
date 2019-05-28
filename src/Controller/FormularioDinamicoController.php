@@ -8,6 +8,7 @@ use App\Entity\FormularioRegistroCampo;
 use App\Entity\IEntity;
 use App\Form\FormularioDinamicoType;
 use App\Helpers\TemplateManager;
+use App\Repository\AlunoRepository;
 use App\Repository\FormularioRegistroRepository;
 use App\Repository\FormularioRepository;
 use App\Service\PdfGenerator;
@@ -16,7 +17,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/formulario_dinamico/{form_id}", defaults={"form_id" = 1})
@@ -27,13 +30,18 @@ class FormularioDinamicoController extends AbstractController
     protected $entityRepository;
     protected $entityName;
     protected $formType;
+    private $aluno;
 
-    public function __construct(FormularioRegistroRepository $entityRepository)
+    public function __construct(FormularioRegistroRepository $entityRepository, SessionInterface $session, AlunoRepository $alunoRepository)
     {
         $this->entity = new FormularioRegistro();
         $this->entityRepository = $entityRepository;
         $this->entityName = 'formulario_dinamico';
         $this->formType = FormularioDinamicoType::class;
+
+        if (null !== $session->get('aluno_id')) {
+            $this->aluno = $alunoRepository->find($session->get('aluno_id'));
+        }
     }
 
     /**
@@ -58,7 +66,7 @@ class FormularioDinamicoController extends AbstractController
     /**
      * @Route("/new", name="formulario_dinamico_new", methods={"GET","POST"})
      */
-    public function new(Request $request, FormularioRepository $formularioRepository): Response
+    public function new(Request $request, FormularioRepository $formularioRepository, UserInterface $user): Response
     {
         $formularioModelo = $formularioRepository->find($request->get('form_id'));
 
@@ -77,6 +85,8 @@ class FormularioDinamicoController extends AbstractController
                 }
             }
 
+            $formularioRegistro->setEducador($user->getEducador());
+            $formularioRegistro->setAluno($this->aluno);
             $formularioRegistro->setFormulario($formularioModelo);
             $formularioRegistro->setDataHora(new \DateTime());
             $em = $this->getDoctrine()->getManager();
@@ -114,7 +124,7 @@ class FormularioDinamicoController extends AbstractController
     /**
      * @Route("/{id}/edit", name="formulario_dinamico_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, FormularioRepository $formularioRepository, FormularioRegistro $formularioRegistro): Response
+    public function edit(Request $request, FormularioRepository $formularioRepository, FormularioRegistro $formularioRegistro, UserInterface $user): Response
     {
         $formularioModelo = $formularioRepository->find($request->get('form_id'));
 
@@ -141,6 +151,8 @@ class FormularioDinamicoController extends AbstractController
                 }
             }
 
+            $formularioRegistro->setEducador($user->getEducador());
+            $formularioRegistro->setAluno($this->aluno);
             $formularioRegistro->setDataHora(new \DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->persist($formularioRegistro);

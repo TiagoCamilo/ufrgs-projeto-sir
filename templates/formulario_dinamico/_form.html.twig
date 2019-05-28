@@ -36,7 +36,7 @@
                         {% endif %}
 
 
-                        {% include 'others/_form_fields.html.twig' %}
+                        {% include 'formulario_dinamico/_form_fields.html.twig' %}
 
                         {% if campo.coluna != proximo.coluna %}
                             </div>
@@ -49,7 +49,7 @@
                             {% set row_openned = true %}
                         {% endif %}
 
-                            {% include 'others/_form_fields.html.twig' %}
+                            {% include 'formulario_dinamico/_form_fields.html.twig' %}
 
                         {% if true == row_openned %}
                             </div>

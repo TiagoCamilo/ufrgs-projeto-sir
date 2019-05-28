@@ -44,17 +44,17 @@ class FormularioDinamicoHelper
     {
         switch ($fieldType) {
             case 'TextType':
-                return 'others/_field_text.html.twig';
+                return 'formulario_dinamico/_field_text.html.twig';
             case 'TextareaType':
-                return 'others/_field_textarea.html.twig';
+                return 'formulario_dinamico/_field_textarea.html.twig';
             case 'LabelType':
-                return 'others/_field_label.html.twig';
+                return 'formulario_dinamico/_field_label.html.twig';
             case 'DateType':
-                return 'others/_field_date.html.twig';
+                return 'formulario_dinamico/_field_date.html.twig';
             case 'AlunoType':
-                return 'others/_field_aluno.html.twig';
+                return 'formulario_dinamico/_field_aluno.html.twig';
             default:
-                return 'others/_field_label.html.twig';
+                return 'formulario_dinamico/_field_label.html.twig';
         }
     }
 }

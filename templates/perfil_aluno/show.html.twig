@@ -35,7 +35,7 @@
                 <a href="{{ path('acompanhamento_new') }}" class="card-link"><i class="fas fa-file"></i> Acompanhamento</a>
                 <a href="{{ path('parecer_new') }}" class="card-link"><i class="fas fa-file-powerpoint"></i> Parecer</a>
                 {% for formulario in form_repository.findAllByEscola(register.escola) %}
-                    <a href="#" class="card-link"><i class="fas fa-file-signature"></i> {{ formulario.nome }}</a>
+                    <a href="{{ path('formulario_dinamico_new', {form_id: formulario.getId() }) }}" class="card-link"><i class="fas fa-file-signature"></i> {{ formulario.nome }}</a>
                 {%  endfor %}
                 <a href="{{ path('home') }}" class="card-link"><i class="fas fa-arrow-left"></i> Voltar</a>
 

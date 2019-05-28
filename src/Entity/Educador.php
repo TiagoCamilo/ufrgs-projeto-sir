@@ -44,10 +44,16 @@ class Educador implements IEntity
      */
     private $pareceres;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioRegistro", mappedBy="educador")
+     */
+    private $formularioRegistros;
+
     public function __construct()
     {
         $this->acompanhamentos = new ArrayCollection();
         $this->pareceres = new ArrayCollection();
+        $this->formularioRegistros = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -152,6 +158,37 @@ class Educador implements IEntity
             // set the owning side to null (unless already changed)
             if ($parecere->getEducador() === $this) {
                 $parecere->setEducador(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FormularioRegistro[]
+     */
+    public function getFormularioRegistros(): Collection
+    {
+        return $this->formularioRegistros;
+    }
+
+    public function addFormularioRegistro(FormularioRegistro $formularioRegistro): self
+    {
+        if (!$this->formularioRegistros->contains($formularioRegistro)) {
+            $this->formularioRegistros[] = $formularioRegistro;
+            $formularioRegistro->setEducador($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormularioRegistro(FormularioRegistro $formularioRegistro): self
+    {
+        if ($this->formularioRegistros->contains($formularioRegistro)) {
+            $this->formularioRegistros->removeElement($formularioRegistro);
+            // set the owning side to null (unless already changed)
+            if ($formularioRegistro->getEducador() === $this) {
+                $formularioRegistro->setEducador(null);
             }
         }
 
