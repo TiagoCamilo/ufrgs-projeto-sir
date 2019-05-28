@@ -2,22 +2,42 @@
     <div class="card-header">
         <ul class="nav nav-pills card-header-pills">
             <li class="nav-item">
-                <a id='all' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id} ) }}">Tudo</a>
+                <a id='all' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Tudo</a>
             </li>
             <li class="nav-item">
-                <a id='midia' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id, timeline_element:'midia'} ) }}">Fotos/Vídeos</a>
+                <a id='midia' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Fotos/Vídeos</a>
             </li>
             <li class="nav-item">
-                <a id='acompanhamento' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id, timeline_element:'acompanhamento'} ) }}">Acompanhamentos</a>
+                <a id='acompanhamento' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Acompanhamentos</a>
             </li>
             <li class="nav-item">
-                <a id='parecer' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id, timeline_element:'parecer'} ) }}">Pareceres</a>
+                <a id='parecer' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Pareceres</a>
             </li>
         </ul>
     </div>
     <div class="card-body" style="text-align: left;">
         {% for timelineElement in timelineElements %}
-            {% include 'perfil_aluno/_card.html.twig' with {timelineElement: timelineElement} only %}
+            {% include 'timeline/_card.html.twig' with {timelineElement: timelineElement} only %}
         {% endfor %}
     </div>
 </div>
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            filterEntity = function (entityType) {
+                $('.entity-filter').removeClass('active');
+                $('#'+entityType).addClass('active');
+
+                $('.entity-card').css('display','none');
+                if(entityType == 'all'){
+                    $('.entity-card').css('display','');
+                }else{
+                    $("div[data-entity='"+entityType+"'").css('display','');
+                }
+            }
+        });
+    </script>
+{% endblock %}
