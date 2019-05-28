@@ -2,6 +2,7 @@
     <div class="card-header">
         <i class="fas fa-file-powerpoint"></i> Parecer
     </div>
+    {% include 'timeline/_card_horizontal_actions.html.twig' with {register: register, orientation: orientation} only  %}
     <div class="card-body">
         <h6 class="card-title">De: {{ register.educador.nome }}</h6>
         <p class="card-text"><small class="text-muted">{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</small></p>

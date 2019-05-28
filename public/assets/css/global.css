@@ -10615,9 +10615,11 @@ body.fade-out {
     flex-wrap: nowrap; }
 
   .card-group.card-group-scroll > .card, .card-group-scroll.card-group-custom > .card {
-    flex-basis: 25%;
+    flex-basis: 33%;
     overflow-y: hidden;
     width: 300px;
     height: 300px; } }
+.card-horizontal-action {
+  margin-left: 50px; }
 
 /*# sourceMappingURL=global.css.map */

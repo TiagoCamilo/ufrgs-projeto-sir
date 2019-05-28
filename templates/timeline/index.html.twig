@@ -1,4 +1,4 @@
-<div class="card text-center">
+<div class="card text-center" style="margin-top: 5px">
     <div class="card-header">
         <ul class="nav nav-pills card-header-pills">
             <li class="nav-item">
@@ -16,11 +16,11 @@
         </ul>
     </div>
     <div class="card-body" style="text-align: left;">
-        {% if orientation == 'vertical' %}
+        {% if orientation == 'horizontal' %}
             <div class="card-group-custom card-group-scroll">
         {% endif %}
             {% for timelineElement in timelineElements %}
-                {% include 'timeline/_card.html.twig' with {timelineElement: timelineElement} only %}
+                {% include 'timeline/_card.html.twig' with {timelineElement: timelineElement, orientation: orientation} only %}
             {% endfor %}
         {% if orientation == 'vertical' %}
         </div>

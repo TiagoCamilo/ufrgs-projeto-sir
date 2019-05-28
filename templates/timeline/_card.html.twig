@@ -1,9 +1,9 @@
 {% if timelineElement is Comentario %}
-    {% include 'timeline/_card_comentario.html.twig' with {register: timelineElement} only %}
+    {% include 'timeline/_card_comentario.html.twig' with {register: timelineElement, orientation: orientation} only %}
 {% endif %}
 {% if timelineElement is Acompanhamento %}
-    {% include 'timeline/_card_acompanhamento.html.twig' with {register: timelineElement} only  %}
+    {% include 'timeline/_card_acompanhamento.html.twig' with {register: timelineElement, orientation: orientation} only  %}
 {% endif %}
 {% if timelineElement is Parecer %}
-    {% include 'timeline/_card_parecer.html.twig' with {register: timelineElement} only  %}
+    {% include 'timeline/_card_parecer.html.twig' with {register: timelineElement, orientation: orientation} only  %}
 {% endif %}
