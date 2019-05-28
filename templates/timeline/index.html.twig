@@ -5,7 +5,7 @@
                 <a id='all' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Tudo</a>
             </li>
             <li class="nav-item">
-                <a id='midia' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Fotos/Vídeos</a>
+                <a id='comentario' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Fotos/Vídeos</a>
             </li>
             <li class="nav-item">
                 <a id='acompanhamento' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Acompanhamentos</a>
@@ -45,5 +45,12 @@
                 }
             }
         });
+
+        function copyValue(element){
+            console.log($("#"+element));
+            data = $("#"+element).html();
+            editor = CKEDITOR.instances.{{ entityOpenner }}_descricao;
+            editor.setData(editor.getData()+data);
+        }
     </script>
 {% endblock %}

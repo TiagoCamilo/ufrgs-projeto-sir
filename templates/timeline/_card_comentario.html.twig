@@ -1,23 +1,17 @@
-<div class="card mb-3 entity-card" data-entity="midia">
-    <div class="card-header">
-        <i class="fas fa-camera-retro"></i> Foto/Vídeos
-    </div>
-    {% include 'timeline/_card_horizontal_actions.html.twig' with {register: register, orientation: orientation} only  %}
-    <div class="card-body">
-        <h6 class="card-title">De: {{ register.educador.nome }}</h6>
-        <p class="card-text"><small class="text-muted">{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</small></p>
-        <p class="card-text">{{ register.descricao }}</p>
-    </div>
-    {% if register.file is defined %}
-        <div class="col-lg-7 mx-auto">
-            {% if(register.file.extension =="mp4") %}
-                <video width="100%" controls>
-                    <source src="{{ asset('uploads/' ~ register.file.filename  ) }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            {% else %}
-                <img  class="card-img-bottom" src="{{ asset('uploads/' ~ register.file.filename  ) }}" alt="Arquivo do comentário">
-            {% endif %}
-        </div>
-    {% endif %}
+<div class="card-body" >
+    <h6 class="card-title">De: {{ register.educador.nome }}</h6>
+    <p class="card-text"><small class="text-muted">{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</small></p>
+    <div class="card-text" id="register_{{ entityType }}_{{ register.id }}">{{ register.descricao }}</div>
 </div>
+{% if register.file is defined %}
+    <div class="col-lg-7 mx-auto">
+        {% if(register.file.extension =="mp4") %}
+            <video width="100%" controls>
+                <source src="{{ asset('uploads/' ~ register.file.filename  ) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        {% else %}
+            <img  class="card-img-bottom" src="{{ asset('uploads/' ~ register.file.filename  ) }}" alt="Arquivo do comentário">
+        {% endif %}
+    </div>
+{% endif %}

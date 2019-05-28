@@ -1,9 +1,22 @@
 {% if timelineElement is Comentario %}
-    {% include 'timeline/_card_comentario.html.twig' with {register: timelineElement, orientation: orientation} only %}
+    {% set entityType = 'comentario' %}
+    {% set displayName = 'Fotos/Vídeos' %}
+    {% set icon = 'fa-file' %}
 {% endif %}
 {% if timelineElement is Acompanhamento %}
-    {% include 'timeline/_card_acompanhamento.html.twig' with {register: timelineElement, orientation: orientation} only  %}
-{% endif %}
+    {% set entityType = 'acompanhamento' %}
+    {% set displayName = 'Acompanhamentos' %}
+    {% set icon = 'fa-file' %}{% endif %}
 {% if timelineElement is Parecer %}
-    {% include 'timeline/_card_parecer.html.twig' with {register: timelineElement, orientation: orientation} only  %}
-{% endif %}
+    {% set entityType = 'parecer' %}
+    {% set displayName = 'Pareceres' %}
+    {% set icon = 'fa-file' %}{% endif %}
+
+
+<div class="card mb-3 entity-card" data-entity="{{ entityType }}">
+    <div class="card-header">
+        <i class="fas {{ icon }}"></i> {{ displayName }}
+    </div>
+    {% include 'timeline/_card_horizontal_actions.html.twig' with {register: timelineElement, entityType: entityType, orientation: orientation} only  %}
+    {% include 'timeline/_card_'~entityType~'.html.twig' with {register: timelineElement, entityType: entityType, orientation: orientation} only  %}
+</div>
