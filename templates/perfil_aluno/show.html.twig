@@ -47,7 +47,7 @@
 
 {% block timeline %}
     {{ render(controller(
-        'App\\Controller\\TimelineController::index', {'entityOpenner':''}
+        'App\\Controller\\TimelineController::index', {'entityOpenner':'', 'orientation':'horizontal'}
     )) }}
 {% endblock %}
 

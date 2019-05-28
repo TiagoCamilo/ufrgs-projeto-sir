@@ -31,35 +31,15 @@ class TimelineController extends AbstractController
     }
 
     /**
-     * @Route("/{entityOpenner}", name="timeline_index", defaults={"entityOpenner"=""})
+     * @Route("/{entityOpenner}/{orientation}", name="timeline_index", defaults={"entityOpenner"="","orientation"="horizontal"})
      */
-    public function index(string $entityOpenner): Response
+    public function index(string $entityOpenner, string $orientation): Response
     {
-
-        $timeline_element = 'all';
-
-        switch ($timeline_element) {
-            case 'all':
-                $timelineElements = $this->aluno->getTimelineElements();
-                break;
-            case 'midia':
-                $timelineElements = $this->aluno->getComentarios();
-                break;
-            case 'acompanhamento':
-                $timelineElements = $this->aluno->getAcompanhamentos();
-                break;
-            case 'parecer':
-                $timelineElements = $this->aluno->getPareceres();
-                break;
-            default:
-                $timelineElements = $this->aluno->getTimelineElements();
-        }
-
         return $this->render('timeline/index.html.twig', [
             'entityOpenner' => $entityOpenner,
             'register' => $this->aluno,
-            'timelineElements' => $timelineElements,
+            'timelineElements' => $this->aluno->getTimelineElements(),
+            'orientation' => $orientation,
         ]);
     }
-
 }

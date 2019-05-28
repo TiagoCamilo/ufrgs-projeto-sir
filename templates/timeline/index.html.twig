@@ -16,9 +16,15 @@
         </ul>
     </div>
     <div class="card-body" style="text-align: left;">
-        {% for timelineElement in timelineElements %}
-            {% include 'timeline/_card.html.twig' with {timelineElement: timelineElement} only %}
-        {% endfor %}
+        {% if orientation == 'vertical' %}
+            <div class="card-group-custom card-group-scroll">
+        {% endif %}
+            {% for timelineElement in timelineElements %}
+                {% include 'timeline/_card.html.twig' with {timelineElement: timelineElement} only %}
+            {% endfor %}
+        {% if orientation == 'vertical' %}
+        </div>
+        {% endif %}
     </div>
 </div>
 
@@ -29,7 +35,7 @@
         $(function() {
             filterEntity = function (entityType) {
                 $('.entity-filter').removeClass('active');
-                $('#'+entityType).addClass('active');
+                $('a#'+entityType).addClass('active');
 
                 $('.entity-card').css('display','none');
                 if(entityType == 'all'){
