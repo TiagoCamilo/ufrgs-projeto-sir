@@ -13,6 +13,9 @@
             <li class="nav-item">
                 <a id='parecer' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Pareceres</a>
             </li>
+            <li class="nav-item">
+                <a id='formulario_dinamico' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Formulários</a>
+            </li>
         </ul>
     </div>
     <div class="card-body" style="text-align: left;">
@@ -54,6 +57,10 @@
 
         copyValueWithLink = function (element, link){
             data = $("#"+element).html();
+
+            //TODO: Estudar forma de inibir mensagem de erro do CKEditor
+            data = data.replace("Your browser does not support the video tag.","");
+
             data = "<a target='_blank' href='"+link+"'>"+data+"</a>";
             editor = CKEDITOR.instances.{{ entityOpenner }}_descricao;
             editor.setData(editor.getData()+data);
