@@ -46,9 +46,15 @@
             }
         });
 
-        function copyValue(element){
-            console.log($("#"+element));
+        copyValue = function (element){
             data = $("#"+element).html();
+            editor = CKEDITOR.instances.{{ entityOpenner }}_descricao;
+            editor.setData(editor.getData()+data);
+        }
+
+        copyValueWithLink = function (element, link){
+            data = $("#"+element).html();
+            data = "<a target='_blank' href='"+link+"'>"+data+"</a>";
             editor = CKEDITOR.instances.{{ entityOpenner }}_descricao;
             editor.setData(editor.getData()+data);
         }

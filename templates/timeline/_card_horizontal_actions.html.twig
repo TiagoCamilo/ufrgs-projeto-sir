@@ -1,7 +1,12 @@
 {% if orientation == 'horizontal' %}
 <div class="card-header" style="text-align: center">
-    <a class="card-horizontal-action" href="#" onclick="copyValue('register_{{ entityType }}_{{ register.id }}')"><i class="fas fa-copy" title="Importar conteúdo"></i></a>
-    <a class="card-horizontal-action" href="#"><i class="fas fa-link" title="Importar conteúdo com link"></i> </a>
+    <a class="card-horizontal-action" href="#" onclick="copyValue('register_{{ entityType }}_{{ register.id }}')">
+        <i class="fas fa-copy" title="Importar conteúdo"></i>
+    </a>
+    <a class="card-horizontal-action" href="#"
+       onclick="copyValueWithLink('register_{{ entityType }}_{{ register.id }}','{{ path(entityType~'_show', {id: register.id}) }}')">
+        <i class="fas fa-link" title="Importar conteúdo com link"></i>
+    </a>
     <a class="card-horizontal-action" href="#"><i class="fas fa-eye" title="Visualizar registro"></i> </a>
 </div>
 {% endif %}

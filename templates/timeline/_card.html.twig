@@ -1,7 +1,7 @@
 {% if timelineElement is Comentario %}
     {% set entityType = 'comentario' %}
     {% set displayName = 'Fotos/Vídeos' %}
-    {% set icon = 'fa-file' %}
+    {% set icon = 'fa-camera-retro' %}
 {% endif %}
 {% if timelineElement is Acompanhamento %}
     {% set entityType = 'acompanhamento' %}
@@ -10,7 +10,7 @@
 {% if timelineElement is Parecer %}
     {% set entityType = 'parecer' %}
     {% set displayName = 'Pareceres' %}
-    {% set icon = 'fa-file' %}{% endif %}
+    {% set icon = 'fa-file-powerpoint' %}{% endif %}
 
 
 <div class="card mb-3 entity-card" data-entity="{{ entityType }}">
