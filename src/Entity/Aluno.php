@@ -198,27 +198,10 @@ class Aluno implements IEntity
         $comentarios = $this->getComentarios();
         $acompanhamentos = $this->getAcompanhamentos();
         $pareceres = $this->getPareceres();
+        $formularios = $this->getFormularioRegistros();
 
         $elements = new ArrayCollection(
-            array_merge($comentarios->toArray(), $acompanhamentos->toArray(), $pareceres->toArray())
-        );
-
-        $iterator = $elements->getIterator();
-        $iterator->uasort(function ($a, $b) {
-            return ($a->getDataHora() > $b->getDataHora()) ? -1 : 1;
-        });
-        $collection = new ArrayCollection(iterator_to_array($iterator));
-
-        return $collection;
-    }
-
-    public function getComentariosAcompanhamentos(): Collection
-    {
-        $comentarios = $this->getComentarios();
-        $acompanhamentos = $this->getAcompanhamentos();
-
-        $elements = new ArrayCollection(
-            array_merge($comentarios->toArray(), $acompanhamentos->toArray())
+            array_merge($comentarios->toArray(), $acompanhamentos->toArray(), $pareceres->toArray(), $formularios->toArray())
         );
 
         $iterator = $elements->getIterator();

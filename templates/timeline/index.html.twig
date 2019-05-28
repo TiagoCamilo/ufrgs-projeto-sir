@@ -20,7 +20,7 @@
             <div class="card-group card-group-scroll">
         {% endif %}
             {% for timelineElement in timelineElements %}
-                {% include 'timeline/_card.html.twig' with {timelineElement: timelineElement, orientation: orientation} only %}
+                {% include 'timeline/_card.html.twig' with {timelineElement: timelineElement, orientation: orientation, entityOpenner: entityOpenner} only %}
             {% endfor %}
         {% if orientation == 'vertical' %}
         </div>
