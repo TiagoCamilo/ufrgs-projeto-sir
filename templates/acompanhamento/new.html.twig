@@ -4,7 +4,7 @@
     {{ parent() }}
     {% block timeline %}
         {{ render(controller(
-            'App\\Controller\\TimelineController::index', {'entity':'acompanhamento'}
+            'App\\Controller\\TimelineController::index', {'entityOpenner':'acompanhamento'}
         )) }}
     {% endblock %}
 {% endblock %}
