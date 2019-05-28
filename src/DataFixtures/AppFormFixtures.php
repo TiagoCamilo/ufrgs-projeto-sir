@@ -18,6 +18,86 @@ class AppFormFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        $this->createFormularioPlanoDesenvolvimento($manager);
+        $this->createFormularioAdequacaoCurricular($manager);
+    }
+
+    private function newCampoText($label, $linha, $coluna, $formulario, $agrupador)
+    {
+        return $this->newCampo($label, $linha, $coluna, $formulario, $agrupador)->setTipo('TextType');
+    }
+
+    private function newCampoTextArea($label, $linha, $coluna, $formulario, $agrupador)
+    {
+        return $this->newCampo($label, $linha, $coluna, $formulario, $agrupador)->setTipo('TextareaType');
+    }
+
+    private function newCampoData($label, $linha, $coluna, $formulario, $agrupador)
+    {
+        return $this->newCampo($label, $linha, $coluna, $formulario, $agrupador)->setTipo('DateType');
+    }
+
+    private function newCampoLabel($label, $linha, $coluna, $formulario, $agrupador)
+    {
+        return $this->newCampo($label, $linha, $coluna, $formulario, $agrupador)->setTipo('LabelType');
+    }
+
+    private function newCampo($label, $linha, $coluna, $formulario, $agrupador)
+    {
+        $campo = new FormularioCampo();
+        $campo->setTipo('TextType');
+        $campo->setLabel($label);
+        //$campo->setFormulario($formulario); DEPRECATED
+        $campo->setAgrupador($agrupador);
+        $campo->setLinha($linha);
+        $campo->setColuna($coluna);
+
+        return $campo;
+    }
+
+    private function createFormularioAdequacaoCurricular(ObjectManager $manager)
+    {
+        $formulario = new Formulario();
+        $formulario->setNome('Adequação Curricular');
+
+        $agrupadorIdentificacao = new FormularioAgrupador();
+        $agrupadorIdentificacao->setFormulario($formulario)->setTitulo('Identificação')->setOrdem(1);
+
+        $agrupadorAdequcacao = new FormularioAgrupador();
+        $agrupadorAdequcacao->setFormulario($formulario)->setTitulo('Adequação')->setOrdem(2);
+
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoData('Data', 1, 1, $formulario, $agrupadorIdentificacao));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Turma', 1, 2, $formulario, $agrupadorIdentificacao));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Área', 1, 3, $formulario, $agrupadorIdentificacao));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Professor', 1, 4, $formulario, $agrupadorIdentificacao));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Trimeste', 1, 5, $formulario, $agrupadorIdentificacao));
+
+        $campoHistorico = $this->newCampoTextArea('Histórico', 1, 1, $formulario, $agrupadorAdequcacao);
+        $campoHistorico->setAltura(21);
+        $agrupadorAdequcacao->addFormularioCampo($campoHistorico);
+
+        $campoNecessidade = $this->newCampoTextArea('Necessidade', 1, 2, $formulario, $agrupadorAdequcacao);
+        $campoNecessidade->setAltura(21);
+        $agrupadorAdequcacao->addFormularioCampo($campoNecessidade);
+
+        $agrupadorAdequcacao->addFormularioCampo($this->newCampoLabel('Programação', 1, 3, $formulario, $agrupadorAdequcacao));
+        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('Objetivos', 1, 3, $formulario, $agrupadorAdequcacao));
+        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('Conteúdos Conceituais', 1, 3, $formulario, $agrupadorAdequcacao));
+        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('Conteúdos Procedimentais e Avaliações', 1, 3, $formulario, $agrupadorAdequcacao));
+
+        $agrupadorAdequcacao->addFormularioCampo($this->newCampoLabel('Sugestão', 1, 4, $formulario, $agrupadorAdequcacao));
+        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('Objetivos', 1, 4, $formulario, $agrupadorAdequcacao));
+        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('Conteúdos Conceituais', 1, 4, $formulario, $agrupadorAdequcacao));
+        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('Estratégias Procedimentais e Avaliações', 1, 4, $formulario, $agrupadorAdequcacao));
+
+        $manager->persist($agrupadorIdentificacao);
+        $manager->persist($agrupadorAdequcacao);
+        $manager->persist($formulario);
+        $manager->flush();
+    }
+
+    private function createFormularioPlanoDesenvolvimento(ObjectManager $manager)
+    {
         $formulario = new Formulario();
         $formulario->setNome('Plano de Desenvolvimento Individual');
 
@@ -65,38 +145,5 @@ class AppFormFixtures extends Fixture
         $manager->persist($agrupadorIntervencoes);
         $manager->persist($formulario);
         $manager->flush();
-    }
-
-    private function newCampoText($label, $linha, $coluna, $formulario, $agrupador)
-    {
-        return $this->newCampo($label, $linha, $coluna, $formulario, $agrupador)->setTipo('TextType');
-    }
-
-    private function newCampoTextArea($label, $linha, $coluna, $formulario, $agrupador)
-    {
-        return $this->newCampo($label, $linha, $coluna, $formulario, $agrupador)->setTipo('TextareaType');
-    }
-
-    private function newCampoData($label, $linha, $coluna, $formulario, $agrupador)
-    {
-        return $this->newCampo($label, $linha, $coluna, $formulario, $agrupador)->setTipo('DateType');
-    }
-
-    private function newCampoLabel($label, $linha, $coluna, $formulario, $agrupador)
-    {
-        return $this->newCampo($label, $linha, $coluna, $formulario, $agrupador)->setTipo('LabelType');
-    }
-
-    private function newCampo($label, $linha, $coluna, $formulario, $agrupador)
-    {
-        $campo = new FormularioCampo();
-        $campo->setTipo('TextType');
-        $campo->setLabel($label);
-        //$campo->setFormulario($formulario); DEPRECATED
-        $campo->setAgrupador($agrupador);
-        $campo->setLinha($linha);
-        $campo->setColuna($coluna);
-
-        return $campo;
     }
 }
