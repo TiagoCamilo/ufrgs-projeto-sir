@@ -23,7 +23,6 @@ class AppSystemFixtures extends Fixture
     private $encoder;
     private $formularioModelo;
 
-
     public function __construct(UserPasswordEncoderInterface $encoder, FormularioModelo $formularioModelo)
     {
         $this->encoder = $encoder;
@@ -35,7 +34,6 @@ class AppSystemFixtures extends Fixture
         $escola = new Escola();
         $escola->setNome(EscolaNomeList::$list[0]);
         $escola->setEndereco('Endereco Escola 0');
-
 
         for ($i = 0; $i < 10; ++$i) {
             $user = new User();
@@ -70,10 +68,9 @@ class AppSystemFixtures extends Fixture
             $manager->persist($aluna);
             $manager->persist($educador);
             $manager->persist($comentario);
-
         }
         $this->formularioModelo->createFormModels($escola);
-        
+
         $manager->flush();
     }
 }
