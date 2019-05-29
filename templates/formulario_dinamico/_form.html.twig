@@ -70,5 +70,7 @@
 
 
     <button type="submit" class="btn btn-primary">Salvar</button>
-    <a class="btn btn-success float-right" href="{{ path('formulario_dinamico_index',  {form_id: formId} ) }}">Voltar</a>
+    {% set referer = app.request.server.get('HTTP_REFERER')|default('/') %}
+
+    <a class="btn btn-success float-right" href="{{ referer }}">Voltar</a>
 </form>

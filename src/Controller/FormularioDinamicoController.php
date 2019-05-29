@@ -93,7 +93,10 @@ class FormularioDinamicoController extends AbstractController
             $em->persist($formularioRegistro);
             $em->flush();
 
-            return $this->redirectToRoute("{$this->entityName}_index", ['form_id' => $request->get('form_id')]);
+            //return $this->redirectToRoute("{$this->entityName}_index", ['form_id' => $request->get('form_id')]);
+            return $this->redirectToRoute('perfil_aluno_profile', [
+                'id' => $this->aluno->getId(),
+            ]);
         }
 
         return $this->render($this->getTemplateManager()->getNew(), [
@@ -158,7 +161,10 @@ class FormularioDinamicoController extends AbstractController
             $em->persist($formularioRegistro);
             $em->flush();
 
-            return $this->redirectToRoute("{$this->entityName}_index", ['form_id' => $request->get('form_id')]);
+            //return $this->redirectToRoute("{$this->entityName}_index", ['form_id' => $request->get('form_id')]);
+            return $this->redirectToRoute('perfil_aluno_profile', [
+                'id' => $this->aluno->getId(),
+            ]);
         }
 
         return $this->render($this->getTemplateManager()->getEdit(), [
