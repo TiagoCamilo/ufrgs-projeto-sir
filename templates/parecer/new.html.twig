@@ -4,7 +4,7 @@
     {{ parent() }}
     {% block timeline %}
         {{ render(controller(
-            'App\\Controller\\TimelineController::index', {'entity':'parecer'}
+            'App\\Controller\\TimelineController::index', {'entityOpenner':'parecer', 'orientation':'horizontal'}
         )) }}
     {% endblock %}
 {% endblock %}

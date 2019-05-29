@@ -31,15 +31,15 @@ class TimelineController extends AbstractController
     }
 
     /**
-     * @Route("/{entity}", name="timeline_index")
+     * @Route("/{entityOpenner}/{orientation}", name="timeline_index", defaults={"entityOpenner"="","orientation"="horizontal"})
      */
-    public function index(string $entity): Response
+    public function index(string $entityOpenner, string $orientation): Response
     {
-        $timelineElements = $this->aluno->getComentariosAcompanhamentos();
-
         return $this->render('timeline/index.html.twig', [
-            'timelineElements' => $timelineElements,
-            'entity' => $entity,
+            'entityOpenner' => $entityOpenner,
+            'register' => $this->aluno,
+            'timelineElements' => $this->aluno->getTimelineElements(),
+            'orientation' => $orientation,
         ]);
     }
 }

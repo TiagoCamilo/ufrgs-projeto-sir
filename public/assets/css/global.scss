@@ -68,3 +68,37 @@ body.fade-out {
   width: 300px;
   height: 300px;
 }
+
+@media (min-width: 576px) {
+  .card-group.card-group-scroll {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+
+  .card-group.card-group-scroll > .card {
+    flex-basis: 30%;
+    overflow-y: hidden;
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (min-width: 576px) {
+  .card-deck.card-deck-scroll {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+
+  .card-deck.card-deck-scroll > .card {
+    flex-basis: 30%;
+    overflow-y: hidden;
+    width: 300px;
+    height: 300px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+}
+
+.card-horizontal-action{
+  margin-left: 50px;
+}

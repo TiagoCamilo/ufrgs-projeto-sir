@@ -6,7 +6,7 @@
 
 {% block body %}
     <form class="form">
-        <input class="form-control " type="text" placeholder="Digite o nome do aluno" onkeyup="seachAluno(this.value)">
+        <input class="form-control " type="text" placeholder="Digite o nome do aluno" onkeyup="searchAluno(this.value)">
     </form>
     <div class="row">
     {% for register in  registers %}
@@ -39,7 +39,7 @@
             }
         }
 
-        seachAluno = function(valor){
+        searchAluno = function(valor){
             valor = valor.toLowerCase().replace(' ', '');
 
             $('.alunoCard').css('display','none');

@@ -1,0 +1,35 @@
+{% if orientation == 'horizontal' %}
+    <div class="card-header" >
+
+        {% if(actionList.copy is defined and actionList.copy == true) %}
+            <a class="card-horizontal-action" href="#"
+               onclick="copyValue('register_{{ entityType }}_{{ register.id }}')">
+                <i class="fas fa-copy" title="Importar conteúdo"></i>
+            </a>
+        {% endif %}
+
+        {% if(actionList.copy_link is defined and actionList.copy_link  == true) %}
+
+            <a class="card-horizontal-action" href="#"
+               onclick="copyValueWithLink('register_{{ entityType }}_{{ register.id }}','{{ path(entityType~'_show', {id: register.id}) }}')">
+                <i class="fas fa-link" title="Importar conteúdo com link"></i>
+            </a>
+        {% endif %}
+
+        {% if(actionList.show is defined and actionList.show  == true) %}
+            {% if register is Formulario %}
+                <a class="card-horizontal-action"
+                   href="{{ path(entityType~'_report_pdf', {form_id: register.formulario.id, id: register.id}) }}"
+                   target="_blank">
+                    <i class="fas fa-eye" title="Visualizar registro"></i>
+                </a>
+            {% else %}
+                <a class="card-horizontal-action" href="{{ path(entityType~'_show', {id: register.id}) }}"
+                   target="_blank">
+                    <i class="fas fa-eye" title="Visualizar registro"></i>
+                </a>
+            {% endif %}
+        {% endif %}
+
+    </div>
+{% endif %}

@@ -1,0 +1,51 @@
+{% if entityOpenner == 'acompanhamento' %}
+    {% set actionList = {
+        'copy': true,
+        'copy_link': false,
+        'show': true,
+    } %}
+{% else %}
+    {% set actionList = {
+        'copy': true,
+        'copy_link': true,
+        'show': true,
+    } %}
+{% endif %}
+
+
+{% if timelineElement is Comentario %}
+    {% set entityType = 'comentario' %}
+    {% set displayName = 'Foto/Vídeo' %}
+    {% set icon = 'fa-camera-retro' %}
+{% endif %}
+{% if timelineElement is Acompanhamento %}
+    {% set entityType = 'acompanhamento' %}
+    {% set displayName = 'Acompanhamento' %}
+    {% set icon = 'fa-file' %}
+    {% set actionList = actionList|merge({
+        'copy_link':false,
+    }) %}
+{% endif %}
+{% if timelineElement is Parecer %}
+    {% set entityType = 'parecer' %}
+    {% set displayName = 'Parecer' %}
+    {% set icon = 'fa-file-powerpoint' %}
+{% endif %}
+{% if timelineElement is Formulario %}
+    {% set entityType = 'formulario_dinamico' %}
+    {% set displayName = 'Formulário' %}
+    {% set icon = 'fa-file-signature' %}
+    {% set actionList = actionList|merge({
+        'copy':false,
+        'copy_link':false,
+    }) %}
+{% endif %}
+
+
+<div class="card mb-3 entity-card" data-entity="{{ entityType }}">
+    <div class="card-header">
+        <i class="fas {{ icon }}"></i> {{ displayName }}
+    </div>
+    {% include 'timeline/_card_horizontal_actions.html.twig' with {register: timelineElement, entityType: entityType, orientation: orientation, actionList: actionList} only  %}
+    {% include 'timeline/_card_'~entityType~'.html.twig' with {register: timelineElement, entityType: entityType, orientation: orientation} only  %}
+</div>
