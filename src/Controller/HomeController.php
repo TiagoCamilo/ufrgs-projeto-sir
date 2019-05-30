@@ -32,10 +32,8 @@ class HomeController extends AbstractController
      */
     public function index(AlunoRepository $repository)
     {
-        dump($this->session);
         $this->session->remove('aluno_id');
         $this->session->remove('aluno_nome');
-        dump($this->session);
 
         return $this->render('home/index.html.twig', [
             'registers' => $repository->findAll(),
