@@ -41,4 +41,11 @@ class HomeController extends AbstractController
             'registers' => $repository->findAll(),
         ]);
     }
+
+    /**
+     * @Route("/form",name="form")
+     */
+    public function form(){
+        return $this->render('home/form.html.twig');
+    }
 }

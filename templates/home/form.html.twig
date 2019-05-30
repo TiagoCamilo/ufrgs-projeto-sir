@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Criação Formulario{% endblock %}
+
+
+
+{% block body %}
+    <form class="form">
+        <div id="form-content"  style="border-style: solid; border-width: 1px; padding: 5px; margin-bottom: 10px; ">
+
+        </div>
+    </form>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        renderElement = function (element) {
+
+            if (element.nodes == null || element.nodes.length == 0) {
+                switch (element.type){
+                    case "group":
+                        return renderGroup(element);
+                    case "text":
+                        return renderText(element);
+                    default:
+                        return "x";
+                }
+            }
+
+            retorno = "<div class='form-area'>";
+
+            while(node = element.nodes.shift()){
+                retorno = retorno + renderElement(node);
+            }
+
+
+            retorno = renderElement(element) + retorno;
+            retorno = retorno + "</div>";
+
+            return retorno;
+        }
+
+        renderGroup = function(element){
+            return "<div class='form-title'>" + element.titulo + "</div>";
+        }
+
+        renderText = function (element) {
+            return renderInput(element, "text");
+        }
+
+        renderInput = function(element, type){
+            return "<label>" + element.label+"</label><input class='form-control' type="+type+">";
+        }
+
+    </script>
+
+    <script>
+        var formulario = { type: 'group', titulo: 'Plano de Desenvolvimento' };
+        var grupo1 = { type: 'group', titulo: 'Grupo1' };
+        var grupo11 = { type: 'group', titulo: 'Grupo1.1' };
+        var grupo2 = { type: 'group', titulo: 'Grupo2' };
+        var grupo3 = { type: 'group', titulo: 'Grupo3' };
+        var text1 = { type: 'text', label: 'CampoTexto1'};
+        var text2 = { type: 'text', label: 'CampoTexto2'};
+        var text3 = { type: 'text', label: 'CampoTexto3'};
+
+        grupo11.nodes = [text3];
+        grupo3.nodes = [text1];
+        grupo1.nodes = [text2, grupo11];
+        formulario.nodes = [grupo1, grupo2, grupo3];
+
+        var jsonForm = JSON.stringify(formulario, null, 2);
+
+        //console.log(jsonForm);
+
+        form = JSON.parse(jsonForm);
+
+        container = $('#form-content');
+
+        container.append(renderElement(form));
+    </script>
+{% endblock %}
