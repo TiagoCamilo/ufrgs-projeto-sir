@@ -10,7 +10,7 @@ use App\Entity\Parecer;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigTest;
 
-class InstanceOfExtension extends AbstractExtension
+class TestExtension extends AbstractExtension
 {
     public function getTests()
     {

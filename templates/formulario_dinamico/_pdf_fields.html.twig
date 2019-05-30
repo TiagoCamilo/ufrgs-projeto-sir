@@ -13,8 +13,10 @@
             <div style="font-style: italic;">{{ campoRegistro.valor ? campoRegistro.valor | date('d/m/Y') : '' }}</div>
         {% elseif campo.tipo == "AlunoType" %}
             <div style="font-style: italic;">{{ form_helper.getAlunoById(campoRegistro.valor).getNome() | nl2br }}</div>
+        {% elseif campo.tipo == "TextareaType" %}
+            <div style="font-style: italic;">{{ campoRegistro.valor | nl2br  }}</div>
         {% else %}
-            <div style="font-style: italic;">{{ campoRegistro.valor | nl2br }}</div>
+            <div style="font-style: italic;">{{ campoRegistro.valor | nl2br  }}</div>
         {% endif %}
 
     {% endif %}
