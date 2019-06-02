@@ -3,6 +3,9 @@
 {% block title %}Listagem {{ entityName|capitalize }}{% endblock %}
 
 {% set registerListAttr = [] %}
+{% set registerListAction = [] %}
+{% set registerElementAction = [] %}
+
 {% for register in registers %}
     {% set registerListAttr = registerListAttr|merge ([{
         'Id': register.id,
@@ -10,6 +13,19 @@
         'Data Nascimento': register.dataNascimento ? register.dataNascimento|date('d/m/Y H:i:s') : '',
         'Escola': register.escola.nome
     }]) %}
+
+    {% set registerElementAction = {
+            (register.id) : {
+                'new': true,
+                'show': true,
+                'edit': is_granted('edit',register),
+                'delete': true,
+                'image': true,
+            }
+        } %}
+
+    {% set registerListAction = registerListAction + registerElementAction %}
+
 {% endfor %}
 
 {% set actionList = {
@@ -19,6 +35,8 @@
     'delete': true,
     'image': true,
 } %}
+
+
 
 {% block body %}
     {% include 'generic/_body_title.html.twig' with {title: 'Listagem - '~entityName|capitalize} %}
