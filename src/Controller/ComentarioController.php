@@ -9,6 +9,7 @@ use App\Helpers\TemplateManager;
 use App\Repository\AlunoRepository;
 use App\Repository\ComentarioRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -86,6 +87,7 @@ class ComentarioController extends AppAbstractController
     /**
      * @Route("/{id}/edit", name="comentario_edit", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\Comentario")
+     * @IsGranted("EDIT", subject="entity")
      */
     public function edit(Request $request, IEntity $entity): Response
     {

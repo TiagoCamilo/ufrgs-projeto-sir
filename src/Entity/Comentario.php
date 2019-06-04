@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ComentarioRepository")
  */
-class Comentario implements IEntity
+class Comentario implements IEntity, LimiterEscolaInterface
 {
     /**
      * @ORM\Id()
@@ -114,5 +114,10 @@ class Comentario implements IEntity
         $this->file = $file;
 
         return $this;
+    }
+
+    public function getEscola(): ?Escola
+    {
+        return $this->aluno->getEscola();
     }
 }
