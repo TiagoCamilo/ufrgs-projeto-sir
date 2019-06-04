@@ -4,19 +4,17 @@ namespace App\Security;
 
 use App\Entity\Aluno;
 use App\Entity\User;
+use App\Helpers\VoterHelper;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
-class AlunoVoter extends Voter
+class AppVoter extends Voter
 {
-    // these strings are just invented: you can use anything
-    const VIEW = 'view';
-    const EDIT = 'edit';
 
     protected function supports($attribute, $subject)
     {
         // if the attribute isn't one we support, return false
-        if (!in_array($attribute, [self::VIEW, self::EDIT])) {
+        if (!in_array($attribute, VoterHelper::getSupportedActions())) {
             return false;
         }
 
@@ -37,14 +35,12 @@ class AlunoVoter extends Voter
             return false;
         }
 
-        // you know $subject is a Post object, thanks to supports
-        /** @var Aluno $post */
         $object = $subject;
 
         switch ($attribute) {
-            case self::VIEW:
+            case VoterHelper::$VIEW:
                 return $this->canView($object, $user);
-            case self::EDIT:
+            case VoterHelper::$EDIT:
                 return $this->canEdit($object, $user);
         }
 

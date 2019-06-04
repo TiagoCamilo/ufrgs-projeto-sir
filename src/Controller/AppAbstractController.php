@@ -60,8 +60,6 @@ abstract class AppAbstractController extends AbstractController
 
     public function show(IEntity $entity): Response
     {
-        $this->denyAccessUnlessGranted('view', $entity);
-
         //TODO: Refatorar para obter o response em cada metodo
         return $this->render("{$this->entityName}/show.html.twig", [
             'register' => $entity,

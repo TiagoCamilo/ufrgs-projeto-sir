@@ -18,7 +18,7 @@
             (register.id) : {
                 'new': true,
                 'show': true,
-                'edit': is_granted('edit',register),
+                'edit': is_granted(voter_helper.getEdit(),register),
                 'delete': true,
                 'image': true,
             }

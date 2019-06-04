@@ -8,6 +8,7 @@ use App\Form\AlunoFile;
 use App\Form\AlunoType;
 use App\Repository\AlunoRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,6 +47,7 @@ class AlunoController extends AppAbstractController
     /**
      * @Route("/{id}", name="aluno_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Aluno")
+     * @IsGranted("VIEW", subject="entity")
      */
     public function show(IEntity $entity): Response
     {
