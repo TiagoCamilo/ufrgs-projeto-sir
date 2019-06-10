@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Entity\User;
+
 class VoterHelper
 {
     public static $VIEW = 'VIEW';
@@ -9,6 +11,15 @@ class VoterHelper
     public static $LIST = 'LIST';
     public static $NEW = 'NEW';
     public static $DELETE = 'DELETE';
+
+    public static function checkUserPermission(User $user, string $permission): bool
+    {
+        $exists = $user->getPerfil()->getPerfilControleAcoes()->exists(function ($key, $element) use ($permission) {
+            return $permission === $element->getRoute();
+        });
+
+        return $exists;
+    }
 
     /**
      * @return array

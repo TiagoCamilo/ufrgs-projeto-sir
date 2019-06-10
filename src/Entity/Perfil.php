@@ -24,7 +24,7 @@ class Perfil
     private $nome;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PerfilControleAcao", mappedBy="perfil", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\PerfilControleAcao", mappedBy="perfil", orphanRemoval=true, fetch="EAGER")
      */
     private $perfilControleAcoes;
 

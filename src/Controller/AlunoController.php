@@ -47,7 +47,7 @@ class AlunoController extends AppAbstractController
     /**
      * @Route("/{id}", name="aluno_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Aluno")
-     * @IsGranted("VIEW", subject="entity")
+     * @IsGranted("aluno_show", subject="entity")
      */
     public function show(IEntity $entity): Response
     {

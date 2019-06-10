@@ -12,9 +12,6 @@ class AppVoter extends Voter
 {
     protected function supports($attribute, $subject)
     {
-        if (!in_array($attribute, VoterHelper::getSupportedActions())) {
-            return false;
-        }
 
         if (!$subject instanceof LimiterEscolaInterface) {
             return false;
@@ -31,26 +28,11 @@ class AppVoter extends Voter
             return false;
         }
 
-        $object = $subject;
-
-        switch ($attribute) {
-            case VoterHelper::$VIEW:
-                return $this->canView($object, $user);
-            case VoterHelper::$EDIT:
-                return $this->canEdit($object, $user);
+        if (false === VoterHelper::checkUserPermission($user, $attribute)) {
+            return false;
         }
 
-        throw new \LogicException('This code should not be reached!');
-    }
-
-    private function canView(LimiterEscolaInterface $object, User $user)
-    {
-        return $this->canEdit($object, $user);
-    }
-
-    private function canEdit(LimiterEscolaInterface $object, User $user)
-    {
-        return $this->checkScope($object, $user);
+        return $this->checkScope($subject, $user);
     }
 
     private function checkScope(LimiterEscolaInterface $object, User $user)
