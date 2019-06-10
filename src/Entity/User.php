@@ -49,6 +49,12 @@ class User implements UserInterface, \Serializable
      */
     private $educador;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Perfil", inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $perfil;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -167,5 +173,17 @@ class User implements UserInterface, \Serializable
     public function __toString(): string
     {
         return $this->username;
+    }
+
+    public function getPerfil(): ?Perfil
+    {
+        return $this->perfil;
+    }
+
+    public function setPerfil(?Perfil $perfil): self
+    {
+        $this->perfil = $perfil;
+
+        return $this;
     }
 }
