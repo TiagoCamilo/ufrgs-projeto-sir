@@ -63,5 +63,4 @@ class VoterHelper
     {
         return self::$DELETE;
     }
-
 }

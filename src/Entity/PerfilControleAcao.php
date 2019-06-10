@@ -37,6 +37,22 @@ class PerfilControleAcao
      */
     private $route;
 
+    /**
+     * PerfilControleAcao constructor.
+     *
+     * @param $perfil
+     * @param $controle
+     * @param $acao
+     * @param $route
+     */
+    public function __construct($perfil, $controle, $acao, $route)
+    {
+        $this->perfil = $perfil;
+        $this->controle = $controle;
+        $this->acao = $acao;
+        $this->route = $route;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -10,13 +10,11 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class AppVoter extends Voter
 {
-
     protected function supports($attribute, $subject)
     {
         if (!in_array($attribute, VoterHelper::getSupportedActions())) {
             return false;
         }
-
 
         if (!$subject instanceof LimiterEscolaInterface) {
             return false;
