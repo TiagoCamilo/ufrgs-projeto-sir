@@ -24,6 +24,7 @@
                 {% if(actionList.show is defined and actionList.show == true) %}
                     <a class="btn btn-primary" href="{{ path(entityName~'_show', {'id': listAttr.Id}) }}">Exibir</a>
                 {% endif %}
+{#                {% if(registerListAction[listAttr.Id].edit is defined and registerListAction[listAttr.Id].edit == true) %}#}
                 {% if(actionList.edit is defined and actionList.edit == true) %}
                     <a class="btn btn-primary" href="{{ path(entityName~'_edit', {'id': listAttr.Id}) }}">Editar</a>
                 {% endif %}

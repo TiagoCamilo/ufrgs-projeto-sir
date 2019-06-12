@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AlunoRepository")
  */
-class Aluno implements IEntity
+class Aluno implements IEntity, LimiterEscolaInterface
 {
     /**
      * @ORM\Id()

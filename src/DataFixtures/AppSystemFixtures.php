@@ -13,6 +13,7 @@ use App\Entity\Comentario;
 use App\Entity\Educador;
 use App\Entity\Escola;
 use App\Entity\User;
+use App\Repository\PerfilRepository;
 use App\Service\FormularioModelo;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -22,11 +23,14 @@ class AppSystemFixtures extends Fixture
 {
     private $encoder;
     private $formularioModelo;
+    private $perfilRepository;
 
-    public function __construct(UserPasswordEncoderInterface $encoder, FormularioModelo $formularioModelo)
+    public function __construct(UserPasswordEncoderInterface $encoder, FormularioModelo $formularioModelo, PerfilRepository $perfilRepository)
     {
         $this->encoder = $encoder;
         $this->formularioModelo = $formularioModelo;
+        $this->perfilRepository = $perfilRepository;
+
     }
 
     public function load(ObjectManager $manager)
@@ -41,6 +45,7 @@ class AppSystemFixtures extends Fixture
             $user->setEmail('admin'.$i.'@admin.com');
             $password = $this->encoder->encodePassword($user, '103020');
             $user->setPassword($password);
+            $user->setPerfil($this->perfilRepository->find(1));
 
             $aluno = new Aluno();
             $aluno->setNome(AlunosNomeList::getRandomItem());
