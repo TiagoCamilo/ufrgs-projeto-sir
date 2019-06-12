@@ -23,6 +23,13 @@ class AppPerfilFixtures extends Fixture
         $manager->persist($perfil);
         $manager->persist(new PerfilControleAcao($perfil, 'Aluno', 'Visualizar', 'aluno_show'));
         $manager->persist(new PerfilControleAcao($perfil, 'Aluno', 'Editar', 'aluno_edit'));
+        $manager->persist(new PerfilControleAcao($perfil, 'Foto/Vídeo', 'Visualizar', 'comentario_edit'));
+
+        $perfilProfessor = new Perfil();
+        $perfilProfessor->setNome('Professor');
+
+        $manager->persist($perfilProfessor);
+        $manager->persist(new PerfilControleAcao($perfilProfessor, 'Aluno', 'Editar', 'aluno_edit'));
 
         $manager->flush();
     }

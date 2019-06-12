@@ -87,7 +87,7 @@ class ComentarioController extends AppAbstractController
     /**
      * @Route("/{id}/edit", name="comentario_edit", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\Comentario")
-     * @IsGranted("EDIT", subject="entity")
+     * @IsGranted("comentario_edit", subject="entity")
      */
     public function edit(Request $request, IEntity $entity): Response
     {
