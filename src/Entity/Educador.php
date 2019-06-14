@@ -24,11 +24,6 @@ class Educador implements IEntity
     private $nome;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="educador")
-     */
-    private $app_user;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Acompanhamento", mappedBy="educador")
      */
     private $acompanhamentos;
@@ -69,18 +64,6 @@ class Educador implements IEntity
     public function setNome(string $nome): self
     {
         $this->nome = $nome;
-
-        return $this;
-    }
-
-    public function getAppUser(): ?User
-    {
-        return $this->app_user;
-    }
-
-    public function setAppUser(?User $app_user): self
-    {
-        $this->app_user = $app_user;
 
         return $this;
     }
