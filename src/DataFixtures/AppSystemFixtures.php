@@ -10,7 +10,6 @@ namespace App\DataFixtures;
 
 use App\Entity\Aluno;
 use App\Entity\Comentario;
-use App\Entity\Educador;
 use App\Entity\Escola;
 use App\Entity\Usuario;
 use App\Repository\PerfilRepository;
@@ -56,15 +55,9 @@ class AppSystemFixtures extends Fixture
             $aluna->setNome(AlunosNomeList::getRandomItem());
             $aluna->setEscola($escola);
 
-            $educador = new Educador();
-            //$educador->setAppUser($user);
-            $educador->setNome('Educador '.$i);
-            $educador->setEscola($escola);
-
             if ($i < 5) {
                 $comentario = new Comentario();
                 $comentario->setAluno($aluno);
-                //$comentario->setEducador($educador);
                 $comentario->setDescricao('Comentario '.$i);
             }
 
@@ -72,7 +65,6 @@ class AppSystemFixtures extends Fixture
             $manager->persist($escola);
             $manager->persist($aluno);
             $manager->persist($aluna);
-            $manager->persist($educador);
             $manager->persist($comentario);
         }
         $this->formularioModelo->createFormModels($escola);

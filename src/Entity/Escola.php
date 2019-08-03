@@ -35,11 +35,6 @@ class Escola implements IEntity
     private $endereco;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Educador", mappedBy="escola", orphanRemoval=true)
-     */
-    private $educadores;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Aluno", mappedBy="escola")
      */
     private $alunos;
@@ -94,37 +89,6 @@ class Escola implements IEntity
     public function setEndereco(?string $endereco): self
     {
         $this->endereco = $endereco;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Educador[]
-     */
-    public function getEducadores(): Collection
-    {
-        return $this->educadores;
-    }
-
-    public function addEducador(Educador $educador): self
-    {
-        if (!$this->educadores->contains($educador)) {
-            $this->educadores[] = $educador;
-            $educador->setEscola($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEducador(Educador $educador): self
-    {
-        if ($this->educadores->contains($educador)) {
-            $this->educadores->removeElement($educador);
-            // set the owning side to null (unless already changed)
-            if ($educador->getEscola() === $this) {
-                $educador->setEscola(null);
-            }
-        }
 
         return $this;
     }
