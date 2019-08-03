@@ -27,12 +27,6 @@ class Acompanhamento implements IEntity
     private $descricao;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Educador", inversedBy="acompanhamentos")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $educador;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Aluno", inversedBy="acompanhamentos")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -68,18 +62,6 @@ class Acompanhamento implements IEntity
     public function setDescricao($descricao): self
     {
         $this->descricao = $descricao;
-
-        return $this;
-    }
-
-    public function getEducador(): ?Educador
-    {
-        return $this->educador;
-    }
-
-    public function setEducador(?Educador $educador): self
-    {
-        $this->educador = $educador;
 
         return $this;
     }

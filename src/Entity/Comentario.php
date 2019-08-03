@@ -28,12 +28,6 @@ class Comentario implements IEntity, LimiterEscolaInterface
     private $descricao;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Educador")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $educador;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Aluno", inversedBy="comentarios")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -76,18 +70,6 @@ class Comentario implements IEntity, LimiterEscolaInterface
     public function setDescricao(?string $descricao): self
     {
         $this->descricao = $descricao;
-
-        return $this;
-    }
-
-    public function getEducador(): ?Educador
-    {
-        return $this->educador;
-    }
-
-    public function setEducador(?Educador $educador): self
-    {
-        $this->educador = $educador;
 
         return $this;
     }

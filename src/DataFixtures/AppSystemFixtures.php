@@ -64,7 +64,7 @@ class AppSystemFixtures extends Fixture
             if ($i < 5) {
                 $comentario = new Comentario();
                 $comentario->setAluno($aluno);
-                $comentario->setEducador($educador);
+                //$comentario->setEducador($educador);
                 $comentario->setDescricao('Comentario '.$i);
             }
 

@@ -11,7 +11,7 @@ security:
         our_db_provider:
             entity:
                 class: App\Entity\User
-                property: username
+                property: email
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
@@ -25,8 +25,8 @@ security:
         main:
             anonymous: ~
             form_login:
-                login_path: login
-                check_path: login
+                login_path: app_login
+                check_path: app_login
             provider: our_db_provider
             logout:
                 path:   /logout
