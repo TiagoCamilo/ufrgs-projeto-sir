@@ -12,7 +12,7 @@ use App\Entity\Aluno;
 use App\Entity\Comentario;
 use App\Entity\Educador;
 use App\Entity\Escola;
-use App\Entity\User;
+use App\Entity\Usuario;
 use App\Repository\PerfilRepository;
 use App\Service\FormularioModelo;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -40,12 +40,11 @@ class AppSystemFixtures extends Fixture
         $escola->setEndereco('Endereco Escola 0');
 
         for ($i = 0; $i < 10; ++$i) {
-            $user = new User();
-            $user->setUsername('user'.$i);
+            $user = new Usuario();
             $user->setEmail('admin'.$i.'@admin.com');
             $password = $this->encoder->encodePassword($user, '103020');
             $user->setPassword($password);
-            $user->setPerfil($this->perfilRepository->find(1));
+            //$user->setPerfil($this->perfilRepository->find(1));
 
             $aluno = new Aluno();
             $aluno->setNome(AlunosNomeList::getRandomItem());
@@ -56,7 +55,7 @@ class AppSystemFixtures extends Fixture
             $aluna->setEscola($escola);
 
             $educador = new Educador();
-            $educador->setAppUser($user);
+            //$educador->setAppUser($user);
             $educador->setNome('Educador '.$i);
             $educador->setEscola($escola);
 
