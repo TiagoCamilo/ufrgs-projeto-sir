@@ -44,7 +44,7 @@ class AppSystemFixtures extends Fixture
             $user->setEmail('admin'.$i.'@admin.com');
             $password = $this->encoder->encodePassword($user, '103020');
             $user->setPassword($password);
-            //$user->setPerfil($this->perfilRepository->find(1));
+            $user->setPerfil($this->perfilRepository->find(1));
 
             $aluno = new Aluno();
             $aluno->setNome(AlunosNomeList::getRandomItem());

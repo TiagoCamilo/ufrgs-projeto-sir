@@ -28,11 +28,17 @@ class Perfil
      */
     private $perfilControleAcoes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Usuario", mappedBy="perfil")
+     */
+    private $usuarios;
+
 
 
     public function __construct()
     {
         $this->perfilControleAcoes = new ArrayCollection();
+        $this->usuarios = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,6 +83,37 @@ class Perfil
             // set the owning side to null (unless already changed)
             if ($perfilControleAco->getPerfil() === $this) {
                 $perfilControleAco->setPerfil(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Usuario[]
+     */
+    public function getUsuarios(): Collection
+    {
+        return $this->usuarios;
+    }
+
+    public function addUsuario(Usuario $usuario): self
+    {
+        if (!$this->usuarios->contains($usuario)) {
+            $this->usuarios[] = $usuario;
+            $usuario->setPerfil($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUsuario(Usuario $usuario): self
+    {
+        if ($this->usuarios->contains($usuario)) {
+            $this->usuarios->removeElement($usuario);
+            // set the owning side to null (unless already changed)
+            if ($usuario->getPerfil() === $this) {
+                $usuario->setPerfil(null);
             }
         }
 

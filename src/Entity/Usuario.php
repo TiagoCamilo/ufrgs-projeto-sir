@@ -33,6 +33,12 @@ class Usuario implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Perfil", inversedBy="usuarios")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $perfil;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -109,5 +115,17 @@ class Usuario implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getPerfil(): ?Perfil
+    {
+        return $this->perfil;
+    }
+
+    public function setPerfil(?Perfil $perfil): self
+    {
+        $this->perfil = $perfil;
+
+        return $this;
     }
 }
