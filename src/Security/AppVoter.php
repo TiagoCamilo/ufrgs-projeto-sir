@@ -7,7 +7,6 @@ use App\Entity\Usuario;
 use App\Helpers\VoterHelper;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class AppVoter extends Voter
 {
@@ -25,7 +24,7 @@ class AppVoter extends Voter
     {
         $user = $token->getUser();
 
-        if (!$user instanceof UserInterface) {
+        if (!$user instanceof Usuario) {
             return false;
         }
 
@@ -38,6 +37,6 @@ class AppVoter extends Voter
 
     private function checkScope(LimiterEscolaInterface $object, Usuario $user)
     {
-        return $user->getEducador()->getEscola() === $object->getEscola();
+        return $user->getEscola() === $object->getEscola();
     }
 }

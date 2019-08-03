@@ -39,6 +39,16 @@ class Usuario implements UserInterface
      */
     private $perfil;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nome;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Escola", inversedBy="usuarios")
+     */
+    private $escola;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -125,6 +135,30 @@ class Usuario implements UserInterface
     public function setPerfil(?Perfil $perfil): self
     {
         $this->perfil = $perfil;
+
+        return $this;
+    }
+
+    public function getNome(): ?string
+    {
+        return $this->nome;
+    }
+
+    public function setNome(string $nome): self
+    {
+        $this->nome = $nome;
+
+        return $this;
+    }
+
+    public function getEscola(): ?Escola
+    {
+        return $this->escola;
+    }
+
+    public function setEscola(?Escola $escola): self
+    {
+        $this->escola = $escola;
 
         return $this;
     }

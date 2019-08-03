@@ -45,6 +45,8 @@ class AppSystemFixtures extends Fixture
             $password = $this->encoder->encodePassword($user, '103020');
             $user->setPassword($password);
             $user->setPerfil($this->perfilRepository->find(1));
+            $user->setNome('Educador '.$i);
+            $user->setEscola($escola);
 
             $aluno = new Aluno();
             $aluno->setNome(AlunosNomeList::getRandomItem());
