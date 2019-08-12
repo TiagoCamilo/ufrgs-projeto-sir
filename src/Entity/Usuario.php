@@ -66,11 +66,17 @@ class Usuario implements UserInterface
      */
     private $pareceres;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioRegistro", mappedBy="usuario")
+     */
+    private $formularioRegistros;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
         $this->acompanhamentos = new ArrayCollection();
         $this->pareceres = new ArrayCollection();
+        $this->formularioRegistros = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -274,6 +280,37 @@ class Usuario implements UserInterface
             // set the owning side to null (unless already changed)
             if ($parecere->getUsuario() === $this) {
                 $parecere->setUsuario(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FormularioRegistro[]
+     */
+    public function getFormularioRegistros(): Collection
+    {
+        return $this->formularioRegistros;
+    }
+
+    public function addFormularioRegistro(FormularioRegistro $formularioRegistro): self
+    {
+        if (!$this->formularioRegistros->contains($formularioRegistro)) {
+            $this->formularioRegistros[] = $formularioRegistro;
+            $formularioRegistro->setUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormularioRegistro(FormularioRegistro $formularioRegistro): self
+    {
+        if ($this->formularioRegistros->contains($formularioRegistro)) {
+            $this->formularioRegistros->removeElement($formularioRegistro);
+            // set the owning side to null (unless already changed)
+            if ($formularioRegistro->getUsuario() === $this) {
+                $formularioRegistro->setUsuario(null);
             }
         }
 
