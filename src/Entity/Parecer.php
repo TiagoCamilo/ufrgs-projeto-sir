@@ -33,6 +33,12 @@ class Parecer implements IEntity
     private $aluno;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuario", inversedBy="pareceres")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $usuario;
+
+    /**
      * Parecer constructor.
      */
     public function __construct()
@@ -77,6 +83,18 @@ class Parecer implements IEntity
     public function setAluno(?Aluno $aluno): self
     {
         $this->aluno = $aluno;
+
+        return $this;
+    }
+
+    public function getUsuario(): ?Usuario
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(?Usuario $usuario): self
+    {
+        $this->usuario = $usuario;
 
         return $this;
     }

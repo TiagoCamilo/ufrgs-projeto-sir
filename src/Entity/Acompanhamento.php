@@ -32,6 +32,12 @@ class Acompanhamento implements IEntity
      */
     private $aluno;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuario", inversedBy="acompanhamentos")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $usuario;
+
     public function __construct()
     {
         $this->data_hora = new \DateTime();
@@ -74,6 +80,18 @@ class Acompanhamento implements IEntity
     public function setAluno(?Aluno $aluno): self
     {
         $this->aluno = $aluno;
+
+        return $this;
+    }
+
+    public function getUsuario(): ?Usuario
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(?Usuario $usuario): self
+    {
+        $this->usuario = $usuario;
 
         return $this;
     }

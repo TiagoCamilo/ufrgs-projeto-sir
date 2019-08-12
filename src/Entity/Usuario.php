@@ -56,9 +56,21 @@ class Usuario implements UserInterface
      */
     private $comentarios;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Acompanhamento", mappedBy="usuario")
+     */
+    private $acompanhamentos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Parecer", mappedBy="usuario")
+     */
+    private $pareceres;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
+        $this->acompanhamentos = new ArrayCollection();
+        $this->pareceres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -200,6 +212,68 @@ class Usuario implements UserInterface
             // set the owning side to null (unless already changed)
             if ($comentario->getUsuario() === $this) {
                 $comentario->setUsuario(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Acompanhamento[]
+     */
+    public function getAcompanhamentos(): Collection
+    {
+        return $this->acompanhamentos;
+    }
+
+    public function addAcompanhamento(Acompanhamento $acompanhamento): self
+    {
+        if (!$this->acompanhamentos->contains($acompanhamento)) {
+            $this->acompanhamentos[] = $acompanhamento;
+            $acompanhamento->setUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAcompanhamento(Acompanhamento $acompanhamento): self
+    {
+        if ($this->acompanhamentos->contains($acompanhamento)) {
+            $this->acompanhamentos->removeElement($acompanhamento);
+            // set the owning side to null (unless already changed)
+            if ($acompanhamento->getUsuario() === $this) {
+                $acompanhamento->setUsuario(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Parecer[]
+     */
+    public function getPareceres(): Collection
+    {
+        return $this->pareceres;
+    }
+
+    public function addParecerer(Parecer $parecere): self
+    {
+        if (!$this->pareceres->contains($parecere)) {
+            $this->pareceres[] = $parecere;
+            $parecere->setUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParecerer(Parecer $parecere): self
+    {
+        if ($this->pareceres->contains($parecere)) {
+            $this->pareceres->removeElement($parecere);
+            // set the owning side to null (unless already changed)
+            if ($parecere->getUsuario() === $this) {
+                $parecere->setUsuario(null);
             }
         }
 
