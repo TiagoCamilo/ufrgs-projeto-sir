@@ -40,6 +40,12 @@ class Comentario implements IEntity, LimiterEscolaInterface
      */
     private $file;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuario", inversedBy="comentarios")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $usuario;
+
     public function __construct()
     {
         $this->data_hora = new \DateTime();
@@ -101,5 +107,17 @@ class Comentario implements IEntity, LimiterEscolaInterface
     public function getEscola(): ?Escola
     {
         return $this->aluno->getEscola();
+    }
+
+    public function getUsuario(): ?Usuario
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(?Usuario $usuario): self
+    {
+        $this->usuario = $usuario;
+
+        return $this;
     }
 }
