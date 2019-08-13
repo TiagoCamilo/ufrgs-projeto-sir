@@ -28,12 +28,6 @@ class Comentario implements IEntity, LimiterEscolaInterface
     private $descricao;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Educador")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $educador;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Aluno", inversedBy="comentarios")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -45,6 +39,12 @@ class Comentario implements IEntity, LimiterEscolaInterface
      * @Assert\File(maxSize = "200M", mimeTypes={ "image/*", "video/*" })
      */
     private $file;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuario", inversedBy="comentarios")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $usuario;
 
     public function __construct()
     {
@@ -80,18 +80,6 @@ class Comentario implements IEntity, LimiterEscolaInterface
         return $this;
     }
 
-    public function getEducador(): ?Educador
-    {
-        return $this->educador;
-    }
-
-    public function setEducador(?Educador $educador): self
-    {
-        $this->educador = $educador;
-
-        return $this;
-    }
-
     public function getAluno(): ?Aluno
     {
         return $this->aluno;
@@ -119,5 +107,17 @@ class Comentario implements IEntity, LimiterEscolaInterface
     public function getEscola(): ?Escola
     {
         return $this->aluno->getEscola();
+    }
+
+    public function getUsuario(): ?Usuario
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(?Usuario $usuario): self
+    {
+        $this->usuario = $usuario;
+
+        return $this;
     }
 }

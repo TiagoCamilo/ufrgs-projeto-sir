@@ -29,14 +29,16 @@ class Perfil
     private $perfilControleAcoes;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="perfil")
+     * @ORM\OneToMany(targetEntity="App\Entity\Usuario", mappedBy="perfil")
      */
-    private $users;
+    private $usuarios;
+
+
 
     public function __construct()
     {
         $this->perfilControleAcoes = new ArrayCollection();
-        $this->users = new ArrayCollection();
+        $this->usuarios = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -88,33 +90,34 @@ class Perfil
     }
 
     /**
-     * @return Collection|User[]
+     * @return Collection|Usuario[]
      */
-    public function getUsers(): Collection
+    public function getUsuarios(): Collection
     {
-        return $this->users;
+        return $this->usuarios;
     }
 
-    public function addUser(User $user): self
+    public function addUsuario(Usuario $usuario): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->setPerfil($this);
+        if (!$this->usuarios->contains($usuario)) {
+            $this->usuarios[] = $usuario;
+            $usuario->setPerfil($this);
         }
 
         return $this;
     }
 
-    public function removeUser(User $user): self
+    public function removeUsuario(Usuario $usuario): self
     {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
+        if ($this->usuarios->contains($usuario)) {
+            $this->usuarios->removeElement($usuario);
             // set the owning side to null (unless already changed)
-            if ($user->getPerfil() === $this) {
-                $user->setPerfil(null);
+            if ($usuario->getPerfil() === $this) {
+                $usuario->setPerfil(null);
             }
         }
 
         return $this;
     }
+
 }

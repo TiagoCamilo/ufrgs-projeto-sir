@@ -24,7 +24,7 @@ class FormularioModelo
 
     public function createFormModels(Escola $escola): bool
     {
-        $formulariosModelos = $this->formularioRepository->findBy(['escola' => null]);
+        $formulariosModelos = $this->formularioRepository->findBy(['escola' => null], ['id' => 'ASC']);
         foreach ($formulariosModelos as $formularioModelo) {
             $escola->addFormulario(clone $formularioModelo);
         }

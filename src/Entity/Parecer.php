@@ -27,16 +27,16 @@ class Parecer implements IEntity
     private $descricao;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Educador", inversedBy="pareceres")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $educador;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Aluno", inversedBy="pareceres")
      * @ORM\JoinColumn(nullable=false)
      */
     private $aluno;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuario", inversedBy="pareceres")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $usuario;
 
     /**
      * Parecer constructor.
@@ -75,18 +75,6 @@ class Parecer implements IEntity
         return $this;
     }
 
-    public function getEducador(): ?Educador
-    {
-        return $this->educador;
-    }
-
-    public function setEducador(?Educador $educador): self
-    {
-        $this->educador = $educador;
-
-        return $this;
-    }
-
     public function getAluno(): ?Aluno
     {
         return $this->aluno;
@@ -95,6 +83,18 @@ class Parecer implements IEntity
     public function setAluno(?Aluno $aluno): self
     {
         $this->aluno = $aluno;
+
+        return $this;
+    }
+
+    public function getUsuario(): ?Usuario
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(?Usuario $usuario): self
+    {
+        $this->usuario = $usuario;
 
         return $this;
     }

@@ -53,8 +53,8 @@ class ComentarioController extends AppAbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // TODO: Isolar em metodo dependente de UserInterface?
-            $this->entity->setEducador($user->getEducador());
+
+            $this->entity->setUsuario($user);
 
             $this->entity->setAluno($this->aluno);
 
