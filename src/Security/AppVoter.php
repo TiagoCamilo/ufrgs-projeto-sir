@@ -10,8 +10,11 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class AppVoter extends Voter
 {
-    protected function supports($attribute, $subject)
+    protected function supports($attribute, $subject = null)
     {
+        if (null === $subject) {
+            return true;
+        }
 
         if (!$subject instanceof LimiterEscolaInterface) {
             return false;
@@ -30,6 +33,10 @@ class AppVoter extends Voter
 
         if (false === VoterHelper::checkUserPermission($user, $attribute)) {
             return false;
+        }
+
+        if (null === $subject) {
+            return true;
         }
 
         return $this->checkScope($subject, $user);

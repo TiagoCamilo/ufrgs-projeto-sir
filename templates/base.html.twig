@@ -18,7 +18,9 @@
 
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="/">SIR <span class="sr-only">(current)</span></a>
@@ -28,44 +30,59 @@
 
             {% if is_granted('ROLE_USER') %}
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ path('escola_index') }}"><i class="fas fa-school"></i> Escola</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ path('aluno_index') }}"><i class="fas fa-child"></i> Aluno</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('comentario_index') }}"><i class="fas fa-camera-retro"></i> Fotos/Vídeos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('acompanhamento_index') }}"><i class="fas fa-file"></i> Acompanhamento</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('parecer_index') }}"><i class="fas fa-file-powerpoint"></i> Parecer</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Formulários</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            {% for formulario in form_repository.findAll() %}
-                                <a class="dropdown-item" href="{{ path('formulario_dinamico_index', {form_id: formulario.getId() }) }}">
-                                    {{ formulario }}
-                                </a>
-                            {% endfor %}
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Modelos</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="{{ path('formulario_index') }}">Formulário</a>
-                            <a class="dropdown-item" href="{{ path('formulario_agrupador_index') }}">Agrupadores</a>
-                            <a class="dropdown-item" href="{{ path('formulario_campo_index') }}">Campos</a>
-                        </div>
-                    </li>
+                    {% if is_granted('escola_list') %}
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ path('escola_index') }}"><i class="fas fa-school"></i> Escola</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('aluno_list') %}
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ path('aluno_index') }}"><i class="fas fa-child"></i>Gerenciar
+                                Alunos</a>
+                        </li>
+                    {% endif %}
+
+                    {#                    <li class="nav-item">#}
+                    {#                        <a class="nav-link" href="{{ path('comentario_index') }}"><i class="fas fa-camera-retro"></i> Fotos/Vídeos</a>#}
+                    {#                    </li>#}
+                    {#                    <li class="nav-item">#}
+                    {#                        <a class="nav-link" href="{{ path('acompanhamento_index') }}"><i class="fas fa-file"></i> Acompanhamento</a>#}
+                    {#                    </li>#}
+                    {#                    <li class="nav-item">#}
+                    {#                        <a class="nav-link" href="{{ path('parecer_index') }}"><i class="fas fa-file-powerpoint"></i> Parecer</a>#}
+                    {#                    </li>#}
+                    {% if is_granted('formulario_list') %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Formulários</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                {% for formulario in form_repository.findAll() %}
+                                    <a class="dropdown-item"
+                                       href="{{ path('formulario_dinamico_index', {form_id: formulario.getId() }) }}">
+                                        {{ formulario }}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('formulario_modelo_list') %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Modelos</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                <a class="dropdown-item" href="{{ path('formulario_index') }}">Formulário</a>
+                                <a class="dropdown-item" href="{{ path('formulario_agrupador_index') }}">Agrupadores</a>
+                                <a class="dropdown-item" href="{{ path('formulario_campo_index') }}">Campos</a>
+                            </div>
+                        </li>
+                    {% endif %}
                 </ul>
+
                 <ul class="navbar-nav ml-auto">
                     {% if app.session.get('aluno_id') is defined and app.session.get('aluno_id') != null %}
                         <li class="nav-item ml-auto">
-                            <a class="nav-link" style="color: #00ff00" href="{{ path('perfil_aluno_profile', {id: app.session.get('aluno_id')|default(0)} ) }}">
+                            <a class="nav-link" style="color: #00ff00"
+                               href="{{ path('perfil_aluno_profile', {id: app.session.get('aluno_id')|default(0)} ) }}">
                                 <i class="fas fa-id-card"></i> {{ app.session.get('aluno_nome') }}
                             </a>
                         </li>
@@ -77,27 +94,30 @@
             {% endif %}
         </div>
     </nav>
-{%  endblock %}
+{% endblock %}
 
 {% block body_container %}
     <div class="container">
         {% block body %}
             <div class="home-template">
                 <h1>SIR - Sala de Integração de Recursos</h1>
-                <p class="lead">Sistema para gerenciamento e acompanhamento de atividades das salas de integração de recursos.</p>
+                <p class="lead">Sistema para gerenciamento e acompanhamento de atividades das salas de integração de
+                    recursos.</p>
             </div>
         {% endblock %}
     </div><!-- /.container -->
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('assets/js/popper.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
 
-{#    <script src="{{ asset('assets/js/jquery.js') }}"></script>#}
+    {#    <script src="{{ asset('assets/js/jquery.js') }}"></script>#}
     <script src="{{ asset('assets/js/tether.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
     <script>
-        $(function() {
+        $(function () {
             $('body').removeClass('fade-out');
         });
     </script>

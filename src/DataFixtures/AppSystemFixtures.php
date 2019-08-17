@@ -29,7 +29,6 @@ class AppSystemFixtures extends Fixture
         $this->encoder = $encoder;
         $this->formularioModelo = $formularioModelo;
         $this->perfilRepository = $perfilRepository;
-
     }
 
     public function load(ObjectManager $manager)
@@ -44,8 +43,16 @@ class AppSystemFixtures extends Fixture
             $password = $this->encoder->encodePassword($user, '103020');
             $user->setPassword($password);
             $user->setPerfil($this->perfilRepository->find(1));
-            $user->setNome('Educador '.$i);
+            $user->setNome('Administrador '.$i);
             $user->setEscola($escola);
+
+            $userEducador = new Usuario();
+            $userEducador->setEmail('educador'.$i.'@admin.com');
+            $password = $this->encoder->encodePassword($userEducador, '103020');
+            $userEducador->setPassword($password);
+            $userEducador->setPerfil($this->perfilRepository->find(2));
+            $userEducador->setNome('Educador '.$i);
+            $userEducador->setEscola($escola);
 
             $aluno = new Aluno();
             $aluno->setNome(AlunosNomeList::getRandomItem());
@@ -55,14 +62,13 @@ class AppSystemFixtures extends Fixture
             $aluna->setNome(AlunosNomeList::getRandomItem());
             $aluna->setEscola($escola);
 
-            if ($i < 5) {
-                $comentario = new Comentario();
-                $comentario->setAluno($aluno);
-                $comentario->setUsuario($user);
-                $comentario->setDescricao('Comentario '.$i);
-            }
+            $comentario = new Comentario();
+            $comentario->setAluno($aluno);
+            $comentario->setUsuario($user);
+            $comentario->setDescricao('Comentario '.$i);
 
             $manager->persist($user);
+            $manager->persist($userEducador);
             $manager->persist($escola);
             $manager->persist($aluno);
             $manager->persist($aluna);
