@@ -41,7 +41,24 @@ class AlunoController extends AppAbstractController
      */
     public function new(Request $request, UserInterface $user): Response
     {
-        return parent::new($request, $user);
+        $form = $this->createForm($this->formType, $this->entity);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($this->entity);
+            $em->flush();
+
+            return $this->redirectToRoute('perfil_aluno_profile', [
+                'id' => $this->entity->getId(),
+            ]);
+        }
+
+        return $this->render($this->getTemplateManager()->getNew(), [
+            'form' => $form->createView(),
+            'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
+        ]);
     }
 
     /**
@@ -60,7 +77,23 @@ class AlunoController extends AppAbstractController
      */
     public function edit(Request $request, IEntity $entity): Response
     {
-        return parent::edit($request, $entity);
+        $form = $this->createForm($this->formType, $entity);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('perfil_aluno_profile', [
+                'id' => $entity->getId(),
+            ]);
+        }
+
+        return $this->render($this->getTemplateManager()->getEdit(), [
+            'register' => $entity,
+            'form' => $form->createView(),
+            'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
+        ]);
     }
 
     /**
