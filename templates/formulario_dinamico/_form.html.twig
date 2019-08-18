@@ -3,38 +3,74 @@
     {% if formulario.id is defined %}
         {% for agrupador in formulario.formularioAgrupadores %}
             {% if agrupador.formularioCampos|length > 0 %}
+                
                 <div style="border-style: solid; border-width: 1px; padding: 5px; margin-bottom: 10px; ">
 
                 <div style="text-align: center; border-style: solid; border-width: 1px; font-weight: bold;">{{ agrupador.titulo }}</div>
 
+                {# RowLogic - Begin #}
                 {% set current_line = 0 %}
+
                 {% for campo in  agrupador.formularioCampos %}
                     {% if campo.linha != current_line %}
 
-                        {# Fecha div aberta em iteracao anterior #}
+                        {# RowLogic - Fecha div aberta em iteracao anterior #}
                         {% if current_line != 0 %}
                             </div>
                         {% endif %}
 
                         {% set current_line = campo.linha %}
+                        {% set row_openned = false %}
 
                         <div class="form-row">
                     {% endif %}
 
-                    <div class="col">
-                        {% include 'others/_form_fields.html.twig' %}
-                    </div>
+                    {% set proximo = false %}
+                    {% if agrupador.formularioCampos[loop.index] is defined and agrupador.formularioCampos[loop.index].linha == campo.linha %}
+
+                        {% set proximo = agrupador.formularioCampos[loop.index] %}
+
+                        {% if false == row_openned %}
+                            <div class="col">
+                            {% set row_openned = true %}
+                        {% endif %}
+
+
+                        {% include 'formulario_dinamico/_form_fields.html.twig' %}
+
+                        {% if campo.coluna != proximo.coluna %}
+                            </div>
+                            {% set row_openned = false %}
+                        {% endif %}
+
+                    {% else %}
+                        {% if false == row_openned %}
+                            <div class="col">
+                            {% set row_openned = true %}
+                        {% endif %}
+
+                            {% include 'formulario_dinamico/_form_fields.html.twig' %}
+
+                        {% if true == row_openned %}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+
 
                 {% endfor %}
 
-                {# Fecha div aberta da ultima iteracao #}
+                {# RowLogic - Fecha div aberta da ultima iteracao #}
                 </div>
                 </div>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
+                {# RowLogic - End #}
+
+            {% endif %} {# Agrupador Content #}
+        {% endfor %} {# Foreach Agrupador #}
+    {% endif %} {# Form Content #}
 
 
     <button type="submit" class="btn btn-primary">Salvar</button>
-    <a class="btn btn-success float-right" href="{{ path('formulario_dinamico_index',  {form_id: formId} ) }}">Voltar</a>
+    {% set referer = app.request.server.get('HTTP_REFERER')|default('/') %}
+
+    <a class="btn btn-success float-right" href="{{ referer }}">Voltar</a>
 </form>

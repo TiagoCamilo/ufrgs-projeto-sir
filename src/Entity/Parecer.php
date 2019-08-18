@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ParecerRepository")
@@ -23,14 +24,9 @@ class Parecer implements IEntity
 
     /**
      * @ORM\Column(type="blob")
+     * @Assert\NotBlank()
      */
     private $descricao;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Educador", inversedBy="pareceres")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $educador;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Aluno", inversedBy="pareceres")
@@ -39,13 +35,18 @@ class Parecer implements IEntity
     private $aluno;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuario", inversedBy="pareceres")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $usuario;
+
+    /**
      * Parecer constructor.
      */
     public function __construct()
     {
         $this->data_hora = new \DateTime();
     }
-
 
     public function getId(): ?int
     {
@@ -76,18 +77,6 @@ class Parecer implements IEntity
         return $this;
     }
 
-    public function getEducador(): ?Educador
-    {
-        return $this->educador;
-    }
-
-    public function setEducador(?Educador $educador): self
-    {
-        $this->educador = $educador;
-
-        return $this;
-    }
-
     public function getAluno(): ?Aluno
     {
         return $this->aluno;
@@ -96,6 +85,18 @@ class Parecer implements IEntity
     public function setAluno(?Aluno $aluno): self
     {
         $this->aluno = $aluno;
+
+        return $this;
+    }
+
+    public function getUsuario(): ?Usuario
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(?Usuario $usuario): self
+    {
+        $this->usuario = $usuario;
 
         return $this;
     }

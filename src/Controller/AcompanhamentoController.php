@@ -31,11 +31,9 @@ class AcompanhamentoController extends AppAbstractController
         $this->entityName = 'acompanhamento';
         $this->formType = AcompanhamentoType::class;
 
-
         if (null !== $session->get('aluno_id')) {
             $this->aluno = $alunoRepository->find($session->get('aluno_id'));
         }
-
     }
 
     /**
@@ -56,7 +54,7 @@ class AcompanhamentoController extends AppAbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // TODO: Isolar em metodo dependente de UserInterface?
-            $this->entity->setEducador($user->getEducador());
+            $this->entity->setUsuario($user);
 
             $this->entity->setAluno($this->aluno);
 

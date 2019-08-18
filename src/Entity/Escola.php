@@ -35,19 +35,26 @@ class Escola implements IEntity
     private $endereco;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Educador", mappedBy="escola", orphanRemoval=true)
-     */
-    private $educadores;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Aluno", mappedBy="escola")
      */
     private $alunos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Formulario", mappedBy="escola", cascade={"persist"})
+     */
+    private $formularios;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Usuario", mappedBy="escola")
+     */
+    private $usuarios;
 
     public function __construct()
     {
         $this->educadores = new ArrayCollection();
         $this->alunos = new ArrayCollection();
+        $this->formularios = new ArrayCollection();
+        $this->usuarios = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -86,37 +93,6 @@ class Escola implements IEntity
         return $this;
     }
 
-    /**
-     * @return Collection|Educador[]
-     */
-    public function getEducadores(): Collection
-    {
-        return $this->educadores;
-    }
-
-    public function addEducador(Educador $educador): self
-    {
-        if (!$this->educadores->contains($educador)) {
-            $this->educadores[] = $educador;
-            $educador->setEscola($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEducador(Educador $educador): self
-    {
-        if ($this->educadores->contains($educador)) {
-            $this->educadores->removeElement($educador);
-            // set the owning side to null (unless already changed)
-            if ($educador->getEscola() === $this) {
-                $educador->setEscola(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function __toString(): string
     {
         return $this->getNome();
@@ -147,6 +123,68 @@ class Escola implements IEntity
             // set the owning side to null (unless already changed)
             if ($aluno->getEscola() === $this) {
                 $aluno->setEscola(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Formulario[]
+     */
+    public function getFormularios(): Collection
+    {
+        return $this->formularios;
+    }
+
+    public function addFormulario(Formulario $formulario): self
+    {
+        if (!$this->formularios->contains($formulario)) {
+            $this->formularios[] = $formulario;
+            $formulario->setEscola($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormulario(Formulario $formulario): self
+    {
+        if ($this->formularios->contains($formulario)) {
+            $this->formularios->removeElement($formulario);
+            // set the owning side to null (unless already changed)
+            if ($formulario->getEscola() === $this) {
+                $formulario->setEscola(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Usuario[]
+     */
+    public function getUsuarios(): Collection
+    {
+        return $this->usuarios;
+    }
+
+    public function addUsuario(Usuario $usuario): self
+    {
+        if (!$this->usuarios->contains($usuario)) {
+            $this->usuarios[] = $usuario;
+            $usuario->setEscola($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUsuario(Usuario $usuario): self
+    {
+        if ($this->usuarios->contains($usuario)) {
+            $this->usuarios->removeElement($usuario);
+            // set the owning side to null (unless already changed)
+            if ($usuario->getEscola() === $this) {
+                $usuario->setEscola(null);
             }
         }
 

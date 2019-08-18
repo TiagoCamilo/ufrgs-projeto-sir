@@ -9,6 +9,7 @@ use App\Helpers\TemplateManager;
 use App\Repository\AlunoRepository;
 use App\Repository\ComentarioRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,8 +53,8 @@ class ComentarioController extends AppAbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // TODO: Isolar em metodo dependente de UserInterface?
-            $this->entity->setEducador($user->getEducador());
+
+            $this->entity->setUsuario($user);
 
             $this->entity->setAluno($this->aluno);
 
@@ -86,6 +87,7 @@ class ComentarioController extends AppAbstractController
     /**
      * @Route("/{id}/edit", name="comentario_edit", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\Comentario")
+     * @IsGranted("comentario_edit", subject="entity")
      */
     public function edit(Request $request, IEntity $entity): Response
     {

@@ -7,13 +7,14 @@
     {% set registerListAttr = registerListAttr|merge ([{
         'Id': register.id,
         'Nome': register.formulario.nome,
+        'Aluno': register.aluno.nome,
         'Data Hora': register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '',
     }]) %}
 {% endfor %}
 
 {% set actionList = {
     'new': true,
-    'show': false,
+    'show': true,
     'edit': true,
     'delete': true,
     'image': false,

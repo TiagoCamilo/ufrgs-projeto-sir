@@ -21,6 +21,7 @@
             <div class="card-body">
                 <div>Nome: {{ register.nome }}</div>
                 <div>Data Nascimento: {{ register.dataNascimento ? register.dataNascimento|date('d/m/Y') : '-' }}</div>
+                <a style="float: right" href="{{ path('aluno_edit', {'id': register.id}) }}"><i class="fa fa-edit"></i> Editar</a>
             </div>
         </div>
     </div>
@@ -34,8 +35,8 @@
                 <a href="{{ path('comentario_new') }}" class="card-link"><i class="fas fa-camera-retro"></i> Fotos/Vídeos</a>
                 <a href="{{ path('acompanhamento_new') }}" class="card-link"><i class="fas fa-file"></i> Acompanhamento</a>
                 <a href="{{ path('parecer_new') }}" class="card-link"><i class="fas fa-file-powerpoint"></i> Parecer</a>
-                {% for formulario in form_repository.findAll() %}
-                    <a href="#" class="card-link"><i class="fas fa-file-signature"></i> {{ formulario.nome }}</a>
+                {% for formulario in form_repository.findAllByEscola(register.escola) %}
+                    <a href="{{ path('formulario_dinamico_new', {form_id: formulario.getId() }) }}" class="card-link"><i class="fas fa-file-signature"></i> {{ formulario.nome }}</a>
                 {%  endfor %}
                 <a href="{{ path('home') }}" class="card-link"><i class="fas fa-arrow-left"></i> Voltar</a>
 
@@ -45,29 +46,11 @@
     </div>
 </div>
 
-<div class="card text-center">
-    <div class="card-header">
-        <ul class="nav nav-pills card-header-pills">
-            <li class="nav-item">
-                <a id='all' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id} ) }}">Tudo</a>
-            </li>
-            <li class="nav-item">
-                <a id='midia' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id, timeline_element:'midia'} ) }}">Fotos/Vídeos</a>
-            </li>
-            <li class="nav-item">
-                <a id='acompanhamento' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id, timeline_element:'acompanhamento'} ) }}">Acompanhamentos</a>
-            </li>
-            <li class="nav-item">
-                <a id='parecer' class="nav-link" href="{{ path('perfil_aluno_profile', {id: register.id, timeline_element:'parecer'} ) }}">Pareceres</a>
-            </li>
-        </ul>
-    </div>
-    <div class="card-body" style="text-align: left;">
-        {% for timelineElement in timelineElements %}
-            {% include 'perfil_aluno/_card.html.twig' with {timelineElement: timelineElement} only %}
-        {% endfor %}
-    </div>
-</div>
+{% block timeline %}
+    {{ render(controller(
+        'App\\Controller\\TimelineController::index', {'entityOpenner':'', 'orientation':'vertical'}
+    )) }}
+{% endblock %}
 
 {% endblock %}
 

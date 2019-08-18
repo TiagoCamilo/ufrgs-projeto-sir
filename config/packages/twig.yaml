@@ -7,3 +7,4 @@ twig:
         # the value is the service's id
         form_helper: '@App\Service\FormularioDinamicoHelper'
         form_repository: '@App\Repository\FormularioRepository'
+        voter_helper: '@App\Helpers\VoterHelper'

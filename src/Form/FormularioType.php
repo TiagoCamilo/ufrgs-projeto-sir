@@ -13,6 +13,7 @@ class FormularioType extends AbstractType
     {
         $builder
             ->add('nome')
+            ->add('escola', null, ['placeholder' => 'MODELO'])
         ;
     }
 

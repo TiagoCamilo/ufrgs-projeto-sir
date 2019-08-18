@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,12 +24,7 @@ class Formulario implements IEntity
     private $nome;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FormularioCampo", mappedBy="formulario")
-     */
-    private $formularioCampos;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FormularioAgrupador", mappedBy="formulario", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioAgrupador", mappedBy="formulario", orphanRemoval=true, cascade={"persist"})
      * @ORM\OrderBy({"ordem"="ASC"})
      */
     private $formularioAgrupadores;
@@ -39,6 +33,11 @@ class Formulario implements IEntity
      * @ORM\OneToMany(targetEntity="App\Entity\FormularioRegistro", mappedBy="formulario", orphanRemoval=true)
      */
     private $formularioRegistros;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Escola", inversedBy="formularios")
+     */
+    private $escola;
 
     public function __construct()
     {
@@ -64,43 +63,14 @@ class Formulario implements IEntity
         return $this;
     }
 
-    /**
-     * @return Collection|FormularioCampo[]
-     */
-    public function getFormularioCampos(): Collection
-    {
-        $criteria = Criteria::create()
-            ->orderBy(['linha' => Criteria::ASC, 'coluna' => Criteria::ASC]);
-
-        return $this->formularioCampos->matching($criteria);
-    }
-
-    public function addFormularioCampo(FormularioCampo $formularioCampo): self
-    {
-        if (!$this->formularioCampos->contains($formularioCampo)) {
-            $this->formularioCampos[] = $formularioCampo;
-            $formularioCampo->setFormulario($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFormularioCampo(FormularioCampo $formularioCampo): self
-    {
-        if ($this->formularioCampos->contains($formularioCampo)) {
-            $this->formularioCampos->removeElement($formularioCampo);
-            // set the owning side to null (unless already changed)
-            if ($formularioCampo->getFormulario() === $this) {
-                $formularioCampo->setFormulario(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function __toString(): string
     {
-        return $this->getNome();
+        return $this->getNomeWithEscola();
+    }
+
+    public function getNomeWithEscola(): string
+    {
+        return $this->nome.' ['.($this->escola ? $this->escola->getNome() : 'MODELO').']';
     }
 
     /**
@@ -163,5 +133,34 @@ class Formulario implements IEntity
         }
 
         return $this;
+    }
+
+    public function getEscola(): ?Escola
+    {
+        return $this->escola;
+    }
+
+    public function setEscola(?Escola $escola): self
+    {
+        $this->escola = $escola;
+
+        return $this;
+    }
+
+    public function __clone()
+    {
+        if ($this->id) {
+            $this->id = null;
+            $registers = $this->getFormularioAgrupadores();
+
+            $registersArray = new ArrayCollection();
+            foreach ($registers as $register) {
+                /** @var FormularioAgrupador $register */
+                $registerClone = clone $register;
+                $registerClone->setFormulario($this);
+                $registersArray->add($registerClone);
+            }
+            $this->formularioAgrupadores = $registersArray;
+        }
     }
 }

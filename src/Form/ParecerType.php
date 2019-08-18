@@ -13,7 +13,10 @@ class ParecerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('descricao', TextareaType::class, ['attr' => ['class' => 'ckeditor']])
+            ->add('descricao', TextareaType::class, [
+                'attr' => ['class' => 'ckeditor'],
+                'label' => 'Descrição'
+            ])
 
         ;
     }

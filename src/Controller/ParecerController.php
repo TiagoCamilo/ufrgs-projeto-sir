@@ -31,11 +31,9 @@ class ParecerController extends AppAbstractController
         $this->entityName = 'parecer';
         $this->formType = ParecerType::class;
 
-
         if (null !== $session->get('aluno_id')) {
             $this->aluno = $alunoRepository->find($session->get('aluno_id'));
         }
-
     }
 
     /**
@@ -56,7 +54,7 @@ class ParecerController extends AppAbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // TODO: Isolar em metodo dependente de UserInterface?
-            $this->entity->setEducador($user->getEducador());
+            $this->entity->setUsuario($user);
 
             $this->entity->setAluno($this->aluno);
 
@@ -112,7 +110,6 @@ class ParecerController extends AppAbstractController
 
         return $templateManager;
     }
-
 
     /**
      * @Route("/{id}/pdf", name="parecer_report_pdf", methods="GET")

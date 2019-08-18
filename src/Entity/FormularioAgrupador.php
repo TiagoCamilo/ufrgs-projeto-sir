@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FormularioAgrupadorRepository")
  */
-class FormularioAgrupador implements IEntity
+class FormularioAgrupador implements IEntity, LimiterEscolaInterface
 {
     /**
      * @ORM\Id()
@@ -31,7 +31,7 @@ class FormularioAgrupador implements IEntity
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\FormularioCampo", mappedBy="agrupador", cascade={"persist"})
-     * @ORM\OrderBy({"linha"="ASC","coluna"="ASC"})
+     * @ORM\OrderBy({"linha"="ASC","coluna"="ASC", "ordem" ="ASC"})
      */
     private $formularioCampos;
 
@@ -76,7 +76,12 @@ class FormularioAgrupador implements IEntity
 
     public function __toString(): string
     {
-        return $this->getTitulo();
+        return $this->getTituloWithFormulario();
+    }
+
+    private function getTituloWithFormulario()
+    {
+        return $this->titulo.' ('.$this->formulario.')';
     }
 
     /**
@@ -120,5 +125,27 @@ class FormularioAgrupador implements IEntity
         $this->ordem = $ordem;
 
         return $this;
+    }
+
+    public function __clone()
+    {
+        if ($this->id) {
+            $this->id = null;
+            $registers = $this->getFormularioCampos();
+
+            $registersArray = new ArrayCollection();
+            foreach ($registers as $register) {
+                /** @var FormularioCampo $register */
+                $registerClone = clone $register;
+                $registerClone->setAgrupador($this);
+                $registersArray->add($registerClone);
+            }
+            $this->formularioCampos = $registersArray;
+        }
+    }
+
+    public function getEscola(): ?Escola
+    {
+        return $this->formulario->getEscola();
     }
 }

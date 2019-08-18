@@ -1,30 +1,69 @@
-
-<div class="container">
-    <div class="row" >
-        <div class="col-md-12">
-            <div style="display:inline-block;width:100%;overflow-y:auto;">
-                <ul class="timeline timeline-horizontal">
-                    {% for timelineElement in timelineElements %}
-                        <li class="timeline-item">
-                            {% include 'timeline/_timeline_item.html.twig' with {timelineElement: timelineElement} only %}
-                        </li>
-                    {% endfor %}
-
-                </ul>
-            </div>
+<div class="card text-center" style="margin-top: 5px">
+    <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item">
+                <a id='all' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Tudo</a>
+            </li>
+            <li class="nav-item">
+                <a id='comentario' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Fotos/Vídeos</a>
+            </li>
+            <li class="nav-item">
+                <a id='acompanhamento' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Acompanhamentos</a>
+            </li>
+            <li class="nav-item">
+                <a id='parecer' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Pareceres</a>
+            </li>
+            <li class="nav-item">
+                <a id='formulario_dinamico' onclick="filterEntity(this.id)" class="nav-link entity-filter" href="#">Formulários</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body" style="text-align: left;">
+        {% if orientation == 'horizontal' %}
+            <div class="card-group card-group-scroll">
+        {% endif %}
+            {% for timelineElement in timelineElements %}
+                {% include 'timeline/_card.html.twig' with {timelineElement: timelineElement, orientation: orientation, entityOpenner: entityOpenner} only %}
+            {% endfor %}
+        {% if orientation == 'vertical' %}
         </div>
+        {% endif %}
     </div>
 </div>
 
-<script src="{{ asset('assets/js/jquery.js') }}"></script>
+{% block javascripts %}
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
-<script>
+    <script type="text/javascript">
+        $(function() {
+            filterEntity = function (entityType) {
+                $('.entity-filter').removeClass('active');
+                $('a#'+entityType).addClass('active');
 
-    function copyValue(data){
-        editor = CKEDITOR.instances.{{ entity }}_descricao;
-        editor.setData(editor.getData()+data);
-    }
+                $('.entity-card').css('display','none');
+                if(entityType == 'all'){
+                    $('.entity-card').css('display','');
+                }else{
+                    $("div[data-entity='"+entityType+"'").css('display','');
+                }
+            }
+        });
 
+        copyValue = function (element){
+            data = $("#"+element).html();
+            editor = CKEDITOR.instances.{{ entityOpenner }}_descricao;
+            editor.setData(editor.getData()+data);
+        }
 
+        copyValueWithLink = function (element, link){
+            data = $("#"+element).html();
 
-</script>
+            //TODO: Estudar forma de inibir mensagem de erro do CKEditor
+            data = data.replace("Your browser does not support the video tag.","");
+
+            data = "<a target='_blank' href='"+link+"'>"+data+"</a>";
+            editor = CKEDITOR.instances.{{ entityOpenner }}_descricao;
+            editor.setData(editor.getData()+data);
+        }
+    </script>
+{% endblock %}

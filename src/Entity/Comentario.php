@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ComentarioRepository")
  */
-class Comentario implements IEntity
+class Comentario implements IEntity, LimiterEscolaInterface
 {
     /**
      * @ORM\Id()
@@ -28,12 +28,6 @@ class Comentario implements IEntity
     private $descricao;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Educador")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $educador;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Aluno", inversedBy="comentarios")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -45,6 +39,12 @@ class Comentario implements IEntity
      * @Assert\File(maxSize = "200M", mimeTypes={ "image/*", "video/*" })
      */
     private $file;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuario", inversedBy="comentarios")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $usuario;
 
     public function __construct()
     {
@@ -80,18 +80,6 @@ class Comentario implements IEntity
         return $this;
     }
 
-    public function getEducador(): ?Educador
-    {
-        return $this->educador;
-    }
-
-    public function setEducador(?Educador $educador): self
-    {
-        $this->educador = $educador;
-
-        return $this;
-    }
-
     public function getAluno(): ?Aluno
     {
         return $this->aluno;
@@ -112,6 +100,23 @@ class Comentario implements IEntity
     public function setFile($file): self
     {
         $this->file = $file;
+
+        return $this;
+    }
+
+    public function getEscola(): ?Escola
+    {
+        return $this->aluno->getEscola();
+    }
+
+    public function getUsuario(): ?Usuario
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(?Usuario $usuario): self
+    {
+        $this->usuario = $usuario;
 
         return $this;
     }

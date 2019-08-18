@@ -9,7 +9,6 @@
 namespace App\Repository;
 
 use App\Entity\Escola;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class EscolaRepository extends AbstractRepository

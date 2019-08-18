@@ -34,6 +34,18 @@ class FormularioRegistro implements IEntity
      */
     private $formulario;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Aluno", inversedBy="formularioRegistros")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $aluno;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuario", inversedBy="formularioRegistros")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $usuario;
+
     public function __construct()
     {
         $this->formularioRegistroCampos = new ArrayCollection();
@@ -95,6 +107,30 @@ class FormularioRegistro implements IEntity
     public function setFormulario(?Formulario $formulario): self
     {
         $this->formulario = $formulario;
+
+        return $this;
+    }
+
+    public function getAluno(): ?Aluno
+    {
+        return $this->aluno;
+    }
+
+    public function setAluno(?Aluno $aluno): self
+    {
+        $this->aluno = $aluno;
+
+        return $this;
+    }
+
+    public function getUsuario(): ?Usuario
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(?Usuario $usuario): self
+    {
+        $this->usuario = $usuario;
 
         return $this;
     }

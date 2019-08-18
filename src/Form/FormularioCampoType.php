@@ -27,7 +27,9 @@ class FormularioCampoType extends AbstractType
             ->add('label')
             ->add('linha')
             ->add('coluna')
-            ->add('formulario')
+            ->add('ordem')
+            ->add('altura')
+            ->add('largura')
             ->add('agrupador')
         ;
     }

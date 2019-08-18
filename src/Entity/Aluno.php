@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AlunoRepository")
  */
-class Aluno implements IEntity
+class Aluno implements IEntity, LimiterEscolaInterface
 {
     /**
      * @ORM\Id()
@@ -60,11 +60,32 @@ class Aluno implements IEntity
      */
     private $pareceres;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioRegistro", mappedBy="aluno", orphanRemoval=true)
+     */
+    private $formularioRegistros;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nomeMae;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nomePai;
+
+    /**
+     * @ORM\Column(type="blob", nullable=true)
+     */
+    private $historicoEscolar;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
         $this->acompanhamentos = new ArrayCollection();
         $this->pareceres = new ArrayCollection();
+        $this->formularioRegistros = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -192,28 +213,10 @@ class Aluno implements IEntity
         $comentarios = $this->getComentarios();
         $acompanhamentos = $this->getAcompanhamentos();
         $pareceres = $this->getPareceres();
-
-
-        $elements = new ArrayCollection(
-            array_merge($comentarios->toArray(), $acompanhamentos->toArray(), $pareceres->toArray())
-        );
-
-        $iterator = $elements->getIterator();
-        $iterator->uasort(function ($a, $b) {
-            return ($a->getDataHora() > $b->getDataHora()) ? -1 : 1;
-        });
-        $collection = new ArrayCollection(iterator_to_array($iterator));
-
-        return $collection;
-    }
-
-    public function getComentariosAcompanhamentos(): Collection
-    {
-        $comentarios = $this->getComentarios();
-        $acompanhamentos = $this->getAcompanhamentos();
+        $formularios = $this->getFormularioRegistros();
 
         $elements = new ArrayCollection(
-            array_merge($comentarios->toArray(), $acompanhamentos->toArray())
+            array_merge($comentarios->toArray(), $acompanhamentos->toArray(), $pareceres->toArray(), $formularios->toArray())
         );
 
         $iterator = $elements->getIterator();
@@ -252,6 +255,73 @@ class Aluno implements IEntity
                 $parecere->setAluno(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FormularioRegistro[]
+     */
+    public function getFormularioRegistros(): Collection
+    {
+        return $this->formularioRegistros;
+    }
+
+    public function addFormularioRegistro(FormularioRegistro $formularioRegistro): self
+    {
+        if (!$this->formularioRegistros->contains($formularioRegistro)) {
+            $this->formularioRegistros[] = $formularioRegistro;
+            $formularioRegistro->setAluno($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormularioRegistro(FormularioRegistro $formularioRegistro): self
+    {
+        if ($this->formularioRegistros->contains($formularioRegistro)) {
+            $this->formularioRegistros->removeElement($formularioRegistro);
+            // set the owning side to null (unless already changed)
+            if ($formularioRegistro->getAluno() === $this) {
+                $formularioRegistro->setAluno(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getNomeMae(): ?string
+    {
+        return $this->nomeMae;
+    }
+
+    public function setNomeMae(?string $nomeMae): self
+    {
+        $this->nomeMae = $nomeMae;
+
+        return $this;
+    }
+
+    public function getNomePai(): ?string
+    {
+        return $this->nomePai;
+    }
+
+    public function setNomePai(?string $nomePai): self
+    {
+        $this->nomePai = $nomePai;
+
+        return $this;
+    }
+
+    public function getHistoricoEscolar()
+    {
+        return !empty($this->historicoEscolar) ? stream_get_contents($this->historicoEscolar) : $this->historicoEscolar;
+    }
+
+    public function setHistoricoEscolar($historicoEscolar): self
+    {
+        $this->historicoEscolar = $historicoEscolar;
 
         return $this;
     }

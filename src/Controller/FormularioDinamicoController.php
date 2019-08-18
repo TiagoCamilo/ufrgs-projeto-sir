@@ -8,6 +8,7 @@ use App\Entity\FormularioRegistroCampo;
 use App\Entity\IEntity;
 use App\Form\FormularioDinamicoType;
 use App\Helpers\TemplateManager;
+use App\Repository\AlunoRepository;
 use App\Repository\FormularioRegistroRepository;
 use App\Repository\FormularioRepository;
 use App\Service\PdfGenerator;
@@ -16,7 +17,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/formulario_dinamico/{form_id}", defaults={"form_id" = 1})
@@ -27,13 +30,18 @@ class FormularioDinamicoController extends AbstractController
     protected $entityRepository;
     protected $entityName;
     protected $formType;
+    private $aluno;
 
-    public function __construct(FormularioRegistroRepository $entityRepository)
+    public function __construct(FormularioRegistroRepository $entityRepository, SessionInterface $session, AlunoRepository $alunoRepository)
     {
         $this->entity = new FormularioRegistro();
         $this->entityRepository = $entityRepository;
         $this->entityName = 'formulario_dinamico';
         $this->formType = FormularioDinamicoType::class;
+
+        if (null !== $session->get('aluno_id')) {
+            $this->aluno = $alunoRepository->find($session->get('aluno_id'));
+        }
     }
 
     /**
@@ -58,30 +66,37 @@ class FormularioDinamicoController extends AbstractController
     /**
      * @Route("/new", name="formulario_dinamico_new", methods={"GET","POST"})
      */
-    public function new(Request $request, FormularioRepository $formularioRepository): Response
+    public function new(Request $request, FormularioRepository $formularioRepository, UserInterface $user): Response
     {
         $formularioModelo = $formularioRepository->find($request->get('form_id'));
 
         $formularioRegistro = new FormularioRegistro();
 
         if ($request->isMethod('POST')) {
-            foreach ($formularioModelo->getFormularioCampos() as $campoModelo) {
-                $campoRegistro = new FormularioRegistroCampo();
+            foreach ($formularioModelo->getFormularioAgrupadores() as $agrupador) {
+                foreach ($agrupador->getFormularioCampos() as $campoModelo) {
+                    $campoRegistro = new FormularioRegistroCampo();
 
-                $campoRegistro->setFormularioCampo($campoModelo);
-                $valor = $request->request->get($campoModelo->getId());
-                $campoRegistro->setValor($valor);
+                    $campoRegistro->setFormularioCampo($campoModelo);
+                    $valor = $request->request->get($campoModelo->getId());
+                    $campoRegistro->setValor($valor);
 
-                $formularioRegistro->addFormularioRegistroCampo($campoRegistro);
+                    $formularioRegistro->addFormularioRegistroCampo($campoRegistro);
+                }
             }
 
+            $formularioRegistro->setUsuario($user);
+            $formularioRegistro->setAluno($this->aluno);
             $formularioRegistro->setFormulario($formularioModelo);
             $formularioRegistro->setDataHora(new \DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->persist($formularioRegistro);
             $em->flush();
 
-            return $this->redirectToRoute("{$this->entityName}_index", ['form_id' => $request->get('form_id')]);
+            //return $this->redirectToRoute("{$this->entityName}_index", ['form_id' => $request->get('form_id')]);
+            return $this->redirectToRoute('perfil_aluno_profile', [
+                'id' => $this->aluno->getId(),
+            ]);
         }
 
         return $this->render($this->getTemplateManager()->getNew(), [
@@ -96,49 +111,60 @@ class FormularioDinamicoController extends AbstractController
      * @Route("/{id}", name="formulario_dinamico_show", methods={"GET"})
      * @ParamConverter("entity", class="App\Entity\FormularioRegistro")
      */
-    public function show(IEntity $entity): Response
+    public function show(Request $request, IEntity $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
     {
-        return $this->render('formulario_dinamico/show.html.twig', [
-            'register' => $entity,
-            'entityName' => $this->entityName,
-            'template' => (array) $this->getTemplateManager(),
+        $formularioModelo = $formularioRepository->find($request->get('form_id'));
+
+        $html = $this->render('formulario_dinamico/report_pdf.twig', [
+            'formulario' => $formularioModelo,
+            'formularioRegistro' => $entity,
+            'title' => $formularioModelo->getNome(),
         ]);
+
+        return $html;
     }
 
     /**
      * @Route("/{id}/edit", name="formulario_dinamico_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, FormularioRepository $formularioRepository, FormularioRegistro $formularioRegistro): Response
+    public function edit(Request $request, FormularioRepository $formularioRepository, FormularioRegistro $formularioRegistro, UserInterface $user): Response
     {
         $formularioModelo = $formularioRepository->find($request->get('form_id'));
 
         if ($request->isMethod('POST')) {
-            foreach ($formularioModelo->getFormularioCampos() as $campoModelo) {
-                // Verifica se já existe valor salvo
-                $campoRegistroSalvo = $formularioRegistro->getFormularioRegistroCampos()->filter(
-                    function ($element) use ($campoModelo) {
-                        return $element->getFormularioCampo()->getId() == $campoModelo->getId();
-                    });
+            foreach ($formularioModelo->getFormularioAgrupadores() as $agrupador) {
+                foreach ($agrupador->getFormularioCampos() as $campoModelo) {
+                    // Verifica se já existe valor salvo
+                    $campoRegistroSalvo = $formularioRegistro->getFormularioRegistroCampos()->filter(
+                        function ($element) use ($campoModelo) {
+                            return $element->getFormularioCampo()->getId() == $campoModelo->getId();
+                        });
 
-                if (count($campoRegistroSalvo)) {
-                    $campoRegistro = $campoRegistroSalvo->current();
-                } else {
-                    $campoRegistro = new FormularioRegistroCampo();
+                    if (count($campoRegistroSalvo)) {
+                        $campoRegistro = $campoRegistroSalvo->current();
+                    } else {
+                        $campoRegistro = new FormularioRegistroCampo();
+                    }
+
+                    $campoRegistro->setFormularioCampo($campoModelo);
+                    $valor = $request->request->get($campoModelo->getId());
+                    $campoRegistro->setValor($valor);
+
+                    $formularioRegistro->addFormularioRegistroCampo($campoRegistro);
                 }
-
-                $campoRegistro->setFormularioCampo($campoModelo);
-                $valor = $request->request->get($campoModelo->getId());
-                $campoRegistro->setValor($valor);
-
-                $formularioRegistro->addFormularioRegistroCampo($campoRegistro);
             }
 
+            $formularioRegistro->setEducador($user->getEducador());
+            $formularioRegistro->setAluno($this->aluno);
             $formularioRegistro->setDataHora(new \DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->persist($formularioRegistro);
             $em->flush();
 
-            return $this->redirectToRoute("{$this->entityName}_index", ['form_id' => $request->get('form_id')]);
+            //return $this->redirectToRoute("{$this->entityName}_index", ['form_id' => $request->get('form_id')]);
+            return $this->redirectToRoute('perfil_aluno_profile', [
+                'id' => $this->aluno->getId(),
+            ]);
         }
 
         return $this->render($this->getTemplateManager()->getEdit(), [

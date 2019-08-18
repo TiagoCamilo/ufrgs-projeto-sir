@@ -7,6 +7,7 @@ use App\Entity\IEntity;
 use App\Form\FormularioAgrupadorType;
 use App\Repository\FormularioAgrupadorRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,6 +46,7 @@ class FormularioAgrupadorController extends AppAbstractController
     /**
      * @Route("/{id}", name="formulario_agrupador_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\FormularioAgrupador")
+     * @IsGranted("VIEW", subject="entity")
      */
     public function show(IEntity $entity): Response
     {
