@@ -37,20 +37,27 @@
                     {% endif %}
                     {% if is_granted('aluno_list') %}
                         <li class="nav-item">
-                            <a class="nav-link " href="{{ path('aluno_index') }}"><i class="fas fa-child"></i>Gerenciar
-                                Alunos</a>
+                            <a class="nav-link " href="{{ path('aluno_index') }}"><i class="fas fa-child"></i> Aluno</a>
                         </li>
                     {% endif %}
-
-                    {#                    <li class="nav-item">#}
-                    {#                        <a class="nav-link" href="{{ path('comentario_index') }}"><i class="fas fa-camera-retro"></i> Fotos/Vídeos</a>#}
-                    {#                    </li>#}
-                    {#                    <li class="nav-item">#}
-                    {#                        <a class="nav-link" href="{{ path('acompanhamento_index') }}"><i class="fas fa-file"></i> Acompanhamento</a>#}
-                    {#                    </li>#}
-                    {#                    <li class="nav-item">#}
-                    {#                        <a class="nav-link" href="{{ path('parecer_index') }}"><i class="fas fa-file-powerpoint"></i> Parecer</a>#}
-                    {#                    </li>#}
+                    {% if is_granted('comentario_list') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('comentario_index') }}"><i
+                                        class="fas fa-camera-retro"></i> Fotos/Vídeos</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('acompanhamento_list') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('acompanhamento_index') }}"><i class="fas fa-file"></i>
+                                Acompanhamento</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('parecer_list') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('parecer_index') }}"><i
+                                        class="fas fa-file-powerpoint"></i> Parecer</a>
+                        </li>
+                    {% endif %}
                     {% if is_granted('formulario_list') %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01"
