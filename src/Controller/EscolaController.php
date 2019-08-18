@@ -14,6 +14,7 @@ use App\Form\EscolaType;
 use App\Repository\EscolaRepository;
 use App\Service\FormularioModelo;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,6 +39,7 @@ class EscolaController extends AppAbstractController
 
     /**
      * @Route("/{page}/page", name="escola_index", methods="GET|POST", defaults={"page" = 1})
+     * @IsGranted("escola_list")
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {

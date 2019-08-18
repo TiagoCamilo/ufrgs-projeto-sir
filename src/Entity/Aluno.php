@@ -65,6 +65,21 @@ class Aluno implements IEntity, LimiterEscolaInterface
      */
     private $formularioRegistros;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nomeMae;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nomePai;
+
+    /**
+     * @ORM\Column(type="blob", nullable=true)
+     */
+    private $historicoEscolar;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
@@ -271,6 +286,42 @@ class Aluno implements IEntity, LimiterEscolaInterface
                 $formularioRegistro->setAluno(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNomeMae(): ?string
+    {
+        return $this->nomeMae;
+    }
+
+    public function setNomeMae(?string $nomeMae): self
+    {
+        $this->nomeMae = $nomeMae;
+
+        return $this;
+    }
+
+    public function getNomePai(): ?string
+    {
+        return $this->nomePai;
+    }
+
+    public function setNomePai(?string $nomePai): self
+    {
+        $this->nomePai = $nomePai;
+
+        return $this;
+    }
+
+    public function getHistoricoEscolar()
+    {
+        return !empty($this->historicoEscolar) ? stream_get_contents($this->historicoEscolar) : $this->historicoEscolar;
+    }
+
+    public function setHistoricoEscolar($historicoEscolar): self
+    {
+        $this->historicoEscolar = $historicoEscolar;
 
         return $this;
     }

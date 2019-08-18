@@ -21,6 +21,7 @@
             <div class="card-body">
                 <div>Nome: {{ register.nome }}</div>
                 <div>Data Nascimento: {{ register.dataNascimento ? register.dataNascimento|date('d/m/Y') : '-' }}</div>
+                <a style="float: right" href="{{ path('aluno_edit', {'id': register.id}) }}"><i class="fa fa-edit"></i> Editar</a>
             </div>
         </div>
     </div>
