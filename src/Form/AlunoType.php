@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Aluno;
+use App\Entity\Escola;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -20,9 +22,13 @@ class AlunoType extends AbstractType
             ->add('data_nascimento', DateType::class, [
                 'widget' => 'single_text',
             ])
-            ->add('escola')
-            ->add('historicoEscolar', TextareaType::class, ['required'=>false,
-                'attr' => ['rows' => 7]])
+            ->add('escola', EntityType::class,
+                [
+                    'class' => Escola::class,
+                    'empty_data' => 2,
+                ])
+            ->add('historicoEscolar', TextareaType::class, ['required' => false,
+                'attr' => ['rows' => 7], ])
         ;
     }
 
