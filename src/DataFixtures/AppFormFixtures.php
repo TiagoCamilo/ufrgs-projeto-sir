@@ -81,14 +81,14 @@ class AppFormFixtures extends Fixture
         $agrupadorAdequcacao->addFormularioCampo($campoNecessidade);
 
         $agrupadorAdequcacao->addFormularioCampo($this->newCampoLabel('Programação', 1, 3, $formulario, $agrupadorAdequcacao)->setOrdem(1));
-        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('Objetivos', 1, 3, $formulario, $agrupadorAdequcacao)->setOrdem(2));
-        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('Conteúdos Conceituais', 1, 3, $formulario, $agrupadorAdequcacao)->setOrdem(3));
-        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('Conteúdos Procedimentais e Avaliações', 1, 3, $formulario, $agrupadorAdequcacao)->setOrdem(4));
+        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('1) Objetivos', 1, 3, $formulario, $agrupadorAdequcacao)->setOrdem(2));
+        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('2) Conteúdos Conceituais', 1, 3, $formulario, $agrupadorAdequcacao)->setOrdem(3));
+        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('3) Conteúdos Procedimentais e Avaliações', 1, 3, $formulario, $agrupadorAdequcacao)->setOrdem(4));
 
         $agrupadorAdequcacao->addFormularioCampo($this->newCampoLabel('Sugestão', 1, 4, $formulario, $agrupadorAdequcacao)->setOrdem(1));
-        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('Objetivos', 1, 4, $formulario, $agrupadorAdequcacao)->setOrdem(2));
-        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('Conteúdos Conceituais', 1, 4, $formulario, $agrupadorAdequcacao)->setOrdem(3));
-        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('Estratégias Procedimentais e Avaliações', 1, 4, $formulario, $agrupadorAdequcacao)->setOrdem(4));
+        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('1) Objetivos', 1, 4, $formulario, $agrupadorAdequcacao)->setOrdem(2));
+        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('2) Conteúdos Conceituais', 1, 4, $formulario, $agrupadorAdequcacao)->setOrdem(3));
+        $agrupadorAdequcacao->addFormularioCampo($this->newCampoTextArea('3) Estratégias Procedimentais e Avaliações', 1, 4, $formulario, $agrupadorAdequcacao)->setOrdem(4));
 
         $manager->persist($agrupadorIdentificacao);
         $manager->persist($agrupadorAdequcacao);
