@@ -1,0 +1,29 @@
+{% if orientation == 'vertical' %}
+    <span style="float: right" >
+
+        {% if register is Formulario %}
+            <a class="card-horizontal-action" href="{{ path(entityType~'_edit', {form_id: register.formulario.id, id: register.id}) }}">
+                <i class="fa fa-edit"></i> Editar
+            </a>
+        {% else %}
+            <a class="card-horizontal-action" href="{{ path(entityType~'_edit', {id: register.id}) }}">
+                <i class="fa fa-edit"></i> Editar
+            </a>
+        {% endif %}
+
+        {% if(actionList.show is defined and actionList.show  == true) %}
+            {% if register is Formulario %}
+                <a class="card-horizontal-action"
+                   href="{{ path(entityType~'_report_pdf', {form_id: register.formulario.id, id: register.id}) }}"
+                   target="_blank">
+                    <i class="fas fa-eye" title="Visualizar registro"></i> Visualizar
+                </a>
+            {% else %}
+                <a class="card-horizontal-action" href="{{ path(entityType~'_show', {id: register.id}) }}"
+                   target="_blank">
+                    <i class="fas fa-eye" title="Visualizar registro"></i> Visualizar
+                </a>
+            {% endif %}
+        {% endif %}
+    </span>
+{% endif %}

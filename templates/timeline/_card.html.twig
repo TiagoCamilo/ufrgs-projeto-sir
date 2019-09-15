@@ -45,6 +45,7 @@
 <div class="card mb-3 entity-card" data-entity="{{ entityType }}">
     <div class="card-header">
         <i class="fas {{ icon }}"></i> {{ displayName }}
+        {% include 'timeline/_card_vertical_actions.html.twig' with {register: timelineElement, entityType: entityType, orientation: orientation, actionList: actionList} only  %}
     </div>
     {% include 'timeline/_card_horizontal_actions.html.twig' with {register: timelineElement, entityType: entityType, orientation: orientation, actionList: actionList} only  %}
     {% include 'timeline/_card_'~entityType~'.html.twig' with {register: timelineElement, entityType: entityType, orientation: orientation} only  %}
