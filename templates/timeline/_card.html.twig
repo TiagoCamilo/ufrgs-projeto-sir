@@ -1,16 +1,9 @@
-{% if entityOpenner == 'acompanhamento' %}
-    {% set actionList = {
-        'copy': true,
-        'copy_link': false,
-        'show': true,
-    } %}
-{% else %}
-    {% set actionList = {
-        'copy': true,
-        'copy_link': true,
-        'show': true,
-    } %}
-{% endif %}
+{% set actionList = {
+    'copy': true,
+    'copy_link': true,
+    'show': true,
+} %}
+
 
 
 {% if timelineElement is Comentario %}
@@ -22,9 +15,9 @@
     {% set entityType = 'acompanhamento' %}
     {% set displayName = 'Acompanhamento' %}
     {% set icon = 'fa-file' %}
-    {% set actionList = actionList|merge({
-        'copy_link':false,
-    }) %}
+    {#{% set actionList = actionList|merge({#}
+        {#'copy_link':false,#}
+    {#}) %}#}
 {% endif %}
 {% if timelineElement is Parecer %}
     {% set entityType = 'parecer' %}
