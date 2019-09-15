@@ -154,7 +154,7 @@ class FormularioDinamicoController extends AbstractController
                 }
             }
 
-            $formularioRegistro->setEducador($user->getEducador());
+            $formularioRegistro->setUsuario($user);
             $formularioRegistro->setAluno($this->aluno);
             $formularioRegistro->setDataHora(new \DateTime());
             $em = $this->getDoctrine()->getManager();
@@ -185,6 +185,13 @@ class FormularioDinamicoController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($formularioRegistro);
             $entityManager->flush();
+        }
+
+        //Sempre que houver aluno "em sessao", volta para o perfil do mesmo
+        if(null !== $this->aluno->getId() ) {
+            return $this->redirectToRoute('perfil_aluno_profile', [
+                'id' => $this->aluno->getId(),
+            ]);
         }
 
         return $this->redirectToRoute('formulario_dinamico_index', ['form_id' => $request->get('form_id')]);

@@ -1,16 +1,11 @@
-{% if entityOpenner == 'acompanhamento' %}
-    {% set actionList = {
-        'copy': true,
-        'copy_link': false,
-        'show': true,
-    } %}
-{% else %}
-    {% set actionList = {
-        'copy': true,
-        'copy_link': true,
-        'show': true,
-    } %}
-{% endif %}
+{% set actionList = {
+    'copy': true,
+    'copy_link': true,
+    'show': true,
+    'edit': true,
+    'delete': true,
+} %}
+
 
 
 {% if timelineElement is Comentario %}
@@ -22,9 +17,9 @@
     {% set entityType = 'acompanhamento' %}
     {% set displayName = 'Acompanhamento' %}
     {% set icon = 'fa-file' %}
-    {% set actionList = actionList|merge({
-        'copy_link':false,
-    }) %}
+    {#{% set actionList = actionList|merge({#}
+        {#'copy_link':false,#}
+    {#}) %}#}
 {% endif %}
 {% if timelineElement is Parecer %}
     {% set entityType = 'parecer' %}
@@ -45,6 +40,7 @@
 <div class="card mb-3 entity-card" data-entity="{{ entityType }}">
     <div class="card-header">
         <i class="fas {{ icon }}"></i> {{ displayName }}
+        {% include 'timeline/_card_vertical_actions.html.twig' with {register: timelineElement, entityType: entityType, orientation: orientation, actionList: actionList} only  %}
     </div>
     {% include 'timeline/_card_horizontal_actions.html.twig' with {register: timelineElement, entityType: entityType, orientation: orientation, actionList: actionList} only  %}
     {% include 'timeline/_card_'~entityType~'.html.twig' with {register: timelineElement, entityType: entityType, orientation: orientation} only  %}

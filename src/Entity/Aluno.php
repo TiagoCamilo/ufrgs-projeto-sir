@@ -80,6 +80,11 @@ class Aluno implements IEntity, LimiterEscolaInterface
      */
     private $historicoEscolar;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $turma;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
@@ -322,6 +327,18 @@ class Aluno implements IEntity, LimiterEscolaInterface
     public function setHistoricoEscolar($historicoEscolar): self
     {
         $this->historicoEscolar = $historicoEscolar;
+
+        return $this;
+    }
+
+    public function getTurma(): ?string
+    {
+        return $this->turma;
+    }
+
+    public function setTurma(?string $turma): self
+    {
+        $this->turma = $turma;
 
         return $this;
     }

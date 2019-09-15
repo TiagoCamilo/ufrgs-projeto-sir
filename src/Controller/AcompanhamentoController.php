@@ -22,7 +22,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class AcompanhamentoController extends AppAbstractController
 {
-    private $aluno;
+    protected $aluno;
 
     public function __construct(AcompanhamentoRepository $entityRepository, SessionInterface $session, AlunoRepository $alunoRepository)
     {

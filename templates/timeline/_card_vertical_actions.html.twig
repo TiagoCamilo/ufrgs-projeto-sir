@@ -1,0 +1,45 @@
+{% if orientation == 'vertical' %}
+    <span style="float: right" >
+
+        {% if(actionList.delete is defined and actionList.delete == true and register.usuario == app.user) %}
+            <form method="post" id="form_delete_{{ entityType }}_{{register.id}}" class="form-delete" action="{{ path(entityType~'_delete', {'id': register.id}) }}">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ register.id) }}">
+                <a class="card-horizontal-action" style="color: red; cursor: pointer"
+                   onClick="if(confirm('Tem certeza que deseja excluir?')){
+                           form_delete_{{ entityType }}_{{register.id}}.submit()
+                           };">
+                    <i class="fa fa-trash"></i> Excluir
+                </a>
+            </form>
+        {% endif %}
+
+        {% if(actionList.edit is defined and actionList.edit  == true and register.usuario == app.user) %}
+            {% if register is Formulario %}
+                <a class="card-horizontal-action" href="{{ path(entityType~'_edit', {form_id: register.formulario.id, id: register.id}) }}">
+                    <i class="fa fa-edit"></i> Editar
+                </a>
+            {% else %}
+                <a class="card-horizontal-action" href="{{ path(entityType~'_edit', {id: register.id}) }}">
+                    <i class="fa fa-edit"></i> Editar
+                </a>
+            {% endif %}
+        {% endif %}
+
+
+        {% if(actionList.show is defined and actionList.show  == true) %}
+            {% if register is Formulario %}
+                <a class="card-horizontal-action"
+                   href="{{ path(entityType~'_report_pdf', {form_id: register.formulario.id, id: register.id}) }}"
+                   target="_blank">
+                    <i class="fas fa-eye" title="Visualizar registro"></i> Visualizar
+                </a>
+            {% else %}
+                <a class="card-horizontal-action" href="{{ path(entityType~'_show', {id: register.id}) }}"
+                   target="_blank">
+                    <i class="fas fa-eye" title="Visualizar registro"></i> Visualizar
+                </a>
+            {% endif %}
+        {% endif %}
+    </span>
+{% endif %}
