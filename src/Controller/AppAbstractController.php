@@ -102,6 +102,13 @@ abstract class AppAbstractController extends AbstractController
             $em->flush();
         }
 
+        //Sempre que houver aluno "em sessao", volta para o perfil do mesmo
+        if(null !== $this->aluno->getId() ) {
+            return $this->redirectToRoute('perfil_aluno_profile', [
+                'id' => $this->aluno->getId(),
+            ]);
+        }
+
         return $this->redirectToRoute("{$this->entityName}_index");
     }
 
