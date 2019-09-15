@@ -1,3 +1,7 @@
-<a class="btn btn-primary" href="{{ path(entityName~'_edit', {'id': register.Id}) }}">Editar</a>
+{% if(register.usuario is not defined or register.usuario == app.user) %}
+    <a class="btn btn-primary" href="{{ path(entityName~'_edit', {'id': register.Id}) }}">Editar</a>
+{% endif %}
 
-<a class="btn btn-success float-right" href="{{ path(entityName~'_index') }}">Voltar</a>
+{% set referer = app.request.server.get('HTTP_REFERER')|default('/') %}
+
+<a class="btn btn-success float-right" href="{{ referer }}">Voltar</a>

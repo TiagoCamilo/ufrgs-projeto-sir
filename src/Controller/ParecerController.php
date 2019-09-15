@@ -22,7 +22,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class ParecerController extends AppAbstractController
 {
-    private $aluno;
+    protected $aluno;
 
     public function __construct(ParecerRepository $entityRepository, SessionInterface $session, AlunoRepository $alunoRepository)
     {

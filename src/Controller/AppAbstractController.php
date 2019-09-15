@@ -22,6 +22,7 @@ abstract class AppAbstractController extends AbstractController
     protected $entityRepository;
     protected $entityName;
     protected $formType;
+    protected $aluno;
 
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
@@ -76,6 +77,12 @@ abstract class AppAbstractController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            //Sempre que houver aluno "em sessao", volta para o perfil do mesmo
+            if(null !== $this->aluno->getId() ) {
+                return $this->redirectToRoute('perfil_aluno_profile', [
+                    'id' => $this->aluno->getId(),
+                ]);
+            }
             return $this->redirectToRoute("{$this->entityName}_index", ['id' => $entity->getId()]);
         }
 
@@ -93,6 +100,13 @@ abstract class AppAbstractController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->remove($entity);
             $em->flush();
+        }
+
+        //Sempre que houver aluno "em sessao", volta para o perfil do mesmo
+        if(null !== $this->aluno->getId() ) {
+            return $this->redirectToRoute('perfil_aluno_profile', [
+                'id' => $this->aluno->getId(),
+            ]);
         }
 
         return $this->redirectToRoute("{$this->entityName}_index");
