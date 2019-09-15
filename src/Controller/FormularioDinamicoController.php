@@ -154,7 +154,7 @@ class FormularioDinamicoController extends AbstractController
                 }
             }
 
-            $formularioRegistro->setEducador($user->getEducador());
+            $formularioRegistro->setUsuario($user);
             $formularioRegistro->setAluno($this->aluno);
             $formularioRegistro->setDataHora(new \DateTime());
             $em = $this->getDoctrine()->getManager();
