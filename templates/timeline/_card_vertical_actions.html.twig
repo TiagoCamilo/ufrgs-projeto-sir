@@ -1,15 +1,18 @@
 {% if orientation == 'vertical' %}
     <span style="float: right" >
 
-        {% if register is Formulario %}
-            <a class="card-horizontal-action" href="{{ path(entityType~'_edit', {form_id: register.formulario.id, id: register.id}) }}">
-                <i class="fa fa-edit"></i> Editar
-            </a>
-        {% else %}
-            <a class="card-horizontal-action" href="{{ path(entityType~'_edit', {id: register.id}) }}">
-                <i class="fa fa-edit"></i> Editar
-            </a>
+        {% if(actionList.edit is defined and actionList.edit  == true and register.usuario == app.user) %}
+            {% if register is Formulario %}
+                <a class="card-horizontal-action" href="{{ path(entityType~'_edit', {form_id: register.formulario.id, id: register.id}) }}">
+                    <i class="fa fa-edit"></i> Editar
+                </a>
+            {% else %}
+                <a class="card-horizontal-action" href="{{ path(entityType~'_edit', {id: register.id}) }}">
+                    <i class="fa fa-edit"></i> Editar
+                </a>
+            {% endif %}
         {% endif %}
+
 
         {% if(actionList.show is defined and actionList.show  == true) %}
             {% if register is Formulario %}
