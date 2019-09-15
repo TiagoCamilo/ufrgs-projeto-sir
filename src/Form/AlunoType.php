@@ -18,11 +18,12 @@ class AlunoType extends AbstractType
     {
         $builder
             ->add('nome')
-            ->add('nomeMae', TextType::class, ['label'=> 'Nome mãe', 'required'=> false])
-            ->add('nomePai')
+            ->add('turma')
             ->add('data_nascimento', DateType::class, [
                 'widget' => 'single_text',
             ])
+            ->add('nomeMae', TextType::class, ['label'=> 'Nome mãe', 'required'=> false])
+            ->add('nomePai')
             ->add('escola', EntityType::class,
                 [
                     'class' => Escola::class,
