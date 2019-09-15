@@ -30,7 +30,7 @@ class AlunoType extends AbstractType
                 ])
             ->add('historicoEscolar', TextareaType::class,
                 [
-                    'label' => 'Hostórico escolar',
+                    'label' => 'Histórico',
                     'required' => false,
                     'attr' => ['rows' => 7],
                 ])
