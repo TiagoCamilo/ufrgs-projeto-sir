@@ -15,6 +15,7 @@ class FormularioDinamicoHelper
         'Label' => 'LabelType',
         'Data' => 'DateType',
         'Aluno' => 'AlunoType',
+        'Entidade' => 'EntityType',
     ];
 
     public function __construct(SessionInterface $session, AlunoRepository $alunoRepository)
@@ -53,6 +54,8 @@ class FormularioDinamicoHelper
                 return 'formulario_dinamico/_field_date.html.twig';
             case 'AlunoType':
                 return 'formulario_dinamico/_field_aluno.html.twig';
+            case 'EntityType':
+                return 'formulario_dinamico/_field_entity.html.twig';
             default:
                 return 'formulario_dinamico/_field_label.html.twig';
         }
