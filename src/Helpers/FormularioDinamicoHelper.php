@@ -4,11 +4,15 @@ namespace App\Helpers;
 
 use App\Repository\AlunoRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class FormularioDinamicoHelper
 {
     private $session;
     private $alunoRepository;
+    private $aluno;
+    private $usuario;
+
     private $fieldList = [
         'Texto' => 'TextType',
         'Área de Texto' => 'TextareaType',
@@ -22,6 +26,11 @@ class FormularioDinamicoHelper
     {
         $this->session = $session;
         $this->alunoRepository = $alunoRepository;
+
+        if (null !== $session->get('aluno_id')) {
+            $this->aluno = $alunoRepository->find($session->get('aluno_id'));
+        }
+
     }
 
     //TODO: Tornar "generico" permitindo utilizar qualquer entity
@@ -36,9 +45,30 @@ class FormularioDinamicoHelper
         return $this->alunoRepository->find($id);
     }
 
+    public function getEntityValue($method){
+        $obj = $this->getEntityReference('Aluno');
+
+        if(false === method_exists($obj, $method)){
+            return null;
+        }
+
+        return $this->aluno->$method();
+    }
+
     public function getFieldList()
     {
         return $this->fieldList;
+    }
+
+    private function getEntityReference($referenceType){
+        switch ($referenceType){
+            case 'Aluno':
+                return $this->aluno;
+            case 'Usuario':
+                return $this->getUser();
+            default:
+                return null;
+        }
     }
 
     public function getTemplateByField($fieldType)

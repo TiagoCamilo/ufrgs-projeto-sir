@@ -3,5 +3,5 @@
 {% if valor is defined %}
     <input type="text" class="form-control" id="{{ campo.id }}" name="{{ campo.id }}" value="{{ valor }}"/>
 {% else %}
-    <input type="text" class="form-control" id="{{ campo.id }}" name="{{ campo.id }}" value="ok" />
+    <input type="text" class="form-control" id="{{ campo.id }}" name="{{ campo.id }}" value="{{ form_helper.getEntityValue('getNome') }}" />
 {% endif %}
