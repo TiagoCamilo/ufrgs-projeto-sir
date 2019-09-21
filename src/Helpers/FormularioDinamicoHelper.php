@@ -19,7 +19,6 @@ class FormularioDinamicoHelper
         'Área de Texto' => 'TextareaType',
         'Label' => 'LabelType',
         'Data' => 'DateType',
-        'Aluno' => 'AlunoType',
         'Entidade' => 'EntityType',
     ];
 
@@ -40,19 +39,7 @@ class FormularioDinamicoHelper
     {
         return $this->fieldList;
     }
-
-    //TODO: Tornar "generico" permitindo utilizar qualquer entity
-    public function getAlunoValues()
-    {
-        return $this->alunoRepository->findAll();
-    }
-
-    //TODO: Tornar "generico" permitindo utilizar qualquer entity
-    public function getAlunoById($id)
-    {
-        return $this->alunoRepository->find($id);
-    }
-
+    
     public function loadEntityValue($method){
         $obj = $this->getEntityReference('Aluno');
 
@@ -110,8 +97,6 @@ class FormularioDinamicoHelper
                 return 'formulario_dinamico/_field_label.html.twig';
             case 'DateType':
                 return 'formulario_dinamico/_field_date.html.twig';
-            case 'AlunoType':
-                return 'formulario_dinamico/_field_aluno.html.twig';
             case 'EntityType':
                 return 'formulario_dinamico/_field_entity.html.twig';
             default:
