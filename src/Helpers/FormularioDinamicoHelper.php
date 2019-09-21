@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace App\Helpers;
 
 use App\Repository\AlunoRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
