@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Repository\AlunoRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class FormularioDinamicoHelper
@@ -22,7 +23,7 @@ class FormularioDinamicoHelper
         'Entidade' => 'EntityType',
     ];
 
-    public function __construct(SessionInterface $session, AlunoRepository $alunoRepository)
+    public function __construct(SessionInterface $session, AlunoRepository $alunoRepository, Security $security)
     {
         $this->session = $session;
         $this->alunoRepository = $alunoRepository;
@@ -30,6 +31,8 @@ class FormularioDinamicoHelper
         if (null !== $session->get('aluno_id')) {
             $this->aluno = $alunoRepository->find($session->get('aluno_id'));
         }
+
+        $this->usuario = $security->getUser();
 
     }
 
@@ -46,13 +49,13 @@ class FormularioDinamicoHelper
     }
 
     public function getEntityValue($method){
-        $obj = $this->getEntityReference('Aluno');
+        $obj = $this->getEntityReference('Usuario');
 
         if(false === method_exists($obj, $method)){
             return null;
         }
 
-        return $this->aluno->$method();
+        return $obj->$method();
     }
 
     public function getFieldList()
@@ -65,7 +68,7 @@ class FormularioDinamicoHelper
             case 'Aluno':
                 return $this->aluno;
             case 'Usuario':
-                return $this->getUser();
+                return $this->usuario;
             default:
                 return null;
         }
