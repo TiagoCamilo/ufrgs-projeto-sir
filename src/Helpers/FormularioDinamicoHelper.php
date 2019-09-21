@@ -36,6 +36,11 @@ class FormularioDinamicoHelper
 
     }
 
+    public function getFieldList()
+    {
+        return $this->fieldList;
+    }
+
     //TODO: Tornar "generico" permitindo utilizar qualquer entity
     public function getAlunoValues()
     {
@@ -49,18 +54,31 @@ class FormularioDinamicoHelper
     }
 
     public function getEntityValue($method){
-        $obj = $this->getEntityReference('Usuario');
+        $obj = $this->getEntityReference('Aluno');
 
         if(false === method_exists($obj, $method)){
             return null;
         }
+        
+        $value = $obj->$method();
 
-        return $obj->$method();
+        $value = $this->parseValue($value);
+
+        return $value;
     }
 
-    public function getFieldList()
-    {
-        return $this->fieldList;
+
+    private function parseValue($value){
+        if(false === is_object($value)){
+            return (string)$value;
+        }
+
+        switch(get_class($value)){
+            case 'DateTime':
+                return $value->format('d/m/Y');
+            default:
+                return $value;
+        }
     }
 
     private function getEntityReference($referenceType){

@@ -1,7 +1,12 @@
-<label for="{{ id }}">{{ label }}</label>
+{% set fieldType = 'formulario_dinamico/_field_textarea.html.twig' %}
 
-{% if valor is defined %}
-    <input type="text" class="form-control" id="{{ campo.id }}" name="{{ campo.id }}" value="{{ valor }}"/>
-{% else %}
-    <input type="text" class="form-control" id="{{ campo.id }}" name="{{ campo.id }}" value="{{ form_helper.getEntityValue('getNome') }}" />
-{% endif %}
+{% include fieldType with {'id': campo.id, 'label': campo.label, 'valor': form_helper.getEntityValue('getHistoricoEscolar') } %}
+
+{#<label for="{{ id }}">{{ label }}</label>#}
+
+{#{% if valor is defined %}#}
+    {#<input type="text" class="form-control" id="{{ campo.id }}" name="{{ campo.id }}" value="{{ valor }}"/>#}
+{#{% else %}#}
+    {#<input type="text" class="form-control" id="{{ campo.id }}" name="{{ campo.id }}" value="{{ form_helper.getEntityValue('getHistoricoEscolar')  }}" />#}
+    {#<textarea class="form-control" rows="5">{{ form_helper.getEntityValue('getHistoricoEscolar') | raw }}</textarea>#}
+{#{% endif %}#}
