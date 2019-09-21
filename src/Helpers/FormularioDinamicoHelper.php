@@ -53,31 +53,38 @@ class FormularioDinamicoHelper
         return $this->alunoRepository->find($id);
     }
 
-    public function getEntityValue($method){
+    public function loadEntityValue($method){
         $obj = $this->getEntityReference('Aluno');
 
         if(false === method_exists($obj, $method)){
             return null;
         }
-        
-        $value = $obj->$method();
 
-        $value = $this->parseValue($value);
-
-        return $value;
+        return $obj->$method();
     }
 
-
-    private function parseValue($value){
-        if(false === is_object($value)){
-            return (string)$value;
+    private function getEntityValueType($value){
+        if(is_object($value)){
+            return get_class($value);
         }
 
-        switch(get_class($value)){
+        //Necessario para renderizar o valor em um campo de multiplas linhas
+        if(is_string($value)){
+            if(false !== strpos($value, PHP_EOL))
+                return "string_multiple_lines";
+        }
+
+        return gettype($value);
+    }
+
+    public function parseValue($value){
+        $fieldType = $this->getEntityValueType($value);
+
+        switch ($fieldType) {
             case 'DateTime':
-                return $value->format('d/m/Y');
+                return $value->format('Y-m-d');
             default:
-                return $value;
+                return (string)$value;
         }
     }
 
@@ -107,6 +114,22 @@ class FormularioDinamicoHelper
                 return 'formulario_dinamico/_field_aluno.html.twig';
             case 'EntityType':
                 return 'formulario_dinamico/_field_entity.html.twig';
+            default:
+                return 'formulario_dinamico/_field_label.html.twig';
+        }
+    }
+
+    public function getTemplateByFieldEntityValue($value)
+    {
+        $fieldType = $this->getEntityValueType($value);
+
+        switch ($fieldType) {
+            case 'string':
+                return 'formulario_dinamico/_field_text.html.twig';
+            case 'string_multiple_lines':
+                return 'formulario_dinamico/_field_textarea.html.twig';
+            case 'DateTime':
+                return 'formulario_dinamico/_field_date.html.twig';
             default:
                 return 'formulario_dinamico/_field_label.html.twig';
         }
