@@ -36,6 +36,11 @@ class FormularioDinamicoHelper
         }
     }
 
+    public function getFieldList()
+    {
+        return $this->fieldList;
+    }
+
     public function loadDbEntityValue($entityName, $attribute){
         $objReferencia = $this->getEntityReference($entityName);
 
@@ -48,44 +53,19 @@ class FormularioDinamicoHelper
         return $register[$attribute] ?? null;
     }
 
-    public function getFieldList()
-    {
-        return $this->fieldList;
-    }
-    
-    public function loadEntityValue($method){
-        $obj = $this->getEntityReference('Aluno');
+    private function loadDbEntityAttributeType($entityName, $attribute){
+        $objReferencia = $this->getEntityReference($entityName);
 
-        if(false === method_exists($obj, $method)){
+        $metadata = $this->em->getClassMetadata(get_class($objReferencia));
+        dump($metadata);
+        if(false === isset($metadata->fieldNames[$attribute])){
             return null;
         }
 
-        return $obj->$method();
-    }
+        $attributeClassName = $metadata->fieldNames[$attribute];
+        $field = $metadata->fieldMappings[$attributeClassName];
 
-    private function getEntityValueType($value){
-        if(is_object($value)){
-            return get_class($value);
-        }
-
-        //Necessario para renderizar o valor em um campo de multiplas linhas
-        if(is_string($value)){
-            if(false !== strpos($value, PHP_EOL))
-                return "string_multiple_lines";
-        }
-
-        return gettype($value);
-    }
-
-    public function parseValue($value){
-        $fieldType = $this->getEntityValueType($value);
-
-        switch ($fieldType) {
-            case 'DateTime':
-                return $value->format('Y-m-d');
-            default:
-                return (string)$value;
-        }
+        return $field["type"];
     }
 
     private function getEntityReference($referenceType){
@@ -117,16 +97,16 @@ class FormularioDinamicoHelper
         }
     }
 
-    public function getTemplateByFieldEntityValue($value)
+    public function getTemplateByFieldEntityValue($entityName, $attribute)
     {
-        $fieldType = $this->getEntityValueType($value);
+        $fieldType = $this->loadDbEntityAttributeType($entityName, $attribute);
 
         switch ($fieldType) {
             case 'string':
                 return 'formulario_dinamico/_field_text.html.twig';
-            case 'string_multiple_lines':
+            case 'blob':
                 return 'formulario_dinamico/_field_textarea.html.twig';
-            case 'DateTime':
+            case 'date':
                 return 'formulario_dinamico/_field_date.html.twig';
             default:
                 return 'formulario_dinamico/_field_label.html.twig';

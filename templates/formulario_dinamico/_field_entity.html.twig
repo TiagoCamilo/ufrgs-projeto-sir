@@ -1,7 +1,9 @@
 {#{% set value = form_helper.loadEntityValue('getDataNascimento') %}#}
+{% set entityName = 'Aluno' %}
+{% set entityAttribute = 'escola_id' %}
 
-{% set value = form_helper.loadDbEntityValue('Usuario','nome') %}
-{% set fieldType = form_helper.getTemplateByFieldEntityValue(value) %}
-{% set parseValue = form_helper.parseValue(value) %}
 
-{% include fieldType with {'id': campo.id, 'label': campo.label, 'valor': parseValue } %}
+{% set value = form_helper.loadDbEntityValue(entityName,entityAttribute) %}
+{% set fieldType = form_helper.getTemplateByFieldEntityValue(entityName,entityAttribute) %}
+
+{% include fieldType with {'id': campo.id, 'label': campo.label, 'valor': value } %}
