@@ -3,9 +3,10 @@
 namespace App\Helpers;
 
 use App\Repository\AlunoRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\User\UserInterface;
+use App\Entity\Aluno;
 
 class FormularioDinamicoHelper
 {
@@ -13,6 +14,7 @@ class FormularioDinamicoHelper
     private $alunoRepository;
     private $aluno;
     private $usuario;
+    private $em;
 
     private $fieldList = [
         'Texto' => 'TextType',
@@ -22,17 +24,28 @@ class FormularioDinamicoHelper
         'Entidade' => 'EntityType',
     ];
 
-    public function __construct(SessionInterface $session, AlunoRepository $alunoRepository, Security $security)
+    public function __construct(SessionInterface $session, AlunoRepository $alunoRepository, Security $security, ObjectManager $entityManager)
     {
         $this->session = $session;
         $this->alunoRepository = $alunoRepository;
+        $this->em = $entityManager;
+        $this->usuario = $security->getUser();
 
         if (null !== $session->get('aluno_id')) {
             $this->aluno = $alunoRepository->find($session->get('aluno_id'));
         }
+    }
 
-        $this->usuario = $security->getUser();
+    public function loadDbEntityValue($entityName, $attribute){
+        $objReferencia = $this->getEntityReference($entityName);
 
+        $conn = $this->em->getConnection();
+
+        $stmt = $conn->prepare("SELECT * FROM {$entityName} e WHERE e.id = :id");
+        $stmt->execute(array('id' => $objReferencia->getId()));
+        $register = $stmt->fetch();
+
+        return $register[$attribute] ?? null;
     }
 
     public function getFieldList()

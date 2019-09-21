@@ -1,4 +1,6 @@
-{% set value = form_helper.loadEntityValue('getDataNascimento') %}
+{#{% set value = form_helper.loadEntityValue('getDataNascimento') %}#}
+
+{% set value = form_helper.loadDbEntityValue('Usuario','nome') %}
 {% set fieldType = form_helper.getTemplateByFieldEntityValue(value) %}
 {% set parseValue = form_helper.parseValue(value) %}
 
