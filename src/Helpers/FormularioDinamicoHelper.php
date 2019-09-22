@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Repository\AlunoRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\Query;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Security;
 use App\Entity\Aluno;
@@ -44,26 +45,27 @@ class FormularioDinamicoHelper
     public function loadDbEntityValue($entityName, $attribute){
         $objReferencia = $this->getEntityReference($entityName);
 
-        $conn = $this->em->getConnection();
+        $qb = $this->em->createQueryBuilder();
+        $register = $qb->select('e')
+            ->from('App\Entity\\'.$entityName, 'e')
+            ->where('e.id = :id')
+            ->setParameter('id', $objReferencia->getId())
+            ->getQuery()
+            ->getOneOrNullResult();
 
-        $stmt = $conn->prepare("SELECT * FROM {$entityName} e WHERE e.id = :id");
-        $stmt->execute(array('id' => $objReferencia->getId()));
-        $register = $stmt->fetch();
-
-        return $register[$attribute] ?? null;
+        return $register->$attribute ?? null;
     }
 
     private function loadDbEntityAttributeType($entityName, $attribute){
         $objReferencia = $this->getEntityReference($entityName);
 
         $metadata = $this->em->getClassMetadata(get_class($objReferencia));
-        dump($metadata);
-        if(false === isset($metadata->fieldNames[$attribute])){
+
+        if(false === isset($metadata->fieldMappings[$attribute])){
             return null;
         }
 
-        $attributeClassName = $metadata->fieldNames[$attribute];
-        $field = $metadata->fieldMappings[$attributeClassName];
+        $field = $metadata->fieldMappings[$attribute];
 
         return $field["type"];
     }
@@ -102,14 +104,12 @@ class FormularioDinamicoHelper
         $fieldType = $this->loadDbEntityAttributeType($entityName, $attribute);
 
         switch ($fieldType) {
-            case 'string':
-                return 'formulario_dinamico/_field_text.html.twig';
             case 'blob':
                 return 'formulario_dinamico/_field_textarea.html.twig';
             case 'date':
                 return 'formulario_dinamico/_field_date.html.twig';
             default:
-                return 'formulario_dinamico/_field_label.html.twig';
+                return 'formulario_dinamico/_field_text.html.twig';
         }
     }
 }

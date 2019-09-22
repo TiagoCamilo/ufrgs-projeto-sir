@@ -17,73 +17,73 @@ class Aluno implements IEntity, LimiterEscolaInterface
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    public $id;
 
     /**
      * @ORM\Column(type="string", length=200)
      */
-    private $nome;
+    public $nome;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $data_nascimento;
+    public $data_nascimento;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="aluno", orphanRemoval=true)
      * @ORM\OrderBy({"id"="desc"})
      */
-    private $comentarios;
+    public $comentarios;
 
     /**
      * @ORM\Column(type="string", length=250, nullable=true)
      *
      * @Assert\File(mimeTypes={ "image/jpeg","image/png" })
      */
-    private $file;
+    public $file;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Acompanhamento", mappedBy="aluno", orphanRemoval=true)
      * @ORM\OrderBy({"id"="desc"})
      */
-    private $acompanhamentos;
+    public $acompanhamentos;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Escola", inversedBy="alunos")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $escola;
+    public $escola;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Parecer", mappedBy="aluno", orphanRemoval=true)
      * @ORM\OrderBy({"id"="desc"})
      */
-    private $pareceres;
+    public $pareceres;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\FormularioRegistro", mappedBy="aluno", orphanRemoval=true)
      */
-    private $formularioRegistros;
+    public $formularioRegistros;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $nomeMae;
+    public $nomeMae;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $nomePai;
+    public $nomePai;
 
     /**
      * @ORM\Column(type="blob", nullable=true)
      */
-    private $historicoEscolar;
+    public $historicoEscolar;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $turma;
+    public $turma;
 
     public function __construct()
     {
