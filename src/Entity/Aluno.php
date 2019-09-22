@@ -83,7 +83,7 @@ class Aluno implements IEntity, LimiterEscolaInterface
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $dataNascimento;
+    public $dataNascimento;
 
     public function __construct()
     {
@@ -342,4 +342,9 @@ class Aluno implements IEntity, LimiterEscolaInterface
 
         return $this;
     }
+
+    public function getIdade(): int{
+        return 1;
+    }
+
 }

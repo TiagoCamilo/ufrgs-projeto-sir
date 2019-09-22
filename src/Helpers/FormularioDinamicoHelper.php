@@ -53,8 +53,16 @@ class FormularioDinamicoHelper
             ->setParameter('id', $objReferencia->getId())
             ->getQuery()
             ->getOneOrNullResult();
+        $x = "getIdade";
 
-        return $this->normalizeValue($register->$attribute) ?? null;
+        //Buscando por um metodo ao inves de um atributo puro
+        if(method_exists($register, $attribute)){
+            $value = $register->$attribute();
+        }else{
+            $value = $register->$attribute ?? null;
+        }
+
+        return $this->normalizeValue($value);
     }
 
     private function loadDbEntityAttributeType($entityName, $attribute){

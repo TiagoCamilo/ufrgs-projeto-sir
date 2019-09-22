@@ -42,6 +42,11 @@ class AppFormFixtures extends Fixture
         return $this->newCampo($label, $linha, $coluna, $formulario, $agrupador)->setTipo('LabelType');
     }
 
+    private function newCampoEntity($label, $linha, $coluna, $formulario, $agrupador)
+    {
+        return $this->newCampo($label, $linha, $coluna, $formulario, $agrupador)->setTipo('EntityType');
+    }
+
     private function newCampo($label, $linha, $coluna, $formulario, $agrupador)
     {
         $campo = new FormularioCampo();
@@ -113,7 +118,7 @@ class AppFormFixtures extends Fixture
         $agrupadorIntervencoes = new FormularioAgrupador();
         $agrupadorIntervencoes->setFormulario($formulario)->setTitulo('Plano de Intervenção Pedagógica')->setOrdem(4);
 
-        $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Idade', 1, 1, $formulario, $agrupadorIdentificacao));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoEntity('Idade', 1, 1, $formulario, $agrupadorIdentificacao));
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoData('Data Nascimento', 1, 2, $formulario, $agrupadorIdentificacao));
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Matrícula', 1, 3, $formulario, $agrupadorIdentificacao));
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoTextArea('Outras Informações', 2, 1, $formulario, $agrupadorIdentificacao));
