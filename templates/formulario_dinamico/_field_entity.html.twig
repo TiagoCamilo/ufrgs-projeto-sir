@@ -1,6 +1,6 @@
 {#{% set value = form_helper.loadEntityValue('getDataNascimento') %}#}
 {% set entityName = 'Aluno' %}
-{% set entityAttribute = 'historicoEscolar' %}
+{% set entityAttribute = 'escola' %}
 
 {% if(valor is not defined) %}
     {% set valor = form_helper.loadDbEntityValue(entityName,entityAttribute) %}

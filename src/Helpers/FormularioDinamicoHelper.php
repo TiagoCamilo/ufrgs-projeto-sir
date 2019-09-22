@@ -5,6 +5,7 @@ namespace App\Helpers;
 use App\Repository\AlunoRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Query;
+use Nette\Utils\DateTime;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Security;
 use App\Entity\Aluno;
@@ -53,7 +54,7 @@ class FormularioDinamicoHelper
             ->getQuery()
             ->getOneOrNullResult();
 
-        return $register->$attribute ?? null;
+        return $this->normalizeValue($register->$attribute) ?? null;
     }
 
     private function loadDbEntityAttributeType($entityName, $attribute){
@@ -68,6 +69,19 @@ class FormularioDinamicoHelper
         $field = $metadata->fieldMappings[$attribute];
 
         return $field["type"];
+    }
+
+    private function normalizeValue($value){
+
+        if(is_resource($value)){
+            return stream_get_contents($value);
+        }
+
+        if(is_object($value) && $value instanceof \DateTime){
+            return $value->format('Y-m-d');
+        }
+
+        return $value;
     }
 
     private function getEntityReference($referenceType){
