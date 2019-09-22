@@ -25,11 +25,6 @@ class Aluno implements IEntity, LimiterEscolaInterface
     public $nome;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
-     */
-    public $data_nascimento;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="aluno", orphanRemoval=true)
      * @ORM\OrderBy({"id"="desc"})
      */
@@ -85,6 +80,11 @@ class Aluno implements IEntity, LimiterEscolaInterface
      */
     public $turma;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $dataNascimento;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
@@ -106,18 +106,6 @@ class Aluno implements IEntity, LimiterEscolaInterface
     public function setNome(string $nome): self
     {
         $this->nome = $nome;
-
-        return $this;
-    }
-
-    public function getDataNascimento(): ?\DateTimeInterface
-    {
-        return $this->data_nascimento;
-    }
-
-    public function setDataNascimento(?\DateTimeInterface $data_nascimento): self
-    {
-        $this->data_nascimento = $data_nascimento;
 
         return $this;
     }
@@ -339,6 +327,18 @@ class Aluno implements IEntity, LimiterEscolaInterface
     public function setTurma(?string $turma): self
     {
         $this->turma = $turma;
+
+        return $this;
+    }
+
+    public function getDataNascimento(): ?\DateTimeInterface
+    {
+        return $this->dataNascimento;
+    }
+
+    public function setDataNascimento(?\DateTimeInterface $dataNascimento): self
+    {
+        $this->dataNascimento = $dataNascimento;
 
         return $this;
     }
