@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Nette\Utils\DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -348,10 +349,6 @@ class Aluno implements IEntity, LimiterEscolaInterface
         return $this;
     }
 
-    public function getIdade(): int{
-        return 1;
-    }
-
     public function getMatricula(): ?string
     {
         return $this->matricula;
@@ -364,4 +361,11 @@ class Aluno implements IEntity, LimiterEscolaInterface
         return $this;
     }
 
+    public function getIdade(): ?int{
+        if(isset($this->dataNascimento) && $this->dataNascimento instanceof \DateTimeInterface){
+            return $this->dataNascimento->diff(new \DateTime('now'))->y;
+        }
+
+        return null;
+    }
 }
