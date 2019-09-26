@@ -85,6 +85,11 @@ class Aluno implements IEntity, LimiterEscolaInterface
      */
     public $dataNascimento;
 
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    public $matricula;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
@@ -345,6 +350,18 @@ class Aluno implements IEntity, LimiterEscolaInterface
 
     public function getIdade(): int{
         return 1;
+    }
+
+    public function getMatricula(): ?string
+    {
+        return $this->matricula;
+    }
+
+    public function setMatricula(string $matricula): self
+    {
+        $this->matricula = $matricula;
+
+        return $this;
     }
 
 }
