@@ -63,6 +63,11 @@ class FormularioCampo implements IEntity
      */
     private $altura;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\EntidadeDadoMapeado")
+     */
+    private $entidadeDadoMapeado;
+
     public function __construct()
     {
         $this->formularioRegistroCampos = new ArrayCollection();
@@ -196,6 +201,18 @@ class FormularioCampo implements IEntity
     public function setAltura(?int $altura): self
     {
         $this->altura = $altura;
+
+        return $this;
+    }
+
+    public function getEntidadeDadoMapeado(): ?EntidadeDadoMapeado
+    {
+        return $this->entidadeDadoMapeado;
+    }
+
+    public function setEntidadeDadoMapeado(?EntidadeDadoMapeado $entidadeDadoMapeado): self
+    {
+        $this->entidadeDadoMapeado = $entidadeDadoMapeado;
 
         return $this;
     }
