@@ -43,23 +43,14 @@ class FormularioDinamicoHelper
         return $this->fieldList;
     }
 
-    public function loadDbEntityValue($entityName, $attribute){
-        $objReferencia = $this->getEntityReference($entityName);
-
-        $qb = $this->em->createQueryBuilder();
-        $register = $qb->select('e')
-            ->from('App\Entity\\'.$entityName, 'e')
-            ->where('e.id = :id')
-            ->setParameter('id', $objReferencia->getId())
-            ->getQuery()
-            ->getOneOrNullResult();
-        $x = "getIdade";
+    public function loadDbEntityValue($entityName, $data){
+        $register = $this->getEntityReference($entityName);
 
         //Buscando por um metodo ao inves de um atributo puro
-        if(method_exists($register, $attribute)){
-            $value = $register->$attribute();
+        if(method_exists($register, $data)){
+            $value = $register->$data();
         }else{
-            $value = $register->$attribute ?? null;
+            $value = $register->$data ?? null;
         }
 
         return $this->normalizeValue($value);
