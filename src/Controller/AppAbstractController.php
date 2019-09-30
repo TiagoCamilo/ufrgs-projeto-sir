@@ -78,7 +78,7 @@ abstract class AppAbstractController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             //Sempre que houver aluno "em sessao", volta para o perfil do mesmo
-            if(null !== $this->aluno->getId() ) {
+            if(null !== $this->aluno && null !== $this->aluno->getId() ) {
                 return $this->redirectToRoute('perfil_aluno_profile', [
                     'id' => $this->aluno->getId(),
                 ]);
@@ -103,7 +103,7 @@ abstract class AppAbstractController extends AbstractController
         }
 
         //Sempre que houver aluno "em sessao", volta para o perfil do mesmo
-        if(null !== $this->aluno->getId() ) {
+        if(null !== $this->aluno && null !== $this->aluno->getId() ) {
             return $this->redirectToRoute('perfil_aluno_profile', [
                 'id' => $this->aluno->getId(),
             ]);

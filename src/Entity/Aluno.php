@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Nette\Utils\DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -17,73 +18,78 @@ class Aluno implements IEntity, LimiterEscolaInterface
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    public $id;
 
     /**
      * @ORM\Column(type="string", length=200)
      */
-    private $nome;
-
-    /**
-     * @ORM\Column(type="date", nullable=true)
-     */
-    private $data_nascimento;
+    public $nome;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="aluno", orphanRemoval=true)
      * @ORM\OrderBy({"id"="desc"})
      */
-    private $comentarios;
+    public $comentarios;
 
     /**
      * @ORM\Column(type="string", length=250, nullable=true)
      *
      * @Assert\File(mimeTypes={ "image/jpeg","image/png" })
      */
-    private $file;
+    public $file;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Acompanhamento", mappedBy="aluno", orphanRemoval=true)
      * @ORM\OrderBy({"id"="desc"})
      */
-    private $acompanhamentos;
+    public $acompanhamentos;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Escola", inversedBy="alunos")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $escola;
+    public $escola;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Parecer", mappedBy="aluno", orphanRemoval=true)
      * @ORM\OrderBy({"id"="desc"})
      */
-    private $pareceres;
+    public $pareceres;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\FormularioRegistro", mappedBy="aluno", orphanRemoval=true)
      */
-    private $formularioRegistros;
+    public $formularioRegistros;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $nomeMae;
+    public $nomeMae;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $nomePai;
+    public $nomePai;
 
     /**
      * @ORM\Column(type="blob", nullable=true)
      */
-    private $historicoEscolar;
+    public $historicoEscolar;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $turma;
+    public $turma;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    public $dataNascimento;
+
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    public $matricula;
 
     public function __construct()
     {
@@ -106,18 +112,6 @@ class Aluno implements IEntity, LimiterEscolaInterface
     public function setNome(string $nome): self
     {
         $this->nome = $nome;
-
-        return $this;
-    }
-
-    public function getDataNascimento(): ?\DateTimeInterface
-    {
-        return $this->data_nascimento;
-    }
-
-    public function setDataNascimento(?\DateTimeInterface $data_nascimento): self
-    {
-        $this->data_nascimento = $data_nascimento;
 
         return $this;
     }
@@ -341,5 +335,37 @@ class Aluno implements IEntity, LimiterEscolaInterface
         $this->turma = $turma;
 
         return $this;
+    }
+
+    public function getDataNascimento(): ?\DateTimeInterface
+    {
+        return $this->dataNascimento;
+    }
+
+    public function setDataNascimento(?\DateTimeInterface $dataNascimento): self
+    {
+        $this->dataNascimento = $dataNascimento;
+
+        return $this;
+    }
+
+    public function getMatricula(): ?string
+    {
+        return $this->matricula;
+    }
+
+    public function setMatricula(string $matricula): self
+    {
+        $this->matricula = $matricula;
+
+        return $this;
+    }
+
+    public function getIdade(): ?int{
+        if(isset($this->dataNascimento) && $this->dataNascimento instanceof \DateTimeInterface){
+            return $this->dataNascimento->diff(new \DateTime('now'))->y;
+        }
+
+        return null;
     }
 }
