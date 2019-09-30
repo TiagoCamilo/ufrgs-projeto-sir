@@ -8,6 +8,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\EntidadeDadoMapeado;
 use App\Entity\Formulario;
 use App\Entity\FormularioAgrupador;
 use App\Entity\FormularioCampo;
@@ -16,8 +17,11 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class AppFormFixtures extends Fixture
 {
+    private $entidadeDadoList = [];
+
     public function load(ObjectManager $manager)
     {
+        $this->createEntidadoDadoList($manager);
         $this->createFormularioPlanoDesenvolvimento($manager);
         $this->createFormularioAdequacaoCurricular($manager);
     }
@@ -42,15 +46,20 @@ class AppFormFixtures extends Fixture
         return $this->newCampo($label, $linha, $coluna, $formulario, $agrupador)->setTipo('LabelType');
     }
 
-    private function newCampo($label, $linha, $coluna, $formulario, $agrupador)
+    private function newCampoEntity($label, $linha, $coluna, $formulario, $agrupador, EntidadeDadoMapeado $entidadeDadoMapeado)
+    {
+        return $this->newCampo($label, $linha, $coluna, $formulario, $agrupador, $entidadeDadoMapeado)->setTipo('EntityType');
+    }
+
+    private function newCampo($label, $linha, $coluna, $formulario, $agrupador, EntidadeDadoMapeado $entidadeDadoMapeado = null)
     {
         $campo = new FormularioCampo();
         $campo->setTipo('TextType');
         $campo->setLabel($label);
-        //$campo->setFormulario($formulario); DEPRECATED
         $campo->setAgrupador($agrupador);
         $campo->setLinha($linha);
         $campo->setColuna($coluna);
+        $campo->setEntidadeDadoMapeado($entidadeDadoMapeado);
 
         return $campo;
     }
@@ -66,11 +75,14 @@ class AppFormFixtures extends Fixture
         $agrupadorAdequcacao = new FormularioAgrupador();
         $agrupadorAdequcacao->setFormulario($formulario)->setTitulo('Adequação')->setOrdem(2);
 
-        $agrupadorIdentificacao->addFormularioCampo($this->newCampoData('Data', 1, 1, $formulario, $agrupadorIdentificacao));
-        $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Turma', 1, 2, $formulario, $agrupadorIdentificacao));
-        $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Área', 1, 3, $formulario, $agrupadorIdentificacao));
-        $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Professor', 1, 4, $formulario, $agrupadorIdentificacao));
-        $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Trimeste', 1, 5, $formulario, $agrupadorIdentificacao));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoEntity('Nome', 1, 1, $formulario,
+            $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['nome'] ));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoData('Data', 2, 1, $formulario, $agrupadorIdentificacao));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoEntity('Turma', 2, 2, $formulario,
+            $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['turma'] ));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Área', 2, 3, $formulario, $agrupadorIdentificacao));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Professor', 2, 4, $formulario, $agrupadorIdentificacao));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Trimeste', 2, 5, $formulario, $agrupadorIdentificacao));
 
         $campoHistorico = $this->newCampoTextArea('Histórico', 1, 1, $formulario, $agrupadorAdequcacao);
         $campoHistorico->setAltura(21);
@@ -113,10 +125,15 @@ class AppFormFixtures extends Fixture
         $agrupadorIntervencoes = new FormularioAgrupador();
         $agrupadorIntervencoes->setFormulario($formulario)->setTitulo('Plano de Intervenção Pedagógica')->setOrdem(4);
 
-        $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Idade', 1, 1, $formulario, $agrupadorIdentificacao));
-        $agrupadorIdentificacao->addFormularioCampo($this->newCampoData('Data Nascimento', 1, 2, $formulario, $agrupadorIdentificacao));
-        $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Matrícula', 1, 3, $formulario, $agrupadorIdentificacao));
-        $agrupadorIdentificacao->addFormularioCampo($this->newCampoTextArea('Outras Informações', 2, 1, $formulario, $agrupadorIdentificacao));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoEntity('Nome', 1, 1, $formulario,
+            $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['nome'] ));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoEntity('Idade', 2, 1, $formulario,
+            $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['getIdade'] ));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoEntity('Data Nascimento', 2, 2, $formulario,
+            $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['dataNascimento']));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoEntity('Matrícula', 2, 3, $formulario,
+            $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['matricula']));
+        $agrupadorIdentificacao->addFormularioCampo($this->newCampoTextArea('Outras Informações', 3, 1, $formulario, $agrupadorIdentificacao));
 
         $agrupadorHistorico->addFormularioCampo($this->newCampoText('Encamihamento AEE', 1, 1, $formulario, $agrupadorHistorico));
         $agrupadorHistorico->addFormularioCampo($this->newCampoData('Data', 1, 2, $formulario, $agrupadorHistorico));
@@ -145,5 +162,26 @@ class AppFormFixtures extends Fixture
         $manager->persist($agrupadorIntervencoes);
         $manager->persist($formulario);
         $manager->flush();
+    }
+
+    public function createEntidadoDadoList(ObjectManager $manager){
+        $this->entidadeDadoList['Aluno']['nome'] =  new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['dataNascimento'] =  new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['getIdade'] =  new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['matricula'] =  new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['turma'] =  new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['nomeMae'] =  new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['nomePai'] =  new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['historicoEscolar'] =  new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['escola'] =  new EntidadeDadoMapeado();
+
+        foreach ($this->entidadeDadoList as $entityName => $data) {
+            foreach ($data as $dataName => $obj) {
+                $obj->setEntidadeNome($entityName)->setEntidadeDado($dataName);
+                $manager->persist($obj);
+                $manager->flush();
+            }
+        }
+
     }
 }

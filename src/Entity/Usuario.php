@@ -17,59 +17,59 @@ class Usuario implements UserInterface
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    public $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $email;
+    public $email;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    public $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
-    private $password;
+    public $password;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Perfil", inversedBy="usuarios")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $perfil;
+    public $perfil;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nome;
+    public $nome;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Escola", inversedBy="usuarios")
      */
-    private $escola;
+    public $escola;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="usuario")
      */
-    private $comentarios;
+    public $comentarios;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Acompanhamento", mappedBy="usuario")
      */
-    private $acompanhamentos;
+    public $acompanhamentos;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Parecer", mappedBy="usuario")
      */
-    private $pareceres;
+    public $pareceres;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\FormularioRegistro", mappedBy="usuario")
      */
-    private $formularioRegistros;
+    public $formularioRegistros;
 
     public function __construct()
     {

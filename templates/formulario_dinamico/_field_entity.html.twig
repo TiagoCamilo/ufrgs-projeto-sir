@@ -1,0 +1,9 @@
+{% set entityName = campo.entidadeDadoMapeado.entidadeNome %}
+{% set entityData = campo.entidadeDadoMapeado.entidadeDado %}
+
+{% if(valor is not defined) %}
+    {% set valor = form_helper.loadDbEntityValue(entityName,entityData) %}
+{% endif %}
+{% set fieldType = form_helper.getTemplateByFieldEntityValue(entityName,entityData) %}
+
+{% include fieldType with {'id': campo.id, 'label': campo.label, 'valor': valor } %}
