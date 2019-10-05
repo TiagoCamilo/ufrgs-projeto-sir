@@ -26,13 +26,22 @@
             </button>
         {% endif %}
 
-        <a class="navbar-brand" href="/"><i class="fas fa-home"></i> SIR <span class="sr-only">(current)</span></a>
+        <a class="navbar-brand" href="/"><i class="fas fa-home"></i>
+            SIR
+            {% if app.session.get('aluno_id') is defined and app.session.get('aluno_id') != null %}
+                    <a class="nav-link" style="color: #00ff00"
+                       href="{{ path('perfil_aluno_profile', {id: app.session.get('aluno_id')|default(0)} ) }}">
+                        <i class="fas fa-id-card"></i> {{ app.session.get('aluno_nome') }}
+                    </a>
+            {% endif %}
+            <span class="sr-only">(current)</span></a>
 
 
         <div class="collapse navbar-collapse" id="navbarsDefault">
 
             {% if is_granted('ROLE_USER') %}
                 <ul class="navbar-nav">
+
                     {% if is_granted('escola_list') %}
                         <li class="nav-item">
                             <a class="nav-link " href="{{ path('escola_index') }}"><i class="fas fa-school"></i> Escola</a>
@@ -93,15 +102,6 @@
 
         {% if is_granted('ROLE_USER') %}
             <ul class="navbar-nav ml-auto">
-                {% if app.session.get('aluno_id') is defined and app.session.get('aluno_id') != null %}
-                    <li class="nav-item ml-auto">
-                        <a class="nav-link" style="color: #00ff00"
-                           href="{{ path('perfil_aluno_profile', {id: app.session.get('aluno_id')|default(0)} ) }}">
-                            <i class="fas fa-id-card"></i> {{ app.session.get('aluno_nome') }}
-                        </a>
-                    </li>
-                {% endif %}
-
                 <li class="nav-item ml-auto">
                     <a class="nav-link" href="{{ path('logout') }}"><i class="fas fa-sign-out-alt"></i> Sair</a>
                 </li>

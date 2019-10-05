@@ -102,3 +102,7 @@ body.fade-out {
 .card-horizontal-action{
   margin-left: 50px;
 }
+
+@media screen and (min-width: 0px) and (max-width: 720px) {
+  .mobile-hide{ display: none; }
+}
