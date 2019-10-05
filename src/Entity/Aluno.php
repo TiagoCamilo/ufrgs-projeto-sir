@@ -368,4 +368,8 @@ class Aluno implements IEntity, LimiterEscolaInterface
 
         return null;
     }
+
+    public function getPrimeiroNome(){
+        return explode(" ", $this->nome)[0];
+    }
 }

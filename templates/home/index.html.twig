@@ -18,7 +18,7 @@
                          src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}"
                          alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">{{ register.nome }}</h5>
+                        <h5 class="card-title">{{ register.getPrimeiroNome() }}</h5>
                     </div>
                 </div>
             </div>

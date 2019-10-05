@@ -34,7 +34,7 @@ class PerfilAlunoController extends AppAbstractController
     public function profile(IEntity $entity, string $timeline_element): Response
     {
         $this->session->set('aluno_id', $entity->getId());
-        $this->session->set('aluno_nome', $entity->getNome());
+        $this->session->set('aluno_nome', $entity->getPrimeiroNome());
 
         return $this->render("{$this->entityName}/show.html.twig", [
             'register' => $entity,

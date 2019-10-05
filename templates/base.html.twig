@@ -42,8 +42,6 @@
             {% if is_granted('ROLE_USER') %}
                 <ul class="navbar-nav">
 
-
-
                     {% if is_granted('escola_list') %}
                         <li class="nav-item">
                             <a class="nav-link " href="{{ path('escola_index') }}"><i class="fas fa-school"></i> Escola</a>
