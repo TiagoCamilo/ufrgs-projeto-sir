@@ -1,0 +1,46 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+<button class="btn btn-primary">{{ button_label|default('Salvar') }}</button>
+
+{% set referer = app.request.server.get('HTTP_REFERER')|default('/') %}
+
+<a class="btn btn-success float-right" href="{{ referer }}">Voltar</a>
+{{ form_end(form) }}
+
+<br/>
+<div style="width:100%;max-width:320px;">
+    <img style="display: none" id="image_preview" width="100%">
+    <video style="display: none" id="video_preview" width="100%" controls>
+        <source src="" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<script>
+    var camera = document.getElementById('comentario_file');
+    var imagePreview = document.getElementById('image_preview');
+    var videoPreview = document.getElementById('video_preview');
+
+    camera.addEventListener('change', function (e) {
+        var file = e.target.files[0];
+        videoPreview.style.display = "none";
+        imagePreview.style.display = "none";
+
+        //Deve ser exibido na tag video
+        if (-1 !== file.type.search("video")) {
+            videoPreview.src = URL.createObjectURL(file);
+            videoPreview.style.display = "";
+            return true;
+        }
+
+        //Deve ser exibido na tag img
+        if (-1 !== file.type.search("image")) {
+            imagePreview.style.display = "";
+            imagePreview.src = URL.createObjectURL(file);
+            return true;
+        }
+
+        return false;
+    });
+
+</script>

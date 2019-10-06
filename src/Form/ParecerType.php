@@ -15,7 +15,7 @@ class ParecerType extends AbstractType
         $builder
             ->add('descricao', TextareaType::class, [
                 'attr' => ['class' => 'ckeditor'],
-                'label' => 'Descrição'
+                'label' => 'Descrição',
             ])
 
         ;

@@ -3,13 +3,14 @@
 {% block title %}Aluno{% endblock %}
 
 {% block body %}
-    {% include 'generic/_body_title.html.twig' with {title: 'Perfil Aluno(a) - '~register.nome} %}
+    {% include 'generic/_body_title.html.twig' with {title: 'Perfil Aluno - '~register.nome} %}
 
 <div class="row">
     <div class="col-sm-2">
         <div class="card" >
             <a href="{{ path('aluno_image',{id:register.id}) }}">
                 <img class="card-img-top" src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}" alt="Card image cap">
+                <i style="position: absolute; bottom: 5px; right: 5px;" class="fas fa-sync"></i>
             </a>
         </div>
     </div>
@@ -22,22 +23,22 @@
                 <div>Nome: {{ register.nome }}</div>
                 <div>Data Nascimento: {{ register.dataNascimento ? register.dataNascimento|date('d/m/Y') : '-' }}</div>
                 <div>Turma: {{ register.turma ? register.turma  : '-' }}</div>
-                <a style="float: right" href="{{ path('aluno_edit', {'id': register.id}) }}"><i class="fa fa-edit"></i> Editar</a>
+                <a style="position: absolute; bottom: 5px; right: 5px;" href="{{ path('aluno_edit', {'id': register.id}) }}"><i class="fa fa-edit"></i> Editar</a>
             </div>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="card" >
             <div class="card-header">
-                <i class="fas fa-"></i> Adicionar:
+                Adicionar:
             </div>
             <div class="card-body">
                 <a href="#" class="card-link"></a>
                 <a href="{{ path('comentario_new') }}" class="card-link"><i class="fas fa-camera-retro"></i> Fotos/Vídeos</a>
-                <a href="{{ path('acompanhamento_new') }}" class="card-link"><i class="fas fa-file"></i> Acompanhamento</a>
-                <a href="{{ path('parecer_new') }}" class="card-link"><i class="fas fa-file-powerpoint"></i> Parecer</a>
+                <a href="{{ path('acompanhamento_new') }}" class="card-link mobile-hide"><i class="fas fa-file"></i> Acompanhamento</a>
+                <a href="{{ path('parecer_new') }}" class="card-link mobile-hide"><i class="fas fa-file-powerpoint"></i> Parecer</a>
                 {% for formulario in form_repository.findAllByEscola(register.escola) %}
-                    <a href="{{ path('formulario_dinamico_new', {form_id: formulario.getId() }) }}" class="card-link"><i class="fas fa-file-signature"></i> {{ formulario.nome }}</a>
+                    <a href="{{ path('formulario_dinamico_new', {form_id: formulario.getId() }) }}" class="card-link mobile-hide"><i class="fas fa-file-signature"></i> {{ formulario.nome }}</a>
                 {%  endfor %}
                 <a href="{{ path('home') }}" class="card-link"><i class="fas fa-arrow-left"></i> Voltar</a>
 

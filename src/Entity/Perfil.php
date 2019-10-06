@@ -33,8 +33,6 @@ class Perfil
      */
     private $usuarios;
 
-
-
     public function __construct()
     {
         $this->perfilControleAcoes = new ArrayCollection();
@@ -119,5 +117,4 @@ class Perfil
 
         return $this;
     }
-
 }

@@ -21,6 +21,7 @@ abstract class AppAbstractController extends AbstractController
     protected $entity;
     protected $entityRepository;
     protected $entityName;
+    protected $entityDisplayedName = null;
     protected $formType;
     protected $aluno;
 
@@ -55,6 +56,7 @@ abstract class AppAbstractController extends AbstractController
         return $this->render($this->getTemplateManager()->getNew(), [
             'form' => $form->createView(),
             'entityName' => $this->entityName,
+            'entityDisplayedName' => $this->entityDisplayedName,
             'template' => (array) $this->getTemplateManager(),
         ]);
     }
@@ -71,18 +73,19 @@ abstract class AppAbstractController extends AbstractController
 
     public function edit(Request $request, IEntity $entity): Response
     {
-        $form = $this->createForm($this->formType, $entity);
+        $form = $this->getForm($entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
             //Sempre que houver aluno "em sessao", volta para o perfil do mesmo
-            if(null !== $this->aluno && null !== $this->aluno->getId() ) {
+            if (null !== $this->aluno && null !== $this->aluno->getId()) {
                 return $this->redirectToRoute('perfil_aluno_profile', [
                     'id' => $this->aluno->getId(),
                 ]);
             }
+
             return $this->redirectToRoute("{$this->entityName}_index", ['id' => $entity->getId()]);
         }
 
@@ -90,6 +93,7 @@ abstract class AppAbstractController extends AbstractController
             'register' => $entity,
             'form' => $form->createView(),
             'entityName' => $this->entityName,
+            'entityDisplayedName' => $this->entityDisplayedName,
             'template' => (array) $this->getTemplateManager(),
         ]);
     }
@@ -103,13 +107,17 @@ abstract class AppAbstractController extends AbstractController
         }
 
         //Sempre que houver aluno "em sessao", volta para o perfil do mesmo
-        if(null !== $this->aluno && null !== $this->aluno->getId() ) {
+        if (null !== $this->aluno && null !== $this->aluno->getId()) {
             return $this->redirectToRoute('perfil_aluno_profile', [
                 'id' => $this->aluno->getId(),
             ]);
         }
 
         return $this->redirectToRoute("{$this->entityName}_index");
+    }
+
+    protected function getForm(IEntity $entity){
+        return $this->createForm($this->formType, $entity);
     }
 
     protected function getTemplateManager(): TemplateManager

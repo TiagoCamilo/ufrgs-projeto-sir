@@ -36,7 +36,7 @@ class AppSystemFixtures extends Fixture
         $escola->setNome(EscolaNomeList::$list[0]);
         $escola->setEndereco('Endereco Escola 0');
 
-        for ($i = 0; $i < 10; ++$i) {
+        for ($i = 1; $i < 2; ++$i) {
             $user = new Usuario();
             $user->setEmail('admin'.$i.'@admin.com');
             $password = $this->encoder->encodePassword($user, '103020');
