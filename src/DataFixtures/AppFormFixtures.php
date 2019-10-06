@@ -76,10 +76,10 @@ class AppFormFixtures extends Fixture
         $agrupadorAdequcacao->setFormulario($formulario)->setTitulo('Adequação')->setOrdem(2);
 
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoEntity('Nome', 1, 1, $formulario,
-            $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['nome'] ));
+            $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['nome']));
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoData('Data', 2, 1, $formulario, $agrupadorIdentificacao));
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoEntity('Turma', 2, 2, $formulario,
-            $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['turma'] ));
+            $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['turma']));
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Área', 2, 3, $formulario, $agrupadorIdentificacao));
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Professor', 2, 4, $formulario, $agrupadorIdentificacao));
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Trimeste', 2, 5, $formulario, $agrupadorIdentificacao));
@@ -126,9 +126,9 @@ class AppFormFixtures extends Fixture
         $agrupadorIntervencoes->setFormulario($formulario)->setTitulo('Plano de Intervenção Pedagógica')->setOrdem(4);
 
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoEntity('Nome', 1, 1, $formulario,
-            $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['nome'] ));
+            $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['nome']));
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoEntity('Idade', 2, 1, $formulario,
-            $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['getIdade'] ));
+            $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['getIdade']));
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoEntity('Data Nascimento', 2, 2, $formulario,
             $agrupadorIdentificacao, $this->entidadeDadoList['Aluno']['dataNascimento']));
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoEntity('Matrícula', 2, 3, $formulario,
@@ -164,16 +164,17 @@ class AppFormFixtures extends Fixture
         $manager->flush();
     }
 
-    public function createEntidadoDadoList(ObjectManager $manager){
-        $this->entidadeDadoList['Aluno']['nome'] =  new EntidadeDadoMapeado();
-        $this->entidadeDadoList['Aluno']['dataNascimento'] =  new EntidadeDadoMapeado();
-        $this->entidadeDadoList['Aluno']['getIdade'] =  new EntidadeDadoMapeado();
-        $this->entidadeDadoList['Aluno']['matricula'] =  new EntidadeDadoMapeado();
-        $this->entidadeDadoList['Aluno']['turma'] =  new EntidadeDadoMapeado();
-        $this->entidadeDadoList['Aluno']['nomeMae'] =  new EntidadeDadoMapeado();
-        $this->entidadeDadoList['Aluno']['nomePai'] =  new EntidadeDadoMapeado();
-        $this->entidadeDadoList['Aluno']['historicoEscolar'] =  new EntidadeDadoMapeado();
-        $this->entidadeDadoList['Aluno']['escola'] =  new EntidadeDadoMapeado();
+    public function createEntidadoDadoList(ObjectManager $manager)
+    {
+        $this->entidadeDadoList['Aluno']['nome'] = new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['dataNascimento'] = new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['getIdade'] = new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['matricula'] = new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['turma'] = new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['nomeMae'] = new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['nomePai'] = new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['historicoEscolar'] = new EntidadeDadoMapeado();
+        $this->entidadeDadoList['Aluno']['escola'] = new EntidadeDadoMapeado();
 
         foreach ($this->entidadeDadoList as $entityName => $data) {
             foreach ($data as $dataName => $obj) {
@@ -182,6 +183,5 @@ class AppFormFixtures extends Fixture
                 $manager->flush();
             }
         }
-
     }
 }

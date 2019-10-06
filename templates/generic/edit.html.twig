@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit {{ entityName|capitalize }}{% endblock %}
+{% block title %}Edit {{ (entityDisplayedName ?? entityName|capitalize) }}{% endblock %}
 
 {% block body %}
-    {% include 'generic/_body_title.html.twig' with {title: 'Editar - '~entityName|capitalize} %}
+    {% include 'generic/_body_title.html.twig' with {title: 'Editar - '~(entityDisplayedName ?? entityName|capitalize) } %}
 
     {{ include(template.form, {'button_label': 'Salvar'}) }}
 {% endblock %}

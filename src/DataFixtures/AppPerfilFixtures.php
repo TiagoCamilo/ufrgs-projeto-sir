@@ -31,7 +31,6 @@ class AppPerfilFixtures extends Fixture
         $manager->persist($this->buildPerfilControleAcao($perfil, 'formulario_campo_list'));
         $manager->persist($this->buildPerfilControleAcao($perfil, 'formulario_list'));
 
-
         $perfilEducador = new Perfil();
         $perfilEducador->setNome('Educador');
         $manager->persist($this->buildPerfilControleAcao($perfilEducador, 'comentario_edit'));
