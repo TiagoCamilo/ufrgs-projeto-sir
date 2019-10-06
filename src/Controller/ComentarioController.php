@@ -106,6 +106,7 @@ class ComentarioController extends AppAbstractController
     protected function getTemplateManager(): TemplateManager
     {
         $templateManager = parent::getTemplateManager();
+        $templateManager->setForm('comentario/_form.html.twig');
 
         return $templateManager;
     }

@@ -7,7 +7,7 @@
 
     <div class="col-lg-6 mx-auto">
         <div class="card shadow-lg bg-white rounded">
-            <img class="card-img-top" src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}" alt="Card image cap">
+            <img class="card-img-top" id="frame" src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{ register.nome }}</h5>
                 <p class="card-text">Selecione uma nova foto para alterar</p>
@@ -15,7 +15,7 @@
                 <div class="card-footer">
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
-{#                    <button class="btn btn-primary">{{ button_label|default('Salvar') }}</button>#}
+                    <button class="btn btn-primary">{{ button_label|default('Salvar') }}</button>
                     <a class="btn btn-success float-right" href="{{ path('perfil_aluno_profile', {id: register.id}) }}">Voltar</a>
                     {{ form_end(form) }}
 
@@ -28,10 +28,24 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        $(function() {
-            $('#aluno_file_file').change(function(){
-                $('form').submit();
-            });
+        // $(function() {
+        //     $('#aluno_file_file').change(function(){
+        //         $('form').submit();
+        //     });
+        // });
+        var camera = document.getElementById('aluno_file_file');
+        var frame = document.getElementById('frame');
+
+        camera.addEventListener('change', function (e) {
+            var file = e.target.files[0];
+            // Do something with the image file.
+            frame.src = URL.createObjectURL(file);
+        });
+
+        frame.addEventListener('load', function () {
+            var canvas = document.querySelector("#c");
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(frame, 0, 0, frame.width, frame.height);
         });
     </script>
 {% endblock %}

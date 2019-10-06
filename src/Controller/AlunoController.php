@@ -117,7 +117,9 @@ class AlunoController extends AppAbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute("{$this->entityName}_image", ['id' => $entity->getId()]);
+            return $this->redirectToRoute('perfil_aluno_profile', [
+                'id' => $entity->getId(),
+            ]);
         }
 
         return $this->render('aluno/image.html.twig', [

@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+<button class="btn btn-primary">{{ button_label|default('Salvar') }}</button>
+
+{% set referer = app.request.server.get('HTTP_REFERER')|default('/') %}
+
+<a class="btn btn-success float-right" href="{{ referer }}">Voltar</a>
+{{ form_end(form) }}
+
+<br/>
+<div style="width:100%;max-width:320px;">
+    <img id="frame" width="100%">
+</div>
+
+<script>
+    var camera = document.getElementById('comentario_file');
+    var frame = document.getElementById('frame');
+
+    camera.addEventListener('change', function (e) {
+        var file = e.target.files[0];
+        // Do something with the image file.
+        frame.src = URL.createObjectURL(file);
+    });
+
+    frame.addEventListener('load', function () {
+        var canvas = document.querySelector("#c");
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(frame, 0, 0, frame.width, frame.height);
+    });
+</script>
