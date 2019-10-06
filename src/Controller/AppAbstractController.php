@@ -73,7 +73,7 @@ abstract class AppAbstractController extends AbstractController
 
     public function edit(Request $request, IEntity $entity): Response
     {
-        $form = $this->createForm($this->formType, $entity);
+        $form = $this->getForm($entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -114,6 +114,10 @@ abstract class AppAbstractController extends AbstractController
         }
 
         return $this->redirectToRoute("{$this->entityName}_index");
+    }
+
+    protected function getForm(IEntity $entity){
+        return $this->createForm($this->formType, $entity);
     }
 
     protected function getTemplateManager(): TemplateManager
