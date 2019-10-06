@@ -9,10 +9,11 @@
         {% endif %}
 
         {# Values #}
-        {% if campo.tipo == 'DateType' %}
+        {# Workaround: Campos de entidade não chegam tipados a este ponto #}
+        {% if campo.tipo == 'DateType' or 'DATA ' in (campo.label | upper) or ' DATA' in (campo.label | upper)%}
             <div style="font-style: italic;">{{ campoRegistro.valor ? campoRegistro.valor | date('d/m/Y') : '' }}</div>
         {% else %}
-            <div style="font-style: italic;">{{ campoRegistro.valor | nl2br  }}</div>
+            <div style="font-style: italic;">{{ campoRegistro.valor |  nl2br   }}</div>
         {% endif %}
 
     {% endif %}
