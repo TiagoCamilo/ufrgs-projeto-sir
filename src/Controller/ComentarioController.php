@@ -71,6 +71,7 @@ class ComentarioController extends AppAbstractController
         return $this->render($this->getTemplateManager()->getNew(), [
             'form' => $form->createView(),
             'entityName' => $this->entityName,
+            'entityDisplayedName' => 'Fotos/Vídeos',
             'template' => (array) $this->getTemplateManager(),
         ]);
     }

@@ -22,9 +22,4 @@
         frame.src = URL.createObjectURL(file);
     });
 
-    frame.addEventListener('load', function () {
-        var canvas = document.querySelector("#c");
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(frame, 0, 0, frame.width, frame.height);
-    });
 </script>
