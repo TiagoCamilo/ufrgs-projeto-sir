@@ -54,7 +54,6 @@ class ComentarioController extends AppAbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->entity->setUsuario($user);
 
             $this->entity->setAluno($this->aluno);

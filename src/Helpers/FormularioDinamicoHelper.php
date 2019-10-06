@@ -4,11 +4,8 @@ namespace App\Helpers;
 
 use App\Repository\AlunoRepository;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\Query;
-use Nette\Utils\DateTime;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Security;
-use App\Entity\Aluno;
 
 class FormularioDinamicoHelper
 {
@@ -43,48 +40,51 @@ class FormularioDinamicoHelper
         return $this->fieldList;
     }
 
-    public function loadDbEntityValue($entityName, $data){
+    public function loadDbEntityValue($entityName, $data)
+    {
         $register = $this->getEntityReference($entityName);
 
         //Buscando por um metodo ao inves de um atributo puro
-        if(method_exists($register, $data)){
+        if (method_exists($register, $data)) {
             $value = $register->$data();
-        }else{
+        } else {
             $value = $register->$data ?? null;
         }
 
         return $this->normalizeValue($value);
     }
 
-    private function loadDbEntityAttributeType($entityName, $attribute){
+    private function loadDbEntityAttributeType($entityName, $attribute)
+    {
         $objReferencia = $this->getEntityReference($entityName);
 
         $metadata = $this->em->getClassMetadata(get_class($objReferencia));
 
-        if(false === isset($metadata->fieldMappings[$attribute])){
+        if (false === isset($metadata->fieldMappings[$attribute])) {
             return null;
         }
 
         $field = $metadata->fieldMappings[$attribute];
 
-        return $field["type"];
+        return $field['type'];
     }
 
-    private function normalizeValue($value){
-
-        if(is_resource($value)){
+    private function normalizeValue($value)
+    {
+        if (is_resource($value)) {
             return stream_get_contents($value);
         }
 
-        if(is_object($value) && $value instanceof \DateTime){
+        if (is_object($value) && $value instanceof \DateTime) {
             return $value->format('Y-m-d');
         }
 
         return $value;
     }
 
-    private function getEntityReference($referenceType){
-        switch ($referenceType){
+    private function getEntityReference($referenceType)
+    {
+        switch ($referenceType) {
             case 'Aluno':
                 return $this->aluno;
             case 'Usuario':
