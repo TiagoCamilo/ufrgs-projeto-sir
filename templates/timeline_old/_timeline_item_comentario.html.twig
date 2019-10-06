@@ -11,8 +11,8 @@
             </small>
         </p>
     </div>
-    <div class="timeline-body">
-        <div id="register_comentario_{{ register.id }}">
+    <div id="register_comentario_{{ register.id }}" class="timeline-body">
+        <div >
             {{ register.descricao|raw }}
         </div>
         {% if(register.file is defined and register.file != null) %}
