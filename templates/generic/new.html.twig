@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Adicionar {{ entityName|capitalize }}{% endblock %}
+{% block title %}Adicionar {{ (entityDisplayedName ?? entityName|capitalize) }}{% endblock %}
 
 {% block body %}
-    {% include 'generic/_body_title.html.twig' with {title: 'Adicionar - '~(entityDisplayedName ?? entityName|capitalize)} %}
+    {% include 'generic/_body_title.html.twig' with {title: 'Adicionar - '~(entityDisplayedName ?? entityName|capitalize) } %}
 
     {{ include(template.form) }}
 

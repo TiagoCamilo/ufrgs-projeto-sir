@@ -21,6 +21,7 @@ abstract class AppAbstractController extends AbstractController
     protected $entity;
     protected $entityRepository;
     protected $entityName;
+    protected $entityDisplayedName = null;
     protected $formType;
     protected $aluno;
 
@@ -55,6 +56,7 @@ abstract class AppAbstractController extends AbstractController
         return $this->render($this->getTemplateManager()->getNew(), [
             'form' => $form->createView(),
             'entityName' => $this->entityName,
+            'entityDisplayedName' => $this->entityDisplayedName,
             'template' => (array) $this->getTemplateManager(),
         ]);
     }
@@ -90,6 +92,7 @@ abstract class AppAbstractController extends AbstractController
             'register' => $entity,
             'form' => $form->createView(),
             'entityName' => $this->entityName,
+            'entityDisplayedName' => $this->entityDisplayedName,
             'template' => (array) $this->getTemplateManager(),
         ]);
     }

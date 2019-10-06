@@ -29,6 +29,7 @@ class ComentarioController extends AppAbstractController
         $this->entity = new Comentario();
         $this->entityRepository = $entityRepository;
         $this->entityName = 'comentario';
+        $this->entityDisplayedName = 'Fotos/Vídeos';
         $this->formType = ComentarioType::class;
 
         if (null !== $session->get('aluno_id')) {
@@ -71,7 +72,7 @@ class ComentarioController extends AppAbstractController
         return $this->render($this->getTemplateManager()->getNew(), [
             'form' => $form->createView(),
             'entityName' => $this->entityName,
-            'entityDisplayedName' => 'Fotos/Vídeos',
+            'entityDisplayedName' => $this->entityDisplayedName,
             'template' => (array) $this->getTemplateManager(),
         ]);
     }

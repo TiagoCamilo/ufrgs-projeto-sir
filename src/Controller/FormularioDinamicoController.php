@@ -29,6 +29,7 @@ class FormularioDinamicoController extends AbstractController
     protected $entity;
     protected $entityRepository;
     protected $entityName;
+    protected $entityDisplayedName = null;
     protected $formType;
     private $aluno;
 
@@ -37,6 +38,7 @@ class FormularioDinamicoController extends AbstractController
         $this->entity = new FormularioRegistro();
         $this->entityRepository = $entityRepository;
         $this->entityName = 'formulario_dinamico';
+        $this->entityDisplayedName = 'Formulário';
         $this->formType = FormularioDinamicoType::class;
 
         if (null !== $session->get('aluno_id')) {
@@ -102,6 +104,7 @@ class FormularioDinamicoController extends AbstractController
         return $this->render($this->getTemplateManager()->getNew(), [
             'formulario' => $formularioModelo,
             'entityName' => $this->entityName,
+            'entityDisplayedName' => $this->entityDisplayedName,
             'template' => (array) $this->getTemplateManager(),
             'formId' => $request->get('form_id'),
         ]);
