@@ -7,24 +7,24 @@
 
     <table class="acompanhamento_table">
         <tbody>
-        <tr>
-            <th>Aluno:</th>
-            <td>{{ register.aluno }}</td>
-            <th>Educador:</th>
-            <td>{{ register.educador }}</td>
-        </tr>
-        <tr>
-            <th>Escola:</th>
-            <td>{{ register.educador.escola.nome }}</td>
-            <th>Endereço:</th>
-            <td>{{ register.educador.escola.endereco }}</td>
-        </tr>
-        <tr>
-            <th>Data/Hora Inicial:</th>
-            <td>{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</td>
-            <th>Data/Hora Final:</th>
-            <td>{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</td>
-        </tr>
+            <tr>
+                <th>Aluno:</th>
+                <td>{{ register.aluno }}</td>
+                <th>Data Nascimento:</th>
+                <td>{{ register.aluno.dataNascimento ? register.aluno.dataNascimento|date('d/m/Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Educador:</th>
+                <td>{{ register.usuario }}</td>
+                <th>Data/Hora:</th>
+                <td>{{ register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Escola:</th>
+                <td>{{ register.usuario.escola.nome }}</td>
+                <th>Endereço:</th>
+                <td>{{ register.usuario.escola.endereco }}</td>
+            </tr>
         </tbody>
     </table>
 
