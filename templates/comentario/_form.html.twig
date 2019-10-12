@@ -18,31 +18,46 @@
     </video>
 </div>
 
+<script src="{{ asset('assets/js/load-image.all.min.js') }}" type="text/javascript"></script>
 <script>
-    var camera = document.getElementById('comentario_file');
-    var imagePreview = document.getElementById('image_preview');
-    var videoPreview = document.getElementById('video_preview');
-
-    camera.addEventListener('change', function (e) {
-        var file = e.target.files[0];
-        videoPreview.style.display = "none";
-        imagePreview.style.display = "none";
-
-        //Deve ser exibido na tag video
-        if (-1 !== file.type.search("video")) {
-            videoPreview.src = URL.createObjectURL(file);
-            videoPreview.style.display = "";
-            return true;
-        }
-
-        //Deve ser exibido na tag img
-        if (-1 !== file.type.search("image")) {
-            imagePreview.style.display = "";
-            imagePreview.src = URL.createObjectURL(file);
-            return true;
-        }
-
-        return false;
-    });
+    document.getElementById("comentario_file").onchange = function(e) {
+        loadImage(
+            e.target.files[0],
+            function(img) {
+                console.log(e.target.files[0])
+                document.body.appendChild(img);
+                console.log(e.target.files[0])
+                e.target.files[0] = img;
+            },
+            { maxWidth: 300, orientation: true } // Options
+        );
+    };
+</script>
+<script>
+    // var camera = document.getElementById('comentario_file');
+    // var imagePreview = document.getElementById('image_preview');
+    // var videoPreview = document.getElementById('video_preview');
+    //
+    // camera.addEventListener('change', function (e) {
+    //     var file = e.target.files[0];
+    //     videoPreview.style.display = "none";
+    //     imagePreview.style.display = "none";
+    //
+    //     //Deve ser exibido na tag video
+    //     if (-1 !== file.type.search("video")) {
+    //         videoPreview.src = URL.createObjectURL(file);
+    //         videoPreview.style.display = "";
+    //         return true;
+    //     }
+    //
+    //     //Deve ser exibido na tag img
+    //     if (-1 !== file.type.search("image")) {
+    //         imagePreview.style.display = "";
+    //         imagePreview.src = URL.createObjectURL(file);
+    //         return true;
+    //     }
+    //
+    //     return false;
+    // });
 
 </script>
