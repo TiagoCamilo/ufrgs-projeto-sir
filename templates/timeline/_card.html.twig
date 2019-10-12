@@ -5,6 +5,7 @@
         'show': true,
         'edit': true,
         'delete': true,
+        'pdf': true,
     } %}
 {% else %}
     {% set actionList = {
@@ -13,6 +14,7 @@
         'show': true,
         'edit': true,
         'delete': true,
+        'pdf': true,
     } %}
 {% endif %}
 
@@ -21,6 +23,9 @@
     {% set entityType = 'comentario' %}
     {% set displayName = 'Foto/Vídeo' %}
     {% set icon = 'fa-camera-retro' %}
+    {% set actionList = actionList|merge({
+        'pdf':false,
+    }) %}
 {% endif %}
 {% if timelineElement is Acompanhamento %}
     {% set entityType = 'acompanhamento' %}
@@ -42,6 +47,7 @@
     {% set actionList = actionList|merge({
         'copy':false,
         'copy_link':false,
+        'show': false,
     }) %}
 {% endif %}
 
