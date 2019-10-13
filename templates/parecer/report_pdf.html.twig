@@ -1,9 +1,9 @@
 <head>
-    <title>{{ title | upper }}</title>
+    <title>{{ (register.titulo ? register.titulo : title) | upper }}</title>
 </head>
 <body>
 <div>
-    <h1 class="acompanhamento_titulo">{{ title | upper }} </h1>
+    <h1 class="acompanhamento_titulo">{{ (register.titulo ? register.titulo : title) | upper }} </h1>
 
     <table class="acompanhamento_table">
         <tbody>

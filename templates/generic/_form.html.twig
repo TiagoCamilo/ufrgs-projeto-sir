@@ -1,8 +1,8 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn btn-primary">{{ button_label|default('Salvar') }}</button>
+<button id="submitBtn" class="btn btn-primary">{{ button_label|default('Salvar') }}</button>
 
-    {% set referer = app.request.server.get('HTTP_REFERER')|default('/') %}
+{% set referer = app.request.server.get('HTTP_REFERER')|default('/') %}
 
-    <a class="btn btn-success float-right" href="{{ referer }}">Voltar</a>
+<a class="btn btn-success float-right" href="{{ referer }}">Voltar</a>
 {{ form_end(form) }}

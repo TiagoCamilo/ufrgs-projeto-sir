@@ -1,7 +1,14 @@
-{% extends 'generic/new.html.twig' %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Adicionar {{ (entityDisplayedName ?? entityName|capitalize) }}{% endblock %}
 
 {% block body %}
-    {{ parent() }}
+    {% include 'generic/_body_title.html.twig' with {title: 'Adicionar - '~(entityDisplayedName ?? entityName|capitalize) } %}
+
+    {% include 'parecer/_aluno_info.html.twig' %}
+
+    {{ include(template.form) }}
+
     {% block timeline %}
         {{ render(controller(
             'App\\Controller\\TimelineController::index', {'entityOpenner':'parecer', 'orientation':'horizontal'}

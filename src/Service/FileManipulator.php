@@ -35,10 +35,11 @@ class FileManipulator implements IFileManipulator
         return $this;
     }
 
-    public function resize()
+    public function normalize()
     {
         try {
-            Image::make($this->image)->resize($this->width, $this->height)->save($this->image);
+            //Image::make($this->image)->orientate()->resize($this->width, $this->height)->save($this->image);
+            Image::make($this->image)->orientate()->save($this->image);
         } catch (NotReadableException $e) {
             //TODO: Condicionar a imagens antes deste ponto
             // Tratamento aplicado apenas a imagens

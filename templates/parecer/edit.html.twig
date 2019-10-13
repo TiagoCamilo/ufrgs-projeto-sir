@@ -1,4 +1,21 @@
-{% extends 'generic/edit.html.twig' %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit {{ (entityDisplayedName ?? entityName|capitalize) }}{% endblock %}
+
+{% block body %}
+    {% include 'generic/_body_title.html.twig' with {title: 'Editar - '~(entityDisplayedName ?? entityName|capitalize) } %}
+
+    {% include 'parecer/_aluno_info.html.twig' with {aluno: register.aluno} %}
+
+    {{ include(template.form, {'button_label': 'Salvar'}) }}
+
+    {% block timeline %}
+        {{ render(controller(
+            'App\\Controller\\TimelineController::index', {'entityOpenner':'parecer', 'orientation':'horizontal'}
+        )) }}
+    {% endblock %}
+{% endblock %}
+
 
 {% block javascripts %}
     {{ parent() }}
