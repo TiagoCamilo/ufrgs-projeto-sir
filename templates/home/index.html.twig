@@ -14,7 +14,7 @@
                  data-nome="{{ register.nome|lower|replace({' ': ''}) }}"
                  onclick='location.href="{{ path('perfil_aluno_profile', {id: register.id} ) }}"'>
                 <div class="card shadow-lg bg-white rounded border-dark">
-                    <img class="card-img-top"
+                    <img class="card-img-top img-profile"
                          src="{{ asset('uploads/' ~ (register.file ? register.file.filename  : "default.jpeg" )) }}"
                          alt="Card image cap">
                     <div class="card-body">
