@@ -84,6 +84,7 @@ class AppFormFixtures extends Fixture
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Professor', 2, 4, $formulario, $agrupadorIdentificacao));
         $agrupadorIdentificacao->addFormularioCampo($this->newCampoText('Trimeste', 2, 5, $formulario, $agrupadorIdentificacao));
 
+        ///Modificado para EntityType em /src/Migrations/Version20191013142428.php
         $campoHistorico = $this->newCampoTextArea('Histórico', 1, 1, $formulario, $agrupadorAdequcacao);
         $campoHistorico->setAltura(21);
         $agrupadorAdequcacao->addFormularioCampo($campoHistorico);
@@ -139,6 +140,8 @@ class AppFormFixtures extends Fixture
         $agrupadorHistorico->addFormularioCampo($this->newCampoData('Data', 1, 2, $formulario, $agrupadorHistorico));
         $agrupadorHistorico->addFormularioCampo($this->newCampoText('Motivo Principal', 1, 3, $formulario, $agrupadorHistorico));
         $agrupadorHistorico->addFormularioCampo($this->newCampoTextArea('Dinâmica Familiar', 2, 1, $formulario, $agrupadorHistorico));
+
+        ///Modificado para EntityType em /src/Migrations/Version20191013142428.php
         $agrupadorHistorico->addFormularioCampo($this->newCampoTextArea('Histórico Escolar', 2, 2, $formulario, $agrupadorHistorico));
         $agrupadorHistorico->addFormularioCampo($this->newCampoTextArea('Atendimento(especializados)', 3, 1, $formulario, $agrupadorHistorico));
         $agrupadorHistorico->addFormularioCampo($this->newCampoTextArea('NEES', 3, 2, $formulario, $agrupadorHistorico));
