@@ -41,6 +41,11 @@ class Parecer implements IEntity
     private $usuario;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $titulo;
+
+    /**
      * Parecer constructor.
      */
     public function __construct()
@@ -97,6 +102,18 @@ class Parecer implements IEntity
     public function setUsuario(?Usuario $usuario): self
     {
         $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    public function getTitulo(): ?string
+    {
+        return $this->titulo;
+    }
+
+    public function setTitulo(?string $titulo): self
+    {
+        $this->titulo = $titulo;
 
         return $this;
     }
