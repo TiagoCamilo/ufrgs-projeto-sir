@@ -72,6 +72,7 @@ class ParecerController extends AppAbstractController
             'form' => $form->createView(),
             'entityName' => $this->entityName,
             'template' => (array) $this->getTemplateManager(),
+            'aluno' => $this->aluno,
         ]);
     }
 

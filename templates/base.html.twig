@@ -135,6 +135,14 @@
         $(function () {
             $('body').removeClass('fade-out');
         });
+
+        $(document).ready(function () {
+            $("form").submit(function () {
+                $("#submitBtn").attr("disabled", true);
+                $("#submitLoading").css("display","");
+                return true;
+            });
+        });
     </script>
 
     <script src="{{asset('assets/js/bs-custom-file-input.js')}}"></script>
