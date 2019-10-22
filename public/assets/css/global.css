@@ -10639,4 +10639,8 @@ body.fade-out {
   max-width: 100%;
   max-height: 600px; }
 
+@media screen and (min-width: 720px) {
+  .monitor-hide {
+    display: none; } }
+
 /*# sourceMappingURL=global.css.map */
