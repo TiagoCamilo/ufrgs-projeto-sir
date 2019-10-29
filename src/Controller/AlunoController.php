@@ -45,6 +45,8 @@ class AlunoController extends AppAbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->entity->setEscola($user->getEscola());
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($this->entity);
             $em->flush();
