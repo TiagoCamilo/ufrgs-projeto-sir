@@ -111,7 +111,7 @@ class AlunoController extends AppAbstractController
     /**
      * @Route("/image/{id}", name="aluno_image", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\Aluno")
-     * @IsGranted("aluno_show", subject="entity")     
+     * @IsGranted("aluno_show", subject="entity")
      */
     public function image(Request $request, IEntity $entity): Response
     {
