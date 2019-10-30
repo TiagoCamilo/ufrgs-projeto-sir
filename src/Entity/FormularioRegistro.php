@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FormularioRegistroRepository")
  */
-class FormularioRegistro implements IEntity
+class FormularioRegistro implements IEntity, LimiterEscolaInterface
 {
     /**
      * @ORM\Id()
@@ -134,4 +134,9 @@ class FormularioRegistro implements IEntity
 
         return $this;
     }
+
+    public function getEscola(): ?Escola {
+        return $this->getAluno()->getEscola();
+    }
+
 }

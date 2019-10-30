@@ -13,6 +13,7 @@ use App\Repository\FormularioRegistroRepository;
 use App\Repository\FormularioRepository;
 use App\Service\PdfGenerator;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -113,6 +114,7 @@ class FormularioDinamicoController extends AbstractController
     /**
      * @Route("/{id}", name="formulario_dinamico_show", methods={"GET"})
      * @ParamConverter("entity", class="App\Entity\FormularioRegistro")
+     * @IsGranted("aluno_show", subject="entity")
      */
     public function show(Request $request, IEntity $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
     {
@@ -129,6 +131,7 @@ class FormularioDinamicoController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="formulario_dinamico_edit", methods={"GET","POST"})
+     * @IsGranted("aluno_show", subject="formularioRegistro")
      */
     public function edit(Request $request, FormularioRepository $formularioRepository, FormularioRegistro $formularioRegistro, UserInterface $user): Response
     {
@@ -203,6 +206,7 @@ class FormularioDinamicoController extends AbstractController
     /**
      * @Route("/{id}/pdf", name="formulario_dinamico_report_pdf", methods="GET")
      * @ParamConverter("entity", class="App\Entity\FormularioRegistro")
+     * @IsGranted("aluno_show", subject="entity")
      */
     public function reportPdf(Request $request, IEntity $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
     {

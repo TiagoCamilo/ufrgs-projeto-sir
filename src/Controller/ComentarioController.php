@@ -79,6 +79,7 @@ class ComentarioController extends AppAbstractController
     /**
      * @Route("/{id}", name="comentario_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Comentario")
+     * @IsGranted("aluno_show", subject="entity")
      */
     public function show(IEntity $entity): Response
     {
