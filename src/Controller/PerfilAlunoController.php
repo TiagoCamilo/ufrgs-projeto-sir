@@ -6,6 +6,7 @@ use App\Entity\Aluno;
 use App\Entity\IEntity;
 use App\Form\AlunoType;
 use App\Repository\AlunoRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -30,6 +31,7 @@ class PerfilAlunoController extends AppAbstractController
     /**
      * @Route("/{id}/{timeline_element}", name="perfil_aluno_profile", methods="GET", defaults={"timeline_element"="all"}))
      * @ParamConverter("entity", class="App\Entity\Aluno")
+     * @IsGranted("aluno_show", subject="entity")
      */
     public function profile(IEntity $entity, string $timeline_element): Response
     {

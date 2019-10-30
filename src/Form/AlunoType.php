@@ -25,11 +25,11 @@ class AlunoType extends AbstractType
             ->add('matricula', TextType::class, ['label' => 'Matrícula', 'required' => false])
             ->add('nomeMae', TextType::class, ['label' => 'Nome mãe', 'required' => false])
             ->add('nomePai')
-            ->add('escola', EntityType::class,
-                [
-                    'class' => Escola::class,
-                    'empty_data' => 2,
-                ])
+//            ->add('escola', EntityType::class,
+//                [
+//                    'class' => Escola::class,
+//                    'empty_data' => 2,
+//                ])
             ->add('historicoEscolar', TextareaType::class,
                 [
                     'label' => 'Histórico',
