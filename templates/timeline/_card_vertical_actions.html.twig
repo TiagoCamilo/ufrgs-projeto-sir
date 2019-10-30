@@ -47,13 +47,13 @@
                 {% endif %}
 
                 {% if(actionList.delete is defined and actionList.delete == true and register.usuario == app.user) %}
-                    <form method="post" id="form_delete_{{ entityType }}_{{ register.id }}" class="form-delete"
+                    <form method="post" id="form_delete_mobile_{{ entityType }}_{{ register.id }}" class="form-delete"
                           action="{{ path(entityType~'_delete', {'id': register.id}) }}">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ register.id) }}">
                         <a class="card-horizontal-action" style="color: red; cursor: pointer"
                            onClick="if(confirm('Tem certeza que deseja excluir?')){
-                                   form_delete_{{ entityType }}_{{ register.id }}.submit()
+                                   form_delete_mobile_{{ entityType }}_{{ register.id }}.submit()
                                    };">
                             <i class="fa fa-trash"></i> Excluir
                         </a>
@@ -65,13 +65,13 @@
 
         <div class="mobile-hide" >
             {% if(actionList.delete is defined and actionList.delete == true and register.usuario == app.user) %}
-                <form method="post" id="form_delete_{{ entityType }}_{{ register.id }}" class="form-delete"
+                <form method="post" id="form_delete_normal_{{ entityType }}_{{ register.id }}" class="form-delete"
                       action="{{ path(entityType~'_delete', {'id': register.id}) }}">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ register.id) }}">
                     <a class="card-horizontal-action" style="color: red; cursor: pointer"
                        onClick="if(confirm('Tem certeza que deseja excluir?')){
-                               form_delete_{{ entityType }}_{{ register.id }}.submit()
+                               form_delete_normal_{{ entityType }}_{{ register.id }}.submit()
                                };">
                         <i class="fa fa-trash"></i> Excluir
                     </a>
