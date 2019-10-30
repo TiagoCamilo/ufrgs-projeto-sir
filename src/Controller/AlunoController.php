@@ -76,6 +76,7 @@ class AlunoController extends AppAbstractController
     /**
      * @Route("/{id}/edit", name="aluno_edit", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\Aluno")
+     * @IsGranted("aluno_show", subject="entity")
      */
     public function edit(Request $request, IEntity $entity): Response
     {
@@ -110,6 +111,7 @@ class AlunoController extends AppAbstractController
     /**
      * @Route("/image/{id}", name="aluno_image", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\Aluno")
+     * @IsGranted("aluno_show", subject="entity")     
      */
     public function image(Request $request, IEntity $entity): Response
     {

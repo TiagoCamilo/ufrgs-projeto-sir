@@ -10,6 +10,7 @@ use App\Repository\ParecerRepository;
 use App\Repository\AlunoRepository;
 use App\Service\PdfGenerator;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -79,6 +80,7 @@ class ParecerController extends AppAbstractController
     /**
      * @Route("/{id}", name="parecer_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Parecer")
+     * @IsGranted("aluno_show", subject="entity")
      */
     public function show(IEntity $entity): Response
     {
@@ -88,6 +90,7 @@ class ParecerController extends AppAbstractController
     /**
      * @Route("/{id}/edit", name="parecer_edit", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\Parecer")
+     * @IsGranted("aluno_show", subject="entity")
      */
     public function edit(Request $request, IEntity $entity): Response
     {
@@ -115,6 +118,7 @@ class ParecerController extends AppAbstractController
     /**
      * @Route("/{id}/pdf", name="parecer_report_pdf", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Parecer")
+     * @IsGranted("aluno_show", subject="entity")
      */
     public function reportPdf(IEntity $entity, PdfGenerator $pdfGenerator): Response
     {

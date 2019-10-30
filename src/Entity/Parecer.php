@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ParecerRepository")
  */
-class Parecer implements IEntity
+class Parecer implements IEntity, LimiterEscolaInterface
 {
     /**
      * @ORM\Id()
@@ -116,5 +116,9 @@ class Parecer implements IEntity
         $this->titulo = $titulo;
 
         return $this;
+    }
+
+    public function getEscola(): ?Escola {
+        return $this->getAluno()->getEscola();
     }
 }
