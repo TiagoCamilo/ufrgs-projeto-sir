@@ -79,7 +79,7 @@ class ComentarioController extends AppAbstractController
     /**
      * @Route("/{id}", name="comentario_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Comentario")
-     * @IsGranted("aluno_show", subject="entity")
+     * @IsGranted("comentario_show", subject="entity")
      */
     public function show(IEntity $entity): Response
     {
@@ -99,6 +99,7 @@ class ComentarioController extends AppAbstractController
     /**
      * @Route("/{id}", name="comentario_delete", methods="DELETE")
      * @ParamConverter("entity", class="App\Entity\Comentario")
+     * @IsGranted("comentario_delete", subject="entity")
      */
     public function delete(Request $request, IEntity $entity): Response
     {
