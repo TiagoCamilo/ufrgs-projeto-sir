@@ -10,8 +10,7 @@
 {{ form_end(form) }}
 
 <br/>
-<div style="width:100%;max-width:320px;">
-    <img style="display: none" id="image_preview" width="100%">
+<div id="mediaPreview" style="width:100%;max-width:320px;">
     <video style="display: none" id="video_preview" width="100%" controls>
         <source src="" type="video/mp4">
         Your browser does not support the video tag.
@@ -25,11 +24,12 @@
             e.target.files[0],
             function (img) {
                 let preview = document.querySelector('canvas');
+                let divPreview = document.querySelector('#mediaPreview');
                 if(preview)
-                    document.body.removeChild(preview)
+                    divPreview.removeChild(preview)
 
                 if (-1 !== e.target.files[0].type.search("image")) {
-                    document.body.appendChild(img);
+                    divPreview.appendChild(img);
                 }
             },
             {maxWidth: 300, orientation: true} // Options
@@ -38,13 +38,11 @@
 </script>
 <script>
     var camera = document.getElementById('comentario_file');
-    //var imagePreview = document.getElementById('image_preview');
     var videoPreview = document.getElementById('video_preview');
 
     camera.addEventListener('change', function (e) {
         var file = e.target.files[0];
         videoPreview.style.display = "none";
-      //  imagePreview.style.display = "none";
 
         //Deve ser exibido na tag video
         if (-1 !== file.type.search("video")) {
@@ -52,13 +50,6 @@
             videoPreview.style.display = "";
             return true;
         }
-
-        //Deve ser exibido na tag img
-        // if (-1 !== file.type.search("image")) {
-        //     imagePreview.style.display = "";
-        //     imagePreview.src = URL.createObjectURL(file);
-        //     return true;
-        // }
 
         return false;
     });
