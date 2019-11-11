@@ -39,6 +39,7 @@ class ComentarioController extends AppAbstractController
 
     /**
      * @Route("/{page}/page", name="comentario_index", methods="GET|POST", defaults={"page" = 1})
+     * @IsGranted("comentario_list")
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {

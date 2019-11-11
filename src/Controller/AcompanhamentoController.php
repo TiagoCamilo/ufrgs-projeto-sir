@@ -39,6 +39,7 @@ class AcompanhamentoController extends AppAbstractController
 
     /**
      * @Route("/{page}/page", name="acompanhamento_index", methods="GET|POST", defaults={"page" = 1})
+     * @IsGranted("acompanhamento_list")
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {

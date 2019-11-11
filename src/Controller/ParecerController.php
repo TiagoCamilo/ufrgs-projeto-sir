@@ -39,6 +39,7 @@ class ParecerController extends AppAbstractController
 
     /**
      * @Route("/{page}/page", name="parecer_index", methods="GET|POST", defaults={"page" = 1})
+     * @IsGranted("parecer_list")
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
