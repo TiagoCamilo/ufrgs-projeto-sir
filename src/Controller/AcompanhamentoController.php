@@ -48,6 +48,7 @@ class AcompanhamentoController extends AppAbstractController
 
     /**
      * @Route("/new", name="acompanhamento_new", methods="GET|POST")
+     * @IsGranted("acompanhamento_new")
      */
     public function new(Request $request, UserInterface $user): Response
     {

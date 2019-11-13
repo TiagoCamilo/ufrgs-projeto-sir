@@ -48,6 +48,7 @@ class ParecerController extends AppAbstractController
 
     /**
      * @Route("/new", name="parecer_new", methods="GET|POST")
+     * @IsGranted("parecer_new")
      */
     public function new(Request $request, UserInterface $user): Response
     {

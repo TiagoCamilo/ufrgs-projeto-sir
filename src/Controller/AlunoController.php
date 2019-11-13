@@ -30,6 +30,7 @@ class AlunoController extends AppAbstractController
 
     /**
      * @Route("/{page}/page", name="aluno_index", methods="GET|POST", defaults={"page" = 1})
+     * @IsGranted("aluno_list")
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
@@ -38,6 +39,7 @@ class AlunoController extends AppAbstractController
 
     /**
      * @Route("/new", name="aluno_new", methods="GET|POST")
+     * @IsGranted("aluno_new")
      */
     public function new(Request $request, UserInterface $user): Response
     {

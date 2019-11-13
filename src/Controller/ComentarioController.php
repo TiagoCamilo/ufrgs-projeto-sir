@@ -48,6 +48,7 @@ class ComentarioController extends AppAbstractController
 
     /**
      * @Route("/new", name="comentario_new", methods="GET|POST")
+     * @IsGranted("comentario_new")
      */
     public function new(Request $request, UserInterface $user): Response
     {
