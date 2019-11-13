@@ -49,6 +49,7 @@ class FormularioDinamicoController extends AbstractController
 
     /**
      * @Route("/", name="formulario_dinamico_index", methods="GET|POST", defaults={"page" = 1})
+     * @IsGranted("formulario_list")
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
@@ -68,6 +69,7 @@ class FormularioDinamicoController extends AbstractController
 
     /**
      * @Route("/new", name="formulario_dinamico_new", methods={"GET","POST"})
+     * @IsGranted("formulario_new")
      */
     public function new(Request $request, FormularioRepository $formularioRepository, UserInterface $user): Response
     {
