@@ -28,7 +28,7 @@ abstract class AppAbstractController extends AbstractController
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
         $resultSet = $paginator->paginate(
-            $this->entityRepository->findAll(),
+            $this->entityRepository->findAllByUserContext($this->getUser()),
             $request->get('page')
         );
 

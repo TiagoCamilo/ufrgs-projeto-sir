@@ -38,7 +38,7 @@ class HomeController extends AbstractController
         $this->session->remove('aluno_nome');
 
         return $this->render('home/index.html.twig', [
-            'registers' => $repository->findByUser($this->getUser(), [], ['id' => 'DESC']),
+            'registers' => $repository->findAllByUserContext($this->getUser()),
         ]);
     }
 }
