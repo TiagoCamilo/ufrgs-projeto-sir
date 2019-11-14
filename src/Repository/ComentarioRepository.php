@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Comentario;
+use App\Entity\Escola;
+use App\Entity\Usuario;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -16,6 +18,10 @@ class ComentarioRepository extends AbstractRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Comentario::class);
+    }
+
+    protected function getFilterByEscola(Escola $escola){
+        return ['aluno' => $escola->getAlunos()->toArray()];
     }
 
 //    /**

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Escola;
 use App\Entity\FormularioCampo;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -16,6 +17,11 @@ class FormularioCampoRepository extends AbstractRepository
     {
         parent::__construct($registry, FormularioCampo::class);
     }
+
+    protected function getFilterByEscola(Escola $escola){
+        return [];
+    }
+
 
     // /**
     //  * @return FormularioCampo[] Returns an array of FormularioCampo objects

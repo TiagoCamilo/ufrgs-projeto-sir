@@ -48,6 +48,7 @@ class EscolaController extends AppAbstractController
 
     /**
      * @Route("/new", name="escola_new", methods="GET|POST")
+     * @IsGranted("escola_new")
      */
     public function new(Request $request, UserInterface $user): Response
     {
@@ -62,6 +63,7 @@ class EscolaController extends AppAbstractController
     /**
      * @Route("/{id}", name="escola_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Escola")
+     * @IsGranted("escola_show", subject="entity")
      */
     public function show(IEntity $entity): Response
     {
@@ -71,6 +73,7 @@ class EscolaController extends AppAbstractController
     /**
      * @Route("/{id}/edit", name="escola_edit", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\Escola")
+     * @IsGranted("escola_edit", subject="entity")
      */
     public function edit(Request $request, IEntity $entity): Response
     {
@@ -80,6 +83,7 @@ class EscolaController extends AppAbstractController
     /**
      * @Route("/{id}", name="escola_delete", methods="DELETE")
      * @ParamConverter("entity", class="App\Entity\Escola")
+     * @IsGranted("escola_delete", subject="entity")
      */
     public function delete(Request $request, IEntity $entity): Response
     {

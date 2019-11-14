@@ -39,6 +39,7 @@ class AcompanhamentoController extends AppAbstractController
 
     /**
      * @Route("/{page}/page", name="acompanhamento_index", methods="GET|POST", defaults={"page" = 1})
+     * @IsGranted("acompanhamento_list")
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
@@ -47,6 +48,7 @@ class AcompanhamentoController extends AppAbstractController
 
     /**
      * @Route("/new", name="acompanhamento_new", methods="GET|POST")
+     * @IsGranted("acompanhamento_new")
      */
     public function new(Request $request, UserInterface $user): Response
     {
@@ -79,7 +81,7 @@ class AcompanhamentoController extends AppAbstractController
     /**
      * @Route("/{id}", name="acompanhamento_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Acompanhamento")
-     * @IsGranted("aluno_show", subject="entity")
+     * @IsGranted("acompanhamento_show", subject="entity")
      */
     public function show(IEntity $entity): Response
     {
@@ -89,7 +91,7 @@ class AcompanhamentoController extends AppAbstractController
     /**
      * @Route("/{id}/edit", name="acompanhamento_edit", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\Acompanhamento")
-     * @IsGranted("aluno_show", subject="entity")
+     * @IsGranted("acompanhamento_edit", subject="entity")
      */
     public function edit(Request $request, IEntity $entity): Response
     {
@@ -99,6 +101,7 @@ class AcompanhamentoController extends AppAbstractController
     /**
      * @Route("/{id}", name="acompanhamento_delete", methods="DELETE")
      * @ParamConverter("entity", class="App\Entity\Acompanhamento")
+     * @IsGranted("acompanhamento_delete", subject="entity")
      */
     public function delete(Request $request, IEntity $entity): Response
     {
@@ -117,7 +120,7 @@ class AcompanhamentoController extends AppAbstractController
     /**
      * @Route("/{id}/pdf", name="acompanhamento_report_pdf", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Acompanhamento")
-     * @IsGranted("aluno_show", subject="entity")
+     * @IsGranted("acompanhamento_show", subject="entity")
      */
     public function reportPdf(IEntity $entity, PdfGenerator $pdfGenerator): Response
     {

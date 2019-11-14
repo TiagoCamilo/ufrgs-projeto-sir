@@ -89,6 +89,7 @@ class Aluno implements IEntity, LimiterEscolaInterface
      * @ORM\Column(type="string", length=10, nullable=true)
      */
     public $matricula;
+    private $str;
 
     public function __construct()
     {
@@ -373,4 +374,10 @@ class Aluno implements IEntity, LimiterEscolaInterface
     {
         return explode(' ', $this->nome)[0];
     }
+
+    public function __sleep()
+    {
+        return ['id'];
+    }
+
 }

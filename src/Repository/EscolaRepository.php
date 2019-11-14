@@ -17,4 +17,8 @@ class EscolaRepository extends AbstractRepository
     {
         parent::__construct($registry, Escola::class);
     }
+
+    protected function getFilterByEscola(Escola $escola){
+        return ['id' => $escola];
+    }
 }

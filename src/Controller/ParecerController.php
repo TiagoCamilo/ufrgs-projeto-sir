@@ -39,6 +39,7 @@ class ParecerController extends AppAbstractController
 
     /**
      * @Route("/{page}/page", name="parecer_index", methods="GET|POST", defaults={"page" = 1})
+     * @IsGranted("parecer_list")
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
@@ -47,6 +48,7 @@ class ParecerController extends AppAbstractController
 
     /**
      * @Route("/new", name="parecer_new", methods="GET|POST")
+     * @IsGranted("parecer_new")
      */
     public function new(Request $request, UserInterface $user): Response
     {
@@ -80,7 +82,7 @@ class ParecerController extends AppAbstractController
     /**
      * @Route("/{id}", name="parecer_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Parecer")
-     * @IsGranted("aluno_show", subject="entity")
+     * @IsGranted("parecer_show", subject="entity")
      */
     public function show(IEntity $entity): Response
     {
@@ -90,7 +92,7 @@ class ParecerController extends AppAbstractController
     /**
      * @Route("/{id}/edit", name="parecer_edit", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\Parecer")
-     * @IsGranted("aluno_show", subject="entity")
+     * @IsGranted("parecer_edit", subject="entity")
      */
     public function edit(Request $request, IEntity $entity): Response
     {
@@ -100,6 +102,7 @@ class ParecerController extends AppAbstractController
     /**
      * @Route("/{id}", name="parecer_delete", methods="DELETE")
      * @ParamConverter("entity", class="App\Entity\Parecer")
+     * @IsGranted("parecer_delete", subject="entity")
      */
     public function delete(Request $request, IEntity $entity): Response
     {
@@ -118,7 +121,7 @@ class ParecerController extends AppAbstractController
     /**
      * @Route("/{id}/pdf", name="parecer_report_pdf", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Parecer")
-     * @IsGranted("aluno_show", subject="entity")
+     * @IsGranted("parecer_show", subject="entity")
      */
     public function reportPdf(IEntity $entity, PdfGenerator $pdfGenerator): Response
     {

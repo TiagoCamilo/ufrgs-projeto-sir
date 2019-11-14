@@ -19,18 +19,8 @@ class FormularioRepository extends AbstractRepository
         parent::__construct($registry, Formulario::class);
     }
 
-    public function findAll()
-    {
-        return $this->findBy([], ['id' => 'ASC']);
-    }
-
-    public function findAllByEscola(Escola $escola)
-    {
-        if (null !== $escola->getId()) {
-            return $this->findBy(['escola' => $escola->getId()], ['id' => 'ASC']);
-        }
-
-        return $this->findAll();
+    protected function getFilterByEscola(Escola $escola){
+        return ['escola' => $escola];
     }
 
     // /**

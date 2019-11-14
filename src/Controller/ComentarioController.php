@@ -39,6 +39,7 @@ class ComentarioController extends AppAbstractController
 
     /**
      * @Route("/{page}/page", name="comentario_index", methods="GET|POST", defaults={"page" = 1})
+     * @IsGranted("comentario_list")
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
@@ -47,6 +48,7 @@ class ComentarioController extends AppAbstractController
 
     /**
      * @Route("/new", name="comentario_new", methods="GET|POST")
+     * @IsGranted("comentario_new")
      */
     public function new(Request $request, UserInterface $user): Response
     {
@@ -79,7 +81,7 @@ class ComentarioController extends AppAbstractController
     /**
      * @Route("/{id}", name="comentario_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Comentario")
-     * @IsGranted("aluno_show", subject="entity")
+     * @IsGranted("comentario_show", subject="entity")
      */
     public function show(IEntity $entity): Response
     {
@@ -99,6 +101,7 @@ class ComentarioController extends AppAbstractController
     /**
      * @Route("/{id}", name="comentario_delete", methods="DELETE")
      * @ParamConverter("entity", class="App\Entity\Comentario")
+     * @IsGranted("comentario_delete", subject="entity")
      */
     public function delete(Request $request, IEntity $entity): Response
     {

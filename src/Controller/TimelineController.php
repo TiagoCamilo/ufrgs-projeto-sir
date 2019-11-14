@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Repository\AlunoRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -32,6 +33,7 @@ class TimelineController extends AbstractController
 
     /**
      * @Route("/{entityOpenner}/{orientation}", name="timeline_index", defaults={"entityOpenner"="","orientation"="horizontal"})
+     * @IsGranted("aluno_show")
      */
     public function index(string $entityOpenner, string $orientation): Response
     {
