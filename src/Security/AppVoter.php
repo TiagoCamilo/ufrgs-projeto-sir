@@ -12,10 +12,12 @@ class AppVoter extends Voter
 {
     protected function supports($attribute, $subject = null)
     {
+        // Se não tem entidade, retorna true para verificar permissao
         if (null === $subject) {
             return true;
         }
 
+        // Se tem entidade, analisa somente se ela implementar interface de escopo
         if (!$subject instanceof LimiterEscolaInterface) {
             return false;
         }
@@ -31,19 +33,23 @@ class AppVoter extends Voter
             return false;
         }
 
+        // Verifica se possui a permissao em questao
         if (false === VoterHelper::checkUserPermission($user, $attribute)) {
             return false;
         }
 
+        // Se tem a permissao e não tem entidade, retorna true
         if (null === $subject) {
             return true;
         }
 
+        // Se tem entidade, valida o escopo da mesma em relacao ao usuario
         return $this->checkScope($subject, $user);
     }
 
     private function checkScope(LimiterEscolaInterface $object, Usuario $user)
     {
-        return $user->getEscola() === $object->getEscola();
+        // Usuario administrador nao possui escola, logo tem acesso a todas entidades
+        return ($user->getEscola() === null || $user->getEscola() === $object->getEscola());
     }
 }
