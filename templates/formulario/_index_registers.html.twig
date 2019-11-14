@@ -1,0 +1,33 @@
+<table class="table">
+    <thead>
+    <tr>
+        {% for key, attr in registerListAttr|first %}
+            <th>{{ key }}</th>
+        {% endfor %}
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for key, listAttr in registerListAttr %}
+        <tr>
+            {% for attr in listAttr %}
+                {#TODO: Aplicar raw somente no atributo correto#}
+                <td>{{ attr | raw}}</td>
+            {% endfor %}
+            <td>
+                <a class="btn btn-primary"  href="{{ path('formulario_agrupador_index', {'formulario': listAttr.Id}) }}">Agrupadores</a>
+
+                {% if(actionList.show is defined and actionList.show == true) %}
+                    <a class="btn btn-primary" href="{{ path(entityName~'_show', {'id': listAttr.Id}) }}">Exibir</a>
+                {% endif %}
+                {% if(actionList.edit is defined and actionList.edit == true) %}
+                    <a class="btn btn-primary" href="{{ path(entityName~'_edit', {'id': listAttr.Id}) }}">Editar</a>
+                {% endif %}
+                {% if(actionList.delete is defined and actionList.delete == true) %}
+                    {%  include template.delete with {'register': {'id': listAttr.Id}} %}
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
