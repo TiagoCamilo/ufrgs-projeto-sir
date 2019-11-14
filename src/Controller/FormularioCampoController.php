@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\FormularioAgrupador;
 use App\Entity\FormularioCampo;
 use App\Entity\IEntity;
 use App\Form\FormularioCampoType;
@@ -27,11 +28,25 @@ class FormularioCampoController extends AppAbstractController
     }
 
     /**
-     * @Route("/{page}/page", name="formulario_campo_index", methods="GET|POST", defaults={"page" = 1})
+     * @Route("/{formulario_agrupador}/{page}/page", name="formulario_campo_index", methods="GET|POST", defaults={"page" = 1})
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        return parent::index($paginator, $request);
+        $em = $this->getDoctrine()->getManager();
+        $formularioAgrupador = $em->getRepository(FormularioAgrupador::class)->find($request->get('formulario_agrupador'));
+        $this->denyAccessUnlessGranted('formulario_campo_list', $formularioAgrupador);
+
+        $resultSet = $paginator->paginate(
+            $this->entityRepository->findByUserContext($this->getUser(), ['agrupador' => $formularioAgrupador]),
+            $request->get('page')
+        );
+
+        //TODO: Refatorar para obter o response em cada metodo
+        return $this->render("{$this->entityName}/index.html.twig", [
+            'registers' => $resultSet,
+            'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
+        ]);
     }
 
     /**

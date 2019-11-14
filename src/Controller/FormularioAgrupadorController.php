@@ -6,6 +6,7 @@ use App\Entity\Formulario;
 use App\Entity\FormularioAgrupador;
 use App\Entity\IEntity;
 use App\Form\FormularioAgrupadorType;
+use App\Helpers\TemplateManager;
 use App\Repository\FormularioAgrupadorRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -93,5 +94,12 @@ class FormularioAgrupadorController extends AppAbstractController
         }
 
         return $this->redirectToRoute("{$this->entityName}_index");
+    }
+
+    protected function getTemplateManager(): TemplateManager
+    {
+        $templateManager = parent::getTemplateManager();
+        $templateManager->setIndexActions('formulario_agrupador/_index_registers.html.twig');
+        return $templateManager;
     }
 }
