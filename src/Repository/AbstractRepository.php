@@ -39,4 +39,5 @@ abstract class AbstractRepository extends ServiceEntityRepository
     }
 
     protected function getFilterByEscola(Escola $escola){}
+    //abstract protected function getFilterByEscola(Escola $escola);
 }

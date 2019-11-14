@@ -75,7 +75,7 @@
                             <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Formulários</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                {% for formulario in form_repository.findAll() %}
+                                {% for formulario in form_repository.findByUserContext(app.user) %}
                                     <a class="dropdown-item"
                                        href="{{ path('formulario_dinamico_index', {form_id: formulario.getId() }) }}">
                                         {{ formulario }}
