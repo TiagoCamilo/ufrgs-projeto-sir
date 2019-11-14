@@ -54,7 +54,7 @@ class FormularioDinamicoController extends AbstractController
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
         $resultSet = $paginator->paginate(
-            $this->entityRepository->findBy(['formulario' => $request->get('form_id')]),
+            $this->entityRepository->findByUserContext($this->getUser(), ['formulario' => $request->get('form_id')]),
             $request->get('page')
         );
 

@@ -38,6 +38,6 @@ abstract class AbstractRepository extends ServiceEntityRepository
         return $this->findBy($filter, $orderBy, $limit, $offset);
     }
 
-    protected function getFilterByEscola(Escola $escola){}
-    //abstract protected function getFilterByEscola(Escola $escola);
+    //protected function getFilterByEscola(Escola $escola){}
+    abstract protected function getFilterByEscola(Escola $escola);
 }
