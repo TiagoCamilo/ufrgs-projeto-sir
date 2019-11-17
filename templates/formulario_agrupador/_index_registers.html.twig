@@ -15,7 +15,7 @@
                 <td>{{ attr | raw}}</td>
             {% endfor %}
             <td>
-                <a class="btn btn-primary"  href="{{ path('formulario_campo_index', {'formulario_agrupador': listAttr.Id}) }}">Campos</a>
+                <a class="btn btn-primary" target="_blank" href="{{ path('formulario_campo_index', {'formulario_agrupador': listAttr.Id}) }}">Campos</a>
 
                 {% if(actionList.show is defined and actionList.show == true) %}
                     <a class="btn btn-primary" href="{{ path(entityName~'_show', {'id': listAttr.Id}) }}">Exibir</a>
