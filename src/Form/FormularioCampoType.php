@@ -44,8 +44,9 @@ class FormularioCampoType extends AbstractType
                 'choices' => $this->user->getEscola()->getFormularios()->map(function($formulario) {
                     return $formulario->getFormularioAgrupadores()->toArray();
                 })
-
             ]);
+        } else {
+            $builder->add('agrupador');
         }
     }
 
