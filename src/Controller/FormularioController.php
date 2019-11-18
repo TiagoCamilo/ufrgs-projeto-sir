@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Formulario;
 use App\Entity\IEntity;
 use App\Form\FormularioType;
+use App\Helpers\TemplateManager;
 use App\Repository\FormularioRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -67,5 +68,12 @@ class FormularioController extends AppAbstractController
     public function delete(Request $request, IEntity $entity): Response
     {
         return parent::delete($request, $entity);
+    }
+
+    protected function getTemplateManager(): TemplateManager
+    {
+        $templateManager = parent::getTemplateManager();
+        $templateManager->setIndexActions('formulario/_index_registers.html.twig');
+        return $templateManager;
     }
 }

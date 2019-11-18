@@ -2,20 +2,27 @@
 
 namespace App\Form;
 
+use App\Entity\Escola;
+use App\Entity\FormularioAgrupador;
 use App\Entity\FormularioCampo;
 use App\Helpers\FormularioDinamicoHelper;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Security;
 
 class FormularioCampoType extends AbstractType
 {
-    private $formularioDinamicoHelper;
 
-    public function __construct(FormularioDinamicoHelper $formularioDinamicoHelper)
+    private $formularioDinamicoHelper;
+    private $user;
+
+    public function __construct(FormularioDinamicoHelper $formularioDinamicoHelper, Security $security)
     {
         $this->formularioDinamicoHelper = $formularioDinamicoHelper;
+        $this->user = $security->getUser();
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -29,9 +36,18 @@ class FormularioCampoType extends AbstractType
             ->add('coluna')
             ->add('ordem')
             ->add('altura')
-            ->add('largura')
-            ->add('agrupador')
-        ;
+            ->add('largura');
+
+        if($this->user->getEscola() instanceof Escola) {
+            $builder->add('agrupador', EntityType::class, [
+                'class' => FormularioAgrupador::class,
+                'choices' => $this->user->getEscola()->getFormularios()->map(function($formulario) {
+                    return $formulario->getFormularioAgrupadores()->toArray();
+                })
+            ]);
+        } else {
+            $builder->add('agrupador');
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

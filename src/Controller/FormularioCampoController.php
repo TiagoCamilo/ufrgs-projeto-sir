@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\FormularioAgrupador;
 use App\Entity\FormularioCampo;
 use App\Entity\IEntity;
 use App\Form\FormularioCampoType;
@@ -27,11 +28,25 @@ class FormularioCampoController extends AppAbstractController
     }
 
     /**
-     * @Route("/{page}/page", name="formulario_campo_index", methods="GET|POST", defaults={"page" = 1})
+     * @Route("/{formulario_agrupador}/{page}/page", name="formulario_campo_index", methods="GET|POST", defaults={"page" = 1})
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        return parent::index($paginator, $request);
+        $em = $this->getDoctrine()->getManager();
+        $formularioAgrupador = $em->getRepository(FormularioAgrupador::class)->find($request->get('formulario_agrupador'));
+        $this->denyAccessUnlessGranted('formulario_campo_list', $formularioAgrupador);
+
+        $resultSet = $paginator->paginate(
+            $this->entityRepository->findByUserContext($this->getUser(), ['agrupador' => $formularioAgrupador]),
+            $request->get('page')
+        );
+
+        //TODO: Refatorar para obter o response em cada metodo
+        return $this->render("{$this->entityName}/index.html.twig", [
+            'registers' => $resultSet,
+            'entityName' => $this->entityName,
+            'template' => (array) $this->getTemplateManager(),
+        ]);
     }
 
     /**
@@ -40,6 +55,10 @@ class FormularioCampoController extends AppAbstractController
     public function new(Request $request, UserInterface $user): Response
     {
         return parent::new($request, $user);
+    }
+
+    protected function newSuccessResponse(IEntity $entity): Response {
+        return $this->redirectToRoute("{$this->entityName}_index", ["formulario_agrupador" => $entity->getAgrupador()->getId()]);
     }
 
     /**
@@ -60,6 +79,10 @@ class FormularioCampoController extends AppAbstractController
         return parent::edit($request, $entity);
     }
 
+    protected function editSuccessResponse(IEntity $entity): Response {
+        return $this->redirectToRoute("{$this->entityName}_index", ["formulario_agrupador" => $entity->getAgrupador()->getId()]);
+    }
+
     /**
      * @Route("/{id}", name="formulario_campo_delete", methods="DELETE")
      * @ParamConverter("entity", class="App\Entity\FormularioCampo")
@@ -67,5 +90,9 @@ class FormularioCampoController extends AppAbstractController
     public function delete(Request $request, IEntity $entity): Response
     {
         return parent::delete($request, $entity);
+    }
+
+    protected function deleteSuccessResponse(IEntity $entity): Response {
+        return $this->redirectToRoute("{$this->entityName}_index", ["formulario_agrupador" => $entity->getAgrupador()->getId()]);
     }
 }
