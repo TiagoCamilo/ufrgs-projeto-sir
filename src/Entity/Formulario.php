@@ -24,7 +24,7 @@ class Formulario implements IEntity, LimiterEscolaInterface
     private $nome;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FormularioAgrupador", mappedBy="formulario", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioAgrupador", mappedBy="formulario", orphanRemoval=true, cascade={"persist"}, fetch="EAGER")
      * @ORM\OrderBy({"ordem"="ASC"})
      */
     private $formularioAgrupadores;
