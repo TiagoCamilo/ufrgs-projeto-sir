@@ -57,6 +57,10 @@ class FormularioCampoController extends AppAbstractController
         return parent::new($request, $user);
     }
 
+    protected function newSuccessResponse(IEntity $entity): Response {
+        return $this->redirectToRoute("{$this->entityName}_index", ["formulario_agrupador" => $entity->getAgrupador()->getId()]);
+    }
+
     /**
      * @Route("/{id}", name="formulario_campo_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\FormularioCampo")
@@ -75,6 +79,10 @@ class FormularioCampoController extends AppAbstractController
         return parent::edit($request, $entity);
     }
 
+    protected function editSuccessResponse(IEntity $entity): Response {
+        return $this->redirectToRoute("{$this->entityName}_index", ["formulario_agrupador" => $entity->getAgrupador()->getId()]);
+    }
+
     /**
      * @Route("/{id}", name="formulario_campo_delete", methods="DELETE")
      * @ParamConverter("entity", class="App\Entity\FormularioCampo")
@@ -82,5 +90,9 @@ class FormularioCampoController extends AppAbstractController
     public function delete(Request $request, IEntity $entity): Response
     {
         return parent::delete($request, $entity);
+    }
+
+    protected function deleteSuccessResponse(IEntity $entity): Response {
+        return $this->redirectToRoute("{$this->entityName}_index", ["formulario_agrupador" => $entity->getAgrupador()->getId()]);
     }
 }

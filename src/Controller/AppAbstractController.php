@@ -50,7 +50,7 @@ abstract class AppAbstractController extends AbstractController
             $em->persist($this->entity);
             $em->flush();
 
-            return $this->redirectToRoute("{$this->entityName}_index");
+            return $this->newSuccessResponse($this->entity);
         }
 
         return $this->render($this->getTemplateManager()->getNew(), [
@@ -59,6 +59,10 @@ abstract class AppAbstractController extends AbstractController
             'entityDisplayedName' => $this->entityDisplayedName,
             'template' => (array) $this->getTemplateManager(),
         ]);
+    }
+
+    protected function newSuccessResponse(IEntity $entity): Response {
+        return $this->redirectToRoute("{$this->entityName}_index");
     }
 
     public function show(IEntity $entity): Response
@@ -86,7 +90,7 @@ abstract class AppAbstractController extends AbstractController
                 ]);
             }
 
-            return $this->redirectToRoute("{$this->entityName}_index", ['id' => $entity->getId()]);
+            return $this->editSuccessResponse($entity);
         }
 
         return $this->render($this->getTemplateManager()->getEdit(), [
@@ -97,6 +101,11 @@ abstract class AppAbstractController extends AbstractController
             'template' => (array) $this->getTemplateManager(),
         ]);
     }
+
+    protected function editSuccessResponse(IEntity $entity): Response {
+        return $this->redirectToRoute("{$this->entityName}_index");
+    }
+
 
     public function delete(Request $request, IEntity $entity): Response
     {
@@ -113,6 +122,10 @@ abstract class AppAbstractController extends AbstractController
             ]);
         }
 
+        return $this->deleteSuccessResponse($entity);
+    }
+
+    protected function deleteSuccessResponse(IEntity $entity): Response {
         return $this->redirectToRoute("{$this->entityName}_index");
     }
 

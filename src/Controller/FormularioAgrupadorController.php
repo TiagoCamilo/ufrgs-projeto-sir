@@ -59,10 +59,15 @@ class FormularioAgrupadorController extends AppAbstractController
         return parent::new($request, $user);
     }
 
+    protected function newSuccessResponse(IEntity $entity): Response {
+        return $this->redirectToRoute("{$this->entityName}_index", ["formulario" => $entity->getFormulario()->getId()]);
+    }
+
+
     /**
      * @Route("/{id}", name="formulario_agrupador_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\FormularioAgrupador")
-     * @IsGranted("VIEW", subject="entity")
+     * @IsGranted("formulario_agrupador_show", subject="entity")
      */
     public function show(IEntity $entity): Response
     {
@@ -76,6 +81,10 @@ class FormularioAgrupadorController extends AppAbstractController
     public function edit(Request $request, IEntity $entity): Response
     {
         return parent::edit($request, $entity);
+    }
+
+    protected function editSuccessResponse(IEntity $entity): Response {
+        return $this->redirectToRoute("{$this->entityName}_index", ["formulario" => $entity->getFormulario()->getId()]);
     }
 
     /**
@@ -93,7 +102,7 @@ class FormularioAgrupadorController extends AppAbstractController
             $em->flush();
         }
 
-        return $this->redirectToRoute("{$this->entityName}_index");
+        return $this->redirectToRoute("{$this->entityName}_index", ["formulario" => $entity->getFormulario()->getId()]);
     }
 
     protected function getTemplateManager(): TemplateManager
