@@ -19,6 +19,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -26,13 +28,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class UsuarioController extends AppAbstractController
 {
+    private $passwordEncoder;
 
-    public function __construct(UsuarioRepository $entityRepository, FormularioModelo $formularioModelo)
+    public function __construct(UsuarioRepository $entityRepository, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->entity = new Usuario();
         $this->entityRepository = $entityRepository;
         $this->entityName = 'usuario';
         $this->formType = UsuarioType::class;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
@@ -50,7 +54,27 @@ class UsuarioController extends AppAbstractController
      */
     public function new(Request $request, UserInterface $user): Response
     {
-        return parent::new($request, $user);
+        $form = $this->createForm($this->formType, $this->entity);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $password = $this->passwordEncoder->encodePassword($this->entity, $this->entity->plainPassword);
+            $this->entity->setPassword($password);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($this->entity);
+            $em->flush();
+
+            return $this->newSuccessResponse($this->entity);
+        }
+
+        return $this->render($this->getTemplateManager()->getNew(), [
+            'form' => $form->createView(),
+            'entityName' => $this->entityName,
+            'entityDisplayedName' => $this->entityDisplayedName,
+            'template' => (array) $this->getTemplateManager(),
+        ]);
     }
 
     /**

@@ -71,6 +71,8 @@ class Usuario implements UserInterface, LimiterEscolaInterface, IEntity
      */
     public $formularioRegistros;
 
+    public $plainPassword;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
