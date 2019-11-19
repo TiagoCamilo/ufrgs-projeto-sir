@@ -20,8 +20,8 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         {% if is_granted('ROLE_USER') %}
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false"
-                aria-label="Toggle navigation">
+                    data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         {% endif %}
@@ -29,10 +29,10 @@
         <a class="navbar-brand" href="/"><i class="fas fa-home"></i>
             SIR
             {% if app.session.get('aluno_id') is defined and app.session.get('aluno_id') != null %}
-                    <a class="nav-link" style="color: #00ff00"
-                       href="{{ path('perfil_aluno_profile', {id: app.session.get('aluno_id')|default(0)} ) }}">
-                        <i class="fas fa-id-card"></i> {{ app.session.get('aluno_nome') }}
-                    </a>
+                <a class="nav-link" style="color: #00ff00"
+                   href="{{ path('perfil_aluno_profile', {id: app.session.get('aluno_id')|default(0)} ) }}">
+                    <i class="fas fa-id-card"></i> {{ app.session.get('aluno_nome') }}
+                </a>
             {% endif %}
             <span class="sr-only">(current)</span></a>
 
@@ -107,12 +107,16 @@
 
         {% if is_granted('ROLE_USER') %}
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('usuario_edit', {id: app.user.id}) }}"><i
+                                class="fas fa-key"></i> {{ app.user.email }}</a>
+                </li>
                 <li class="nav-item ml-auto">
                     <a class="nav-link" href="{{ path('logout') }}"><i class="fas fa-sign-out-alt"></i> Sair</a>
                 </li>
             </ul>
         {% endif %}
-        
+
     </nav>
 {% endblock %}
 

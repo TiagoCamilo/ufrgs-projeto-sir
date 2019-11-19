@@ -102,6 +102,14 @@ class UsuarioController extends AppAbstractController
         return parent::edit($request, $entity);
     }
 
+    protected function editSuccessResponse(IEntity $entity): Response
+    {
+        if($this->getUser()->isEducador()){
+            return $this->redirectToRoute("home");
+        }
+        return $this->redirectToRoute("{$this->entityName}_index");
+    }
+
     /**
      * @Route("/{id}", name="usuario_delete", methods="DELETE")
      * @ParamConverter("entity", class="App\Entity\Usuario")
