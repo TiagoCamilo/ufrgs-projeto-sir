@@ -53,32 +53,7 @@ class UsuarioEditType extends AbstractType
                 'required' => false
             ])
             ->add('nome', TextType::class);
-
-
-        if($this->user->getPerfil()->getId() !== Perfil::EDUCADOR){
-            $builder->add('perfil', EntityType::class,[
-                'class' => Perfil::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('p')
-                        ->where('p.id IN (:idPerfis)')
-                        ->setParameter('idPerfis', [Perfil::EDUCADOR,Perfil::COORDENADOR])
-                        ->orderBy('p.nome', 'DESC');
-                },
-                'choice_label' => 'nome',
-            ]);
-
-            if($this->user->getEscola() instanceof Escola) {
-                $builder->add('escola', EntityType::class, [
-                    'class' => Escola::class,
-                    'choices' => [$this->user->getEscola()]
-                ]);
-            } else {
-                $builder->add('escola', EntityType::class, [
-                    'class' => Escola::class,
-                    'required' => true
-                ]);
-            }
-        }
+        
     }
 
     public function configureOptions(OptionsResolver $resolver)
