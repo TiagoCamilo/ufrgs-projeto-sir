@@ -24,6 +24,10 @@ class UsuarioRepository extends AbstractRepository
         return ['escola' => $escola];
     }
 
+    protected function getFilterCustom(): array{
+        return ['perfil' => [2,3]];
+    }
+
     // /**
     //  * @return Usuario[] Returns an array of Usuario objects
     //  */
