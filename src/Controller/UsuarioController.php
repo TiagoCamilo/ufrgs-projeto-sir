@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Entity\Usuario;
 use App\Entity\IEntity;
+use App\Form\UsuarioEditType;
 use App\Form\UsuarioType;
 use App\Repository\UsuarioRepository;
 use App\Service\FormularioModelo;
@@ -94,6 +95,7 @@ class UsuarioController extends AppAbstractController
      */
     public function edit(Request $request, IEntity $entity): Response
     {
+        $this->formType = UsuarioEditType::class;
         return parent::edit($request, $entity);
     }
 

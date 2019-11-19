@@ -22,7 +22,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Security;
 
-class UsuarioType extends AbstractType
+class UsuarioEditType extends AbstractType
 {
 
     private $user;
@@ -35,19 +35,28 @@ class UsuarioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class, ['label' => 'E-mail'])
+            ->add('email', EmailType::class, [
+                'label' => 'E-mail',
+                'disabled' => true,
+            ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'A senhas devem ser iguais.',
-                'first_options'  => ['label' => 'Senha'],
+                'first_options'  => [
+                    'label' => 'Nova Senha',
+                    'help' => 'Se não deseja alterar a senha, basta deixar o campo em branco.'
+                ],
                 'second_options' => [
                     'label' => 'Repetir nova senha',
                     'help' => 'Digite a senha novamente para confirmação.'
                 ],
                 'required' => false
             ])
-            ->add('nome', TextType::class)
-            ->add('perfil', EntityType::class,[
+            ->add('nome', TextType::class);
+
+
+        if($this->user->getPerfil()->getId() !== Perfil::EDUCADOR){
+            $builder->add('perfil', EntityType::class,[
                 'class' => Perfil::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
@@ -58,16 +67,17 @@ class UsuarioType extends AbstractType
                 'choice_label' => 'nome',
             ]);
 
-        if($this->user->getEscola() instanceof Escola) {
-            $builder->add('escola', EntityType::class, [
-                'class' => Escola::class,
-                'choices' => [$this->user->getEscola()]
-            ]);
-        } else {
-            $builder->add('escola', EntityType::class, [
-                'class' => Escola::class,
-                'required' => true
-            ]);
+            if($this->user->getEscola() instanceof Escola) {
+                $builder->add('escola', EntityType::class, [
+                    'class' => Escola::class,
+                    'choices' => [$this->user->getEscola()]
+                ]);
+            } else {
+                $builder->add('escola', EntityType::class, [
+                    'class' => Escola::class,
+                    'required' => true
+                ]);
+            }
         }
     }
 
