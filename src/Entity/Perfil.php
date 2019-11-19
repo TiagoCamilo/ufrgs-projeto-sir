@@ -11,6 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Perfil
 {
+    const ADMINISTRADOR = 1;
+    const EDUCADOR = 2;
+    const COORDENADOR = 3;
+
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -117,4 +122,10 @@ class Perfil
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->getNome();
+    }
+
 }

@@ -5,12 +5,15 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsuarioRepository")
+ * @UniqueEntity(fields="email", message="E-mail já existente.")
  */
-class Usuario implements UserInterface
+class Usuario implements UserInterface, LimiterEscolaInterface, IEntity
 {
     /**
      * @ORM\Id()
@@ -70,6 +73,8 @@ class Usuario implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\FormularioRegistro", mappedBy="usuario")
      */
     public $formularioRegistros;
+
+    public $plainPassword;
 
     public function __construct()
     {
@@ -321,4 +326,9 @@ class Usuario implements UserInterface
     {
         return $this->getNome();
     }
+
+    public function isEducador(): bool {
+        return $this->getPerfil()->getId() == Perfil::EDUCADOR;
+    }
+
 }

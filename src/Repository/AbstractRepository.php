@@ -31,6 +31,8 @@ abstract class AbstractRepository extends ServiceEntityRepository
             $filter = array_merge($filter, $criteria);
         }
 
+        $filter = array_merge($filter, $this->getFilterCustom());
+
         if ($usuario->getEscola() instanceof  Escola) {
             $filter = array_merge($filter, $this->getFilterByEscola($usuario->getEscola()));
         }
@@ -38,6 +40,9 @@ abstract class AbstractRepository extends ServiceEntityRepository
         return $this->findBy($filter, $orderBy, $limit, $offset);
     }
 
-    //protected function getFilterByEscola(Escola $escola){}
+    protected function getFilterCustom(): array{
+        return [];
+    }
+
     abstract protected function getFilterByEscola(Escola $escola);
 }

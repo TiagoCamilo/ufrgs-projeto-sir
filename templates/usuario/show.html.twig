@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usuário{% endblock %}
+
+{% block body %}
+    {% include 'generic/_body_title.html.twig' with {title: entityName|capitalize} %}
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ register.id }}</td>
+        </tr>
+        <tr>
+            <th>E-mail</th>
+            <td>{{ register.email }}</td>
+        </tr>
+        <tr>
+            <th>Nome</th>
+            <td>{{ register.nome }}</td>
+        </tr>
+        <tr>
+            <th>Perfil</th>
+            <td>{{ register.perfil.nome }}</td>
+        </tr>
+        <tr>
+            <th>Escola</th>
+            <td>{{ register.escola.nome }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    {{ include(template.showActions) }}
+
+{% endblock %}
