@@ -326,4 +326,9 @@ class Usuario implements UserInterface, LimiterEscolaInterface, IEntity
     {
         return $this->getNome();
     }
+
+    public function isEducador(): bool {
+        return $this->getPerfil()->getId() == Perfil::EDUCADOR;
+    }
+
 }

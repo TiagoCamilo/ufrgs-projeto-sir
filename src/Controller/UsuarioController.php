@@ -95,6 +95,9 @@ class UsuarioController extends AppAbstractController
      */
     public function edit(Request $request, IEntity $entity): Response
     {
+        if($this->getUser()->isEducador() && $this->getUser() !== $entity){
+            return new Response('Acesso Negado',403);
+        }
         $this->formType = UsuarioEditType::class;
         return parent::edit($request, $entity);
     }
