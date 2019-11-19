@@ -21,7 +21,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @Route("/parecer")
  */
-class ParecerController extends AppAbstractController
+class ParecerController extends AbstractAppController
 {
     protected $aluno;
 

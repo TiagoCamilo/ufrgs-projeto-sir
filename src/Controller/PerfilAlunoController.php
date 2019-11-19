@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/perfil_aluno")
  */
-class PerfilAlunoController extends AppAbstractController
+class PerfilAlunoController extends AbstractAppController
 {
     private $session;
 

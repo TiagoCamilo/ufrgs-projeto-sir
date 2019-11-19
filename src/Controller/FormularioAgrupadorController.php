@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @Route("/formulario_agrupador")
  */
-class FormularioAgrupadorController extends AppAbstractController
+class FormularioAgrupadorController extends AbstractAppController
 {
     public function __construct(FormularioAgrupadorRepository $entityRepository)
     {

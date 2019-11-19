@@ -25,7 +25,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @Route("/usuario")
  */
-class UsuarioController extends AppAbstractController
+class UsuarioController extends AbstractAppController
 {
     private $passwordEncoder;
 

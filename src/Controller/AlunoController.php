@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @Route("/aluno")
  */
-class AlunoController extends AppAbstractController
+class AlunoController extends AbstractAppController
 {
     public function __construct(AlunoRepository $entityRepository)
     {

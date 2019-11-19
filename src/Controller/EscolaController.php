@@ -24,7 +24,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @Route("/escola")
  */
-class EscolaController extends AppAbstractController
+class EscolaController extends AbstractAppController
 {
     private $formularioModelo;
 

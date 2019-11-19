@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @Route("/comentario")
  */
-class ComentarioController extends AppAbstractController
+class ComentarioController extends AbstractAppController
 {
     protected $aluno;
 

@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-abstract class AppAbstractController extends AbstractController
+abstract class AbstractAppController extends AbstractController
 {
     protected $entity;
     protected $entityRepository;

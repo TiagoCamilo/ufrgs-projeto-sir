@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @Route("/formulario")
  */
-class FormularioController extends AppAbstractController
+class FormularioController extends AbstractAppController
 {
     public function __construct(FormularioRepository $entityRepository)
     {

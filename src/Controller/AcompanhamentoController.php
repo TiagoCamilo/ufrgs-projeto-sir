@@ -21,7 +21,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @Route("/acompanhamento")
  */
-class AcompanhamentoController extends AppAbstractController
+class AcompanhamentoController extends AbstractAppController
 {
     protected $aluno;
 
