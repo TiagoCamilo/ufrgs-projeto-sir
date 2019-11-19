@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Escola;
 use App\Entity\Usuario;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -12,11 +13,15 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Usuario[]    findAll()
  * @method Usuario[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UsuarioRepository extends ServiceEntityRepository
+class UsuarioRepository extends AbstractRepository
 {
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Usuario::class);
+    }
+
+    protected function getFilterByEscola(Escola $escola){
+        return ['escola' => $escola];
     }
 
     // /**

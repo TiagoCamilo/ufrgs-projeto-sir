@@ -93,6 +93,13 @@
                             </div>
                         </li>
                     {% endif %}
+
+                    {% if is_granted('aluno_list') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('usuario_index') }}"><i
+                                        class="fas fa-user-alt"></i> Usuário</a>
+                        </li>
+                    {% endif %}
                 </ul>
 
             {% endif %}
