@@ -42,7 +42,7 @@ class UsuarioController extends AppAbstractController
 
     /**
      * @Route("/{page}/page", name="usuario_index", methods="GET|POST", defaults={"page" = 1})
-     * @IsGranted("aluno_list")
+     * @IsGranted("usuario_list")
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
@@ -51,7 +51,7 @@ class UsuarioController extends AppAbstractController
 
     /**
      * @Route("/new", name="usuario_new", methods="GET|POST")
-     * @IsGranted("aluno_new")
+     * @IsGranted("usuario_new")
      */
     public function new(Request $request, UserInterface $user): Response
     {
@@ -81,7 +81,7 @@ class UsuarioController extends AppAbstractController
     /**
      * @Route("/{id}", name="usuario_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Usuario")
-     * @IsGranted("aluno_show", subject="entity")
+     * @IsGranted("usuario_show", subject="entity")
      */
     public function show(IEntity $entity): Response
     {
@@ -91,7 +91,7 @@ class UsuarioController extends AppAbstractController
     /**
      * @Route("/{id}/edit", name="usuario_edit", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\Usuario")
-     * @IsGranted("aluno_edit", subject="entity")
+     * @IsGranted("usuario_edit", subject="entity")
      */
     public function edit(Request $request, IEntity $entity): Response
     {
@@ -113,7 +113,7 @@ class UsuarioController extends AppAbstractController
     /**
      * @Route("/{id}", name="usuario_delete", methods="DELETE")
      * @ParamConverter("entity", class="App\Entity\Usuario")
-     * @IsGranted("aluno_delete", subject="entity")
+     * @IsGranted("usuario_delete", subject="entity")
      */
     public function delete(Request $request, IEntity $entity): Response
     {

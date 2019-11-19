@@ -53,7 +53,7 @@ class UsuarioEditType extends AbstractType
                 'required' => false
             ])
             ->add('nome', TextType::class);
-        
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
