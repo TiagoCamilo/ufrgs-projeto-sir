@@ -9,7 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\Escola;
-use App\Entity\IEntity;
+use App\Entity\EntityInterface;
 use App\Form\EscolaType;
 use App\Repository\EscolaRepository;
 use App\Service\FormularioModelo;
@@ -65,7 +65,7 @@ class EscolaController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Escola")
      * @IsGranted("escola_show", subject="entity")
      */
-    public function show(IEntity $entity): Response
+    public function show(EntityInterface $entity): Response
     {
         return parent::show($entity);
     }
@@ -75,7 +75,7 @@ class EscolaController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Escola")
      * @IsGranted("escola_edit", subject="entity")
      */
-    public function edit(Request $request, IEntity $entity): Response
+    public function edit(Request $request, EntityInterface $entity): Response
     {
         return parent::edit($request, $entity);
     }
@@ -85,7 +85,7 @@ class EscolaController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Escola")
      * @IsGranted("escola_delete", subject="entity")
      */
-    public function delete(Request $request, IEntity $entity): Response
+    public function delete(Request $request, EntityInterface $entity): Response
     {
         return parent::delete($request, $entity);
     }

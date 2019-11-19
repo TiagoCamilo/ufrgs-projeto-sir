@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Formulario;
-use App\Entity\IEntity;
+use App\Entity\EntityInterface;
 use App\Form\FormularioType;
 use App\Helpers\TemplateManager;
 use App\Repository\FormularioRepository;
@@ -47,7 +47,7 @@ class FormularioController extends AppAbstractController
      * @Route("/{id}", name="formulario_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Formulario")
      */
-    public function show(IEntity $entity): Response
+    public function show(EntityInterface $entity): Response
     {
         return parent::show($entity);
     }
@@ -56,7 +56,7 @@ class FormularioController extends AppAbstractController
      * @Route("/{id}/edit", name="formulario_edit", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\Formulario")
      */
-    public function edit(Request $request, IEntity $entity): Response
+    public function edit(Request $request, EntityInterface $entity): Response
     {
         return parent::edit($request, $entity);
     }
@@ -65,7 +65,7 @@ class FormularioController extends AppAbstractController
      * @Route("/{id}", name="formulario_delete", methods="DELETE")
      * @ParamConverter("entity", class="App\Entity\Formulario")
      */
-    public function delete(Request $request, IEntity $entity): Response
+    public function delete(Request $request, EntityInterface $entity): Response
     {
         return parent::delete($request, $entity);
     }

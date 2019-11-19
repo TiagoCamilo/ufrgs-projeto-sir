@@ -9,7 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\Usuario;
-use App\Entity\IEntity;
+use App\Entity\EntityInterface;
 use App\Form\UsuarioEditType;
 use App\Form\UsuarioType;
 use App\Repository\UsuarioRepository;
@@ -80,7 +80,7 @@ class UsuarioController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Usuario")
      * @IsGranted("usuario_show", subject="entity")
      */
-    public function show(IEntity $entity): Response
+    public function show(EntityInterface $entity): Response
     {
         return parent::show($entity);
     }
@@ -90,7 +90,7 @@ class UsuarioController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Usuario")
      * @IsGranted("usuario_edit", subject="entity")
      */
-    public function edit(Request $request, IEntity $entity): Response
+    public function edit(Request $request, EntityInterface $entity): Response
     {
         if ($this->getUser()->isEducador() && $this->getUser() !== $entity) {
             return new Response('Acesso Negado', 403);
@@ -100,7 +100,7 @@ class UsuarioController extends AppAbstractController
         return parent::edit($request, $entity);
     }
 
-    protected function editSuccessResponse(IEntity $entity): Response
+    protected function editSuccessResponse(EntityInterface $entity): Response
     {
         if ($this->getUser()->isEducador()) {
             return $this->redirectToRoute('home');
@@ -114,7 +114,7 @@ class UsuarioController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Usuario")
      * @IsGranted("usuario_delete", subject="entity")
      */
-    public function delete(Request $request, IEntity $entity): Response
+    public function delete(Request $request, EntityInterface $entity): Response
     {
         return parent::delete($request, $entity);
     }

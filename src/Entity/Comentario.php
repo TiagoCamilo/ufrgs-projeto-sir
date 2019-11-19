@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ComentarioRepository")
  */
-class Comentario implements IEntity, LimiterEscolaInterface
+class Comentario implements EntityInterface, LimiterEscolaInterface
 {
     /**
      * @ORM\Id()

@@ -8,7 +8,7 @@
 
 namespace App\Controller;
 
-use App\Entity\IEntity;
+use App\Entity\EntityInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Helpers\TemplateManager;
@@ -61,12 +61,12 @@ abstract class AppAbstractController extends AbstractController
         ]);
     }
 
-    protected function newSuccessResponse(IEntity $entity): Response
+    protected function newSuccessResponse(EntityInterface $entity): Response
     {
         return $this->redirectToRoute("{$this->entityName}_index");
     }
 
-    public function show(IEntity $entity): Response
+    public function show(EntityInterface $entity): Response
     {
         //TODO: Refatorar para obter o response em cada metodo
         return $this->render("{$this->entityName}/show.html.twig", [
@@ -76,7 +76,7 @@ abstract class AppAbstractController extends AbstractController
         ]);
     }
 
-    public function edit(Request $request, IEntity $entity): Response
+    public function edit(Request $request, EntityInterface $entity): Response
     {
         $form = $this->getForm($entity);
         $form->handleRequest($request);
@@ -103,12 +103,12 @@ abstract class AppAbstractController extends AbstractController
         ]);
     }
 
-    protected function editSuccessResponse(IEntity $entity): Response
+    protected function editSuccessResponse(EntityInterface $entity): Response
     {
         return $this->redirectToRoute("{$this->entityName}_index");
     }
 
-    public function delete(Request $request, IEntity $entity): Response
+    public function delete(Request $request, EntityInterface $entity): Response
     {
         if ($this->isCsrfTokenValid('delete'.$entity->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
@@ -126,12 +126,12 @@ abstract class AppAbstractController extends AbstractController
         return $this->deleteSuccessResponse($entity);
     }
 
-    protected function deleteSuccessResponse(IEntity $entity): Response
+    protected function deleteSuccessResponse(EntityInterface $entity): Response
     {
         return $this->redirectToRoute("{$this->entityName}_index");
     }
 
-    protected function getForm(IEntity $entity)
+    protected function getForm(EntityInterface $entity)
     {
         return $this->createForm($this->formType, $entity);
     }

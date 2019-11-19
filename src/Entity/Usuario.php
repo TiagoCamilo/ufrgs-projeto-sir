@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity(repositoryClass="App\Repository\UsuarioRepository")
  * @UniqueEntity(fields="email", message="E-mail já existente.")
  */
-class Usuario implements UserInterface, LimiterEscolaInterface, IEntity
+class Usuario implements UserInterface, LimiterEscolaInterface, EntityInterface
 {
     /**
      * @ORM\Id()

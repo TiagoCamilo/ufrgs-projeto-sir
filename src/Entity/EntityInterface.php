@@ -8,6 +8,6 @@
 
 namespace App\Entity;
 
-interface IEntity
+interface EntityInterface
 {
 }
