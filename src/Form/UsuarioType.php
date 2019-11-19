@@ -35,13 +35,16 @@ class UsuarioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nome', TextType::class)
+
             ->add('email', EmailType::class, ['label' => 'E-mail'])
-            ->add('plainPassword', RepeatedType::class, array(
+            ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Senha'),
-                'second_options' => array('label' => 'Repetir Senha'),
-            ))
+                'invalid_message' => 'A senhas devem ser iguais.',
+                'first_options'  => ['label' => 'Senha'],
+                'second_options' => ['label' => 'Repetir Senha'],
+                'required' => false
+            ])
+            ->add('nome', TextType::class)
             ->add('perfil', EntityType::class,[
                 'class' => Perfil::class,
                 'query_builder' => function (EntityRepository $er) {
