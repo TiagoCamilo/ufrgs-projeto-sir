@@ -61,7 +61,8 @@ abstract class AppAbstractController extends AbstractController
         ]);
     }
 
-    protected function newSuccessResponse(IEntity $entity): Response {
+    protected function newSuccessResponse(IEntity $entity): Response
+    {
         return $this->redirectToRoute("{$this->entityName}_index");
     }
 
@@ -102,10 +103,10 @@ abstract class AppAbstractController extends AbstractController
         ]);
     }
 
-    protected function editSuccessResponse(IEntity $entity): Response {
+    protected function editSuccessResponse(IEntity $entity): Response
+    {
         return $this->redirectToRoute("{$this->entityName}_index");
     }
-
 
     public function delete(Request $request, IEntity $entity): Response
     {
@@ -125,11 +126,13 @@ abstract class AppAbstractController extends AbstractController
         return $this->deleteSuccessResponse($entity);
     }
 
-    protected function deleteSuccessResponse(IEntity $entity): Response {
+    protected function deleteSuccessResponse(IEntity $entity): Response
+    {
         return $this->redirectToRoute("{$this->entityName}_index");
     }
 
-    protected function getForm(IEntity $entity){
+    protected function getForm(IEntity $entity)
+    {
         return $this->createForm($this->formType, $entity);
     }
 

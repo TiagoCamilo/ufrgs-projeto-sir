@@ -13,14 +13,12 @@ use App\Entity\IEntity;
 use App\Form\UsuarioEditType;
 use App\Form\UsuarioType;
 use App\Repository\UsuarioRepository;
-use App\Service\FormularioModelo;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -59,7 +57,6 @@ class UsuarioController extends AppAbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $password = $this->passwordEncoder->encodePassword($this->entity, $this->entity->plainPassword);
             $this->entity->setPassword($password);
 
@@ -95,18 +92,20 @@ class UsuarioController extends AppAbstractController
      */
     public function edit(Request $request, IEntity $entity): Response
     {
-        if($this->getUser()->isEducador() && $this->getUser() !== $entity){
-            return new Response('Acesso Negado',403);
+        if ($this->getUser()->isEducador() && $this->getUser() !== $entity) {
+            return new Response('Acesso Negado', 403);
         }
         $this->formType = UsuarioEditType::class;
+
         return parent::edit($request, $entity);
     }
 
     protected function editSuccessResponse(IEntity $entity): Response
     {
-        if($this->getUser()->isEducador()){
-            return $this->redirectToRoute("home");
+        if ($this->getUser()->isEducador()) {
+            return $this->redirectToRoute('home');
         }
+
         return $this->redirectToRoute("{$this->entityName}_index");
     }
 

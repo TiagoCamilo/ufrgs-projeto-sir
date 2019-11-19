@@ -379,5 +379,4 @@ class Aluno implements IEntity, LimiterEscolaInterface
     {
         return ['id'];
     }
-
 }

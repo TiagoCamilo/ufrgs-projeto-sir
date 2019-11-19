@@ -74,6 +74,7 @@ class FormularioController extends AppAbstractController
     {
         $templateManager = parent::getTemplateManager();
         $templateManager->setIndexActions('formulario/_index_registers.html.twig');
+
         return $templateManager;
     }
 }

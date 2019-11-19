@@ -17,5 +17,4 @@ interface IFileManipulator
     public function setImage(string $image): IFileManipulator;
 
     public function normalize();
-
 }

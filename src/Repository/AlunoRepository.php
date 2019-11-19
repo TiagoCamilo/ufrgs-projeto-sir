@@ -19,7 +19,8 @@ class AlunoRepository extends AbstractRepository
         parent::__construct($registry, Aluno::class);
     }
 
-    protected function getFilterByEscola(Escola $escola){
+    protected function getFilterByEscola(Escola $escola)
+    {
         return ['escola' => $escola];
     }
 

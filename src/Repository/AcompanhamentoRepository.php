@@ -19,7 +19,8 @@ class AcompanhamentoRepository extends AbstractRepository
         parent::__construct($registry, Acompanhamento::class);
     }
 
-    protected function getFilterByEscola(Escola $escola){
+    protected function getFilterByEscola(Escola $escola)
+    {
         return ['aluno' => $escola->getAlunos()->toArray()];
     }
 

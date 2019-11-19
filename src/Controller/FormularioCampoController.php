@@ -57,8 +57,9 @@ class FormularioCampoController extends AppAbstractController
         return parent::new($request, $user);
     }
 
-    protected function newSuccessResponse(IEntity $entity): Response {
-        return $this->redirectToRoute("{$this->entityName}_index", ["formulario_agrupador" => $entity->getAgrupador()->getId()]);
+    protected function newSuccessResponse(IEntity $entity): Response
+    {
+        return $this->redirectToRoute("{$this->entityName}_index", ['formulario_agrupador' => $entity->getAgrupador()->getId()]);
     }
 
     /**
@@ -79,8 +80,9 @@ class FormularioCampoController extends AppAbstractController
         return parent::edit($request, $entity);
     }
 
-    protected function editSuccessResponse(IEntity $entity): Response {
-        return $this->redirectToRoute("{$this->entityName}_index", ["formulario_agrupador" => $entity->getAgrupador()->getId()]);
+    protected function editSuccessResponse(IEntity $entity): Response
+    {
+        return $this->redirectToRoute("{$this->entityName}_index", ['formulario_agrupador' => $entity->getAgrupador()->getId()]);
     }
 
     /**
@@ -92,7 +94,8 @@ class FormularioCampoController extends AppAbstractController
         return parent::delete($request, $entity);
     }
 
-    protected function deleteSuccessResponse(IEntity $entity): Response {
-        return $this->redirectToRoute("{$this->entityName}_index", ["formulario_agrupador" => $entity->getAgrupador()->getId()]);
+    protected function deleteSuccessResponse(IEntity $entity): Response
+    {
+        return $this->redirectToRoute("{$this->entityName}_index", ['formulario_agrupador' => $entity->getAgrupador()->getId()]);
     }
 }

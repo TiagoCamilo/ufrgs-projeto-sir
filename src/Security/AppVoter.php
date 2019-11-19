@@ -50,6 +50,6 @@ class AppVoter extends Voter
     private function checkScope(LimiterEscolaInterface $object, Usuario $user)
     {
         // Usuario administrador nao possui escola, logo tem acesso a todas entidades
-        return ($user->getEscola() === null || $user->getEscola() === $object->getEscola());
+        return null === $user->getEscola() || $user->getEscola() === $object->getEscola();
     }
 }

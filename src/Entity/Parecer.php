@@ -118,7 +118,8 @@ class Parecer implements IEntity, LimiterEscolaInterface
         return $this;
     }
 
-    public function getEscola(): ?Escola {
+    public function getEscola(): ?Escola
+    {
         return $this->getAluno()->getEscola();
     }
 }

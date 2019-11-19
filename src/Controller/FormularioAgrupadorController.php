@@ -59,10 +59,10 @@ class FormularioAgrupadorController extends AppAbstractController
         return parent::new($request, $user);
     }
 
-    protected function newSuccessResponse(IEntity $entity): Response {
-        return $this->redirectToRoute("{$this->entityName}_index", ["formulario" => $entity->getFormulario()->getId()]);
+    protected function newSuccessResponse(IEntity $entity): Response
+    {
+        return $this->redirectToRoute("{$this->entityName}_index", ['formulario' => $entity->getFormulario()->getId()]);
     }
-
 
     /**
      * @Route("/{id}", name="formulario_agrupador_show", methods="GET")
@@ -83,8 +83,9 @@ class FormularioAgrupadorController extends AppAbstractController
         return parent::edit($request, $entity);
     }
 
-    protected function editSuccessResponse(IEntity $entity): Response {
-        return $this->redirectToRoute("{$this->entityName}_index", ["formulario" => $entity->getFormulario()->getId()]);
+    protected function editSuccessResponse(IEntity $entity): Response
+    {
+        return $this->redirectToRoute("{$this->entityName}_index", ['formulario' => $entity->getFormulario()->getId()]);
     }
 
     /**
@@ -102,13 +103,14 @@ class FormularioAgrupadorController extends AppAbstractController
             $em->flush();
         }
 
-        return $this->redirectToRoute("{$this->entityName}_index", ["formulario" => $entity->getFormulario()->getId()]);
+        return $this->redirectToRoute("{$this->entityName}_index", ['formulario' => $entity->getFormulario()->getId()]);
     }
 
     protected function getTemplateManager(): TemplateManager
     {
         $templateManager = parent::getTemplateManager();
         $templateManager->setIndexActions('formulario_agrupador/_index_registers.html.twig');
+
         return $templateManager;
     }
 }

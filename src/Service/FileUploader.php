@@ -8,7 +8,6 @@
 
 namespace App\Service;
 
-use Intervention\Image\Image;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 

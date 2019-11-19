@@ -18,7 +18,8 @@ class FormularioAgrupadorRepository extends AbstractRepository
         parent::__construct($registry, FormularioAgrupador::class);
     }
 
-    protected function getFilterByEscola(Escola $escola){
+    protected function getFilterByEscola(Escola $escola)
+    {
         return [];
     }
 

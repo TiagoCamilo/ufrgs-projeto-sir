@@ -15,7 +15,6 @@ use Symfony\Component\Security\Core\Security;
 
 class FormularioCampoType extends AbstractType
 {
-
     private $formularioDinamicoHelper;
     private $user;
 
@@ -38,12 +37,12 @@ class FormularioCampoType extends AbstractType
             ->add('altura')
             ->add('largura');
 
-        if($this->user->getEscola() instanceof Escola) {
+        if ($this->user->getEscola() instanceof Escola) {
             $builder->add('agrupador', EntityType::class, [
                 'class' => FormularioAgrupador::class,
-                'choices' => $this->user->getEscola()->getFormularios()->map(function($formulario) {
+                'choices' => $this->user->getEscola()->getFormularios()->map(function ($formulario) {
                     return $formulario->getFormularioAgrupadores()->toArray();
-                })
+                }),
             ]);
         } else {
             $builder->add('agrupador');

@@ -12,12 +12,12 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20191119191753 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
         $this->addSql("INSERT INTO PERFIL_CONTROLE_ACAO(ID, PERFIL_ID, CONTROLE, ACAO, ROUTE) VALUES (nextval('perfil_controle_acao_id_seq'),1,'Usuário','Listagem','usuario_list');");
         $this->addSql("INSERT INTO PERFIL_CONTROLE_ACAO(ID, PERFIL_ID, CONTROLE, ACAO, ROUTE) VALUES (nextval('perfil_controle_acao_id_seq'),1,'Usuário','Visualizar','usuario_show');");
@@ -34,10 +34,10 @@ final class Version20191119191753 extends AbstractMigration
         $this->addSql("INSERT INTO PERFIL_CONTROLE_ACAO(ID, PERFIL_ID, CONTROLE, ACAO, ROUTE) VALUES (nextval('perfil_controle_acao_id_seq'),2,'Usuário','Editar','usuario_edit');");
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->abortIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE SCHEMA public');
     }

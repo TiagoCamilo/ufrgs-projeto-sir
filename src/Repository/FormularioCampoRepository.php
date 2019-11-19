@@ -18,10 +18,10 @@ class FormularioCampoRepository extends AbstractRepository
         parent::__construct($registry, FormularioCampo::class);
     }
 
-    protected function getFilterByEscola(Escola $escola){
+    protected function getFilterByEscola(Escola $escola)
+    {
         return [];
     }
-
 
     // /**
     //  * @return FormularioCampo[] Returns an array of FormularioCampo objects

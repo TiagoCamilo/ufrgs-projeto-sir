@@ -19,20 +19,18 @@ class FormularioType extends AbstractType
         $this->user = $security->getUser();
     }
 
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('nome');
 
-        if($this->user->getEscola() instanceof Escola) {
+        if ($this->user->getEscola() instanceof Escola) {
             $builder->add('escola', EntityType::class, [
                 'class' => Escola::class,
-                'choices' => [$this->user->getEscola()]
+                'choices' => [$this->user->getEscola()],
             ]);
         } else {
             $builder->add('escola', null, ['placeholder' => 'MODELO']);
-
         }
     }
 

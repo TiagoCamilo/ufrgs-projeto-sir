@@ -15,7 +15,6 @@ class Perfil
     const EDUCADOR = 2;
     const COORDENADOR = 3;
 
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -127,5 +126,4 @@ class Perfil
     {
         return $this->getNome();
     }
-
 }
