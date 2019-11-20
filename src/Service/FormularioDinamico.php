@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Service;
 
 use App\Repository\AlunoRepository;
 use Doctrine\Common\Persistence\ObjectManager;
