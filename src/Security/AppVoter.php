@@ -4,7 +4,7 @@ namespace App\Security;
 
 use App\Entity\LimiterEscolaInterface;
 use App\Entity\Usuario;
-use App\Helpers\Perfil;
+use App\Service\Perfil;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
