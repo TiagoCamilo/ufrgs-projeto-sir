@@ -5,7 +5,7 @@ namespace App\Form;
 use App\Entity\Escola;
 use App\Entity\FormularioAgrupador;
 use App\Entity\FormularioCampo;
-use App\Helpers\FormularioDinamicoHelper;
+use App\Helpers\FormularioDinamico;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -18,7 +18,7 @@ class FormularioCampoType extends AbstractType
     private $formularioDinamicoHelper;
     private $user;
 
-    public function __construct(FormularioDinamicoHelper $formularioDinamicoHelper, Security $security)
+    public function __construct(FormularioDinamico $formularioDinamicoHelper, Security $security)
     {
         $this->formularioDinamicoHelper = $formularioDinamicoHelper;
         $this->user = $security->getUser();
