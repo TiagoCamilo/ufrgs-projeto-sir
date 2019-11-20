@@ -16,7 +16,7 @@ class FileUploader
     private $targetDirectory;
     private $fileManipulator;
 
-    public function __construct($targetDirectory, IFileManipulator $fileManipulator)
+    public function __construct($targetDirectory, FileManipulatorInterface $fileManipulator)
     {
         $this->targetDirectory = $targetDirectory;
         $this->fileManipulator = $fileManipulator;
