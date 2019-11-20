@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 use App\Entity\Usuario;
 
-class VoterHelper
+class Perfil
 {
     public static $VIEW = 'VIEW';
     public static $EDIT = 'EDIT';
