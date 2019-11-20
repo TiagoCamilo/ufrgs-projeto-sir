@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Formulario;
 use App\Entity\EntityInterface;
 use App\Form\FormularioType;
-use App\Helpers\TemplateManager;
+use App\Service\TemplateManager;
 use App\Repository\FormularioRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;

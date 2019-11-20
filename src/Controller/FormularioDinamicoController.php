@@ -7,7 +7,7 @@ use App\Entity\FormularioRegistro;
 use App\Entity\FormularioRegistroCampo;
 use App\Entity\EntityInterface;
 use App\Form\FormularioDinamicoType;
-use App\Helpers\TemplateManager;
+use App\Service\TemplateManager;
 use App\Repository\AlunoRepository;
 use App\Repository\FormularioRegistroRepository;
 use App\Repository\FormularioRepository;

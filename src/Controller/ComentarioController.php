@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Comentario;
 use App\Entity\EntityInterface;
 use App\Form\ComentarioType;
-use App\Helpers\TemplateManager;
+use App\Service\TemplateManager;
 use App\Repository\AlunoRepository;
 use App\Repository\ComentarioRepository;
 use Knp\Component\Pager\PaginatorInterface;

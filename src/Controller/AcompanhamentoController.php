@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Acompanhamento;
 use App\Entity\EntityInterface;
 use App\Form\AcompanhamentoType;
-use App\Helpers\TemplateManager;
+use App\Service\TemplateManager;
 use App\Repository\AcompanhamentoRepository;
 use App\Repository\AlunoRepository;
 use App\Service\PdfGenerator;

@@ -6,7 +6,7 @@ use App\Entity\Formulario;
 use App\Entity\FormularioAgrupador;
 use App\Entity\EntityInterface;
 use App\Form\FormularioAgrupadorType;
-use App\Helpers\TemplateManager;
+use App\Service\TemplateManager;
 use App\Repository\FormularioAgrupadorRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;

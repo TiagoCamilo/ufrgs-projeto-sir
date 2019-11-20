@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Parecer;
 use App\Entity\EntityInterface;
 use App\Form\ParecerType;
-use App\Helpers\TemplateManager;
+use App\Service\TemplateManager;
 use App\Repository\ParecerRepository;
 use App\Repository\AlunoRepository;
 use App\Service\PdfGenerator;
