@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\EntityInterface;
+use App\Repository\AbstractRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Service\TemplateManager;
@@ -32,7 +33,6 @@ abstract class AbstractAppController extends AbstractController
             $request->get('page')
         );
 
-        //TODO: Refatorar para obter o response em cada metodo
         return $this->render("{$this->entityName}/index.html.twig", [
             'registers' => $resultSet,
             'entityName' => $this->entityName,
@@ -68,7 +68,6 @@ abstract class AbstractAppController extends AbstractController
 
     public function show(EntityInterface $entity): Response
     {
-        //TODO: Refatorar para obter o response em cada metodo
         return $this->render("{$this->entityName}/show.html.twig", [
             'register' => $entity,
             'entityName' => $this->entityName,
