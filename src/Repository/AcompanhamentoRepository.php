@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Acompanhamento;
+use App\Entity\Escola;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -16,6 +17,11 @@ class AcompanhamentoRepository extends AbstractRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Acompanhamento::class);
+    }
+
+    protected function getFilterByEscola(Escola $escola)
+    {
+        return ['aluno' => $escola->getAlunos()->toArray()];
     }
 
 //    /**

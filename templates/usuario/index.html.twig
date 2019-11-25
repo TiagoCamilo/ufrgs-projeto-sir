@@ -6,17 +6,18 @@
 {% for register in registers %}
     {% set registerListAttr = registerListAttr|merge ([{
         'Id': register.id,
-        'Data Hora': register.dataHora ? register.dataHora|date('d/m/Y H:i:s') : '',
-        'Aluno' : register.aluno.nome,
-        'Descrição': register.descricao,
+        'E-mail': register.email,
+        'Nome': register.nome,
+        'Perfil': register.perfil.nome,
+        'Escola': register.escola ? register.escola.nome : ''
     }]) %}
 {% endfor %}
 
 {% set actionList = {
-    'new': false,
+    'new': true,
     'show': true,
-    'edit': false,
-    'delete': false,
+    'edit': true,
+    'delete': true,
     'image': false,
 } %}
 

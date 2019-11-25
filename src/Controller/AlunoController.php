@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Aluno;
-use App\Entity\IEntity;
+use App\Entity\EntityInterface;
 use App\Form\AlunoFile;
 use App\Form\AlunoType;
 use App\Repository\AlunoRepository;
@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @Route("/aluno")
  */
-class AlunoController extends AppAbstractController
+class AlunoController extends AbstractAppController
 {
     public function __construct(AlunoRepository $entityRepository)
     {
@@ -30,6 +30,7 @@ class AlunoController extends AppAbstractController
 
     /**
      * @Route("/{page}/page", name="aluno_index", methods="GET|POST", defaults={"page" = 1})
+     * @IsGranted("aluno_list")
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
@@ -38,6 +39,7 @@ class AlunoController extends AppAbstractController
 
     /**
      * @Route("/new", name="aluno_new", methods="GET|POST")
+     * @IsGranted("aluno_new")
      */
     public function new(Request $request, UserInterface $user): Response
     {
@@ -68,7 +70,7 @@ class AlunoController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Aluno")
      * @IsGranted("aluno_show", subject="entity")
      */
-    public function show(IEntity $entity): Response
+    public function show(EntityInterface $entity): Response
     {
         return parent::show($entity);
     }
@@ -78,7 +80,7 @@ class AlunoController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Aluno")
      * @IsGranted("aluno_show", subject="entity")
      */
-    public function edit(Request $request, IEntity $entity): Response
+    public function edit(Request $request, EntityInterface $entity): Response
     {
         $form = $this->createForm($this->formType, $entity);
         $form->handleRequest($request);
@@ -103,7 +105,7 @@ class AlunoController extends AppAbstractController
      * @Route("/{id}", name="aluno_delete", methods="DELETE")
      * @ParamConverter("entity", class="App\Entity\Aluno")
      */
-    public function delete(Request $request, IEntity $entity): Response
+    public function delete(Request $request, EntityInterface $entity): Response
     {
         return parent::delete($request, $entity);
     }
@@ -113,7 +115,7 @@ class AlunoController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Aluno")
      * @IsGranted("aluno_show", subject="entity")
      */
-    public function image(Request $request, IEntity $entity): Response
+    public function image(Request $request, EntityInterface $entity): Response
     {
         $form = $this->createForm(AlunoFile::class, $entity);
         $form->handleRequest($request);

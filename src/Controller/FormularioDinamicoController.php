@@ -5,9 +5,9 @@ namespace App\Controller;
 use App\Entity\Formulario;
 use App\Entity\FormularioRegistro;
 use App\Entity\FormularioRegistroCampo;
-use App\Entity\IEntity;
+use App\Entity\EntityInterface;
 use App\Form\FormularioDinamicoType;
-use App\Helpers\TemplateManager;
+use App\Service\TemplateManager;
 use App\Repository\AlunoRepository;
 use App\Repository\FormularioRegistroRepository;
 use App\Repository\FormularioRepository;
@@ -49,11 +49,12 @@ class FormularioDinamicoController extends AbstractController
 
     /**
      * @Route("/", name="formulario_dinamico_index", methods="GET|POST", defaults={"page" = 1})
+     * @IsGranted("formulario_list")
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
         $resultSet = $paginator->paginate(
-            $this->entityRepository->findBy(['formulario' => $request->get('form_id')]),
+            $this->entityRepository->findByUserContext($this->getUser(), ['formulario' => $request->get('form_id')]),
             $request->get('page')
         );
 
@@ -68,6 +69,7 @@ class FormularioDinamicoController extends AbstractController
 
     /**
      * @Route("/new", name="formulario_dinamico_new", methods={"GET","POST"})
+     * @IsGranted("formulario_new")
      */
     public function new(Request $request, FormularioRepository $formularioRepository, UserInterface $user): Response
     {
@@ -114,9 +116,9 @@ class FormularioDinamicoController extends AbstractController
     /**
      * @Route("/{id}", name="formulario_dinamico_show", methods={"GET"})
      * @ParamConverter("entity", class="App\Entity\FormularioRegistro")
-     * @IsGranted("aluno_show", subject="entity")
+     * @IsGranted("formulario_show", subject="entity")
      */
-    public function show(Request $request, IEntity $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
+    public function show(Request $request, EntityInterface $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
     {
         $formularioModelo = $formularioRepository->find($request->get('form_id'));
 
@@ -131,7 +133,7 @@ class FormularioDinamicoController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="formulario_dinamico_edit", methods={"GET","POST"})
-     * @IsGranted("aluno_show", subject="formularioRegistro")
+     * @IsGranted("formulario_edit", subject="formularioRegistro")
      */
     public function edit(Request $request, FormularioRepository $formularioRepository, FormularioRegistro $formularioRegistro, UserInterface $user): Response
     {
@@ -184,6 +186,7 @@ class FormularioDinamicoController extends AbstractController
 
     /**
      * @Route("/{id}", name="formulario_dinamico_delete", methods={"DELETE"})
+     * @IsGranted("formulario_delete", subject="formularioRegistro")
      */
     public function delete(Request $request, FormularioRegistro $formularioRegistro): Response
     {
@@ -206,9 +209,9 @@ class FormularioDinamicoController extends AbstractController
     /**
      * @Route("/{id}/pdf", name="formulario_dinamico_report_pdf", methods="GET")
      * @ParamConverter("entity", class="App\Entity\FormularioRegistro")
-     * @IsGranted("aluno_show", subject="entity")
+     * @IsGranted("formulario_show", subject="entity")
      */
-    public function reportPdf(Request $request, IEntity $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
+    public function reportPdf(Request $request, EntityInterface $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
     {
         $formularioModelo = $formularioRepository->find($request->get('form_id'));
 

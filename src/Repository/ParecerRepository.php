@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Escola;
 use App\Entity\Parecer;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -16,6 +17,11 @@ class ParecerRepository extends AbstractRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Parecer::class);
+    }
+
+    protected function getFilterByEscola(Escola $escola)
+    {
+        return ['aluno' => $escola->getAlunos()->toArray()];
     }
 
     // /**

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Service;
 
 use App\Repository\AlunoRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Security;
 
-class FormularioDinamicoHelper
+class FormularioDinamico
 {
     private $session;
     private $alunoRepository;

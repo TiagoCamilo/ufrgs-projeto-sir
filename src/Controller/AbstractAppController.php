@@ -8,15 +8,16 @@
 
 namespace App\Controller;
 
-use App\Entity\IEntity;
+use App\Entity\EntityInterface;
+use App\Repository\AbstractRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Helpers\TemplateManager;
+use App\Service\TemplateManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-abstract class AppAbstractController extends AbstractController
+abstract class AbstractAppController extends AbstractController
 {
     protected $entity;
     protected $entityRepository;
@@ -28,11 +29,10 @@ abstract class AppAbstractController extends AbstractController
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
         $resultSet = $paginator->paginate(
-            $this->entityRepository->findAll(),
+            $this->entityRepository->findAllByUserContext($this->getUser()),
             $request->get('page')
         );
 
-        //TODO: Refatorar para obter o response em cada metodo
         return $this->render("{$this->entityName}/index.html.twig", [
             'registers' => $resultSet,
             'entityName' => $this->entityName,
@@ -50,7 +50,7 @@ abstract class AppAbstractController extends AbstractController
             $em->persist($this->entity);
             $em->flush();
 
-            return $this->redirectToRoute("{$this->entityName}_index");
+            return $this->newSuccessResponse($this->entity);
         }
 
         return $this->render($this->getTemplateManager()->getNew(), [
@@ -61,9 +61,13 @@ abstract class AppAbstractController extends AbstractController
         ]);
     }
 
-    public function show(IEntity $entity): Response
+    protected function newSuccessResponse(EntityInterface $entity): Response
     {
-        //TODO: Refatorar para obter o response em cada metodo
+        return $this->redirectToRoute("{$this->entityName}_index");
+    }
+
+    public function show(EntityInterface $entity): Response
+    {
         return $this->render("{$this->entityName}/show.html.twig", [
             'register' => $entity,
             'entityName' => $this->entityName,
@@ -71,7 +75,7 @@ abstract class AppAbstractController extends AbstractController
         ]);
     }
 
-    public function edit(Request $request, IEntity $entity): Response
+    public function edit(Request $request, EntityInterface $entity): Response
     {
         $form = $this->getForm($entity);
         $form->handleRequest($request);
@@ -86,7 +90,7 @@ abstract class AppAbstractController extends AbstractController
                 ]);
             }
 
-            return $this->redirectToRoute("{$this->entityName}_index", ['id' => $entity->getId()]);
+            return $this->editSuccessResponse($entity);
         }
 
         return $this->render($this->getTemplateManager()->getEdit(), [
@@ -98,7 +102,12 @@ abstract class AppAbstractController extends AbstractController
         ]);
     }
 
-    public function delete(Request $request, IEntity $entity): Response
+    protected function editSuccessResponse(EntityInterface $entity): Response
+    {
+        return $this->redirectToRoute("{$this->entityName}_index");
+    }
+
+    public function delete(Request $request, EntityInterface $entity): Response
     {
         if ($this->isCsrfTokenValid('delete'.$entity->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
@@ -113,10 +122,16 @@ abstract class AppAbstractController extends AbstractController
             ]);
         }
 
+        return $this->deleteSuccessResponse($entity);
+    }
+
+    protected function deleteSuccessResponse(EntityInterface $entity): Response
+    {
         return $this->redirectToRoute("{$this->entityName}_index");
     }
 
-    protected function getForm(IEntity $entity){
+    protected function getForm(EntityInterface $entity)
+    {
         return $this->createForm($this->formType, $entity);
     }
 

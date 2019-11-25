@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FormularioRepository")
  */
-class Formulario implements IEntity
+class Formulario implements EntityInterface, LimiterEscolaInterface
 {
     /**
      * @ORM\Id()
@@ -24,7 +24,7 @@ class Formulario implements IEntity
     private $nome;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FormularioAgrupador", mappedBy="formulario", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\FormularioAgrupador", mappedBy="formulario", orphanRemoval=true, cascade={"persist"}, fetch="EAGER")
      * @ORM\OrderBy({"ordem"="ASC"})
      */
     private $formularioAgrupadores;

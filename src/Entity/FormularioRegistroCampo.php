@@ -29,7 +29,7 @@ class FormularioRegistroCampo
     private $formularioCampo;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=4000, nullable=true)
      */
     private $valor;
 

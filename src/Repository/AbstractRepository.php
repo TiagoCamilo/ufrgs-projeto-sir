@@ -19,7 +19,12 @@ abstract class AbstractRepository extends ServiceEntityRepository
         return $this->findBy([], ['id' => 'DESC']);
     }
 
-    public function findByUser(Usuario $usuario, array $criteria = [], array $orderBy = null, $limit = null, $offset = null)
+    public function findAllByUserContext(Usuario $usuario)
+    {
+        return $this->findByUserContext($usuario, [], ['id' => 'DESC']);
+    }
+
+    public function findByUserContext(Usuario $usuario, array $criteria = [], array $orderBy = null, $limit = null, $offset = null)
     {
         $filter = [];
 
@@ -27,10 +32,19 @@ abstract class AbstractRepository extends ServiceEntityRepository
             $filter = array_merge($filter, $criteria);
         }
 
+        $filter = array_merge($filter, $this->getFilterCustom());
+
         if ($usuario->getEscola() instanceof  Escola) {
-            $filter = array_merge($filter, ['escola' => $usuario->getEscola()]);
+            $filter = array_merge($filter, $this->getFilterByEscola($usuario->getEscola()));
         }
 
         return $this->findBy($filter, $orderBy, $limit, $offset);
     }
+
+    protected function getFilterCustom(): array
+    {
+        return [];
+    }
+
+    abstract protected function getFilterByEscola(Escola $escola);
 }

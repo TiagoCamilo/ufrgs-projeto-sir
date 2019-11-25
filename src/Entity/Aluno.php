@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AlunoRepository")
  */
-class Aluno implements IEntity, LimiterEscolaInterface
+class Aluno implements EntityInterface, LimiterEscolaInterface
 {
     /**
      * @ORM\Id()
@@ -89,6 +89,7 @@ class Aluno implements IEntity, LimiterEscolaInterface
      * @ORM\Column(type="string", length=10, nullable=true)
      */
     public $matricula;
+    private $str;
 
     public function __construct()
     {
@@ -372,5 +373,10 @@ class Aluno implements IEntity, LimiterEscolaInterface
     public function getPrimeiroNome()
     {
         return explode(' ', $this->nome)[0];
+    }
+
+    public function __sleep()
+    {
+        return ['id'];
     }
 }

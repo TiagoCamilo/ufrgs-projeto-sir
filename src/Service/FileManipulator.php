@@ -11,7 +11,7 @@ namespace App\Service;
 use Intervention\Image\ImageManagerStatic as Image;
 use Intervention\Image\Exception\NotReadableException;
 
-class FileManipulator implements IFileManipulator
+class FileManipulator implements FileManipulatorInterface
 {
     private $image;
     private $width;
@@ -28,7 +28,7 @@ class FileManipulator implements IFileManipulator
         return $this->image;
     }
 
-    public function setImage(string $image): IFileManipulator
+    public function setImage(string $image): FileManipulatorInterface
     {
         $this->image = $image;
 

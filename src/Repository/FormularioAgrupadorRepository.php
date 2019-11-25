@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Escola;
 use App\Entity\FormularioAgrupador;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -15,6 +16,11 @@ class FormularioAgrupadorRepository extends AbstractRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, FormularioAgrupador::class);
+    }
+
+    protected function getFilterByEscola(Escola $escola)
+    {
+        return [];
     }
 
     // /**

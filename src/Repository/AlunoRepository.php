@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Aluno;
+use App\Entity\Escola;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -16,6 +17,11 @@ class AlunoRepository extends AbstractRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Aluno::class);
+    }
+
+    protected function getFilterByEscola(Escola $escola)
+    {
+        return ['escola' => $escola];
     }
 
 //    /**

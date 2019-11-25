@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20191013142428 extends AbstractMigration
+final class Version20191111195515 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,10 +20,9 @@ final class Version20191013142428 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql("update formulario_campo
-                            set tipo= 'EntityType',
-                            entidade_dado_mapeado_id = (select id from entidade_dado_mapeado where entidade_nome = 'Aluno' and entidade_dado = 'historicoEscolar')
-                            where label in ('Histórico Escolar', 'Histórico')");
+        $this->abortIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
+
+        $this->addSql('ALTER TABLE formulario_registro_campo ALTER valor TYPE VARCHAR(4000)');
     }
 
     public function down(Schema $schema): void
@@ -32,5 +31,6 @@ final class Version20191013142428 extends AbstractMigration
         $this->abortIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE SCHEMA public');
+        $this->addSql('ALTER TABLE formulario_registro_campo ALTER valor TYPE VARCHAR(255)');
     }
 }
