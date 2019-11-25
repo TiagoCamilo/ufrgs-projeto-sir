@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EscolaRepository")
  */
-class Escola implements EntityInterface
+class Escola implements EntityInterface, LimiterEscolaInterface
 {
     /**
      * @ORM\Id()
@@ -188,6 +188,11 @@ class Escola implements EntityInterface
             }
         }
 
+        return $this;
+    }
+
+    public function getEscola(): ?Escola
+    {
         return $this;
     }
 }

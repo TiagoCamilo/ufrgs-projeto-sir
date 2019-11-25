@@ -10,6 +10,7 @@ namespace App\Form;
 
 use App\Entity\Escola;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,7 +20,9 @@ class EscolaType extends AbstractType
     {
         $builder
             ->add('nome')
-            ->add('endereco');
+            ->add('endereco', TextType::class, [
+                'label' => 'Endereço'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
