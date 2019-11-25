@@ -5,7 +5,7 @@ namespace App\Form;
 use App\Entity\Escola;
 use App\Entity\FormularioAgrupador;
 use App\Entity\FormularioCampo;
-use App\Helpers\FormularioDinamicoHelper;
+use App\Service\FormularioDinamico;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -15,11 +15,10 @@ use Symfony\Component\Security\Core\Security;
 
 class FormularioCampoType extends AbstractType
 {
-
     private $formularioDinamicoHelper;
     private $user;
 
-    public function __construct(FormularioDinamicoHelper $formularioDinamicoHelper, Security $security)
+    public function __construct(FormularioDinamico $formularioDinamicoHelper, Security $security)
     {
         $this->formularioDinamicoHelper = $formularioDinamicoHelper;
         $this->user = $security->getUser();
@@ -38,12 +37,12 @@ class FormularioCampoType extends AbstractType
             ->add('altura')
             ->add('largura');
 
-        if($this->user->getEscola() instanceof Escola) {
+        if ($this->user->getEscola() instanceof Escola) {
             $builder->add('agrupador', EntityType::class, [
                 'class' => FormularioAgrupador::class,
-                'choices' => $this->user->getEscola()->getFormularios()->map(function($formulario) {
+                'choices' => $this->user->getEscola()->getFormularios()->map(function ($formulario) {
                     return $formulario->getFormularioAgrupadores()->toArray();
-                })
+                }),
             ]);
         } else {
             $builder->add('agrupador');

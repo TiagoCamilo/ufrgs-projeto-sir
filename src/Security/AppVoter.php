@@ -4,7 +4,7 @@ namespace App\Security;
 
 use App\Entity\LimiterEscolaInterface;
 use App\Entity\Usuario;
-use App\Helpers\VoterHelper;
+use App\Service\Perfil;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
@@ -34,7 +34,7 @@ class AppVoter extends Voter
         }
 
         // Verifica se possui a permissao em questao
-        if (false === VoterHelper::checkUserPermission($user, $attribute)) {
+        if (false === Perfil::checkUserPermission($user, $attribute)) {
             return false;
         }
 
@@ -50,6 +50,6 @@ class AppVoter extends Voter
     private function checkScope(LimiterEscolaInterface $object, Usuario $user)
     {
         // Usuario administrador nao possui escola, logo tem acesso a todas entidades
-        return ($user->getEscola() === null || $user->getEscola() === $object->getEscola());
+        return null === $user->getEscola() || $user->getEscola() === $object->getEscola();
     }
 }

@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Escola;
 use App\Entity\Perfil;
 use App\Entity\Usuario;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -21,12 +20,14 @@ class UsuarioRepository extends AbstractRepository
         parent::__construct($registry, Usuario::class);
     }
 
-    protected function getFilterByEscola(Escola $escola){
+    protected function getFilterByEscola(Escola $escola)
+    {
         return ['escola' => $escola];
     }
 
-    protected function getFilterCustom(): array{
-        return ['perfil' => [Perfil::EDUCADOR,Perfil::COORDENADOR]];
+    protected function getFilterCustom(): array
+    {
+        return ['perfil' => [Perfil::EDUCADOR, Perfil::COORDENADOR]];
     }
 
     // /**

@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Formulario;
-use App\Entity\IEntity;
+use App\Entity\EntityInterface;
 use App\Form\FormularioType;
-use App\Helpers\TemplateManager;
+use App\Service\TemplateManager;
 use App\Repository\FormularioRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @Route("/formulario")
  */
-class FormularioController extends AppAbstractController
+class FormularioController extends AbstractAppController
 {
     public function __construct(FormularioRepository $entityRepository)
     {
@@ -47,7 +47,7 @@ class FormularioController extends AppAbstractController
      * @Route("/{id}", name="formulario_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\Formulario")
      */
-    public function show(IEntity $entity): Response
+    public function show(EntityInterface $entity): Response
     {
         return parent::show($entity);
     }
@@ -56,7 +56,7 @@ class FormularioController extends AppAbstractController
      * @Route("/{id}/edit", name="formulario_edit", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\Formulario")
      */
-    public function edit(Request $request, IEntity $entity): Response
+    public function edit(Request $request, EntityInterface $entity): Response
     {
         return parent::edit($request, $entity);
     }
@@ -65,7 +65,7 @@ class FormularioController extends AppAbstractController
      * @Route("/{id}", name="formulario_delete", methods="DELETE")
      * @ParamConverter("entity", class="App\Entity\Formulario")
      */
-    public function delete(Request $request, IEntity $entity): Response
+    public function delete(Request $request, EntityInterface $entity): Response
     {
         return parent::delete($request, $entity);
     }
@@ -74,6 +74,7 @@ class FormularioController extends AppAbstractController
     {
         $templateManager = parent::getTemplateManager();
         $templateManager->setIndexActions('formulario/_index_registers.html.twig');
+
         return $templateManager;
     }
 }

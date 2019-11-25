@@ -19,7 +19,8 @@ abstract class AbstractRepository extends ServiceEntityRepository
         return $this->findBy([], ['id' => 'DESC']);
     }
 
-    public function findAllByUserContext(Usuario $usuario){
+    public function findAllByUserContext(Usuario $usuario)
+    {
         return $this->findByUserContext($usuario, [], ['id' => 'DESC']);
     }
 
@@ -40,7 +41,8 @@ abstract class AbstractRepository extends ServiceEntityRepository
         return $this->findBy($filter, $orderBy, $limit, $offset);
     }
 
-    protected function getFilterCustom(): array{
+    protected function getFilterCustom(): array
+    {
         return [];
     }
 

@@ -5,9 +5,9 @@ namespace App\Controller;
 use App\Entity\Formulario;
 use App\Entity\FormularioRegistro;
 use App\Entity\FormularioRegistroCampo;
-use App\Entity\IEntity;
+use App\Entity\EntityInterface;
 use App\Form\FormularioDinamicoType;
-use App\Helpers\TemplateManager;
+use App\Service\TemplateManager;
 use App\Repository\AlunoRepository;
 use App\Repository\FormularioRegistroRepository;
 use App\Repository\FormularioRepository;
@@ -118,7 +118,7 @@ class FormularioDinamicoController extends AbstractController
      * @ParamConverter("entity", class="App\Entity\FormularioRegistro")
      * @IsGranted("formulario_show", subject="entity")
      */
-    public function show(Request $request, IEntity $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
+    public function show(Request $request, EntityInterface $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
     {
         $formularioModelo = $formularioRepository->find($request->get('form_id'));
 
@@ -211,7 +211,7 @@ class FormularioDinamicoController extends AbstractController
      * @ParamConverter("entity", class="App\Entity\FormularioRegistro")
      * @IsGranted("formulario_show", subject="entity")
      */
-    public function reportPdf(Request $request, IEntity $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
+    public function reportPdf(Request $request, EntityInterface $entity, PdfGenerator $pdfGenerator, FormularioRepository $formularioRepository): Response
     {
         $formularioModelo = $formularioRepository->find($request->get('form_id'));
 

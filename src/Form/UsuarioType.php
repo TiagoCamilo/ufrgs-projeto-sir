@@ -24,7 +24,6 @@ use Symfony\Component\Security\Core\Security;
 
 class UsuarioType extends AbstractType
 {
-
     private $user;
 
     public function __construct(Security $security)
@@ -39,34 +38,34 @@ class UsuarioType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'A senhas devem ser iguais.',
-                'first_options'  => ['label' => 'Senha'],
+                'first_options' => ['label' => 'Senha'],
                 'second_options' => [
                     'label' => 'Repetir nova senha',
-                    'help' => 'Digite a senha novamente para confirmação.'
+                    'help' => 'Digite a senha novamente para confirmação.',
                 ],
-                'required' => false
+                'required' => false,
             ])
             ->add('nome', TextType::class)
-            ->add('perfil', EntityType::class,[
+            ->add('perfil', EntityType::class, [
                 'class' => Perfil::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
                         ->where('p.id IN (:idPerfis)')
-                        ->setParameter('idPerfis', [Perfil::EDUCADOR,Perfil::COORDENADOR])
+                        ->setParameter('idPerfis', [Perfil::EDUCADOR, Perfil::COORDENADOR])
                         ->orderBy('p.nome', 'DESC');
                 },
                 'choice_label' => 'nome',
             ]);
 
-        if($this->user->getEscola() instanceof Escola) {
+        if ($this->user->getEscola() instanceof Escola) {
             $builder->add('escola', EntityType::class, [
                 'class' => Escola::class,
-                'choices' => [$this->user->getEscola()]
+                'choices' => [$this->user->getEscola()],
             ]);
         } else {
             $builder->add('escola', EntityType::class, [
                 'class' => Escola::class,
-                'required' => true
+                'required' => true,
             ]);
         }
     }

@@ -9,25 +9,23 @@
 namespace App\Controller;
 
 use App\Entity\Usuario;
-use App\Entity\IEntity;
+use App\Entity\EntityInterface;
 use App\Form\UsuarioEditType;
 use App\Form\UsuarioType;
 use App\Repository\UsuarioRepository;
-use App\Service\FormularioModelo;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/usuario")
  */
-class UsuarioController extends AppAbstractController
+class UsuarioController extends AbstractAppController
 {
     private $passwordEncoder;
 
@@ -59,7 +57,6 @@ class UsuarioController extends AppAbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $password = $this->passwordEncoder->encodePassword($this->entity, $this->entity->plainPassword);
             $this->entity->setPassword($password);
 
@@ -83,7 +80,7 @@ class UsuarioController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Usuario")
      * @IsGranted("usuario_show", subject="entity")
      */
-    public function show(IEntity $entity): Response
+    public function show(EntityInterface $entity): Response
     {
         return parent::show($entity);
     }
@@ -93,20 +90,22 @@ class UsuarioController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Usuario")
      * @IsGranted("usuario_edit", subject="entity")
      */
-    public function edit(Request $request, IEntity $entity): Response
+    public function edit(Request $request, EntityInterface $entity): Response
     {
-        if($this->getUser()->isEducador() && $this->getUser() !== $entity){
-            return new Response('Acesso Negado',403);
+        if ($this->getUser()->isEducador() && $this->getUser() !== $entity) {
+            return new Response('Acesso Negado', 403);
         }
         $this->formType = UsuarioEditType::class;
+
         return parent::edit($request, $entity);
     }
 
-    protected function editSuccessResponse(IEntity $entity): Response
+    protected function editSuccessResponse(EntityInterface $entity): Response
     {
-        if($this->getUser()->isEducador()){
-            return $this->redirectToRoute("home");
+        if ($this->getUser()->isEducador()) {
+            return $this->redirectToRoute('home');
         }
+
         return $this->redirectToRoute("{$this->entityName}_index");
     }
 
@@ -115,7 +114,7 @@ class UsuarioController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Usuario")
      * @IsGranted("usuario_delete", subject="entity")
      */
-    public function delete(Request $request, IEntity $entity): Response
+    public function delete(Request $request, EntityInterface $entity): Response
     {
         return parent::delete($request, $entity);
     }

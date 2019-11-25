@@ -7,13 +7,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsuarioRepository")
  * @UniqueEntity(fields="email", message="E-mail já existente.")
  */
-class Usuario implements UserInterface, LimiterEscolaInterface, IEntity
+class Usuario implements UserInterface, LimiterEscolaInterface, EntityInterface
 {
     /**
      * @ORM\Id()
@@ -327,8 +326,8 @@ class Usuario implements UserInterface, LimiterEscolaInterface, IEntity
         return $this->getNome();
     }
 
-    public function isEducador(): bool {
-        return $this->getPerfil()->getId() == Perfil::EDUCADOR;
+    public function isEducador(): bool
+    {
+        return Perfil::EDUCADOR == $this->getPerfil()->getId();
     }
-
 }

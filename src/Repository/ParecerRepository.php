@@ -19,7 +19,8 @@ class ParecerRepository extends AbstractRepository
         parent::__construct($registry, Parecer::class);
     }
 
-    protected function getFilterByEscola(Escola $escola){
+    protected function getFilterByEscola(Escola $escola)
+    {
         return ['aluno' => $escola->getAlunos()->toArray()];
     }
 

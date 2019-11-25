@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Acompanhamento;
-use App\Entity\IEntity;
+use App\Entity\EntityInterface;
 use App\Form\AcompanhamentoType;
-use App\Helpers\TemplateManager;
+use App\Service\TemplateManager;
 use App\Repository\AcompanhamentoRepository;
 use App\Repository\AlunoRepository;
 use App\Service\PdfGenerator;
@@ -21,7 +21,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @Route("/acompanhamento")
  */
-class AcompanhamentoController extends AppAbstractController
+class AcompanhamentoController extends AbstractAppController
 {
     protected $aluno;
 
@@ -83,7 +83,7 @@ class AcompanhamentoController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Acompanhamento")
      * @IsGranted("acompanhamento_show", subject="entity")
      */
-    public function show(IEntity $entity): Response
+    public function show(EntityInterface $entity): Response
     {
         return parent::show($entity);
     }
@@ -93,7 +93,7 @@ class AcompanhamentoController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Acompanhamento")
      * @IsGranted("acompanhamento_edit", subject="entity")
      */
-    public function edit(Request $request, IEntity $entity): Response
+    public function edit(Request $request, EntityInterface $entity): Response
     {
         return parent::edit($request, $entity);
     }
@@ -103,7 +103,7 @@ class AcompanhamentoController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Acompanhamento")
      * @IsGranted("acompanhamento_delete", subject="entity")
      */
-    public function delete(Request $request, IEntity $entity): Response
+    public function delete(Request $request, EntityInterface $entity): Response
     {
         return parent::delete($request, $entity);
     }
@@ -122,7 +122,7 @@ class AcompanhamentoController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Acompanhamento")
      * @IsGranted("acompanhamento_show", subject="entity")
      */
-    public function reportPdf(IEntity $entity, PdfGenerator $pdfGenerator): Response
+    public function reportPdf(EntityInterface $entity, PdfGenerator $pdfGenerator): Response
     {
         $html = $this->renderView('acompanhamento/report_pdf.html.twig', [
             'register' => $entity,

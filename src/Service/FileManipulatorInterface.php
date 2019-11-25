@@ -8,14 +8,13 @@
 
 namespace App\Service;
 
-interface IFileManipulator
+interface FileManipulatorInterface
 {
     public function __construct(int $width, int $height);
 
     public function getImage(): ?string;
 
-    public function setImage(string $image): IFileManipulator;
+    public function setImage(string $image): FileManipulatorInterface;
 
     public function normalize();
-
 }

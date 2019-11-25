@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Aluno;
-use App\Entity\IEntity;
+use App\Entity\EntityInterface;
 use App\Form\AlunoType;
 use App\Repository\AlunoRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/perfil_aluno")
  */
-class PerfilAlunoController extends AppAbstractController
+class PerfilAlunoController extends AbstractAppController
 {
     private $session;
 
@@ -33,7 +33,7 @@ class PerfilAlunoController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Aluno")
      * @IsGranted("aluno_show", subject="entity")
      */
-    public function profile(IEntity $entity, string $timeline_element): Response
+    public function profile(EntityInterface $entity, string $timeline_element): Response
     {
         $this->session->set('aluno_id', $entity->getId());
         $this->session->set('aluno_nome', $entity->getPrimeiroNome());

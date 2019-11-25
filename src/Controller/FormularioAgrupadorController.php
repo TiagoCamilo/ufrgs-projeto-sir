@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Formulario;
 use App\Entity\FormularioAgrupador;
-use App\Entity\IEntity;
+use App\Entity\EntityInterface;
 use App\Form\FormularioAgrupadorType;
-use App\Helpers\TemplateManager;
+use App\Service\TemplateManager;
 use App\Repository\FormularioAgrupadorRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @Route("/formulario_agrupador")
  */
-class FormularioAgrupadorController extends AppAbstractController
+class FormularioAgrupadorController extends AbstractAppController
 {
     public function __construct(FormularioAgrupadorRepository $entityRepository)
     {
@@ -59,17 +59,17 @@ class FormularioAgrupadorController extends AppAbstractController
         return parent::new($request, $user);
     }
 
-    protected function newSuccessResponse(IEntity $entity): Response {
-        return $this->redirectToRoute("{$this->entityName}_index", ["formulario" => $entity->getFormulario()->getId()]);
+    protected function newSuccessResponse(EntityInterface $entity): Response
+    {
+        return $this->redirectToRoute("{$this->entityName}_index", ['formulario' => $entity->getFormulario()->getId()]);
     }
-
 
     /**
      * @Route("/{id}", name="formulario_agrupador_show", methods="GET")
      * @ParamConverter("entity", class="App\Entity\FormularioAgrupador")
      * @IsGranted("formulario_agrupador_show", subject="entity")
      */
-    public function show(IEntity $entity): Response
+    public function show(EntityInterface $entity): Response
     {
         return parent::show($entity);
     }
@@ -78,20 +78,21 @@ class FormularioAgrupadorController extends AppAbstractController
      * @Route("/{id}/edit", name="formulario_agrupador_edit", methods="GET|POST")
      * @ParamConverter("entity", class="App\Entity\FormularioAgrupador")
      */
-    public function edit(Request $request, IEntity $entity): Response
+    public function edit(Request $request, EntityInterface $entity): Response
     {
         return parent::edit($request, $entity);
     }
 
-    protected function editSuccessResponse(IEntity $entity): Response {
-        return $this->redirectToRoute("{$this->entityName}_index", ["formulario" => $entity->getFormulario()->getId()]);
+    protected function editSuccessResponse(EntityInterface $entity): Response
+    {
+        return $this->redirectToRoute("{$this->entityName}_index", ['formulario' => $entity->getFormulario()->getId()]);
     }
 
     /**
      * @Route("/{id}", name="formulario_agrupador_delete", methods="DELETE")
      * @ParamConverter("entity", class="App\Entity\FormularioAgrupador")
      */
-    public function delete(Request $request, IEntity $entity): Response
+    public function delete(Request $request, EntityInterface $entity): Response
     {
         if ($this->isCsrfTokenValid('delete'.$entity->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
@@ -102,13 +103,14 @@ class FormularioAgrupadorController extends AppAbstractController
             $em->flush();
         }
 
-        return $this->redirectToRoute("{$this->entityName}_index", ["formulario" => $entity->getFormulario()->getId()]);
+        return $this->redirectToRoute("{$this->entityName}_index", ['formulario' => $entity->getFormulario()->getId()]);
     }
 
     protected function getTemplateManager(): TemplateManager
     {
         $templateManager = parent::getTemplateManager();
         $templateManager->setIndexActions('formulario_agrupador/_index_registers.html.twig');
+
         return $templateManager;
     }
 }

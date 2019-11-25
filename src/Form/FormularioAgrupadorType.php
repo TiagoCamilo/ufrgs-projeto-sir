@@ -11,7 +11,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Security;
 
-
 class FormularioAgrupadorType extends AbstractType
 {
     private $user;
@@ -27,7 +26,7 @@ class FormularioAgrupadorType extends AbstractType
             ->add('titulo')
             ->add('ordem');
 
-        if($this->user->getEscola() instanceof Escola) {
+        if ($this->user->getEscola() instanceof Escola) {
             $builder->add('formulario', EntityType::class, [
                 'class' => Formulario::class,
                 'choices' => $this->user->getEscola()->getFormularios(),

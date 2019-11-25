@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Parecer;
-use App\Entity\IEntity;
+use App\Entity\EntityInterface;
 use App\Form\ParecerType;
-use App\Helpers\TemplateManager;
+use App\Service\TemplateManager;
 use App\Repository\ParecerRepository;
 use App\Repository\AlunoRepository;
 use App\Service\PdfGenerator;
@@ -21,7 +21,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @Route("/parecer")
  */
-class ParecerController extends AppAbstractController
+class ParecerController extends AbstractAppController
 {
     protected $aluno;
 
@@ -84,7 +84,7 @@ class ParecerController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Parecer")
      * @IsGranted("parecer_show", subject="entity")
      */
-    public function show(IEntity $entity): Response
+    public function show(EntityInterface $entity): Response
     {
         return parent::show($entity);
     }
@@ -94,7 +94,7 @@ class ParecerController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Parecer")
      * @IsGranted("parecer_edit", subject="entity")
      */
-    public function edit(Request $request, IEntity $entity): Response
+    public function edit(Request $request, EntityInterface $entity): Response
     {
         return parent::edit($request, $entity);
     }
@@ -104,7 +104,7 @@ class ParecerController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Parecer")
      * @IsGranted("parecer_delete", subject="entity")
      */
-    public function delete(Request $request, IEntity $entity): Response
+    public function delete(Request $request, EntityInterface $entity): Response
     {
         return parent::delete($request, $entity);
     }
@@ -123,7 +123,7 @@ class ParecerController extends AppAbstractController
      * @ParamConverter("entity", class="App\Entity\Parecer")
      * @IsGranted("parecer_show", subject="entity")
      */
-    public function reportPdf(IEntity $entity, PdfGenerator $pdfGenerator): Response
+    public function reportPdf(EntityInterface $entity, PdfGenerator $pdfGenerator): Response
     {
         $html = $this->renderView('parecer/report_pdf.html.twig', [
             'register' => $entity,

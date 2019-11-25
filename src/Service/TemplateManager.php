@@ -6,7 +6,7 @@
  * Time: 11:37.
  */
 
-namespace App\Helpers;
+namespace App\Service;
 
 class TemplateManager
 {
