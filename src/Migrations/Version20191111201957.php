@@ -22,7 +22,9 @@ final class Version20191111201957 extends AbstractMigration
         // Clear Table
         $this->addSql('DELETE FROM PERFIL_CONTROLE_ACAO');
 
-        //Create Coordenador profile
+        //Create perfil register
+        $this->addSql("INSERT INTO PERFIL(ID, NOME) VALUES (1, 'Administrador') ON CONFLICT (ID) DO NOTHING");
+        $this->addSql("INSERT INTO PERFIL(ID, NOME) VALUES (2, 'Educador') ON CONFLICT (ID) DO NOTHING");
         $this->addSql("INSERT INTO PERFIL(ID, NOME) VALUES (3, 'Coordenador') ON CONFLICT (ID) DO NOTHING");
 
         //Administrador
