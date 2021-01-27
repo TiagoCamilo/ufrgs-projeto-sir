@@ -35,3 +35,10 @@
 
 8. Popular registros auxiliar com "Fixtures":
 	`./bin/console doctrine:fixtures:load --append`
+	
+## Imagens
+
+![Alt text](images/perfil.png?raw=true "Perfil do Aluno")
+![Alt text](images/home.png?raw=true "Home")
+![Alt text](images/add_parecer.png?raw=true "Adicionar Parecer")
+
