@@ -38,7 +38,12 @@
 	
 ## Imagens
 
+1. Tela de perfil do aluno
 ![Alt text](images/perfil.png?raw=true "Perfil do Aluno")
+---
+2. Home do sistema
 ![Alt text](images/home.png?raw=true "Home")
+---
+3. Tela de adicionar parecer
 ![Alt text](images/add_parecer.png?raw=true "Adicionar Parecer")
 
